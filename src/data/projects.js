@@ -12,23 +12,23 @@ export const projects = [
     badge: "Live",
     description: "Banking platform with biometric face login, OTP authentication and secure account management.",
     stack: ["Next.js", "Prisma", "face-api.js"],
-    liveUrl: null,
+    liveUrl: "https://skku-bank.vercel.app",
     githubUrl: "https://github.com/skku-global/skku-bank"
   },
   {
-    title: "DataCompare",
+    title: "Tema Car Wash",
     badge: "Live",
-    description: "Mobile app for comparing data plans across networks.",
-    stack: ["React Native", "JavaScript"],
-    liveUrl: null,
-    githubUrl: "https://github.com/skku-global/data-app"
+    description: "Smart job tracking platform connecting car wash workers with job opportunities.",
+    stack: ["React", "Node.js"],
+    liveUrl: "https://tema-car-wash.vercel.app",
+    githubUrl: "https://github.com/skku-global/Tema-Car-Wash"
   },
   {
     title: "Apartment Listing",
     badge: "Live",
-    description: "Property listing platform for rent and sale.",
+    description: "Property listing platform for rent and sale with search and filter functionality.",
     stack: ["JavaScript", "HTML", "CSS"],
-    liveUrl: null,
+    liveUrl: "https://apartment-ls-ready.vercel.app",
     githubUrl: "https://github.com/skku-global/apartment-ls-ready"
   }
 ]
