@@ -56,7 +56,19 @@ It expects a `POST` of `{ "email": "..." }` and treats any non-2xx as an error. 
 ## Still to do
 
 - Add a resume PDF to `public/` and link it from the footer.
-- Consider retuning `--green` in `globals.css` to match the logo — the mark samples at `#206040` (hsl 150, 50%, 25%) while the site accent `#10b981` is hsl(160, 84%, 39%). Nearly the same hue; the clash is saturation and lightness.
+
+## Colour system
+
+Two greens, used for different jobs — this is deliberate, not drift:
+
+| Token | Value | Used for |
+| --- | --- | --- |
+| brand | `#206040` | The SKKU mark: navbar logo, footer logo, favicons, OG card |
+| `--green` | `#10b981` | Actions and emphasis: buttons, stat figures, links, badges |
+
+They share a hue family (hsl 150 vs 160) but differ sharply in saturation
+and lightness, so they read as distinct. Keep the mark forest green and the
+UI emerald; don't "correct" one toward the other without changing both.
 
 ## Social preview
 
