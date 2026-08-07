@@ -1,29 +1,59 @@
 .hero {
-  padding: 80px 32px 64px;
-  text-align: center;
+  padding: 88px var(--pad-x) 72px;
   border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 50% 0%,
+      rgba(16, 185, 129, 0.07),
+      transparent 70%
+    ),
+    var(--bg);
+}
+
+.hero-inner {
+  text-align: center;
 }
 
 .hero-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   background: var(--green-light);
   color: var(--green);
   font-size: 11px;
   font-weight: 600;
-  padding: 4px 12px;
+  padding: 5px 13px;
   border-radius: 20px;
   border: 1px solid var(--green-border);
   margin-bottom: 24px;
   letter-spacing: 0.5px;
 }
 
+.hero-tag .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
 .hero h1 {
-  font-size: 48px;
-  font-weight: 700;
+  font-size: 52px;
+  font-weight: 800;
   color: var(--text);
-  line-height: 1.15;
-  margin-bottom: 16px;
-  letter-spacing: -1.5px;
+  line-height: 1.12;
+  margin-bottom: 18px;
+  letter-spacing: -1.8px;
 }
 
 .hero h1 span {
@@ -33,43 +63,53 @@
 .hero p {
   font-size: 15px;
   color: var(--muted);
-  margin-bottom: 32px;
-  line-height: 1.6;
+  margin: 0 auto 32px;
+  max-width: 54ch;
+  line-height: 1.7;
 }
 
 .hero-btns {
   display: flex;
   gap: 12px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
-.btn-primary {
-  background: var(--green);
-  color: #fff;
-  padding: 12px 28px;
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.2s;
+.hero-note {
+  font-size: 12px !important;
+  color: var(--muted);
+  margin: 28px auto 0 !important;
+  opacity: 0.85;
 }
 
-.btn-primary:hover {
-  background: var(--green-hover);
+@media (max-width: 900px) {
+  .hero {
+    padding: 64px var(--pad-x) 56px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+    letter-spacing: -1.2px;
+  }
 }
 
-.btn-secondary {
-  background: var(--bg);
-  color: var(--text);
-  padding: 12px 28px;
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  border: 1px solid var(--border);
-  transition: border-color 0.2s;
-}
+@media (max-width: 640px) {
+  .hero {
+    padding: 48px var(--pad-x) 44px;
+  }
 
-.btn-secondary:hover {
-  border-color: var(--text);
+  .hero h1 {
+    font-size: 31px;
+    letter-spacing: -0.8px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  /* Full-width stacked CTAs are easier to hit on a phone */
+  .hero-btns {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }

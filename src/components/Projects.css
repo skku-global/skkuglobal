@@ -1,31 +1,6 @@
 .projects-section {
-  padding: 64px 32px;
+  padding: var(--section-y) var(--pad-x);
   border-bottom: 1px solid var(--border);
-}
-
-.section-header {
-  margin-bottom: 32px;
-}
-
-.section-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--green);
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
-
-.section-header h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.5px;
-  margin-bottom: 8px;
-}
-
-.section-header p {
-  font-size: 14px;
-  color: var(--muted);
 }
 
 .projects-grid {
@@ -34,22 +9,17 @@
   gap: 16px;
 }
 
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  transition: border-color 0.2s;
-}
-
-.card:hover {
-  border-color: var(--green-border);
+/* Column layout keeps the link row pinned to the bottom of every card */
+.project-card {
+  display: flex;
+  flex-direction: column;
 }
 
 .card-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   margin-bottom: 10px;
 }
 
@@ -60,19 +30,39 @@
 }
 
 .card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   background: var(--green-light);
   color: var(--green);
   font-size: 10px;
   font-weight: 600;
-  padding: 3px 8px;
+  padding: 3px 9px;
   border-radius: 20px;
   border: 1px solid var(--green-border);
+  white-space: nowrap;
+}
+
+.badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
 }
 
 .card-desc {
   font-size: 13px;
   color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+
+.card-detail {
+  font-size: 12px;
+  color: var(--muted);
   line-height: 1.6;
+  padding-left: 10px;
+  border-left: 2px solid var(--border);
   margin-bottom: 14px;
 }
 
@@ -83,17 +73,11 @@
   margin-bottom: 16px;
 }
 
-.tag {
-  background: var(--tag-bg);
-  color: var(--tag-text);
-  font-size: 11px;
-  padding: 3px 8px;
-  border-radius: 4px;
-}
-
+/* Pushes the links to the bottom regardless of description length */
 .card-links {
   display: flex;
   gap: 8px;
+  margin-top: auto;
 }
 
 .link-btn {
@@ -102,10 +86,10 @@
   color: var(--green);
   text-decoration: none;
   border: 1px solid var(--green-border);
-  padding: 5px 12px;
+  padding: 6px 13px;
   border-radius: 4px;
   background: var(--green-light);
-  transition: background 0.2s;
+  transition: background 0.2s ease;
 }
 
 .link-btn:hover {
@@ -118,12 +102,21 @@
   color: var(--muted);
   text-decoration: none;
   border: 1px solid var(--border);
-  padding: 5px 12px;
+  padding: 6px 13px;
   border-radius: 4px;
-  transition: border-color 0.2s;
+  background: var(--bg);
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .link-btn-ghost:hover {
   border-color: var(--text);
   color: var(--text);
+}
+
+@media (max-width: 800px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
 }

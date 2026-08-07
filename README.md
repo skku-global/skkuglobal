@@ -1,16 +1,65 @@
-# React + Vite
+# skkuglobal.com
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio and company site for **Abdulkabir Adekunle** — full-stack developer, trader, and founder of SKKU Global Technologies Limited.
 
-Currently, two official plugins are available:
+Live at **[skkuglobal.com](https://skkuglobal.com)**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+React 19 · Vite 8 · plain CSS (no framework) · deployed on Vercel.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev      # dev server with HMR
+npm run build    # production build to dist/
+npm run preview  # serve the production build locally
+npm run lint     # eslint
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Structure
+
+```
+src/
+├── App.jsx                  section order lives here
+├── main.jsx
+├── components/              one .jsx + matching .css per section
+│   ├── Navbar   Hero   Stats   About
+│   ├── Projects Skills Trading Vision
+│   └── Footer
+├── data/projects.js         project cards — edit this to add work
+├── hooks/useScrollAnimation.js
+└── styles/globals.css       design tokens, shared primitives, breakpoints
+```
+
+### Conventions
+
+- **Design tokens** (colors, radii, spacing, `--shell` width) are all in `styles/globals.css` under `:root`. Change them there, not in component files.
+- **Shared primitives** — `.btn-primary`, `.btn-secondary`, `.card`, `.tag`, `.section-header`, `.shell` — also live in `globals.css`. Don't redefine them in component CSS; they'll collide across the global cascade.
+- **Scroll reveal**: add `animate` to any element, plus `animate-delay-1` … `animate-delay-6` to stagger. The hook falls back to showing everything if `IntersectionObserver` is missing or the user prefers reduced motion.
+- **Adding a project**: append to `src/data/projects.js`. `detail` is optional; `liveUrl` and `githubUrl` each render only when present.
+
+## Email capture
+
+The early-access form in `Vision.jsx` posts to `VITE_SUBSCRIBE_ENDPOINT` when it's set:
+
+```bash
+# .env.local
+VITE_SUBSCRIBE_ENDPOINT=https://your-form-backend.example/subscribe
+```
+
+It expects a `POST` of `{ "email": "..." }` and treats any non-2xx as an error. Formspree, Buttondown, ConvertKit, or a small serverless function all work.
+
+**Without that variable set, the form falls back to opening the visitor's mail client** with a prefilled message to `admin@skkuglobal.com`. Nothing breaks, but signups arrive as email rather than into a list — set the endpoint when you want them captured automatically.
+
+## Still to do
+
+- Add a resume PDF to `public/` and link it from the footer.
+- Add CarBreezy and JobFlow to `src/data/projects.js` once their URLs are confirmed.
+
+## Social preview
+
+`public/og-image.png` (1200×630) is the share card used by the Open Graph and
+Twitter meta tags in `index.html`. Regenerate it if the tagline or brand colour
+changes.
