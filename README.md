@@ -56,7 +56,7 @@ It expects a `POST` of `{ "email": "..." }` and treats any non-2xx as an error. 
 ## Still to do
 
 - Add a resume PDF to `public/` and link it from the footer.
-- Add CarBreezy and JobFlow to `src/data/projects.js` once their URLs are confirmed.
+- Consider retuning `--green` in `globals.css` to match the logo — the mark samples at `#206040` (hsl 150, 50%, 25%) while the site accent `#10b981` is hsl(160, 84%, 39%). Nearly the same hue; the clash is saturation and lightness.
 
 ## Social preview
 
