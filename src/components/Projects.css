@@ -15,6 +15,26 @@
   flex-direction: column;
 }
 
+/*
+ * A card carrying a reel breaks the two-column rhythm and spans the full grid,
+ * so the recording gets real width instead of being squeezed into half a row.
+ */
+.project-card-featured {
+  grid-column: 1 / -1;
+}
+
+/* The moving reel is already the focus here, and a card that lifts under the
+   cursor competes with it (and with the controls in full mode). Stay put. */
+.project-card-featured:hover {
+  transform: none;
+}
+
+/* Full-width card, but prose still needs a readable measure */
+.project-card-featured .card-desc,
+.project-card-featured .card-detail {
+  max-width: 70ch;
+}
+
 .card-top {
   display: flex;
   align-items: center;

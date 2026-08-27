@@ -1,5 +1,6 @@
 import './Projects.css'
 import { projects } from '../data/projects'
+import ProjectDemo from './ProjectDemo'
 
 export default function Projects() {
   return (
@@ -10,14 +11,17 @@ export default function Projects() {
           <h2>What I&apos;ve built</h2>
           <p>
             Real products, deployed and live — built end-to-end, not cloned from
-            tutorials.
+            tutorials. The reels are recordings of the real build: short, silent,
+            sound optional.
           </p>
         </div>
 
         <div className="projects-grid">
           {projects.map((project, i) => (
             <article
-              className={`card project-card animate animate-delay-${i + 1}`}
+              className={`card project-card animate animate-delay-${i + 1}${
+                project.featured ? ' project-card-featured' : ''
+              }`}
               key={project.title}
             >
               <div className="card-top">
@@ -27,6 +31,11 @@ export default function Projects() {
                   {project.badge}
                 </span>
               </div>
+
+              {/* Context first, then the reel, then the detail underneath */}
+              {project.demo && (
+                <ProjectDemo title={project.title} {...project.demo} />
+              )}
 
               <p className="card-desc">{project.description}</p>
               {project.detail && <p className="card-detail">{project.detail}</p>}

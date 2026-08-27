@@ -1,0 +1,202 @@
+/*
+ * Reel width. The card spans the full grid, but the reel does not need all of
+ * it — capped so it reads as a showcase rather than a takeover. Lower this one
+ * number to shrink the reel further; the frame keeps its ratio automatically.
+ */
+.demo {
+  margin: 0 0 22px;
+  max-width: 840px;
+}
+
+/*
+ * Framing the recording as a browser window is what turns a screen capture into
+ * something that reads like a product shot, and the chrome carries the live URL,
+ * so the decoration doubles as proof the thing is actually deployed.
+ */
+.demo-window {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #11161d;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 4px 10px -2px rgba(15, 23, 42, 0.08),
+    0 18px 36px -12px rgba(15, 23, 42, 0.22);
+}
+
+.demo-chrome {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  background: #1a212b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.demo-dots {
+  display: inline-flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.demo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot-red {
+  background: #ff5f57;
+}
+
+.dot-amber {
+  background: #febc2e;
+}
+
+.dot-green {
+  background: #28c840;
+}
+
+/* Address pill — a real link, so the ornament earns its place */
+.demo-url {
+  flex: 1;
+  min-width: 0;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.62);
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 5px;
+  padding: 4px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.demo-url:hover {
+  color: #fff;
+}
+
+/*
+ * `aspect-ratio` comes from the encoded file's own dimensions, passed in as
+ * `--demo-ratio`, so the frame reserves its height before the poster loads —
+ * no layout shift when the reel appears — and each recording keeps its own
+ * shape instead of being forced into the first one's.
+ */
+.demo-frame {
+  position: relative;
+  aspect-ratio: var(--demo-ratio, 1280 / 646);
+  background: #0b0f14;
+}
+
+/*
+ * `contain`, not `cover`: with a correct ratio the two are identical, but if a
+ * ratio is ever wrong this letterboxes against the frame's near-black instead
+ * of quietly cropping the edges of the recording off.
+ */
+.demo-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/*
+ * Sound is offered, not imposed. Sits top-right so it stays clear of the native
+ * control bar that appears along the bottom once sound is actually on.
+ */
+.demo-sound {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(10, 14, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 6px 12px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.demo-sound:hover {
+  background: rgba(10, 14, 20, 0.85);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+
+.demo-sound:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.demo-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 10px;
+  letter-spacing: 0.2px;
+}
+
+.demo-toggle {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.demo-toggle:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.demo-toggle:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .demo-chrome {
+    padding: 7px 10px;
+    gap: 9px;
+  }
+
+  .demo-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .demo-url {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .demo-sound {
+    top: 8px;
+    right: 8px;
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+}
