@@ -51,17 +51,19 @@ export const projects = [
     liveUrl: 'https://junicash.vercel.app',
     githubUrl: 'https://github.com/skku-global/Junicash',
     demo: {
-      poster: '/demo/junicash-poster.jpg',
+      // `?v=` is the cache buster; see the note on CarBreezy above. Bumped when
+      // this reel was recut longer.
+      poster: '/demo/junicash-poster.jpg?v=2',
       width: 1280,
       height: 716,
       siteUrl: 'https://junicash.vercel.app',
       siteLabel: 'junicash.vercel.app',
-      // Five beats — sign up, verify by OTP, virtual card, send money, and the
-      // transfer landing — cut silent so it can start on its own.
+      // Five beats — sign up, verify by OTP, the virtual card and profile, send
+      // money, and the transfer landing — cut silent so it can start on its own.
       loop: {
-        src: '/demo/junicash-loop.mp4',
+        src: '/demo/junicash-loop.mp4?v=2',
         type: 'video/mp4',
-        duration: '25s',
+        duration: '32s',
       },
       // No `full` here on purpose: the raw recording spends most of its length
       // in a real inbox and on a dashboard the screen capture cropped, so there
