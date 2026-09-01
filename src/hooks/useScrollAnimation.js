@@ -21,8 +21,13 @@ export default function useScrollAnimation() {
       return
     }
 
+    // Set as soon as the observer says anything at all — proof it is alive, and
+    // what the failsafe below keys off.
+    let reported = false
+
     const observer = new IntersectionObserver(
       (entries) => {
+        reported = true
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return
           entry.target.classList.add('visible')
@@ -34,6 +39,21 @@ export default function useScrollAnimation() {
     )
 
     elements.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+
+    // Having IntersectionObserver is not the same as it working. A throttled or
+    // non-compositing frame can leave callbacks undelivered indefinitely, and
+    // because everything here starts at opacity 0 that renders the entire page
+    // blank — the worst possible failure, from a purely decorative feature. If
+    // the observer has not reported at all shortly after mount, give up on the
+    // animation and just show the content.
+    const failsafe = setTimeout(() => {
+      if (reported) return
+      elements.forEach((el) => el.classList.add('visible'))
+    }, 2500)
+
+    return () => {
+      clearTimeout(failsafe)
+      observer.disconnect()
+    }
   }, [])
 }

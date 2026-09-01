@@ -119,19 +119,25 @@ export default function ProjectDemo({
 
     if (reducedMotion || !hasObserver) return
 
+    // A rejected promise means the browser declined autoplay. Surfacing that is
+    // the whole point: without it the poster just sits there with nothing to
+    // click, which is the one failure mode this reel must not have.
+    const tryPlay = () => {
+      if (optedOutRef.current) return
+      video.play().catch(() => setAutoplayFailed(true))
+    }
+
     // Reaching full mode takes a click, and that click is the user gesture that
     // lets an unmuted video start.
-    if (!isLoop) video.play().catch(() => setAutoplayFailed(true))
+    if (!isLoop) tryPlay()
+
+    let ioReported = false
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        ioReported = true
         if (entry.isIntersecting) {
-          if (optedOutRef.current) return
-          // A rejected promise means the browser declined autoplay. Surfacing
-          // that is the whole point: without it the poster just sits there with
-          // nothing to click, which is the one failure mode this reel must not
-          // have.
-          video.play().catch(() => setAutoplayFailed(true))
+          tryPlay()
         } else if (!video.paused) {
           selfPausedRef.current = true
           video.pause()
@@ -141,7 +147,37 @@ export default function ProjectDemo({
     )
 
     observer.observe(video)
-    return () => observer.disconnect()
+
+    // Backup for a browser that *has* IntersectionObserver but never delivers a
+    // callback from it. That is not theoretical — a throttled or non-compositing
+    // frame does exactly this, and it is the nastiest version of the failure:
+    // `selfStarts` is true, so no controls render either, and the visitor is
+    // left with a permanent poster and nothing to click. If the observer has
+    // said nothing shortly after mount, stop trusting it and measure the rect.
+    const isMostlyVisible = () => {
+      const rect = video.getBoundingClientRect()
+      const viewport =
+        window.innerHeight || document.documentElement.clientHeight
+      const shown = Math.min(rect.bottom, viewport) - Math.max(rect.top, 0)
+      return rect.height > 0 && shown / rect.height >= 0.4
+    }
+
+    let onScroll = null
+    const watchdog = setTimeout(() => {
+      if (ioReported) return
+      onScroll = () => {
+        if (video.paused && isMostlyVisible()) tryPlay()
+      }
+      window.addEventListener('scroll', onScroll, { passive: true })
+      // The reel may already be in view on load, with no scroll ever coming.
+      onScroll()
+    }, 2500)
+
+    return () => {
+      clearTimeout(watchdog)
+      if (onScroll) window.removeEventListener('scroll', onScroll)
+      observer.disconnect()
+    }
   }, [isLoop, reducedMotion, hasObserver])
 
   function handlePause() {
