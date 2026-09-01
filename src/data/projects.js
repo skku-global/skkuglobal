@@ -15,7 +15,7 @@ export const projects = [
       // recording while keeping its filename, and a browser holding partly
       // buffered bytes of the *old* file at this URL refuses to play the new one
       // rather than refetching it. Bump the number on any future recut.
-      poster: '/demo/carbreezy-poster.jpg?v=2',
+      poster: '/demo/carbreezy-poster.jpg?v=3',
       // The encoded file's own dimensions — the frame reserves its height from
       // these, so each reel keeps its own shape.
       width: 1280,
@@ -24,13 +24,15 @@ export const projects = [
       // evidence the build is deployed rather than just decoration.
       siteUrl: 'https://carbreezy-react.vercel.app/',
       siteLabel: 'carbreezy-react.vercel.app',
-      // The default: one long opening take — hero carousel into the inventory
-      // grid into a vehicle spec sheet — then filtering, the brand tuner, the
-      // offers, and the gallery. Cut silent so it can start on its own.
+      // Six beats, opening with one unbroken 19s take: hero carousel, stat
+      // dials, the inventory grid, a vehicle spec sheet, brands, offers,
+      // testimonials, the FAQ, the closing CTA. Then the new-cars filters, the
+      // brand tuner, the offers page, the gallery, and About. Cut silent so it
+      // can start on its own.
       loop: {
-        src: '/demo/carbreezy-loop.mp4?v=2',
+        src: '/demo/carbreezy-loop.mp4?v=3',
         type: 'video/mp4',
-        duration: '24s',
+        duration: '41s',
       },
       // No `full` here: the source recording is only 66s, so a walkthrough would
       // barely outrun the loop — and the ~10s it spends on a form filled with

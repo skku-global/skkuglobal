@@ -23,6 +23,16 @@
   grid-column: 1 / -1;
 }
 
+/*
+ * The odd one out. With an odd number of plain cards the last one would sit
+ * alone in its row at half width, which reads as a gap rather than a layout, so
+ * it fills the row instead. Which card this is gets decided in Projects.jsx —
+ * `nth-child` here would also count the full-width featured cards.
+ */
+.project-card-wide {
+  grid-column: 1 / -1;
+}
+
 /* The moving reel is already the focus here, and a card that lifts under the
    cursor competes with it (and with the controls in full mode). Stay put. */
 .project-card-featured:hover {
@@ -31,7 +41,9 @@
 
 /* Full-width card, but prose still needs a readable measure */
 .project-card-featured .card-desc,
-.project-card-featured .card-detail {
+.project-card-featured .card-detail,
+.project-card-wide .card-desc,
+.project-card-wide .card-detail {
   max-width: 70ch;
 }
 

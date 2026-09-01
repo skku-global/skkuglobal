@@ -3,6 +3,18 @@ import { projects } from '../data/projects'
 import ProjectDemo from './ProjectDemo'
 
 export default function Projects() {
+  // A featured card spans the whole grid, so only the plain ones pair up into
+  // two-column rows. An odd number of them leaves the last card alone in its
+  // row, half the width of everything above it and reading like a mistake — so
+  // that one is widened to fill the row instead. Counted here rather than in CSS
+  // because `nth-child` counts the featured cards too, which would make the rule
+  // quietly wrong the moment a third reel is added.
+  const plainCount = projects.filter((project) => !project.featured).length
+  const orphanTitle =
+    plainCount % 2 === 1
+      ? projects.filter((project) => !project.featured).at(-1).title
+      : null
+
   return (
     <section className="projects-section" id="projects">
       <div className="shell">
@@ -21,7 +33,7 @@ export default function Projects() {
             <article
               className={`card project-card animate animate-delay-${i + 1}${
                 project.featured ? ' project-card-featured' : ''
-              }`}
+              }${project.title === orphanTitle ? ' project-card-wide' : ''}`}
               key={project.title}
             >
               <div className="card-top">
