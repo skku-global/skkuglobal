@@ -1,9 +1,9 @@
 import './Stats.css'
 
 const stats = [
-  { num: '4', label: 'Products shipped' },
-  { num: '2+', label: 'Years trading' },
-  { num: '4.2k', label: 'YouTube subscribers' },
+  { num: '5', label: 'Products deployed' },
+  { num: '100%', label: 'Security-first builds' },
+  { num: '4.2k+', label: 'Audience & community' },
   { num: 'CAC', label: 'Registered company' },
 ]
 

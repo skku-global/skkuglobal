@@ -27,11 +27,16 @@
 }
 
 .about-card {
-  background: var(--card);
+  background: var(--bg);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--green);
   border-radius: var(--radius-sm);
-  padding: 16px 18px;
+  padding: 20px 22px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.25s ease;
+}
+
+.about-card:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 .about-card h3 {
@@ -39,17 +44,41 @@
   font-weight: 700;
   color: var(--text);
   margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-card h3::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
 }
 
 .about-card p {
   font-size: 13px;
   color: var(--muted);
   line-height: 1.65;
+  padding-left: 14px;
+}
+
+.about-founders-header {
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px dashed var(--border);
 }
 
 @media (max-width: 900px) {
   .about-grid {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  .about-founders-header {
+    margin-top: 40px;
+    padding-top: 28px;
   }
 }

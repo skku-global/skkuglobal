@@ -19,12 +19,11 @@ export default function Projects() {
     <section className="projects-section" id="projects">
       <div className="shell">
         <div className="section-header animate">
-          <div className="section-label">PROJECTS</div>
-          <h2>What I&apos;ve built</h2>
+          <div className="section-label">WORK</div>
+          <h2>Case studies &amp; deployed work</h2>
           <p>
-            Real products, deployed and live — built end-to-end, not cloned from
-            tutorials. The reels are recordings of the real build: short, silent,
-            sound optional.
+            Real products, deployed and live — built end-to-end with production architecture,
+            security-first data flows, and zero filler.
           </p>
         </div>
 
@@ -52,6 +51,13 @@ export default function Projects() {
               <p className="card-desc">{project.description}</p>
               {project.detail && <p className="card-detail">{project.detail}</p>}
 
+              {project.outcome && (
+                <div className="card-outcome">
+                  <span className="outcome-label">Result:</span>
+                  <span>{project.outcome}</span>
+                </div>
+              )}
+
               <div className="card-stack">
                 {project.stack.map((tech) => (
                   <span className="tag" key={tech}>
@@ -68,7 +74,7 @@ export default function Projects() {
                     rel="noreferrer"
                     className="link-btn"
                   >
-                    Live demo
+                    Live site
                     <span className="sr-only"> — {project.title}</span>
                   </a>
                 )}

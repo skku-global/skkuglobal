@@ -2,11 +2,11 @@ import './styles/globals.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
-import About from './components/About'
+import Services from './components/Services'
 import Projects from './components/Projects'
-import Skills from './components/Skills'
-import Trading from './components/Trading'
+import About from './components/About'
 import Vision from './components/Vision'
+import Contact from './components/Contact'
 import Footer from './components/Footer'
 import useScrollAnimation from './hooks/useScrollAnimation'
 
@@ -22,11 +22,11 @@ function App() {
       <main id="main">
         <Hero />
         <Stats />
-        <About />
+        <Services />
         <Projects />
-        <Skills />
-        <Trading />
+        <About />
         <Vision />
+        <Contact />
       </main>
       <Footer />
     </>

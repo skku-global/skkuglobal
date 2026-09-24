@@ -6,34 +6,33 @@ export default function Hero() {
       <div className="shell hero-inner">
         <div className="hero-tag animate">
           <span className="dot" aria-hidden="true" />
-          Available for work
+          Now taking projects
         </div>
 
         <h1 className="animate animate-delay-1">
-          I Build Fintech.
+          We Build.
           <br />
-          <span>I Trade Markets.</span>
+          <span>We Secure.</span>
           <br />
-          I Document Both.
+          We Ship.
         </h1>
 
         <p className="animate animate-delay-2">
-          Full-Stack Developer · Trader · Founder of SKKU Global Technologies
-          Limited. Building borderless banking from Nigeria, going global.
+          Web development · Security auditing · Digital protection —
+          built from Nigeria, shipping globally.
         </p>
 
         <div className="hero-btns animate animate-delay-3">
           <a href="#contact" className="btn-primary">
-            Hire Me
+            Start a project
           </a>
           <a href="#projects" className="btn-secondary">
-            See My Work
+            See our work
           </a>
         </div>
 
         <p className="hero-note animate animate-delay-4">
-          CAC-registered company · 4 products shipped end-to-end · Trading funded
-          prop accounts
+          CAC-registered company · 5 products live · Security-first from day one
         </p>
       </div>
     </section>

@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 import './Navbar.css'
 
 const links = [
-  { href: '#about', label: 'About' },
+  { href: '#services', label: 'Services' },
   { href: '#projects', label: 'Work' },
-  { href: '#trading', label: 'Trading' },
-  { href: '#vision', label: 'SKKU Global' },
+  { href: '#about', label: 'About' },
+  { href: '#vision', label: 'Vision' },
+  { href: '#contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
@@ -43,7 +44,7 @@ export default function Navbar() {
             </a>
           ))}
           <a href="#contact" className="nav-btn" onClick={() => setOpen(false)}>
-            Hire Me
+            Start a project
           </a>
         </div>
 

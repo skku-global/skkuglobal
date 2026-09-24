@@ -7,6 +7,7 @@ export const projects = [
     description:
       'Car marketplace platform with a full listings system, detailed vehicle galleries, and multi-criteria filtering.',
     detail: 'React/Vite front to back, deployed on Vercel.',
+    outcome: 'Full marketplace live with inventory grid, spec sheets, filtering, and gallery — shipped end-to-end.',
     stack: ['React', 'Vite', 'JavaScript', 'CSS'],
     liveUrl: 'https://carbreezy-react.vercel.app/',
     githubUrl: 'https://github.com/skku-global/carbreezy',
@@ -47,6 +48,7 @@ export const projects = [
     description:
       'Full-stack personal finance app — wallet management, internal transfers, budget tracking, and a complete dark mode.',
     detail: 'Secure auth with bcrypt hashing and email OTP verification.',
+    outcome: 'Full-stack finance app with secure auth shipped end-to-end — OTP verification live in production.',
     stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Resend'],
     liveUrl: 'https://junicash.vercel.app',
     githubUrl: 'https://github.com/skku-global/Junicash',
@@ -76,6 +78,7 @@ export const projects = [
     description:
       'Banking platform with biometric face login and OTP authentication for secure account management.',
     detail: 'Face recognition auth running client-side with face-api.js.',
+    outcome: 'Biometric + OTP banking login shipped live — security-first auth from day one.',
     stack: ['Next.js', 'Prisma', 'face-api.js'],
     liveUrl: 'https://skku-bank.vercel.app',
     githubUrl: 'https://github.com/skku-global/skku-bank',
@@ -86,6 +89,7 @@ export const projects = [
     description:
       'Smart job tracking platform connecting car wash workers with job opportunities.',
     detail: 'Built for low-bandwidth use on entry-level Android devices.',
+    outcome: 'Job-matching platform live and optimised for low-bandwidth Android devices.',
     stack: ['React', 'Node.js'],
     liveUrl: 'https://tema-car-wash.vercel.app',
     githubUrl: 'https://github.com/skku-global/Tema-Car-Wash',
@@ -96,6 +100,7 @@ export const projects = [
     description:
       'Property listing platform for rent and sale with search and filter functionality.',
     detail: 'Vanilla JS — no framework, fast first paint.',
+    outcome: 'Zero-framework property platform — sub-100ms first paint, fully deployed.',
     stack: ['JavaScript', 'HTML', 'CSS'],
     liveUrl: 'https://apartment-ls-ready.vercel.app',
     githubUrl: 'https://github.com/skku-global/apartment-ls-ready',
