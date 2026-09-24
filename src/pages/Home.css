@@ -1,0 +1,42 @@
+.page-hero {
+  padding: 80px var(--pad-x) 64px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(16,185,129,0.12), transparent 65%),
+    var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.page-hero .section-label {
+  justify-content: center;
+}
+
+.page-hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.page-hero h1 span {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-hero p {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 52ch;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+@media (max-width: 640px) {
+  .page-hero { padding: 56px var(--pad-x) 44px; }
+  .page-hero h1 { font-size: 34px; letter-spacing: -1px; }
+}

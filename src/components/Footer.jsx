@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Footer.css'
 
 const socialLinks = [
@@ -8,11 +9,10 @@ const socialLinks = [
 ]
 
 const navLinks = [
-  { href: '#services', label: 'Services' },
-  { href: '#projects', label: 'Case Studies' },
-  { href: '#about', label: 'About SKKU' },
-  { href: '#vision', label: 'Vision' },
-  { href: '#contact', label: 'Contact' },
+  { to: '/',        label: 'Home' },
+  { to: '/work',    label: 'Case Studies' },
+  { to: '/about',   label: 'About SKKU' },
+  { to: '/contact', label: 'Contact' },
 ]
 
 const year = new Date().getFullYear()
@@ -20,16 +20,19 @@ const year = new Date().getFullYear()
 export default function Footer() {
   return (
     <footer className="footer">
+      <div className="footer-glow-line" aria-hidden="true" />
       <div className="shell">
         <div className="footer-top animate">
           <div className="footer-left">
-            <img
-              className="footer-logo"
-              src="/brand/skku-green.png"
-              alt="SKKU Global"
-              width="112"
-              height="108"
-            />
+            <Link to="/" aria-label="SKKU Global — home">
+              <img
+                className="footer-logo"
+                src="/brand/skku-green.png"
+                alt="SKKU Global"
+                width="96"
+                height="92"
+              />
+            </Link>
             <p>
               <strong>SKKU Global Technologies Limited</strong>
               <br />
@@ -44,9 +47,9 @@ export default function Footer() {
               <div className="footer-links-title">NAVIGATION</div>
               <div className="footer-links">
                 {navLinks.map((link) => (
-                  <a key={link.label} href={link.href}>
+                  <Link key={link.label} to={link.to}>
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </nav>
@@ -62,6 +65,7 @@ export default function Footer() {
                     rel="noreferrer"
                   >
                     {link.label}
+                    <span className="footer-link-arrow" aria-hidden="true">↗</span>
                   </a>
                 ))}
               </div>
@@ -71,7 +75,11 @@ export default function Footer() {
 
         <div className="footer-bottom animate animate-delay-1">
           <span>© {year} SKKU Global Technologies Limited. All rights reserved.</span>
-          <span>admin@skkuglobal.com · skkuglobal.com</span>
+          <span>
+            <a href="mailto:admin@skkuglobal.com">admin@skkuglobal.com</a>
+            {' · '}
+            <a href="https://skkuglobal.com" target="_blank" rel="noreferrer">skkuglobal.com</a>
+          </span>
         </div>
       </div>
     </footer>

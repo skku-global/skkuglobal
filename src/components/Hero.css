@@ -1,115 +1,378 @@
+/* ── Hero section ─────────────────────────────── */
 .hero {
-  padding: 88px var(--pad-x) 72px;
-  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  padding: 96px var(--pad-x) 0;
   background:
-    radial-gradient(
-      ellipse 70% 60% at 50% 0%,
-      rgba(16, 185, 129, 0.07),
-      transparent 70%
-    ),
+    radial-gradient(ellipse 80% 55% at 50% -10%, rgba(16,185,129,0.18), transparent 65%),
+    radial-gradient(ellipse 50% 30% at 80% 60%, rgba(16,185,129,0.05), transparent 60%),
     var(--bg);
 }
 
-.hero-inner {
-  text-align: center;
+/* Subtle grid overlay */
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 0%, transparent 100%);
+  pointer-events: none;
 }
 
+/* ── Inner ────────────────────────────────────── */
+.hero-inner {
+  text-align: center;
+  padding-bottom: 72px;
+}
+
+/* ── Tag ──────────────────────────────────────── */
 .hero-tag {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   background: var(--green-light);
   color: var(--green);
   font-size: 11px;
   font-weight: 600;
-  padding: 5px 13px;
+  font-family: 'Space Grotesk', sans-serif;
+  padding: 6px 16px;
   border-radius: 20px;
   border: 1px solid var(--green-border);
-  margin-bottom: 24px;
-  letter-spacing: 0.5px;
+  margin-bottom: 28px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
 }
 
 .hero-tag .dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--green);
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.35;
-  }
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--green-glow); }
+  50%       { opacity: 0.5; box-shadow: 0 0 0 4px transparent; }
 }
 
+/* ── Heading ──────────────────────────────────── */
 .hero h1 {
-  font-size: 52px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 68px;
   font-weight: 800;
   color: var(--text);
-  line-height: 1.12;
-  margin-bottom: 18px;
-  letter-spacing: -1.8px;
+  line-height: 1.08;
+  margin-bottom: 22px;
+  letter-spacing: -2.5px;
 }
 
-.hero h1 span {
-  color: var(--green);
+.gradient-text {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.hero p {
-  font-size: 15px;
+.hero-sub {
+  font-size: 16px;
   color: var(--muted);
-  margin: 0 auto 32px;
-  max-width: 54ch;
-  line-height: 1.7;
+  margin: 0 auto 36px;
+  max-width: 52ch;
+  line-height: 1.75;
 }
 
+/* ── CTA row ──────────────────────────────────── */
 .hero-btns {
   display: flex;
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 36px;
 }
 
-.hero-note {
-  font-size: 12px !important;
-  color: var(--muted);
-  margin: 28px auto 0 !important;
-  opacity: 0.85;
+.btn-arrow {
+  font-size: 16px;
+  transition: transform 0.2s ease;
 }
+
+.btn-primary:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+/* ── Trust bar ────────────────────────────────── */
+.hero-trust {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trust-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--green);
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.trust-sep {
+  opacity: 0.3;
+}
+
+/* ── Work preview strip ───────────────────────── */
+.hero-work-strip {
+  margin-top: 72px;
+  border-top: 1px solid var(--border);
+  padding-top: 32px;
+  overflow: hidden;
+}
+
+.work-strip-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--pad-x);
+  max-width: var(--shell);
+  margin: 0 auto 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.work-strip-more {
+  color: var(--green);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+  transition: color 0.2s ease;
+}
+
+.work-strip-more:hover {
+  color: var(--green-hover);
+}
+
+/* Horizontal scroll track */
+.work-scroll-track {
+  display: flex;
+  gap: 16px;
+  padding: 0 var(--pad-x) 40px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--green-border) transparent;
+  /* allow full-width overflow */
+  width: 100vw;
+  margin-left: calc(-1 * var(--pad-x));
+  padding-left: var(--pad-x);
+}
+
+.work-scroll-track::-webkit-scrollbar {
+  height: 4px;
+}
+
+.work-scroll-track::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.work-scroll-track::-webkit-scrollbar-thumb {
+  background: var(--green-border);
+  border-radius: 4px;
+}
+
+/* ── Work card ────────────────────────────────── */
+.work-card {
+  flex: 0 0 320px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  scroll-snap-align: start;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.work-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 12px 36px rgba(16,185,129,0.12);
+  transform: translateY(-4px);
+}
+
+/* Poster image */
+.work-card-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-3);
+}
+
+.work-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.work-card:hover .work-card-thumb img {
+  transform: scale(1.04);
+}
+
+/* Overlay on hover */
+.work-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8,13,20,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+
+.work-card:hover .work-card-overlay {
+  opacity: 1;
+}
+
+.work-card-cta {
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 9px 20px;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.work-card-cta:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* Placeholder thumb (no poster) */
+.work-card-thumb--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bg-3), var(--bg-2));
+}
+
+.work-card-initials {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--green);
+  opacity: 0.4;
+}
+
+/* Card body */
+.work-card-body {
+  padding: 16px 18px 18px;
+}
+
+.work-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+
+.work-card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.work-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--green);
+  background: var(--green-light);
+  padding: 3px 9px;
+  border-radius: 20px;
+  border: 1px solid var(--green-border);
+  white-space: nowrap;
+}
+
+.badge-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--green);
+  border-radius: 50%;
+}
+
+.work-card-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.work-card-stack {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ───────────────────────────────── */
+.hide-mobile { display: block; }
 
 @media (max-width: 900px) {
-  .hero {
-    padding: 64px var(--pad-x) 56px;
-  }
+  .hero { padding-top: 72px; }
 
   .hero h1 {
-    font-size: 40px;
-    letter-spacing: -1.2px;
+    font-size: 48px;
+    letter-spacing: -1.5px;
   }
+
+  .work-card { flex: 0 0 280px; }
 }
 
 @media (max-width: 640px) {
-  .hero {
-    padding: 48px var(--pad-x) 44px;
-  }
+  .hero { padding-top: 56px; }
+
+  .hero-inner { padding-bottom: 52px; }
 
   .hero h1 {
-    font-size: 31px;
-    letter-spacing: -0.8px;
+    font-size: 36px;
+    letter-spacing: -1px;
   }
 
-  .hero p {
-    font-size: 14px;
-  }
+  .hero-sub { font-size: 14px; }
 
-  /* Full-width stacked CTAs are easier to hit on a phone */
+  .hide-mobile { display: none; }
+
   .hero-btns {
     flex-direction: column;
     align-items: stretch;
+    gap: 10px;
   }
+
+  .hero-btns .btn-primary,
+  .hero-btns .btn-secondary {
+    justify-content: center;
+  }
+
+  .work-card { flex: 0 0 260px; }
 }

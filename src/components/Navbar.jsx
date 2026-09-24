@@ -1,51 +1,67 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import './Navbar.css'
 
 const links = [
-  { href: '#services', label: 'Services' },
-  { href: '#projects', label: 'Work' },
-  { href: '#about', label: 'About' },
-  { href: '#vision', label: 'Vision' },
-  { href: '#contact', label: 'Contact' },
+  { to: '/work',    label: 'Work' },
+  { to: '/about',   label: 'About' },
+  { to: '/contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen]       = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const { pathname }            = useLocation()
 
-  // Don't let the page scroll behind the open mobile menu
+  // Close menu when route changes
+  useEffect(() => setOpen(false), [pathname])
+
+  // Scroll shadow
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 12)
+    window.addEventListener('scroll', handler, { passive: true })
+    return () => window.removeEventListener('scroll', handler)
+  }, [])
+
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
-    }
+    return () => { document.body.style.overflow = '' }
   }, [open])
 
-  // Escape closes the menu
+  // Escape key closes menu
   useEffect(() => {
     if (!open) return
-    const onKeyDown = (e) => {
-      if (e.key === 'Escape') setOpen(false)
-    }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
+    const fn = (e) => { if (e.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', fn)
+    return () => window.removeEventListener('keydown', fn)
   }, [open])
 
   return (
-    <header className="navbar">
+    <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
       <nav className="nav-inner shell" aria-label="Main">
-        <a href="#top" className="nav-logo" aria-label="SKKU Global — home">
-          <img src="/brand/skku-green.png" alt="" width="112" height="108" />
-        </a>
+        <Link to="/" className="nav-logo" aria-label="SKKU Global — home">
+          <img src="/brand/skku-green.png" alt="" width="96" height="92" />
+        </Link>
 
-        <div className={`nav-links${open ? ' open' : ''}`}>
+        <div className={`nav-links${open ? ' open' : ''}`} role="navigation">
           {links.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+              onClick={() => setOpen(false)}
+            >
               {link.label}
-            </a>
+            </NavLink>
           ))}
-          <a href="#contact" className="nav-btn" onClick={() => setOpen(false)}>
+          <Link
+            to="/contact"
+            className="nav-btn"
+            onClick={() => setOpen(false)}
+          >
             Start a project
-          </a>
+          </Link>
         </div>
 
         <button
