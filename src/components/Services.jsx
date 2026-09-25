@@ -1,70 +1,74 @@
+import { Link } from 'react-router-dom'
 import './Services.css'
 
 const services = [
   {
     id: 'web-dev',
-    title: 'Web Development',
-    badge: 'Core Service',
-    summary: 'Custom websites and web applications built for performance, conversion, and scale.',
+    title: 'Custom Web & SaaS Engineering',
+    badge: 'Core Competency',
+    summary: 'High-performance web applications, API architectures, and conversion-optimized platforms built for scale.',
     includes: [
-      'Full-stack custom web apps (React, Next.js, Node.js, Express)',
-      'Database architecture & schema design (MongoDB, Prisma, PostgreSQL)',
-      'Responsive, mobile-optimized UI with modern styling and animations',
-      'Production deployment, domain setup, and ongoing performance tuning',
+      'Full-stack custom web applications (React, Next.js, FastAPI, Node.js)',
+      'Database architecture & resilient schema design (PostgreSQL, Prisma, MongoDB)',
+      'Responsive, mobile-first interfaces with sub-second page load times',
+      'Production cloud deployment, automated CI/CD pipelines, and SLA monitoring',
     ],
-    forWhom: 'Businesses, growing startups, and founders needing production-grade digital products rather than generic, slow site templates.',
-  },
-  {
-    id: 'video-content',
-    title: 'Ad & Video Content',
-    badge: 'Creative',
-    summary: 'Promotional and high-impact ad videos that showcase products, capture attention, and drive action.',
-    includes: [
-      'High-converting product demos and commercial video ads',
-      'Scripting, motion graphics, video editing, and color grading',
-      'Social-first vertical formats (Reels, TikTok, Shorts) and widescreen web cuts',
-      'Founder story and brand documentary content',
-    ],
-    forWhom: 'Brands, digital agencies, and e-commerce companies looking to turn passive viewers into active customers through compelling video creative.',
+    forWhom: 'Founders, funded startups, and enterprise teams needing robust, scalable codebases rather than slow off-the-shelf templates.',
   },
   {
     id: 'security-audits',
-    title: 'Website Security Audits',
-    badge: 'SecuScan Powered',
-    summary: 'Comprehensive penetration tests and vulnerability scans to uncover flaws before attackers do.',
+    title: 'SecuScan Web Vulnerability Audits',
+    badge: 'Proprietary Engine',
+    summary: 'Automated penetration testing and vulnerability analysis to eliminate security loopholes before malicious actors exploit them.',
     includes: [
-      'SecuScan automated & manual vulnerability analysis',
-      'Authentication, session management, and OTP flow penetration testing',
-      'API endpoint inspection, parameter tampering, and data exposure checks',
-      'Detailed vulnerability remediation report with step-by-step fix guides',
+      'SecuScan multi-threaded vulnerability scan and security header verification',
+      'Authentication, session hijacking, and OTP flow vulnerability testing',
+      'OWASP Top 10 compliance inspection and API parameter tampering checks',
+      'Executive-ready PDF vulnerability remediation report with engineering fix instructions',
     ],
-    forWhom: 'Fintech platforms, SaaS applications, e-commerce stores, and businesses processing sensitive user credentials or payments.',
+    forWhom: 'Fintech platforms, SaaS providers, e-commerce stores, and businesses managing customer payments or sensitive account credentials.',
+  },
+  {
+    id: 'ecommerce',
+    title: 'E-Commerce & Retail Systems',
+    badge: 'High Conversion',
+    summary: 'Full-featured luxury and commercial online storefronts engineered with real-time carts, multi-currency support, and payment routing.',
+    includes: [
+      'Custom storefronts with interactive catalog filters and dynamic inventory states',
+      'Multi-currency processing (₦, $, £, €) and automated checkout drawers',
+      'Direct-to-WhatsApp concierge checkout integration for high-trust closing',
+      'Fast CDN image optimization and mobile-first shopping UX',
+    ],
+    forWhom: 'Luxury retail brands, merchant founders, and direct-to-consumer businesses seeking higher checkout conversion rates.',
   },
   {
     id: 'digital-security',
-    title: 'Full Digital Security',
-    badge: 'Total Protection',
-    summary: 'Holistic security beyond the codebase — protecting your identity, communications, and digital infrastructure.',
+    title: 'Enterprise Digital Defense & Infrastructure',
+    badge: '360° Protection',
+    summary: 'Comprehensive protection across your domain identity, cloud assets, administrative accounts, and business communications.',
     includes: [
-      'Business email authentication (SPF, DKIM, DMARC) & domain takeover defense',
-      'Executive account hardening, password manager rollout, and hardware 2FA setup',
-      'Cloud storage and admin panel credential isolation',
-      'Bundled "Build-and-Secure" packages for brand-new sites and product launches',
+      'Business email authentication (SPF, DKIM, DMARC) and domain spoofing defense',
+      'Administrative account hardening, multi-factor hardware keys, and password management',
+      'Cloud storage and server credential isolation',
+      'Bundled "Build-and-Secure" architecture for new enterprise product launches',
     ],
-    forWhom: 'Companies, executive founders, and teams who want comprehensive, 360-degree protection across their entire digital footprint.',
+    forWhom: 'Corporate executives, fast-scaling startups, and businesses requiring full protection across their entire digital footprint.',
   },
 ]
 
 export default function Services() {
   return (
-    <section className="services-section" id="services">
+    <section className="services-section" id="services" aria-labelledby="services-heading">
       <div className="shell">
         <div className="section-header animate">
-          <div className="section-label">SERVICES</div>
-          <h2>What we build and protect</h2>
+          <div className="section-label">CAPABILITIES &amp; SERVICES</div>
+          <h2 id="services-heading">
+            What We Build.{' '}
+            <span className="gradient-text">What We Secure.</span>
+          </h2>
           <p>
-            From custom web engineering to SecuScan vulnerability audits and brand media —
-            tailored digital services built to scale and secure your business.
+            From bespoke full-stack applications and high-conversion e-commerce systems to
+            rigorous SecuScan cybersecurity audits — engineered with enterprise precision.
           </p>
         </div>
 
@@ -82,7 +86,7 @@ export default function Services() {
               <p className="service-summary">{service.summary}</p>
 
               <div className="service-block">
-                <div className="service-block-heading">WHAT IT INCLUDES</div>
+                <div className="service-block-heading">WHAT WE DELIVER</div>
                 <ul className="service-list">
                   {service.includes.map((item, idx) => (
                     <li key={idx}>
@@ -94,15 +98,15 @@ export default function Services() {
               </div>
 
               <div className="service-block service-for-block">
-                <div className="service-block-heading">WHO IT&apos;S FOR</div>
+                <div className="service-block-heading">IDEAL FOR</div>
                 <p className="service-for-text">{service.forWhom}</p>
               </div>
 
               <div className="service-action">
-                <a href="#contact" className="service-link">
-                  Start a project
+                <Link to="/contact" className="service-link">
+                  <span>Consult On This Service</span>
                   <span className="service-arrow" aria-hidden="true">→</span>
-                </a>
+                </Link>
               </div>
             </article>
           ))}

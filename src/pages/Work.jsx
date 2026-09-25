@@ -1,4 +1,5 @@
 import Projects from '../components/Projects'
+import GoogleMapSection from '../components/GoogleMapSection'
 import useScrollAnimation from '../hooks/useScrollAnimation'
 import './Home.css'
 
@@ -10,18 +11,19 @@ export default function Work() {
       {/* Page hero */}
       <section className="page-hero">
         <div className="shell">
-          <div className="section-label animate">WORK</div>
+          <div className="section-label animate">PRODUCTION ARCHITECTURE</div>
           <h1 className="animate animate-delay-1">
-            Case studies &amp; <span>deployed work</span>
+            Case Studies &amp; <span className="gradient-text">Live Deployments</span>
           </h1>
           <p className="animate animate-delay-2">
-            Real products, deployed and live — built end-to-end with production
-            architecture, security-first data flows, and zero filler.
+            Real software systems engineered and deployed end-to-end with high-concurrency backends,
+            sub-second response latencies, and rigorous SecuScan vulnerability defenses.
           </p>
         </div>
       </section>
 
       <Projects />
+      <GoogleMapSection />
     </main>
   )
 }

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import './styles/globals.css'
 import Navbar from './components/Navbar'
@@ -9,11 +10,12 @@ import ContactPage from './pages/ContactPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
-  // Scroll to top on every route change
-  // (using a side-effect but we don't need useEffect since this runs on render)
-  if (typeof window !== 'undefined') {
+  // Scrolling is a side effect, so it belongs in an effect: done during render
+  // it breaks render purity, fires twice under StrictMode, and runs before the
+  // incoming route has painted.
+  useEffect(() => {
     window.scrollTo(0, 0)
-  }
+  }, [pathname])
   return null
 }
 

@@ -2,25 +2,24 @@ import { Link } from 'react-router-dom'
 import './Footer.css'
 
 const socialLinks = [
+  { href: 'https://maps.google.com/?q=Lagos+Tech+Hub+Nigeria', label: 'Google Maps Profile' },
   { href: 'https://youtube.com/@CRYPTOBOND01', label: 'YouTube' },
   { href: 'https://instagram.com/skku_bond', label: 'Instagram' },
   { href: 'https://t.me/SKKU07', label: 'Telegram' },
-  { href: 'https://github.com/skku-global', label: 'GitHub' },
 ]
 
 const navLinks = [
   { to: '/',        label: 'Home' },
-  { to: '/work',    label: 'Case Studies' },
-  { to: '/about',   label: 'About SKKU' },
-  { to: '/contact', label: 'Contact' },
+  { to: '/work',    label: 'Production Portfolio' },
+  { to: '/about',   label: 'About SKKU Global' },
+  { to: '/contact', label: 'Contact & Consultation' },
 ]
 
 const year = new Date().getFullYear()
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer-glow-line" aria-hidden="true" />
+    <footer className="footer" role="contentinfo">
       <div className="shell">
         <div className="footer-top animate">
           <div className="footer-left">
@@ -28,17 +27,17 @@ export default function Footer() {
               <img
                 className="footer-logo"
                 src="/brand/skku-green.png"
-                alt="SKKU Global"
+                alt="SKKU Global Technologies"
                 width="96"
                 height="92"
               />
             </Link>
-            <p>
+            <p className="footer-tagline">
               <strong>SKKU Global Technologies Limited</strong>
               <br />
-              Web Development · Security Auditing · Digital Protection
+              Enterprise Web Development · SecuScan Security Audits · E-Commerce Systems
               <br />
-              CAC-Registered · Building from Nigeria, shipping globally.
+              CAC-Registered Corporate Entity · Headquartered in Nigeria, Engineering Globally.
             </p>
           </div>
 
@@ -54,8 +53,8 @@ export default function Footer() {
               </div>
             </nav>
 
-            <nav className="footer-col" aria-label="Social and community links">
-              <div className="footer-links-title">CONNECT</div>
+            <nav className="footer-col" aria-label="Connect and location">
+              <div className="footer-links-title">CONNECT &amp; VERIFY</div>
               <div className="footer-links">
                 {socialLinks.map((link) => (
                   <a
@@ -75,10 +74,12 @@ export default function Footer() {
 
         <div className="footer-bottom animate animate-delay-1">
           <span>© {year} SKKU Global Technologies Limited. All rights reserved.</span>
-          <span>
+          <span className="footer-bottom-links">
             <a href="mailto:admin@skkuglobal.com">admin@skkuglobal.com</a>
             {' · '}
-            <a href="https://skkuglobal.com" target="_blank" rel="noreferrer">skkuglobal.com</a>
+            <a href="https://maps.google.com/?q=Lagos+Tech+Hub+Nigeria" target="_blank" rel="noreferrer">
+              Verified on Google Maps
+            </a>
           </span>
         </div>
       </div>

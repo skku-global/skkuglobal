@@ -13,8 +13,15 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const { pathname }            = useLocation()
 
-  // Close menu when route changes
-  useEffect(() => setOpen(false), [pathname])
+  // Every nav link closes the menu itself; this only covers a browser
+  // back/forward taken with it still open, which would otherwise leave the
+  // overlay hanging over the new route. Adjusting state during render is
+  // React's documented pattern for this — an effect cascades an extra render.
+  const [lastPath, setLastPath] = useState(pathname)
+  if (pathname !== lastPath) {
+    setLastPath(pathname)
+    setOpen(false)
+  }
 
   // Scroll shadow
   useEffect(() => {

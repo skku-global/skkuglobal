@@ -5,10 +5,8 @@ const CONTACT_EMAIL = 'admin@skkuglobal.com'
 // Adapts the form endpoint if configured, else falls back to a prefilled mailto
 const ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || import.meta.env.VITE_SUBSCRIBE_ENDPOINT
 
-// PLACEHOLDER — swap in the real business WhatsApp number before launch.
-// International format, digits only (no +, spaces or dashes). Until this is
-// set, the WhatsApp button renders and is clickable but reaches no one.
-const WHATSAPP_NUMBER = '2348000000000'
+// Business WhatsApp, international format, digits only (no +, spaces, dashes).
+const WHATSAPP_NUMBER = '2349132686150'
 const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   'Hello SKKU Global, I would like to inquire about your services.'
 )}`

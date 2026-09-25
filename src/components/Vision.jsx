@@ -11,7 +11,7 @@ const pillars = [
 const proof = [
   'Registered with the Nigerian Corporate Affairs Commission (CAC)',
   'Live at skkuglobal.com with a custom React/Vite frontend',
-  'Domain, professional email, and GitHub organization in place',
+  'Domain and professional business email in place',
   'Early partner and affiliate relationships established',
 ]
 

@@ -1,5 +1,6 @@
 import About from '../components/About'
 import Vision from '../components/Vision'
+import GoogleMapSection from '../components/GoogleMapSection'
 import useScrollAnimation from '../hooks/useScrollAnimation'
 import './Home.css'
 
@@ -10,20 +11,21 @@ export default function AboutPage() {
     <main id="main" className="page-enter">
       <section className="page-hero">
         <div className="shell">
-          <div className="section-label animate">ABOUT</div>
+          <div className="section-label animate">COMPANY &amp; LEADERSHIP</div>
           <h1 className="animate animate-delay-1">
-            Built <span>security-first</span>,<br />
-            shipped from Nigeria
+            Built <span className="gradient-text">Security-First</span>,<br />
+            Engineering Globally
           </h1>
           <p className="animate animate-delay-2">
-            A digital agency combining real engineering experience with a
-            security mindset — for founders and businesses who need it done right.
+            A technology solutions company combining production-hardened full-stack engineering
+            with proprietary vulnerability research — delivering for high-growth ventures worldwide.
           </p>
         </div>
       </section>
 
       <About />
       <Vision />
+      <GoogleMapSection />
     </main>
   )
 }
