@@ -3,62 +3,146 @@
   border-bottom: 1px solid var(--border);
 }
 
+/* ── Featured card ────────────────────────────── */
+.featured-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 24px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 24px 64px rgba(16,185,129,0.1);
+}
+
+/* Browser chrome mockup */
+.featured-card-visual {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-3);
+}
+
+.browser-chrome {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.browser-dots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.browser-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+}
+
+.browser-dots span:nth-child(1) { background: #FF5F57; }
+.browser-dots span:nth-child(2) { background: #FFBD2E; }
+.browser-dots span:nth-child(3) { background: #28CA41; }
+
+.browser-url {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  font-family: 'Space Grotesk', sans-serif;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.url-lock { font-size: 10px; }
+
+.featured-screenshot {
+  overflow: hidden;
+  max-height: 400px;
+}
+
+.featured-screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.featured-card:hover .featured-screenshot img {
+  transform: scale(1.02);
+}
+
+/* Card body */
+.featured-card-body {
+  padding: 28px 32px 32px;
+}
+
+/* ── Grid of smaller cards ────────────────────── */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
-/* Column layout keeps the link row pinned to the bottom of every card */
 .project-card {
   display: flex;
   flex-direction: column;
 }
 
-/*
- * A card carrying a reel breaks the two-column rhythm and spans the full grid,
- * so the recording gets real width instead of being squeezed into half a row.
- */
-.project-card-featured {
-  grid-column: 1 / -1;
+/* Thumbnail for smaller cards */
+.small-card-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: calc(var(--radius) - 2px);
+  margin-bottom: 16px;
+  background: var(--bg-3);
 }
 
-/*
- * The odd one out. With an odd number of plain cards the last one would sit
- * alone in its row at half width, which reads as a gap rather than a layout, so
- * it fills the row instead. Which card this is gets decided in Projects.jsx —
- * `nth-child` here would also count the full-width featured cards.
- */
-.project-card-wide {
-  grid-column: 1 / -1;
+.small-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
-/* The moving reel is already the focus here, and a card that lifts under the
-   cursor competes with it (and with the controls in full mode). Stay put. */
-.project-card-featured:hover {
-  transform: none;
+.project-card:hover .small-card-thumb img {
+  transform: scale(1.04);
 }
 
-/* Full-width card, but prose still needs a readable measure */
-.project-card-featured .card-desc,
-.project-card-featured .card-detail,
-.project-card-wide .card-desc,
-.project-card-wide .card-detail {
-  max-width: 70ch;
-}
-
+/* ── Shared card internals ────────────────────── */
 .card-top {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 10px;
 }
 
 .card-title {
-  font-size: 15px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text);
+  line-height: 1.2;
 }
 
 .card-badge {
@@ -73,6 +157,7 @@
   border-radius: 20px;
   border: 1px solid var(--green-border);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .badge-dot {
@@ -85,7 +170,7 @@
 .card-desc {
   font-size: 13px;
   color: var(--muted);
-  line-height: 1.65;
+  line-height: 1.7;
   margin-bottom: 8px;
 }
 
@@ -93,28 +178,29 @@
   font-size: 12px;
   color: var(--muted);
   line-height: 1.6;
-  padding-left: 10px;
-  border-left: 2px solid var(--border);
+  padding-left: 12px;
+  border-left: 2px solid var(--green-border);
   margin-bottom: 14px;
+  font-style: italic;
 }
 
 .card-outcome {
   font-size: 12.5px;
-  color: var(--text);
-  background: var(--green-light);
+  color: var(--text-2);
+  background: var(--green-dim);
   border: 1px solid var(--green-border);
   border-left: 3px solid var(--green);
   border-radius: var(--radius-sm);
-  padding: 8px 12px;
-  margin-bottom: 14px;
-  line-height: 1.5;
+  padding: 9px 13px;
+  margin-bottom: 16px;
+  line-height: 1.55;
   display: flex;
-  gap: 6px;
+  gap: 7px;
 }
 
 .card-outcome .outcome-label {
   font-weight: 700;
-  color: var(--green-hover);
+  color: var(--green);
   flex-shrink: 0;
 }
 
@@ -122,10 +208,9 @@
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
-/* Pushes the links to the bottom regardless of description length */
 .card-links {
   display: flex;
   gap: 8px;
@@ -135,40 +220,48 @@
 .link-btn {
   font-size: 12px;
   font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
   color: var(--green);
   text-decoration: none;
   border: 1px solid var(--green-border);
-  padding: 6px 13px;
-  border-radius: 4px;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
   background: var(--green-light);
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .link-btn:hover {
-  background: var(--green-border);
+  background: var(--green-dim);
+  border-color: var(--green);
+  box-shadow: 0 0 12px var(--green-glow);
 }
 
 .link-btn-ghost {
   font-size: 12px;
   font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
   color: var(--muted);
   text-decoration: none;
   border: 1px solid var(--border);
-  padding: 6px 13px;
-  border-radius: 4px;
-  background: var(--bg);
-  transition:
-    border-color 0.2s ease,
-    color 0.2s ease;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .link-btn-ghost:hover {
-  border-color: var(--text);
-  color: var(--text);
+  border-color: var(--text-2);
+  color: var(--text-2);
 }
 
-@media (max-width: 800px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+/* ── Responsive ───────────────────────────────── */
+@media (max-width: 900px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .featured-card-body { padding: 20px; }
+  .featured-screenshot { max-height: 220px; }
+  .card-title { font-size: 16px; }
 }

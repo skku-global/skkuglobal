@@ -2,7 +2,6 @@ export const projects = [
   {
     title: 'CarBreezy',
     badge: 'Live',
-    // `featured` promotes this one to a full-width card carrying the demo reel.
     featured: true,
     description:
       'Car marketplace platform with a full listings system, detailed vehicle galleries, and multi-criteria filtering.',
@@ -11,35 +10,8 @@ export const projects = [
     stack: ['React', 'Vite', 'JavaScript', 'CSS'],
     liveUrl: 'https://carbreezy-react.vercel.app/',
     githubUrl: 'https://github.com/skku-global/carbreezy',
-    demo: {
-      // `?v=` is a cache buster, not decoration. This reel was recut from a new
-      // recording while keeping its filename, and a browser holding partly
-      // buffered bytes of the *old* file at this URL refuses to play the new one
-      // rather than refetching it. Bump the number on any future recut.
-      poster: '/demo/carbreezy-poster.jpg?v=3',
-      // The encoded file's own dimensions — the frame reserves its height from
-      // these, so each reel keeps its own shape.
-      width: 1280,
-      height: 646,
-      // Shown in the reel's browser chrome, and linked — so the frame itself is
-      // evidence the build is deployed rather than just decoration.
-      siteUrl: 'https://carbreezy-react.vercel.app/',
-      siteLabel: 'carbreezy-react.vercel.app',
-      // Six beats, opening with one unbroken 19s take: hero carousel, stat
-      // dials, the inventory grid, a vehicle spec sheet, brands, offers,
-      // testimonials, the FAQ, the closing CTA. Then the new-cars filters, the
-      // brand tuner, the offers page, the gallery, and About. Cut silent so it
-      // can start on its own.
-      loop: {
-        src: '/demo/carbreezy-loop.mp4?v=3',
-        type: 'video/mp4',
-        duration: '41s',
-      },
-      // No `full` here: the source recording is only 66s, so a walkthrough would
-      // barely outrun the loop — and the ~10s it spends on a form filled with
-      // keyboard mash is the part a client should least see. The loop stands
-      // alone, the same way JuniCash's does.
-    },
+    poster: '/demo/carbreezy-poster.jpg',
+    siteLabel: 'carbreezy-react.vercel.app',
   },
   {
     title: 'JuniCash',
@@ -52,25 +24,34 @@ export const projects = [
     stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Resend'],
     liveUrl: 'https://junicash.vercel.app',
     githubUrl: 'https://github.com/skku-global/Junicash',
-    demo: {
-      // `?v=` is the cache buster; see the note on CarBreezy above. Bumped when
-      // this reel was recut longer.
-      poster: '/demo/junicash-poster.jpg?v=2',
-      width: 1280,
-      height: 716,
-      siteUrl: 'https://junicash.vercel.app',
-      siteLabel: 'junicash.vercel.app',
-      // Five beats — sign up, verify by OTP, the virtual card and profile, send
-      // money, and the transfer landing — cut silent so it can start on its own.
-      loop: {
-        src: '/demo/junicash-loop.mp4?v=2',
-        type: 'video/mp4',
-        duration: '32s',
-      },
-      // No `full` here on purpose: the raw recording spends most of its length
-      // in a real inbox and on a dashboard the screen capture cropped, so there
-      // is no longer cut worth showing. The loop stands alone.
-    },
+    poster: '/demo/junicash-poster.jpg',
+    siteLabel: 'junicash.vercel.app',
+  },
+  {
+    title: 'SecuScan',
+    badge: 'Live',
+    description:
+      'Automated web security scanner — detects authentication flaws, missing headers, session vulnerabilities, and API exposure risks with colour-coded severity reports.',
+    detail: 'Full audit engine + manual testing layer, built and run at secuscan.vercel.app.',
+    outcome: 'Live security SaaS with tiered scan plans, detailed PDF reports, and real vulnerability data.',
+    stack: ['Python', 'FastAPI', 'React', 'PostgreSQL'],
+    liveUrl: 'https://secuscan-orpin.vercel.app/',
+    githubUrl: 'https://github.com/skku-global',
+    poster: '/demo/secuscan-poster.jpg',
+    siteLabel: 'secuscan-orpin.vercel.app',
+  },
+  {
+    title: 'Luxe Hair Co',
+    badge: 'Live',
+    description:
+      'Luxury hair e-commerce store for raw virgin hair bundles, HD lace wigs, and extensions — full cart, checkout, and product management system.',
+    detail: 'Dark-mode luxury aesthetic with ₦-denominated pricing and WhatsApp order integration.',
+    outcome: 'Full e-commerce store live — product catalogue, cart, and checkout shipped end-to-end.',
+    stack: ['React', 'Node.js', 'CSS'],
+    liveUrl: 'https://luxehair-tau.vercel.app/',
+    githubUrl: 'https://github.com/skku-global',
+    poster: '/demo/luxehair-poster.jpg',
+    siteLabel: 'luxehair-tau.vercel.app',
   },
   {
     title: 'skku-bank',

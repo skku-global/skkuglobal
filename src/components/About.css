@@ -5,20 +5,19 @@
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 40px;
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 64px;
 }
 
 .about-bio p {
   font-size: 14.5px;
   color: var(--muted);
-  line-height: 1.8;
+  line-height: 1.85;
+  margin-bottom: 16px;
 }
 
-.about-bio p + p {
-  margin-top: 16px;
-}
+.about-bio p:last-child { margin-bottom: 0; }
 
 .about-highlights {
   display: flex;
@@ -27,58 +26,42 @@
 }
 
 .about-card {
-  background: var(--bg);
+  background: var(--card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 20px 22px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.25s ease;
+  border-left: 3px solid var(--green);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .about-card:hover {
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border-color: var(--border-hover);
+  border-left-color: var(--green);
+  background: var(--card-hover);
 }
 
 .about-card h3 {
-  font-size: 13px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.about-card h3::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  flex-shrink: 0;
+  margin-bottom: 6px;
 }
 
 .about-card p {
   font-size: 13px;
   color: var(--muted);
-  line-height: 1.65;
-  padding-left: 14px;
+  line-height: 1.7;
 }
 
 .about-founders-header {
-  margin-top: 56px;
-  padding-top: 36px;
-  border-top: 1px dashed var(--border);
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+  margin-bottom: 36px;
 }
 
-@media (max-width: 900px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  .about-founders-header {
-    margin-top: 40px;
-    padding-top: 28px;
-  }
+@media (max-width: 800px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-grid .about-bio { order: 2; }
+  .about-grid .about-highlights { order: 1; }
 }

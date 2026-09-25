@@ -1,6 +1,7 @@
 .vision-section {
   padding: var(--section-y) var(--pad-x);
   border-bottom: 1px solid var(--border);
+  background: var(--bg-2);
 }
 
 .vision-card {
@@ -9,22 +10,24 @@
   gap: 32px;
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 32px;
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  margin-bottom: 24px;
 }
 
 .vision-main h3 {
-  font-size: 20px;
-  font-weight: 700;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 800;
   color: var(--text);
-  letter-spacing: -0.4px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  line-height: 1.2;
 }
 
 .vision-main > p {
   font-size: 14px;
   color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.8;
   margin-bottom: 24px;
 }
 
@@ -34,59 +37,71 @@
   gap: 16px;
 }
 
+.pillar {
+  padding: 14px 16px;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  border-left: 2px solid var(--green);
+  transition: border-color 0.2s ease;
+}
+
+.pillar:hover {
+  border-left-color: var(--green-hover);
+  border-color: var(--border-hover);
+}
+
 .pillar h4 {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 13px;
   font-weight: 700;
-  color: var(--text);
-  margin-bottom: 4px;
-  padding-left: 12px;
-  border-left: 2px solid var(--green);
+  color: var(--text-2);
+  margin-bottom: 5px;
 }
 
 .pillar p {
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--muted);
-  line-height: 1.6;
-  padding-left: 12px;
+  line-height: 1.65;
 }
 
 .vision-proof {
-  background: var(--bg);
+  background: var(--bg-3);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 20px;
+  border-radius: var(--radius);
+  padding: 24px;
   height: fit-content;
 }
 
 .proof-label {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 10px;
   font-weight: 700;
   color: var(--green);
-  letter-spacing: 1.2px;
-  margin-bottom: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
 }
 
 .vision-proof ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 12px;
 }
 
 .vision-proof li {
   position: relative;
   padding-left: 20px;
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--muted);
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
-/* Green check bullet */
 .vision-proof li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 5px;
+  top: 6px;
   width: 5px;
   height: 9px;
   border: solid var(--green);
@@ -102,10 +117,11 @@
 
 .email-label {
   display: block;
-  font-size: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--text);
-  margin-bottom: 8px;
+  color: var(--text-2);
+  margin-bottom: 10px;
 }
 
 .email-row {
@@ -118,48 +134,35 @@
   min-width: 0;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 11px 14px;
+  padding: 12px 14px;
   font-family: inherit;
-  font-size: 13px;
+  font-size: 14px;
   background: var(--bg);
   color: var(--text);
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.email-input::placeholder {
-  color: var(--muted);
-}
+.email-input::placeholder { color: var(--muted-2); }
 
 .email-input:focus {
   border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green-dim);
 }
 
 .email-input[aria-invalid='true'] {
-  border-color: #dc2626;
-}
-
-.email-form .btn-primary {
-  padding: 11px 20px;
-  font-size: 13px;
-  white-space: nowrap;
+  border-color: #f87171;
 }
 
 .form-status {
   min-height: 18px;
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 12px;
   color: var(--muted);
 }
 
-.form-status.error {
-  color: #dc2626;
-}
-
-.form-status.done {
-  color: var(--green);
-  font-weight: 600;
-}
+.form-status.error { color: #f87171; }
+.form-status.done  { color: var(--green); font-weight: 600; }
 
 @media (max-width: 900px) {
   .vision-card {
@@ -170,12 +173,6 @@
 }
 
 @media (max-width: 560px) {
-  .pillars {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .email-row {
-    flex-direction: column;
-  }
+  .pillars { grid-template-columns: 1fr; gap: 12px; }
+  .email-row { flex-direction: column; }
 }
