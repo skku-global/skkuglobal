@@ -66,7 +66,7 @@
 /* ── Base ─────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 76px;
+  scroll-padding-top: 56px;
   background-color: var(--bg);
 }
 
