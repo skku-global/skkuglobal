@@ -34,7 +34,7 @@ export default function Home() {
                 <span className="btn-arrow" aria-hidden="true">→</span>
               </Link>
               <a
-                href="https://wa.me/2349132686150?text=Hello%20SKKU%20Global,%20I%20would%20like%20to%20discuss%20a%20project"
+                href="https://wa.me/2348057215622?text=Hello%20SKKU%20Global,%20I%20would%20like%20to%20discuss%20a%20project"
                 target="_blank"
                 rel="noreferrer"
                 className="btn-secondary cta-btn"

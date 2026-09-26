@@ -238,7 +238,7 @@ export default function Navbar() {
 
             <div className="apple-mobile-footer">
               <a
-                href="https://wa.me/2349132686150?text=Hello%20SKKU%20Global"
+                href="https://wa.me/2348057215622?text=Hello%20SKKU%20Global"
                 target="_blank"
                 rel="noreferrer"
                 className="apple-mobile-contact-btn"

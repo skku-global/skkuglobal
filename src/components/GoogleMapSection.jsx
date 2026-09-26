@@ -122,12 +122,20 @@ export default function GoogleMapSection() {
                     <a href="mailto:admin@skkuglobal.com" className="contact-link">admin@skkuglobal.com</a>
                   </p>
                 </div>
+              <div className="detail-item">
+                <div className="detail-icon" aria-hidden="true">📞</div>
+                <div>
+                  <span className="detail-label">Direct Phone Line</span>
+                  <p className="detail-val">
+                    <a href="tel:+2347016995795" className="contact-link">+234 701 699 5795</a>
+                  </p>
+                </div>
               </div>
             </div>
 
             <div className="business-card-footer">
               <a
-                href="https://wa.me/2349132686150?text=Hello%20SKKU%20Global,%20I%20need%20a%20tech%20solution%20consultation"
+                href="https://wa.me/2348057215622?text=Hello%20SKKU%20Global,%20I%20need%20a%20tech%20solution%20consultation"
                 target="_blank"
                 rel="noreferrer"
                 className="btn-business-primary"
