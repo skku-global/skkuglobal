@@ -6,10 +6,12 @@ const CONTACT_EMAIL = 'admin@skkuglobal.com'
 const ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || import.meta.env.VITE_SUBSCRIBE_ENDPOINT
 
 // Business WhatsApp, international format, digits only (no +, spaces, dashes).
-const WHATSAPP_NUMBER = '2349132686150'
+const WHATSAPP_NUMBER = '2348057215622'
 const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   'Hello SKKU Global, I would like to inquire about your services.'
 )}`
+const CALL_PHONE = '+234 701 699 5795'
+const CALL_HREF = 'tel:+2347016995795'
 
 const servicesList = [
   'Web Development (Custom Website / App)',
@@ -250,7 +252,18 @@ export default function Contact() {
                   <span className="direct-icon" aria-hidden="true">💬</span>
                   <div>
                     <span className="direct-btn-title">Chat on WhatsApp</span>
-                    <span className="direct-btn-sub">Fast response for new projects</span>
+                    <span className="direct-btn-sub">08057215622 · Fast scoping</span>
+                  </div>
+                </a>
+
+                <a
+                  href={CALL_HREF}
+                  className="direct-action-btn phone-btn"
+                >
+                  <span className="direct-icon" aria-hidden="true">📞</span>
+                  <div>
+                    <span className="direct-btn-title">Call Direct</span>
+                    <span className="direct-btn-sub">{CALL_PHONE}</span>
                   </div>
                 </a>
               </div>

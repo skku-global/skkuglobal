@@ -25,9 +25,9 @@ const directoryColumns = [
     title: 'Connect & Office',
     links: [
       { label: 'Lagos Tech Hub (Google Maps)', to: '/support#location' },
-      { label: 'Chat on WhatsApp', href: 'https://wa.me/2349132686150?text=Hello%20SKKU%20Global' },
+      { label: 'Chat on WhatsApp', href: 'https://wa.me/2348057215622?text=Hello%20SKKU%20Global' },
       { label: 'Email: admin@skkuglobal.com', href: 'mailto:admin@skkuglobal.com' },
-      { label: 'Call: +234 913 268 6150', href: 'tel:+2349132686150' },
+      { label: 'Call: +234 701 699 5795', href: 'tel:+2347016995795' },
     ],
   },
 ]
