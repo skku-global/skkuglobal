@@ -180,66 +180,6 @@ export const projects = [
     ],
   },
   {
-    id: 'junicash',
-    title: 'JuniCash — Personal Finance & Digital Wallet',
-    badge: 'Full-Stack Fintech',
-    featured: true,
-    category: 'Fintech & Wallet',
-    tagline: 'Full-stack personal finance app with multi-wallet management, OTP auth, and transfers.',
-    description:
-      'Fintech application for budgeting, digital wallet balance management, and peer-to-peer internal transfers. Incorporates bank-grade cryptographic password hashing, email OTP authentication, and transaction ledgering.',
-    detail:
-      'Built with Node.js, Express, MongoDB, and React, with transactional email delivery via Resend API.',
-    outcome:
-      'Shipped end-to-end full-stack fintech app with secure session handling and real-time transaction history tracking.',
-    stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Resend', 'JWT'],
-    liveUrl: 'https://junicash.vercel.app',
-    siteLabel: 'junicash.vercel.app',
-    poster: '/screenshots/junicash/slide-1.webp',
-    slides: [
-      {
-        id: 1,
-        title: '01. Product Positioning & Store Distribution',
-        caption:
-          'Consumer-facing landing experience with dual app-store distribution, aggregate store ratings, adoption metrics, and a persistent compliance trust bar.',
-        image: '/screenshots/junicash/slide-1.webp',
-        highlight: 'Dual Store Distribution · Compliance Trust Bar',
-      },
-      {
-        id: 2,
-        title: '02. Product Suite & Segment Switching',
-        caption:
-          'Six-module product grid — transfers, borrowing, savings, premium, cards, and investments — behind a Personal/Business segmented control that swaps the whole offer set.',
-        image: '/screenshots/junicash/slide-2.webp',
-        highlight: 'Segmented Personal/Business View · Modular Product Grid',
-      },
-      {
-        id: 3,
-        title: '03. Premium Subscription Tier',
-        caption:
-          'Paid membership tier presented as a dark-panel value stack covering cashback accrual, uplifted savings rates, and partner brand discounts.',
-        image: '/screenshots/junicash/slide-3.webp',
-        highlight: 'Recurring Subscription Tier · Cashback Accrual',
-      },
-      {
-        id: 4,
-        title: '04. Competitive Comparison & Conversion',
-        caption:
-          'Head-to-head feature matrix benchmarking the wallet against incumbent banking on fees, onboarding time, and interest, closing into the account-opening call to action.',
-        image: '/screenshots/junicash/slide-4.webp',
-        highlight: 'Comparison Matrix · Conversion-focused CTA',
-      },
-      {
-        id: 5,
-        title: '05. Account Creation & Credential Handling',
-        caption:
-          'Validated multi-field registration flow with required-field enforcement, masked password entry and confirmation, and reveal toggles ahead of email OTP verification.',
-        image: '/screenshots/junicash/slide-5.webp',
-        highlight: 'Field-level Validation · Masked Credential Entry',
-      },
-    ],
-  },
-  {
     id: 'skku-bank',
     title: 'skku-bank — Biometric Banking Authentication',
     badge: 'Security Prototype',

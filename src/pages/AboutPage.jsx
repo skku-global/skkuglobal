@@ -1,6 +1,5 @@
 import About from '../components/About'
 import Vision from '../components/Vision'
-import GoogleMapSection from '../components/GoogleMapSection'
 import useScrollAnimation from '../hooks/useScrollAnimation'
 import './Home.css'
 
@@ -25,7 +24,6 @@ export default function AboutPage() {
 
       <About />
       <Vision />
-      <GoogleMapSection />
     </main>
   )
 }

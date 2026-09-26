@@ -1,6 +1,6 @@
 # skkuglobal.com
 
-Portfolio and company site for **Abdulkabir Adekunle** — full-stack developer, trader, and founder of SKKU Global Technologies Limited.
+Portfolio and company site for **Abdulkabir Ajiboye** — full-stack developer, trader, and founder of SKKU Global Technologies Limited.
 
 Live at **[skkuglobal.com](https://skkuglobal.com)**.
 

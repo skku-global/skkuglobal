@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { LuCheck, LuExternalLink, LuChevronLeft, LuChevronRight } from 'react-icons/lu'
 import './Projects.css'
 import { projects } from '../data/projects'
 
@@ -132,7 +133,7 @@ function FeaturedProjectCard({ project }) {
                 aria-label="Previous slide"
                 onClick={prevSlide}
               >
-                ‹
+                <LuChevronLeft size={18} aria-hidden="true" />
               </button>
               <button
                 type="button"
@@ -140,7 +141,7 @@ function FeaturedProjectCard({ project }) {
                 aria-label="Next slide"
                 onClick={nextSlide}
               >
-                ›
+                <LuChevronRight size={18} aria-hidden="true" />
               </button>
             </>
           )}
@@ -169,7 +170,7 @@ function FeaturedProjectCard({ project }) {
           </div>
           {current.highlight && (
             <div className="feature-highlight-badge">
-              <span className="highlight-icon">✓</span>
+              <LuCheck size={14} className="highlight-icon" aria-hidden="true" />
               <span>{current.highlight}</span>
             </div>
           )}
@@ -208,11 +209,7 @@ function FeaturedProjectCard({ project }) {
               className="btn-primary"
             >
               <span>Launch Live Site</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
+              <LuExternalLink size={15} aria-hidden="true" />
             </a>
           )}
         </div>
@@ -256,7 +253,8 @@ function SmallProjectCard({ project, delay }) {
       <div className="card-links">
         {project.liveUrl && (
           <a href={project.liveUrl} target="_blank" rel="noreferrer" className="link-btn">
-            Live Preview ↗
+            <span>Live Preview</span>
+            <LuExternalLink size={13} aria-hidden="true" />
           </a>
         )}
       </div>

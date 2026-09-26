@@ -1,4 +1,3 @@
-import Hero from '../components/Hero'
 import Services from '../components/Services'
 import Stats from '../components/Stats'
 import useScrollAnimation from '../hooks/useScrollAnimation'
@@ -6,13 +5,15 @@ import { LuArrowRight } from 'react-icons/lu'
 import { FaWhatsapp } from 'react-icons/fa6'
 import './Home.css'
 
-export default function Home() {
+export default function ServicesPage() {
   useScrollAnimation()
 
   return (
     <main id="main" className="page-enter">
-      <Hero />
-      <Services hideHeader={true} />
+      {/* ── Core Services Section ── */}
+      <Services />
+
+      {/* ── Verified Track Record ── */}
       <Stats />
 
       {/* ── High-Impact Consultation Banner ── */}

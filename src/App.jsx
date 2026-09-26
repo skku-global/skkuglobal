@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import Work from './pages/Work'
 import AboutPage from './pages/AboutPage'
+import ServicesPage from './pages/ServicesPage'
 import ContactPage from './pages/ContactPage'
 
 function ScrollToTop() {
@@ -40,8 +41,8 @@ function AppShell() {
       <Routes>
         <Route path="/"        element={<Home />} />
         <Route path="/work"    element={<Work />} />
+        <Route path="/services" element={<ServicesPage />} />
         <Route path="/about"   element={<AboutPage />} />
-        <Route path="/services" element={<Navigate to="/#services" replace />} />
         <Route path="/support" element={<ContactPage />} />
         <Route path="/contact" element={<Navigate to="/support" replace />} />
         {/* Catch-all → home */}

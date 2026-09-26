@@ -80,6 +80,24 @@
   box-shadow: var(--shadow-md);
 }
 
+.stat-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--badge-bg);
+  color: var(--primary);
+  border: 1px solid var(--primary-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover .stat-icon-wrapper {
+  transform: scale(1.1);
+}
+
 .stat-num {
   font-family: var(--font-heading);
   font-size: clamp(34px, 4vw, 44px);

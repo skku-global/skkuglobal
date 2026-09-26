@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
+import { LuSearch, LuX, LuChevronRight, LuExternalLink } from 'react-icons/lu'
+import { FaWhatsapp } from 'react-icons/fa6'
 import './Navbar.css'
 
 const navLinks = [
   { to: '/work', label: 'Work' },
-  { to: '/#services', label: 'Services' },
+  { to: '/services', label: 'Services' },
   { to: '/about', label: 'About' },
   { to: '/support', label: 'Support' },
 ]
@@ -12,9 +14,9 @@ const navLinks = [
 const searchSuggestions = [
   { title: 'SecuScan Vulnerability Scanner', category: 'Cybersecurity SaaS', url: '/work#secuscan' },
   { title: 'Luxe Hair Co E-Commerce Store', category: 'E-Commerce Platform', url: '/work' },
-  { title: 'Web & Full-Stack Engineering', category: 'Services', url: '/#services' },
-  { title: 'Security Audits & Penetration Testing', category: 'Services', url: '/#services' },
-  { title: 'Google Maps & Lagos HQ Location', category: 'Support & Location', url: '/support#location' },
+  { title: 'Web & Full-Stack Engineering', category: 'Services', url: '/services' },
+  { title: 'Security Audits & Penetration Testing', category: 'Services', url: '/services' },
+  { title: 'Global Online Operations', category: 'Company & Operations', url: '/about' },
   { title: 'Technical Support & Consultation', category: 'Support', url: '/support' },
 ]
 
@@ -128,22 +130,7 @@ export default function Navbar() {
               aria-label={searchOpen ? 'Close search' : 'Open search'}
               onClick={() => setSearchOpen(!searchOpen)}
             >
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 17 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="apple-search-svg"
-              >
-                <path
-                  d="M15.5 15.5L11.5 11.5M13.1667 7.33333C13.1667 10.555 10.555 13.1667 7.33333 13.1667C4.11167 13.1667 1.5 10.555 1.5 7.33333C1.5 4.11167 4.11167 1.5 7.33333 1.5C10.555 1.5 13.1667 4.11167 13.1667 7.33333Z"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <LuSearch size={15} className="apple-search-svg" aria-hidden="true" />
             </button>
 
             {/* Mobile Hamburger Button */}
@@ -167,15 +154,7 @@ export default function Navbar() {
         <div className={`apple-search-overlay ${searchOpen ? 'open' : ''}`}>
           <div className="apple-search-container">
             <div className="apple-search-input-wrapper">
-              <svg width="15" height="15" viewBox="0 0 17 17" fill="none" className="search-input-icon">
-                <path
-                  d="M15.5 15.5L11.5 11.5M13.1667 7.33333C13.1667 10.555 10.555 13.1667 7.33333 13.1667C4.11167 13.1667 1.5 10.555 1.5 7.33333C1.5 4.11167 4.11167 1.5 7.33333 1.5C10.555 1.5 13.1667 4.11167 13.1667 7.33333Z"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <LuSearch size={15} className="search-input-icon" aria-hidden="true" />
               <input
                 ref={searchInputRef}
                 type="text"
@@ -191,7 +170,7 @@ export default function Navbar() {
                   onClick={() => setSearchQuery('')}
                   aria-label="Clear input"
                 >
-                  ✕
+                  <LuX size={14} aria-hidden="true" />
                 </button>
               )}
             </div>
@@ -208,7 +187,7 @@ export default function Navbar() {
                       className="result-item"
                       onClick={(e) => handleNavClick(e, item.url)}
                     >
-                      <span className="result-arrow">›</span>
+                      <LuChevronRight size={13} className="result-arrow" aria-hidden="true" />
                       <span className="result-title">{item.title}</span>
                       <span className="result-category">{item.category}</span>
                     </Link>
@@ -243,7 +222,9 @@ export default function Navbar() {
                 rel="noreferrer"
                 className="apple-mobile-contact-btn"
               >
-                Chat on WhatsApp ↗
+                <FaWhatsapp size={16} aria-hidden="true" />
+                <span>Chat on WhatsApp</span>
+                <LuExternalLink size={13} aria-hidden="true" />
               </a>
               <p className="apple-mobile-copy">
                 SKKU Global Technologies Limited · CAC-Registered

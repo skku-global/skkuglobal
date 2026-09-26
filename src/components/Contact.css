@@ -91,10 +91,130 @@
   box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
 }
 
+.form-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.autofill-tag {
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #047857;
+  background: #ECFDF5;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 999px;
+  padding: 3px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.autofill-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-left: 3px solid #16A34A;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #14532D;
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
+
+.autofill-banner-icon {
+  font-size: 15px;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+.autofill-banner-text {
+  flex: 1;
+}
+
+.autofill-banner-text strong {
+  color: #0F172A;
+  font-weight: 600;
+}
+
+.form-textarea-rich {
+  min-height: 165px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.form-submit-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
 .form-submit-btn {
-  align-self: flex-start;
-  padding: 13px 28px;
-  font-size: 14.5px;
+  padding: 13px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.email-submit-btn {
+  background: #0F172A;
+  color: #FFFFFF;
+  border: 1px solid #0F172A;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+}
+
+.email-submit-btn:hover:not(:disabled) {
+  background: #1E293B;
+  border-color: #1E293B;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+}
+
+.email-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.whatsapp-submit-btn {
+  background: #ECFDF5;
+  color: #065F46;
+  border: 1.5px solid #10B981;
+}
+
+.whatsapp-submit-btn:hover {
+  background: #10B981;
+  border-color: #059669;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.whatsapp-submit-icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.form-actions-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
 }
 
 .contact-status-msg {
@@ -188,8 +308,35 @@
 }
 
 .direct-icon {
-  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: #F8FAFC;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.email-btn .direct-icon {
+  color: #0F172A;
+  background: #F1F5F9;
+}
+
+.whatsapp-btn .direct-icon {
+  color: #15803D;
+  background: #ECFDF5;
+}
+
+.phone-btn .direct-icon {
+  color: #1D4ED8;
+  background: #EFF6FF;
+}
+
+.direct-action-btn:hover .direct-icon {
+  transform: scale(1.08);
 }
 
 .direct-btn-title {
@@ -237,3 +384,17 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 600px) {
+  .contact-form {
+    padding: 24px 18px;
+  }
+  .form-submit-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .form-submit-btn {
+    width: 100%;
+  }
+}
+

@@ -1,15 +1,26 @@
+import {
+  LuShieldCheck,
+  LuRocket,
+  LuBuilding2,
+  LuGraduationCap,
+  LuBug,
+  LuCpu,
+} from 'react-icons/lu'
 import './About.css'
 
 const companyHighlights = [
   {
+    icon: LuShieldCheck,
     title: 'Security-First Architecture',
     body: 'Every application we ship is engineered with rigorous authentication, strict data privacy controls, and proactive exposure defense from day one.',
   },
   {
+    icon: LuRocket,
     title: '100% Shipped Production Work',
     body: 'We build real, working platforms and deploy them live. Every case study in our portfolio is active in production — frontend, backend, database, and cloud infrastructure.',
   },
   {
+    icon: LuBuilding2,
     title: 'Verified Corporate Entity',
     body: 'SKKU Global Technologies Limited is a legally registered Nigerian entity (CAC) with corporate banking, official enterprise domain, and enterprise-grade code infrastructure.',
   },
@@ -17,14 +28,17 @@ const companyHighlights = [
 
 const founderHighlights = [
   {
+    icon: LuGraduationCap,
     title: 'Engineering Pedigree',
     body: 'Completing the ADSE diploma at Aptech Mokola, Ibadan — on a direct academic pathway to a BSc in Computer Science at Middlesex University, UK.',
   },
   {
+    icon: LuBug,
     title: 'Vulnerability Research',
     body: 'Independently identified critical authentication weaknesses in active fintech applications on the market, inspiring the development of the SecuScan audit engine.',
   },
   {
+    icon: LuCpu,
     title: 'Execution Over Theory',
     body: 'Self-directed builder with production software in active use. Every architecture decision is tested against real-world throughput and security benchmarks.',
   },
@@ -77,25 +91,30 @@ export default function About() {
           </div>
 
           <div className="about-highlights">
-            {companyHighlights.map((item, i) => (
-              <div
-                className={`about-card animate animate-delay-${i + 2}`}
-                key={item.title}
-              >
-                <div className="card-indicator" aria-hidden="true" />
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
+            {companyHighlights.map((item, i) => {
+              const Icon = item.icon
+              return (
+                <div
+                  className={`about-card animate animate-delay-${i + 2}`}
+                  key={item.title}
+                >
+                  <div className="card-indicator" aria-hidden="true">
+                    <Icon size={16} />
+                  </div>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 
         {/* ── Block 2: Founder Leadership ───────────────────────────── */}
         <div className="section-header animate about-founders-header">
           <div className="section-label">FOUNDER &amp; LEAD ENGINEER</div>
-          <h2>Abdulkabir Adekunle — Founder &amp; Lead Systems Architect</h2>
+          <h2>Abdulkabir Ajiboye — Founder &amp; Lead Systems Architect</h2>
           <p>
             Hands-on technical leadership with direct engineering oversight on every production solution.
           </p>
@@ -118,18 +137,23 @@ export default function About() {
           </div>
 
           <div className="about-highlights">
-            {founderHighlights.map((item, i) => (
-              <div
-                className={`about-card animate animate-delay-${i + 2}`}
-                key={item.title}
-              >
-                <div className="card-indicator" aria-hidden="true" />
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
+            {founderHighlights.map((item, i) => {
+              const Icon = item.icon
+              return (
+                <div
+                  className={`about-card animate animate-delay-${i + 2}`}
+                  key={item.title}
+                >
+                  <div className="card-indicator" aria-hidden="true">
+                    <Icon size={16} />
+                  </div>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 

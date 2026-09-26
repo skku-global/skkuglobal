@@ -1,3 +1,14 @@
+import {
+  LuMapPin,
+  LuGlobe,
+  LuClock,
+  LuMail,
+  LuPhone,
+  LuExternalLink,
+  LuNavigation,
+  LuArrowRight,
+} from 'react-icons/lu'
+import { FaWhatsapp } from 'react-icons/fa6'
 import './GoogleMapSection.css'
 
 export default function GoogleMapSection() {
@@ -50,11 +61,7 @@ export default function GoogleMapSection() {
               className="map-action-btn"
             >
               <span>Open in Google Maps</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
+              <LuExternalLink size={15} aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -91,7 +98,9 @@ export default function GoogleMapSection() {
 
             <div className="business-details-list">
               <div className="detail-item">
-                <div className="detail-icon" aria-hidden="true">📍</div>
+                <div className="detail-icon" aria-hidden="true">
+                  <LuMapPin size={18} />
+                </div>
                 <div>
                   <span className="detail-label">Primary Office &amp; Operations</span>
                   <p className="detail-val">Lagos Tech Corridor, Lagos State, Nigeria</p>
@@ -99,7 +108,9 @@ export default function GoogleMapSection() {
               </div>
 
               <div className="detail-item">
-                <div className="detail-icon" aria-hidden="true">🌐</div>
+                <div className="detail-icon" aria-hidden="true">
+                  <LuGlobe size={18} />
+                </div>
                 <div>
                   <span className="detail-label">Client Coverage</span>
                   <p className="detail-val">Worldwide Remote Delivery (US, UK, EU, UAE, Pan-Africa)</p>
@@ -107,7 +118,9 @@ export default function GoogleMapSection() {
               </div>
 
               <div className="detail-item">
-                <div className="detail-icon" aria-hidden="true">⏱️</div>
+                <div className="detail-icon" aria-hidden="true">
+                  <LuClock size={18} />
+                </div>
                 <div>
                   <span className="detail-label">Working Hours &amp; Incident SLA</span>
                   <p className="detail-val">Mon – Fri: 08:00 – 18:00 WAT · 24/7 Security Alert Support</p>
@@ -115,15 +128,21 @@ export default function GoogleMapSection() {
               </div>
 
               <div className="detail-item">
-                <div className="detail-icon" aria-hidden="true">✉️</div>
+                <div className="detail-icon" aria-hidden="true">
+                  <LuMail size={18} />
+                </div>
                 <div>
                   <span className="detail-label">Direct Engineering Channel</span>
                   <p className="detail-val">
                     <a href="mailto:admin@skkuglobal.com" className="contact-link">admin@skkuglobal.com</a>
                   </p>
                 </div>
+              </div>
+
               <div className="detail-item">
-                <div className="detail-icon" aria-hidden="true">📞</div>
+                <div className="detail-icon" aria-hidden="true">
+                  <LuPhone size={18} />
+                </div>
                 <div>
                   <span className="detail-label">Direct Phone Line</span>
                   <p className="detail-val">
@@ -140,8 +159,9 @@ export default function GoogleMapSection() {
                 rel="noreferrer"
                 className="btn-business-primary"
               >
+                <FaWhatsapp size={16} aria-hidden="true" />
                 <span>Chat on WhatsApp</span>
-                <span className="btn-arrow" aria-hidden="true">→</span>
+                <LuArrowRight size={14} aria-hidden="true" />
               </a>
               <a
                 href="https://maps.google.com/?q=Lagos+Tech+Hub+Nigeria"
@@ -149,7 +169,8 @@ export default function GoogleMapSection() {
                 rel="noreferrer"
                 className="btn-business-secondary"
               >
-                Directions ↗
+                <span>Directions</span>
+                <LuNavigation size={13} aria-hidden="true" />
               </a>
             </div>
           </div>

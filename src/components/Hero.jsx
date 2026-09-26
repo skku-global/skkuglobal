@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { LuCheck, LuArrowRight } from 'react-icons/lu'
 import './Hero.css'
 
 export default function Hero() {
@@ -31,10 +32,13 @@ export default function Hero() {
 
         {/* ── Action Buttons ────────────────────────── */}
         <div className="hero-actions animate animate-delay-3">
-          <Link to="/support" className="btn-primary">
+          <a
+            href="mailto:admin@skkuglobal.com?subject=Project%20Consultation%20Inquiry%20%E2%80%94%20SKKU%20Global"
+            className="btn-primary"
+          >
             <span>Start a Project</span>
-            <span className="btn-arrow" aria-hidden="true">→</span>
-          </Link>
+            <LuArrowRight size={15} aria-hidden="true" />
+          </a>
           <Link to="/work" className="btn-secondary">
             <span>Explore Case Studies</span>
           </Link>
@@ -43,22 +47,22 @@ export default function Hero() {
         {/* ── Enterprise Trust Bar ─────────────────── */}
         <div className="hero-trust-strip animate animate-delay-4">
           <div className="trust-item">
-            <span className="trust-check" aria-hidden="true">✓</span>
+            <LuCheck size={14} className="trust-check" aria-hidden="true" />
             <span>CAC-Registered Limited Entity</span>
           </div>
           <span className="trust-divider" aria-hidden="true">/</span>
           <div className="trust-item">
-            <span className="trust-check" aria-hidden="true">✓</span>
+            <LuCheck size={14} className="trust-check" aria-hidden="true" />
             <span>SecuScan Security Engine</span>
           </div>
           <span className="trust-divider" aria-hidden="true">/</span>
           <div className="trust-item">
-            <span className="trust-check" aria-hidden="true">✓</span>
+            <LuCheck size={14} className="trust-check" aria-hidden="true" />
             <span>Founder-Led Engineering</span>
           </div>
           <span className="trust-divider" aria-hidden="true">/</span>
           <div className="trust-item">
-            <span className="trust-check" aria-hidden="true">✓</span>
+            <LuCheck size={14} className="trust-check" aria-hidden="true" />
             <span>Sub-30s Automated Audits</span>
           </div>
         </div>

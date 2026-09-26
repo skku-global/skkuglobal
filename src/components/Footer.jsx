@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { LuChevronRight, LuPlus, LuMinus } from 'react-icons/lu'
 import './Footer.css'
 
 const directoryColumns = [
@@ -7,7 +8,7 @@ const directoryColumns = [
     title: 'Navigation',
     links: [
       { label: 'Work & Case Studies', to: '/work' },
-      { label: 'Services & Capabilities', to: '/#services' },
+      { label: 'Services & Capabilities', to: '/services' },
       { label: 'About SKKU Global', to: '/about' },
       { label: 'Support & Consultation', to: '/support' },
     ],
@@ -15,19 +16,19 @@ const directoryColumns = [
   {
     title: 'Core Services',
     links: [
-      { label: 'Custom Web & SaaS Engineering', to: '/#services' },
+      { label: 'Custom Web & SaaS Engineering', to: '/services' },
       { label: 'SecuScan Vulnerability Audits', to: '/work#secuscan' },
-      { label: 'E-Commerce & Retail Tech', to: '/#services' },
-      { label: 'Digital Defense & Infrastructure', to: '/#services' },
+      { label: 'E-Commerce & Retail Tech', to: '/services' },
+      { label: 'Digital Defense & Infrastructure', to: '/services' },
     ],
   },
   {
-    title: 'Connect & Office',
+    title: 'Connect & Inquiries',
     links: [
-      { label: 'Lagos Tech Hub (Google Maps)', to: '/support#location' },
       { label: 'Chat on WhatsApp', href: 'https://wa.me/2348057215622?text=Hello%20SKKU%20Global' },
       { label: 'Email: admin@skkuglobal.com', href: 'mailto:admin@skkuglobal.com' },
       { label: 'Call: +234 701 699 5795', href: 'tel:+2347016995795' },
+      { label: 'Operating Online Worldwide', to: '/support' },
     ],
   },
 ]
@@ -47,11 +48,13 @@ export default function Footer() {
     switch (location.pathname) {
       case '/work':
         return 'Production Case Studies'
+      case '/services':
+        return 'Capabilities & Services'
       case '/about':
         return 'About SKKU Global'
       case '/support':
       case '/contact':
-        return 'Support & Locations'
+        return 'Support & Consultation'
       default:
         return 'Enterprise Web & Security'
     }
@@ -80,7 +83,7 @@ export default function Footer() {
         {/* ── Concise Regulatory / Identity Note ── */}
         <section className="apple-footer-notes" aria-label="Regulatory Notice">
           <p>
-            SKKU Global Technologies Limited is a CAC-registered tech solutions provider headquartered in the Lagos Tech Corridor, Nigeria, delivering full-stack web engineering and SecuScan security audits worldwide.
+            SKKU Global Technologies Limited is a CAC-registered tech solutions provider operating online globally from Nigeria, delivering full-stack web engineering and SecuScan security audits worldwide.
           </p>
         </section>
 
@@ -98,11 +101,11 @@ export default function Footer() {
               height="14"
             />
           </Link>
-          <span className="apple-breadcrumb-chevron" aria-hidden="true">›</span>
+          <LuChevronRight size={11} className="apple-breadcrumb-chevron" aria-hidden="true" />
           <Link to="/" className="apple-breadcrumb-link">
             SKKU Global Technologies
           </Link>
-          <span className="apple-breadcrumb-chevron" aria-hidden="true">›</span>
+          <LuChevronRight size={11} className="apple-breadcrumb-chevron" aria-hidden="true" />
           <span className="apple-breadcrumb-current">
             {getBreadcrumbLabel()}
           </span>
@@ -122,7 +125,7 @@ export default function Footer() {
                 >
                   <span>{col.title}</span>
                   <span className="apple-footer-accordion-icon" aria-hidden="true">
-                    +
+                    {isOpen ? <LuMinus size={12} /> : <LuPlus size={12} />}
                   </span>
                 </button>
 
@@ -184,9 +187,9 @@ export default function Footer() {
           </ul>
 
           <div className="apple-footer-region">
-            <Link to="/support#location" className="apple-region-link">
-              Nigeria
-            </Link>
+            <span className="apple-region-link">
+              Nigeria · Worldwide Online
+            </span>
           </div>
         </div>
       </div>
