@@ -1,7 +1,7 @@
 .vision-section {
   padding: var(--section-y) 0;
   border-bottom: 1px solid var(--border);
-  background: var(--bg-subtle);
+  background: #FFFFFF;
 }
 
 .vision-card {
@@ -40,7 +40,7 @@
 
 .pillar {
   padding: 16px;
-  background: #F8FAFC;
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   border-left: 3px solid var(--primary);
@@ -68,7 +68,7 @@
 }
 
 .vision-proof {
-  background: #F8FAFC;
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 24px;

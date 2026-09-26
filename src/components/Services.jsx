@@ -103,7 +103,7 @@ export default function Services() {
               </div>
 
               <div className="service-action">
-                <Link to="/contact" className="service-link">
+                <Link to="/support" className="service-link">
                   <span>Consult On This Service</span>
                   <span className="service-arrow" aria-hidden="true">→</span>
                 </Link>

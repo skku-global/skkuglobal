@@ -1,7 +1,7 @@
 /* ── Services Section ──────────────────────────── */
 .services-section {
   padding: var(--section-y) 0;
-  background: var(--bg-subtle);
+  background: #FFFFFF;
   border-bottom: 1px solid var(--border);
 }
 
@@ -99,7 +99,7 @@
 }
 
 .service-for-block {
-  background: #F8FAFC;
+  background: #FFFFFF;
   border: 1px solid #E2E8F0;
   border-radius: var(--radius-sm);
   padding: 14px 16px;

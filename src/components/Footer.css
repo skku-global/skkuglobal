@@ -1,121 +1,308 @@
-/* ── Footer ────────────────────────────────────── */
-.footer {
-  background: #FFFFFF;
-  border-top: 1px solid var(--border);
-  padding: 64px 0 36px;
+/* ── Apple-Style Minimalist Light Footer ──────────────────────────────── */
+.apple-footer {
+  background-color: #FFFFFF;
+  color: #6e6e73;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.33337;
+  letter-spacing: -0.01em;
+  padding: 24px 0 40px;
+  border-top: 1px solid #d2d2d7;
   position: relative;
+  z-index: 10;
+  -webkit-font-smoothing: antialiased;
 }
 
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 48px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid var(--border);
-  flex-wrap: wrap;
+.apple-footer-shell {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 22px;
+  box-sizing: border-box;
 }
 
-.footer-left {
-  max-width: 440px;
-}
-
-.footer-logo {
-  display: block;
-  height: 38px;
-  width: auto;
-  margin-bottom: 16px;
-}
-
-.footer-tagline {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-.footer-tagline strong {
-  color: var(--text-primary);
-  font-weight: 700;
-}
-
-.footer-nav-groups {
-  display: flex;
-  gap: 56px;
-  flex-wrap: wrap;
-}
-
-.footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.footer-links-title {
-  font-family: var(--font-heading);
+/* ── Footnotes Section ── */
+.apple-footer-notes {
+  padding: 8px 0 16px;
   font-size: 11px;
-  font-weight: 700;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  line-height: 1.55;
+  color: #86868b;
 }
 
-.footer-links {
+.apple-footer-notes p {
+  margin: 0 0 8px;
+  line-height: 1.55;
+}
+
+.apple-footer-notes p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Thin Hairline Divider ── */
+.apple-footer-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #d2d2d7;
+  margin: 14px 0 18px;
+}
+
+/* ── Breadcrumb Row ── */
+.apple-footer-breadcrumbs {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px 0 20px;
+  font-size: 12px;
+  color: #6e6e73;
 }
 
-.footer-links a {
-  font-size: 13.5px;
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.2s ease;
+.apple-breadcrumb-home {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-}
-
-.footer-links a:hover {
-  color: var(--primary);
-}
-
-.footer-link-arrow {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding-top: 28px;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.footer-bottom-links a {
-  color: var(--text-secondary);
   text-decoration: none;
-  font-weight: 500;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
 }
 
-.footer-bottom-links a:hover {
-  color: var(--primary);
+.apple-breadcrumb-home:hover {
+  opacity: 1;
+}
+
+.apple-breadcrumb-logo {
+  display: block;
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.apple-breadcrumb-chevron {
+  color: #86868b;
+  font-size: 13px;
+  line-height: 1;
+  user-select: none;
+}
+
+.apple-breadcrumb-link {
+  color: #1d1d1f;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.15s ease;
+}
+
+.apple-breadcrumb-link:hover {
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-  .footer-top {
+.apple-breadcrumb-current {
+  color: #424245;
+  font-weight: 500;
+}
+
+/* ── 3-Column Clean Directory Grid ── */
+.apple-footer-directory {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 40px;
+  row-gap: 28px;
+  padding-bottom: 24px;
+}
+
+.apple-footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.apple-footer-col-title {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+  text-align: left;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.01em;
+  cursor: default;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.apple-footer-accordion-icon {
+  display: none;
+}
+
+.apple-footer-links-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.apple-footer-link {
+  color: #424245;
+  font-size: 12px;
+  text-decoration: none;
+  line-height: 1.33337;
+  display: inline-block;
+  transition: color 0.15s ease;
+}
+
+.apple-footer-link:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* ── Retailer / Direct Connect Note ── */
+.apple-footer-connect-note {
+  padding: 4px 0 14px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #6e6e73;
+}
+
+.apple-footer-connect-note p {
+  margin: 0;
+}
+
+.apple-footer-blue-link {
+  color: #0066cc;
+  text-decoration: none;
+  transition: text-decoration 0.15s ease, color 0.15s ease;
+}
+
+.apple-footer-blue-link:hover {
+  text-decoration: underline;
+  color: #004499;
+}
+
+/* ── Legal Bar & Region ── */
+.apple-footer-legal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 8px 0 12px;
+  font-size: 12px;
+  color: #6e6e73;
+}
+
+.apple-footer-copyright {
+  font-size: 12px;
+  color: #6e6e73;
+  white-space: nowrap;
+}
+
+.apple-footer-legal-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.apple-footer-legal-links li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.apple-legal-link {
+  color: #424245;
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.apple-legal-link:hover {
+  color: #1d1d1f;
+  text-decoration: underline;
+}
+
+.apple-legal-separator {
+  color: #d2d2d7;
+  margin: 0 8px;
+  user-select: none;
+  font-size: 11px;
+}
+
+.apple-footer-region {
+  margin-left: auto;
+}
+
+.apple-region-link {
+  color: #424245;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.apple-region-link:hover {
+  color: #1d1d1f;
+  text-decoration: underline;
+}
+
+/* ── Mobile Accordion Mode (iPhone / Android) ── */
+@media (max-width: 834px) {
+  .apple-footer-directory {
+    display: flex;
     flex-direction: column;
-    gap: 36px;
+    gap: 0;
+    padding-bottom: 12px;
   }
-  .footer-nav-groups {
-    gap: 40px;
+
+  .apple-footer-col {
+    border-bottom: 1px solid #d2d2d7;
   }
-  .footer-bottom {
+
+  .apple-footer-col:first-child {
+    border-top: 1px solid #d2d2d7;
+  }
+
+  .apple-footer-col-title {
+    margin: 0;
+    padding: 10px 0;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .apple-footer-accordion-icon {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 300;
+    color: #6e6e73;
+    transition: transform 0.2s ease;
+    line-height: 1;
+  }
+
+  .apple-footer-col.open .apple-footer-accordion-icon {
+    transform: rotate(45deg);
+  }
+
+  .apple-footer-links-list {
+    display: none;
+    padding: 4px 0 14px 4px;
+    gap: 10px;
+  }
+
+  .apple-footer-col.open .apple-footer-links-list {
+    display: flex;
+  }
+
+  .apple-footer-legal {
     flex-direction: column;
     align-items: flex-start;
+    gap: 8px;
+  }
+
+  .apple-footer-region {
+    margin-left: 0;
+    margin-top: 4px;
   }
 }

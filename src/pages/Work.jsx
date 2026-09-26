@@ -1,5 +1,4 @@
 import Projects from '../components/Projects'
-import GoogleMapSection from '../components/GoogleMapSection'
 import useScrollAnimation from '../hooks/useScrollAnimation'
 import './Home.css'
 
@@ -23,7 +22,6 @@ export default function Work() {
       </section>
 
       <Projects />
-      <GoogleMapSection />
     </main>
   )
 }

@@ -1,7 +1,6 @@
 import Hero from '../components/Hero'
-import Stats from '../components/Stats'
-import Projects from '../components/Projects'
 import Services from '../components/Services'
+import Stats from '../components/Stats'
 import GoogleMapSection from '../components/GoogleMapSection'
 import useScrollAnimation from '../hooks/useScrollAnimation'
 import { Link } from 'react-router-dom'
@@ -13,9 +12,8 @@ export default function Home() {
   return (
     <main id="main" className="page-enter">
       <Hero />
-      <Stats />
-      <Projects />
       <Services />
+      <Stats />
       <GoogleMapSection />
 
       {/* ── High-Impact Consultation Banner ── */}
@@ -31,7 +29,7 @@ export default function Home() {
               </p>
             </div>
             <div className="cta-banner-actions">
-              <Link to="/contact" className="btn-primary cta-btn">
+              <Link to="/support" className="btn-primary cta-btn">
                 <span>Start a Project</span>
                 <span className="btn-arrow" aria-hidden="true">→</span>
               </Link>

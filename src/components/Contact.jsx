@@ -115,10 +115,11 @@ export default function Contact() {
   }
 
   return (
-    <section className="contact-section" id="contact">
+    <section className="contact-section" id="support">
+      <div id="contact" style={{ position: 'relative', top: '-80px' }} aria-hidden="true" />
       <div className="shell">
         <div className="section-header animate">
-          <div className="section-label">CONTACT US</div>
+          <div className="section-label">CLIENT SUPPORT &amp; INQUIRIES</div>
           <h2>Let&apos;s build or secure your project</h2>
           <p>
             Have a project in mind, need a security audit, or want to collaborate?

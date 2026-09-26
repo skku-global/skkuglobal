@@ -4,11 +4,9 @@ import './Navbar.css'
 
 const navLinks = [
   { to: '/work', label: 'Work' },
-  { to: '/work#secuscan', label: 'SecuScan' },
   { to: '/#services', label: 'Services' },
   { to: '/about', label: 'About' },
-  { to: '/#location', label: 'Where to Find Us' },
-  { to: '/contact', label: 'Contact' },
+  { to: '/support', label: 'Support' },
 ]
 
 const searchSuggestions = [
@@ -16,8 +14,8 @@ const searchSuggestions = [
   { title: 'Luxe Hair Co E-Commerce Store', category: 'E-Commerce Platform', url: '/work' },
   { title: 'Web & Full-Stack Engineering', category: 'Services', url: '/#services' },
   { title: 'Security Audits & Penetration Testing', category: 'Services', url: '/#services' },
-  { title: 'Google Maps & Lagos HQ', category: 'Headquarters & Location', url: '/#location' },
-  { title: 'Schedule Technical Consultation', category: 'Direct Contact', url: '/contact' },
+  { title: 'Google Maps & Lagos HQ Location', category: 'Support & Location', url: '/support#location' },
+  { title: 'Technical Support & Consultation', category: 'Support', url: '/support' },
 ]
 
 export default function Navbar() {

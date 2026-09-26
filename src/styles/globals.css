@@ -7,10 +7,10 @@
 }
 
 :root {
-  /* ── Core Light/Tech Palette (Apple / Nvidia / Stripe Standard) ── */
-  --bg:               #FAFBFC;
+  /* ── Core Light Palette — All White Backgrounds ── */
+  --bg:               #FFFFFF;
   --bg-surface:       #FFFFFF;
-  --bg-subtle:        #F1F5F9;
+  --bg-subtle:        #FFFFFF;
   --bg-card:          #FFFFFF;
   --bg-dark-accent:   #0B0F17;
   --bg-dark-surface:  #111622;
