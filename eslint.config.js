@@ -5,7 +5,10 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  // dist-ssr is the bundled server render function, emitted by the second
+  // `vite build`. Linting build output reports the bundler's own transforms as
+  // rule violations, so both output directories are ignored.
+  globalIgnores(['dist', 'dist-ssr']),
   {
     files: ['**/*.{js,jsx}'],
     extends: [
