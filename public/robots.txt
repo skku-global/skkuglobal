@@ -1,4 +1,70 @@
+# https://skkuglobal.com/robots.txt
+# SKKU Global Technologies Limited
+
+# Everything on this site is public and intended to be indexed.
 User-agent: *
 Allow: /
 
+# AI crawlers are named explicitly rather than left to inherit the wildcard
+# above. They are already permitted by it; naming them states the intent, which
+# is what several of these operators check for. We want these systems to be
+# able to describe accurately what SKKU Global does.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Machine-readable site summary for AI systems: /llms.txt
 Sitemap: https://skkuglobal.com/sitemap.xml

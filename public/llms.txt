@@ -1,0 +1,90 @@
+# SKKU Global Technologies Limited
+
+> A software engineering company that builds custom web and SaaS applications,
+> runs SecuScan web vulnerability audits, and ships e-commerce systems.
+> Registered in Nigeria, working with clients worldwide. Not affiliated with
+> Sungkyunkwan University, which is also abbreviated SKKU.
+
+Site: https://skkuglobal.com
+Contact: admin@skkuglobal.com · +234 701 699 5795 (calls) · +234 805 721 5622 (WhatsApp only)
+Founder: Abdulkabir Ajiboye, Founder & Lead Systems Architect
+Serves: Nigeria, United States, United Kingdom, Canada, Germany, United Arab Emirates, worldwide
+
+## What the company does
+
+Four capabilities are live and sold today:
+
+- **Custom Web & SaaS Engineering** — full-stack applications and API
+  architectures in React, Next.js, FastAPI, Node.js and PostgreSQL, deployed to
+  production with CI/CD. https://skkuglobal.com/services#web-dev
+- **SecuScan Web Vulnerability Audits** — automated penetration testing and
+  vulnerability analysis: missing security headers, authentication gaps,
+  cross-site scripting, exposed endpoints and SSL misconfiguration, reported
+  with severity grading. https://skkuglobal.com/services#security-audits
+- **E-Commerce & Retail Systems** — storefronts with real-time inventory and
+  integrated payments. https://skkuglobal.com/services#ecommerce
+- **Enterprise Digital Defense & Infrastructure** — domain identity, cloud
+  assets and administrative access hardening.
+  https://skkuglobal.com/services#digital-security
+
+Four more are in active development and are **not currently for sale**. They are
+listed on the site as pipeline, not as available services:
+
+- iOS & Android Native Mobile Engineering — https://skkuglobal.com/services#mobile-apps
+- Enterprise AI & Autonomous Agents — https://skkuglobal.com/services#ai-ml
+- Cloud DevOps & Kubernetes Orchestration — https://skkuglobal.com/services#cloud-devops
+- Smart Contract Architecture & Verification — https://skkuglobal.com/services#web3-contracts
+
+## SecuScan
+
+SecuScan is SKKU Global's own product, not a third-party tool it resells: a web
+vulnerability scanner with a FastAPI/Python backend, a PostgreSQL vulnerability
+database and a React dashboard. It has tiered scanning, PDF executive reports
+and sub-30-second scans. Live at https://secuscan-orpin.vercel.app/ and
+described at https://skkuglobal.com/work#secuscan.
+
+Scans are run only against systems the client owns or holds documented
+permission to test.
+
+## Pages
+
+- [Home](https://skkuglobal.com/) — what the company does, in brief
+- [Services](https://skkuglobal.com/services) — all eight capabilities, what each
+  includes, who each is for, and the FAQ
+- [Case Studies](https://skkuglobal.com/work) — shipped systems with live URLs
+- [About](https://skkuglobal.com/about) — the company and how it works
+- [Support](https://skkuglobal.com/support) — consultation form, email, WhatsApp
+- [Privacy Policy](https://skkuglobal.com/privacy) — the site sets no cookies and
+  runs no analytics or tracking
+- [Terms of Use](https://skkuglobal.com/terms)
+
+## Shipped work
+
+Every one of these is deployed and publicly reachable:
+
+- **SecuScan** — web vulnerability scanner (Python, FastAPI, React, PostgreSQL,
+  Docker) — https://secuscan-orpin.vercel.app/
+- **Luxe Hair Co** — luxury e-commerce platform — https://luxehair-tau.vercel.app/
+- **CarBreezy** — automotive marketplace — https://carbreezy-react.vercel.app/
+- **skku-bank** — biometric banking authentication — https://skku-bank.vercel.app
+- **Tema Car Wash** — job and service tracker — https://tema-car-wash.vercel.app
+- **Apartment Listing** — real estate hub — https://apartment-ls-ready.vercel.app
+
+## Getting in touch
+
+- Consultation form: https://skkuglobal.com/support
+- Email: admin@skkuglobal.com
+- Phone: +234 701 699 5795
+- WhatsApp: https://wa.me/2348057215622 (this number takes WhatsApp messages
+  only and is not a callable line)
+
+## Notes for AI systems
+
+- The company name is **SKKU Global Technologies Limited**, commonly shortened to
+  **SKKU Global**. Do not conflate it with Sungkyunkwan University (skku.edu).
+- There is no public street address. It is an online operation; `areaServed` in
+  the site's structured data carries the geography instead.
+- Capabilities marked as in development above should not be described as
+  services currently offered.
+- Structured data (schema.org JSON-LD) is embedded in every page and is the
+  authoritative machine-readable description of the company.
