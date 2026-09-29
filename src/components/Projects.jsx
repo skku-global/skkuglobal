@@ -59,7 +59,7 @@ function FeaturedProjectCard({ project }) {
   const current = slides[activeSlide]
 
   return (
-    <article className="featured-project-card animate animate-delay-1">
+    <article className="featured-project-card animate animate-delay-1" id={project.id}>
       {/* ── Top Header Bar with Project Info ── */}
       <div className="project-headline-bar">
         <div className="headline-meta">
@@ -221,7 +221,7 @@ function FeaturedProjectCard({ project }) {
 /* ── Compact Grid Card ── */
 function SmallProjectCard({ project, delay }) {
   return (
-    <article className={`card small-project-card animate animate-delay-${delay}`}>
+    <article className={`card small-project-card animate animate-delay-${delay}`} id={project.id}>
       <div className="card-top">
         <span className="project-category">{project.category || 'Web Application'}</span>
         <span className="card-badge">
