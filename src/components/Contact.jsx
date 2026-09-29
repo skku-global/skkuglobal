@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useSyncExternalStore } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { LuMail, LuZap, LuLightbulb, LuPhoneCall } from 'react-icons/lu'
 import { FaWhatsapp } from 'react-icons/fa6'
@@ -15,6 +15,20 @@ const ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || import.meta.env.VITE_S
 
 const CALL_PHONE = PHONE_CALLABLE_DISPLAY
 const CALL_HREF = `tel:${PHONE_CALLABLE}`
+
+/**
+ * False during the hydration render, true from the first render after it.
+ *
+ * The prerendered HTML is built for `/support` with no query string, so the
+ * client's first render has to look the same or React reports a hydration
+ * mismatch (error #418 — observed on /support?service=security-audits before
+ * this was added). Subscribing to a store that never changes gives us a value
+ * that differs between the server and client snapshots, which is precisely the
+ * switch React is designed to perform after hydration completes. No effect is
+ * involved, so this does not reintroduce the set-state-in-effect problem.
+ */
+const noopSubscribe = () => () => {}
+const useIsHydrated = () => useSyncExternalStore(noopSubscribe, () => true, () => false)
 
 const serviceTemplates = {
   'web-dev': {
@@ -77,7 +91,10 @@ function resolveServiceTemplate(param) {
 
 export default function Contact() {
   const [searchParams] = useSearchParams()
-  const serviceParam = searchParams.get('service')
+  const isHydrated = useIsHydrated()
+  // Held back until hydration finishes, so the first client render matches the
+  // prerendered markup. Post-hydration navigation sees it immediately.
+  const serviceParam = isHydrated ? searchParams.get('service') : null
 
   const [formData, setFormData] = useState({
     name: '',
