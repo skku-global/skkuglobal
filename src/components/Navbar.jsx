@@ -3,6 +3,7 @@ import { NavLink, Link, useLocation } from 'react-router-dom'
 import { LuSearch, LuX, LuChevronRight, LuExternalLink } from 'react-icons/lu'
 import { FaWhatsapp } from 'react-icons/fa6'
 import { waLink } from '../seo/siteMeta.js'
+import { searchSite } from '../data/searchIndex.js'
 import './Navbar.css'
 
 const navLinks = [
@@ -12,14 +13,10 @@ const navLinks = [
   { to: '/support', label: 'Support' },
 ]
 
-const searchSuggestions = [
-  { title: 'SecuScan Vulnerability Scanner', category: 'Cybersecurity SaaS', url: '/work#secuscan' },
-  { title: 'Luxe Hair Co E-Commerce Store', category: 'E-Commerce Platform', url: '/work' },
-  { title: 'Web & Full-Stack Engineering', category: 'Services', url: '/services' },
-  { title: 'Security Audits & Penetration Testing', category: 'Services', url: '/services' },
-  { title: 'Global Online Operations', category: 'Company & Operations', url: '/about' },
-  { title: 'Technical Support & Consultation', category: 'Support', url: '/support' },
-]
+// The dropdown is a dropdown, not a results page, so it stays short. With no
+// query it shows a curated handful; a query can surface a few more.
+const QUICK_LINK_COUNT = 6
+const MAX_RESULTS = 8
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -84,13 +81,12 @@ export default function Navbar() {
     }
   }
 
-  // Filter search results
-  const filteredResults = searchQuery.trim()
-    ? searchSuggestions.filter((item) =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.category.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : searchSuggestions
+  // Every capability and case study is searchable; the index is built from the
+  // same data the pages render, so it cannot go stale.
+  const query = searchQuery.trim()
+  const filteredResults = query
+    ? searchSite(query).slice(0, MAX_RESULTS)
+    : searchSite('').slice(0, QUICK_LINK_COUNT)
 
   return (
     <>
@@ -180,6 +176,13 @@ export default function Navbar() {
               <span className="results-label">
                 {searchQuery ? 'SEARCH RESULTS' : 'QUICK LINKS'}
               </span>
+              {query && filteredResults.length === 0 && (
+                <p className="results-empty">
+                  Nothing matched &ldquo;{query}&rdquo;. Try a capability, a stack
+                  (React, FastAPI, PostgreSQL) or{' '}
+                  <Link to="/support" onClick={() => setSearchOpen(false)}>ask us directly</Link>.
+                </p>
+              )}
               <ul className="results-list">
                 {filteredResults.map((item) => (
                   <li key={item.title}>
