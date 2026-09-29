@@ -168,6 +168,40 @@
 .card-cyan:hover    { border-color: rgba(2, 132, 199, 0.45); }
 .card-amber:hover   { border-color: rgba(217, 119, 6, 0.45); }
 .card-violet:hover  { border-color: rgba(124, 58, 237, 0.45); }
+.card-locked:hover  { border-color: rgba(100, 116, 139, 0.55); }
+
+/* Locked Card Variant */
+.is-locked-card {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  border: 1px dashed #CBD5E1;
+}
+
+.is-locked-card:hover {
+  border-style: solid;
+  border-color: #64748B;
+}
+
+.card-locked-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #475569;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  width: fit-content;
+}
+
+.lock-banner-icon {
+  color: #64748B;
+}
 
 /* ── Card Header & Meta ────────────────────────── */
 .card-top-meta {
@@ -221,6 +255,13 @@
   color: #7C3AED;
   border: 1px solid rgba(124, 58, 237, 0.25);
   box-shadow: 0 2px 8px rgba(124, 58, 237, 0.1);
+}
+
+.icon-theme-locked {
+  background: #F1F5F9;
+  color: #334155;
+  border: 1px solid #CBD5E1;
+  box-shadow: 0 2px 8px rgba(100, 116, 139, 0.08);
 }
 
 .card-title-group {
@@ -282,6 +323,18 @@
   border: 1px solid rgba(124, 58, 237, 0.25);
 }
 
+.badge-locked {
+  color: #334155;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+}
+
+.badge-locked-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
 /* ── Card Content ──────────────────────────────── */
 .service-summary {
   font-size: 14.5px;
@@ -304,9 +357,19 @@
   margin-bottom: 14px;
 }
 
+.sla-pill-locked {
+  background: #F1F5F9;
+  border-color: #CBD5E1;
+  color: #475569;
+}
+
 .sla-icon {
   color: var(--primary);
   flex-shrink: 0;
+}
+
+.sla-pill-locked .sla-icon {
+  color: #64748B;
 }
 
 .service-tech-tags {
@@ -369,6 +432,11 @@
   color: var(--primary);
   flex-shrink: 0;
   margin-top: 1.5px;
+}
+
+.service-check-badge.check-locked {
+  background: #F1F5F9;
+  color: #64748B;
 }
 
 /* ── Ideal For Block ───────────────────────────── */
@@ -435,6 +503,35 @@
 
 .service-link-btn:hover .service-arrow {
   transform: translateX(4px);
+}
+
+/* Locked Service Button Variant */
+.service-locked-btn {
+  background: #0F172A;
+  color: #F8FAFC;
+  border-color: #0F172A;
+}
+
+.service-locked-btn .locked-btn-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.service-locked-btn .btn-lock-icon {
+  color: #94A3B8;
+  transition: color 0.2s ease;
+}
+
+.service-locked-btn:hover {
+  background: #1E293B;
+  color: #FFFFFF;
+  border-color: #1E293B;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.18);
+}
+
+.service-locked-btn:hover .btn-lock-icon {
+  color: #38BDF8;
 }
 
 /* ══════════════════════════════════════════════════
@@ -529,6 +626,34 @@
   color: var(--text-secondary);
   line-height: 1.55;
   margin: 0;
+}
+
+/* Connector linking the 4 lifecycle stages (rendered on all but the last card) */
+.step-connector-line {
+  position: absolute;
+  top: 42px;
+  left: 100%;
+  width: 20px;
+  height: 2px;
+  background: linear-gradient(90deg, #CBD5E1 0%, #E2E8F0 100%);
+  z-index: 1;
+}
+
+.step-connector-line::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #CBD5E1;
+}
+
+/* Keep the connector anchored to the next card while its own card lifts on hover */
+.lifecycle-step-card:hover .step-connector-line {
+  transform: translateY(3px);
 }
 
 /* ── 2. Enterprise Guarantees ──────────────────── */
@@ -693,6 +818,11 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Row-end cards have no neighbour to their right */
+  .lifecycle-step-card:nth-child(2n) .step-connector-line {
+    display: none;
+  }
+
   .guarantees-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -746,6 +876,10 @@
 
   .lifecycle-grid {
     grid-template-columns: 1fr;
+  }
+
+  .step-connector-line {
+    display: none;
   }
 
   .guarantees-grid {
