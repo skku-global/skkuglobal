@@ -1,0 +1,148 @@
+/* Shared styling for the text-only routes: /privacy, /terms and the 404.
+   Everything else on the site is componentised, so these only need readable
+   prose and a link row. */
+
+.legal-prose {
+  padding: 0 0 100px;
+}
+
+.legal-prose .shell {
+  max-width: 780px;
+}
+
+.legal-updated {
+  display: inline-block;
+  margin-bottom: 44px;
+  padding: 6px 14px;
+  border: 1px solid #E2E8F0;
+  border-radius: 999px;
+  background: #F8FAFC;
+  color: #64748B;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.legal-prose h2 {
+  margin: 44px 0 14px;
+  color: #0F172A;
+  font-size: 1.32rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.legal-prose h2:first-of-type {
+  margin-top: 0;
+}
+
+.legal-prose p,
+.legal-prose li {
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.78;
+}
+
+.legal-prose p {
+  margin: 0 0 16px;
+}
+
+.legal-prose ul {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+
+.legal-prose li {
+  margin-bottom: 9px;
+}
+
+.legal-prose li::marker {
+  color: #059669;
+}
+
+.legal-prose a {
+  color: #047857;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(4, 120, 87, 0.28);
+  transition: border-color 0.2s ease;
+}
+
+.legal-prose a:hover {
+  border-bottom-color: #047857;
+}
+
+.legal-prose strong {
+  color: #0F172A;
+  font-weight: 650;
+}
+
+/* ── 404 ── */
+
+.notfound-code {
+  display: block;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #059669 0%, #0F172A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: clamp(3.4rem, 11vw, 5.6rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.notfound-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.notfound-suggestions {
+  margin-top: 64px;
+  padding: 30px 0 90px;
+  border-top: 1px solid #E2E8F0;
+}
+
+.notfound-suggestions h2 {
+  margin: 0 0 18px;
+  color: #0F172A;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.notfound-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notfound-links a {
+  display: block;
+  padding: 16px 18px;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  background: #fff;
+  color: #0F172A;
+  font-size: 0.94rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notfound-links a:hover {
+  border-color: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.notfound-links span {
+  display: block;
+  margin-top: 4px;
+  color: #64748B;
+  font-size: 0.83rem;
+  font-weight: 500;
+}

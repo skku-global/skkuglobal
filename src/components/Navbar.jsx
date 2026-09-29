@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { LuSearch, LuX, LuChevronRight, LuExternalLink } from 'react-icons/lu'
 import { FaWhatsapp } from 'react-icons/fa6'
+import { waLink } from '../seo/siteMeta.js'
 import './Navbar.css'
 
 const navLinks = [
@@ -217,7 +218,7 @@ export default function Navbar() {
 
             <div className="apple-mobile-footer">
               <a
-                href="https://wa.me/2348057215622?text=Hello%20SKKU%20Global"
+                href={waLink('Hello SKKU Global')}
                 target="_blank"
                 rel="noreferrer"
                 className="apple-mobile-contact-btn"

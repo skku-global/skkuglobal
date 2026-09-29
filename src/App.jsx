@@ -8,6 +8,9 @@ import Work from './pages/Work'
 import AboutPage from './pages/AboutPage'
 import ServicesPage from './pages/ServicesPage'
 import ContactPage from './pages/ContactPage'
+import Privacy from './pages/Privacy'
+import Terms from './pages/Terms'
+import NotFound from './pages/NotFound'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -32,21 +35,24 @@ function ScrollToTop() {
   return null
 }
 
-function AppShell() {
+export function AppShell() {
   return (
     <>
       <a href="#main" className="skip-link">Skip to content</a>
       <Navbar />
       <ScrollToTop />
       <Routes>
-        <Route path="/"        element={<Home />} />
-        <Route path="/work"    element={<Work />} />
+        <Route path="/"         element={<Home />} />
+        <Route path="/work"     element={<Work />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/about"   element={<AboutPage />} />
-        <Route path="/support" element={<ContactPage />} />
-        <Route path="/contact" element={<Navigate to="/support" replace />} />
-        {/* Catch-all → home */}
-        <Route path="*"        element={<Home />} />
+        <Route path="/about"    element={<AboutPage />} />
+        <Route path="/support"  element={<ContactPage />} />
+        <Route path="/privacy"  element={<Privacy />} />
+        <Route path="/terms"    element={<Terms />} />
+        {/* Old portfolio URL, kept so existing links keep working */}
+        <Route path="/contact"  element={<Navigate to="/support" replace />} />
+        {/* Anything else is a real 404, not a silent redirect to home */}
+        <Route path="*"         element={<NotFound />} />
       </Routes>
       <Footer />
     </>

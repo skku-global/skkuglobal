@@ -1,16 +1,16 @@
 import Hero from '../components/Hero'
 import Services from '../components/Services'
 import Stats from '../components/Stats'
-import useScrollAnimation from '../hooks/useScrollAnimation'
+import Seo from '../components/Seo'
+import { mailto, waLink } from '../seo/siteMeta.js'
 import { LuArrowRight } from 'react-icons/lu'
 import { FaWhatsapp } from 'react-icons/fa6'
 import './Home.css'
 
 export default function Home() {
-  useScrollAnimation()
-
   return (
     <main id="main" className="page-enter">
+      <Seo route="/" />
       <Hero />
       <Services hideHeader={true} />
       <Stats />
@@ -29,14 +29,14 @@ export default function Home() {
             </div>
             <div className="cta-banner-actions">
               <a
-                href="mailto:admin@skkuglobal.com?subject=Project%20Consultation%20Inquiry%20%E2%80%94%20SKKU%20Global"
+                href={mailto('Project Consultation Inquiry — SKKU Global')}
                 className="btn-primary cta-btn"
               >
                 <span>Start a Project</span>
                 <LuArrowRight size={15} aria-hidden="true" />
               </a>
               <a
-                href="https://wa.me/2348057215622?text=Hello%20SKKU%20Global,%20I%20would%20like%20to%20discuss%20a%20project"
+                href={waLink('Hello SKKU Global, I would like to discuss a project')}
                 target="_blank"
                 rel="noreferrer"
                 className="btn-secondary cta-btn"

@@ -1,13 +1,12 @@
 import About from '../components/About'
 import Vision from '../components/Vision'
-import useScrollAnimation from '../hooks/useScrollAnimation'
+import Seo from '../components/Seo'
 import './Home.css'
 
 export default function AboutPage() {
-  useScrollAnimation()
-
   return (
     <main id="main" className="page-enter">
+      <Seo route="/about" />
       <section className="page-hero">
         <div className="shell">
           <div className="section-label animate">COMPANY &amp; LEADERSHIP</div>

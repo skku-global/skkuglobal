@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { CONTACT_EMAIL } from '../seo/siteMeta.js'
 import './Vision.css'
 
 const pillars = [
@@ -18,7 +19,6 @@ const proof = [
 // Set VITE_SUBSCRIBE_ENDPOINT to a form backend to collect signups directly.
 // Without it, the form falls back to a prefilled email so no lead is lost.
 const ENDPOINT = import.meta.env.VITE_SUBSCRIBE_ENDPOINT
-const CONTACT_EMAIL = 'admin@skkuglobal.com'
 
 export default function Vision() {
   const [email, setEmail] = useState('')

@@ -1,8 +1,13 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { hydrateRoot } from 'react-dom/client'
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
+// hydrateRoot, not createRoot: scripts/prerender.mjs has already written the
+// markup for this route into #root at build time. Hydrating attaches React to
+// that DOM instead of throwing it away and repainting, which is what keeps the
+// prerendered content visible during load.
+hydrateRoot(
+  document.getElementById('root'),
   <StrictMode>
     <App />
   </StrictMode>,

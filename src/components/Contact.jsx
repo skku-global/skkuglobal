@@ -4,13 +4,17 @@ import { LuMail, LuZap, LuLightbulb, LuPhoneCall } from 'react-icons/lu'
 import { FaWhatsapp } from 'react-icons/fa6'
 import './Contact.css'
 
-const CONTACT_EMAIL = 'admin@skkuglobal.com'
+import {
+  CONTACT_EMAIL,
+  WHATSAPP_NUMBER,
+  PHONE_CALLABLE,
+  PHONE_CALLABLE_DISPLAY,
+} from '../seo/siteMeta.js'
+
 const ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || import.meta.env.VITE_SUBSCRIBE_ENDPOINT
 
-// Business WhatsApp, international format (digits only: 2348057215622)
-const WHATSAPP_NUMBER = '2348057215622'
-const CALL_PHONE = '+234 701 699 5795'
-const CALL_HREF = 'tel:+2347016995795'
+const CALL_PHONE = PHONE_CALLABLE_DISPLAY
+const CALL_HREF = `tel:${PHONE_CALLABLE}`
 
 const serviceTemplates = {
   'web-dev': {
@@ -59,6 +63,18 @@ const servicesList = [
   'Other / General Technical Inquiry',
 ]
 
+/** Map a ?service= value to its template, matching either the key or the full title. */
+function resolveServiceTemplate(param) {
+  if (!param) return null
+  if (serviceTemplates[param]) return serviceTemplates[param]
+  const key = Object.keys(serviceTemplates).find(
+    (k) =>
+      k.toLowerCase() === param.toLowerCase() ||
+      serviceTemplates[k].title.toLowerCase() === param.toLowerCase()
+  )
+  return key ? serviceTemplates[key] : null
+}
+
 export default function Contact() {
   const [searchParams] = useSearchParams()
   const serviceParam = searchParams.get('service')
@@ -73,22 +89,17 @@ export default function Contact() {
   const [feedback, setFeedback] = useState('')
   const [autoFilledService, setAutoFilledService] = useState('')
 
-  // Handle URL query parameter auto-fill (e.g. /support?service=security-audits)
-  useEffect(() => {
-    if (!serviceParam) return
+  // Resolve ?service=… (e.g. /support?service=security-audits) to a template.
+  // Pure lookup — no state, so it is safe to run on every render.
+  const matchedTemplate = resolveServiceTemplate(serviceParam)
 
-    let matchedTemplate = serviceTemplates[serviceParam]
-
-    // Fallback: match by title if passed directly
-    if (!matchedTemplate) {
-      const foundKey = Object.keys(serviceTemplates).find(
-        (key) =>
-          serviceTemplates[key].title.toLowerCase() === serviceParam.toLowerCase() ||
-          key.toLowerCase() === serviceParam.toLowerCase()
-      )
-      if (foundKey) matchedTemplate = serviceTemplates[foundKey]
-    }
-
+  // Prefill the form when the query parameter changes. Adjusting state during
+  // render is React's documented pattern for reacting to changed props; doing
+  // it in an effect cascades an extra render and trips
+  // react-hooks/set-state-in-effect. Same approach as Navbar.jsx.
+  const [lastServiceParam, setLastServiceParam] = useState(null)
+  if (serviceParam !== lastServiceParam) {
+    setLastServiceParam(serviceParam)
     if (matchedTemplate) {
       setFormData((prev) => ({
         ...prev,
@@ -96,16 +107,19 @@ export default function Contact() {
         message: matchedTemplate.brief,
       }))
       setAutoFilledService(matchedTemplate.title)
-
-      // Smoothly scroll to the support section
-      const el = document.getElementById('support')
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }, 120)
-      }
     }
-  }, [serviceParam])
+  }
+
+  // Scrolling is a real side effect, so it stays in an effect.
+  useEffect(() => {
+    if (!matchedTemplate) return
+    const el = document.getElementById('support')
+    if (!el) return
+    const timer = setTimeout(() => {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 120)
+    return () => clearTimeout(timer)
+  }, [matchedTemplate])
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -170,7 +184,7 @@ ${message.trim()}
 
 ==================================================
 Sent via SKKU Global Consultation Portal
-Official Channel: admin@skkuglobal.com`
+Official Channel: ${CONTACT_EMAIL}`
 
     if (!ENDPOINT) {
       // Direct corporate mailto trigger

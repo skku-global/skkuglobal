@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { LuChevronRight, LuPlus, LuMinus } from 'react-icons/lu'
+import { CONTACT_EMAIL, PHONE_CALLABLE, PHONE_CALLABLE_DISPLAY, waLink } from '../seo/siteMeta.js'
 import './Footer.css'
 
 const directoryColumns = [
@@ -25,17 +26,17 @@ const directoryColumns = [
   {
     title: 'Connect & Inquiries',
     links: [
-      { label: 'Chat on WhatsApp', href: 'https://wa.me/2348057215622?text=Hello%20SKKU%20Global' },
-      { label: 'Email: admin@skkuglobal.com', href: 'mailto:admin@skkuglobal.com' },
-      { label: 'Call: +234 701 699 5795', href: 'tel:+2347016995795' },
+      { label: 'Chat on WhatsApp', href: waLink('Hello SKKU Global') },
+      { label: `Email: ${CONTACT_EMAIL}`, href: `mailto:${CONTACT_EMAIL}` },
+      { label: `Call: ${PHONE_CALLABLE_DISPLAY}`, href: `tel:${PHONE_CALLABLE}` },
       { label: 'Operating Online Worldwide', to: '/support' },
     ],
   },
 ]
 
 const legalLinks = [
-  { label: 'Privacy Policy', to: '/about' },
-  { label: 'Terms of Use', to: '/about' },
+  { label: 'Privacy Policy', to: '/privacy' },
+  { label: 'Terms of Use', to: '/terms' },
 ]
 
 export default function Footer() {

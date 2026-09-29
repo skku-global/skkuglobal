@@ -1,12 +1,11 @@
 import Projects from '../components/Projects'
-import useScrollAnimation from '../hooks/useScrollAnimation'
+import Seo from '../components/Seo'
 import './Home.css'
 
 export default function Work() {
-  useScrollAnimation()
-
   return (
     <main id="main" className="page-enter">
+      <Seo route="/work" />
       {/* Page hero */}
       <section className="page-hero">
         <div className="shell">

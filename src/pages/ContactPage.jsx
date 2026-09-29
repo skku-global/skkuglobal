@@ -1,12 +1,11 @@
 import Contact from '../components/Contact'
-import useScrollAnimation from '../hooks/useScrollAnimation'
+import Seo from '../components/Seo'
 import './Home.css'
 
 export default function ContactPage() {
-  useScrollAnimation()
-
   return (
     <main id="main" className="page-enter">
+      <Seo route="/support" />
       <section className="page-hero">
         <div className="shell">
           <div className="section-label animate">CLIENT SUPPORT &amp; CONSULTATION</div>

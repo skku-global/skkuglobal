@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { LuCheck, LuArrowRight } from 'react-icons/lu'
+import { mailto } from '../seo/siteMeta.js'
 import './Hero.css'
 
 export default function Hero() {
@@ -33,7 +34,7 @@ export default function Hero() {
         {/* ── Action Buttons ────────────────────────── */}
         <div className="hero-actions animate animate-delay-3">
           <a
-            href="mailto:admin@skkuglobal.com?subject=Project%20Consultation%20Inquiry%20%E2%80%94%20SKKU%20Global"
+            href={mailto('Project Consultation Inquiry — SKKU Global')}
             className="btn-primary"
           >
             <span>Start a Project</span>

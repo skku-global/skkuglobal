@@ -10,6 +10,7 @@ import {
 } from 'react-icons/lu'
 import { FaWhatsapp } from 'react-icons/fa6'
 import './GoogleMapSection.css'
+import { CONTACT_EMAIL, PHONE_CALLABLE, PHONE_CALLABLE_DISPLAY, waLink } from '../seo/siteMeta.js'
 
 export default function GoogleMapSection() {
   return (
@@ -134,7 +135,7 @@ export default function GoogleMapSection() {
                 <div>
                   <span className="detail-label">Direct Engineering Channel</span>
                   <p className="detail-val">
-                    <a href="mailto:admin@skkuglobal.com" className="contact-link">admin@skkuglobal.com</a>
+                    <a href={`mailto:${CONTACT_EMAIL}`} className="contact-link">{CONTACT_EMAIL}</a>
                   </p>
                 </div>
               </div>
@@ -146,7 +147,7 @@ export default function GoogleMapSection() {
                 <div>
                   <span className="detail-label">Direct Phone Line</span>
                   <p className="detail-val">
-                    <a href="tel:+2347016995795" className="contact-link">+234 701 699 5795</a>
+                    <a href={`tel:${PHONE_CALLABLE}`} className="contact-link">{PHONE_CALLABLE_DISPLAY}</a>
                   </p>
                 </div>
               </div>
@@ -154,7 +155,7 @@ export default function GoogleMapSection() {
 
             <div className="business-card-footer">
               <a
-                href="https://wa.me/2348057215622?text=Hello%20SKKU%20Global,%20I%20need%20a%20tech%20solution%20consultation"
+                href={waLink('Hello SKKU Global, I need a tech solution consultation')}
                 target="_blank"
                 rel="noreferrer"
                 className="btn-business-primary"
