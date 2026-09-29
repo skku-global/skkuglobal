@@ -49,7 +49,9 @@ export function AppShell() {
         <Route path="/support"  element={<ContactPage />} />
         <Route path="/privacy"  element={<Privacy />} />
         <Route path="/terms"    element={<Terms />} />
-        {/* Old portfolio URL, kept so existing links keep working */}
+        {/* Old portfolio URL. vercel.json 308s this before any HTML is served,
+            which is what crawlers follow; this route is the fallback for hosts
+            that do not apply that redirect. */}
         <Route path="/contact"  element={<Navigate to="/support" replace />} />
         {/* Anything else is a real 404, not a silent redirect to home */}
         <Route path="*"         element={<NotFound />} />
