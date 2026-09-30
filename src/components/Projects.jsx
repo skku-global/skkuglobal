@@ -1,24 +1,36 @@
 import { useState } from 'react'
-import { LuCheck, LuExternalLink, LuChevronLeft, LuChevronRight } from 'react-icons/lu'
+import { Link } from 'react-router-dom'
+import { LuCheck, LuExternalLink, LuChevronLeft, LuChevronRight, LuArrowRight } from 'react-icons/lu'
 import './Projects.css'
 import { projects } from '../data/projects'
 
-export default function Projects() {
-  const featured = projects.filter((p) => p.featured)
+export default function Projects({ isHome = false, limit }) {
+  const allFeatured = projects.filter((p) => p.featured)
+  const featured = limit ? allFeatured.slice(0, limit) : allFeatured
   const rest = projects.filter((p) => !p.featured)
 
   return (
     <section className="projects-section" id="projects" aria-labelledby="work-heading">
       <div className="shell">
         <div className="section-header animate">
-          <div className="section-label">PRODUCTION PORTFOLIO</div>
+          <div className="section-label">{isHome ? 'PROVEN TRACK RECORD' : 'PRODUCTION PORTFOLIO'}</div>
           <h2 id="work-heading">
-            Live Software &amp; Tech Solutions.{' '}
-            <span className="gradient-text">Zero Filler.</span>
+            {isHome ? (
+              <>
+                Featured Work We&apos;ve Deployed.{' '}
+                <span className="gradient-text">Live Systems.</span>
+              </>
+            ) : (
+              <>
+                Live Software &amp; Tech Solutions.{' '}
+                <span className="gradient-text">Zero Filler.</span>
+              </>
+            )}
           </h2>
           <p>
-            Explore actual software systems engineered and deployed by SKKU Global.
-            Browse the interactive slide walkthroughs below to inspect the architecture, user workflows, and core features of each platform.
+            {isHome
+              ? 'Real platforms engineered and deployed by SKKU Global. Interact with the live slide decks below to inspect the architecture, user workflows, and features.'
+              : 'Explore actual software systems engineered and deployed by SKKU Global. Browse the interactive slide walkthroughs below to inspect the architecture, user workflows, and core features of each platform.'}
           </p>
         </div>
 
@@ -29,17 +41,30 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* ── Compact Grid for Additional Live Work ── */}
-        <div className="additional-work-header">
-          <h3>More shipped work</h3>
-          <p>Biometric banking auth, a job tracker, and a listings site with no framework at all.</p>
-        </div>
+        {isHome && (
+          <div className="home-view-all-projects animate">
+            <Link to="/work" className="btn-secondary view-all-work-btn">
+              <span>View All Live Case Studies &amp; Deployments</span>
+              <LuArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
+        )}
 
-        <div className="projects-grid">
-          {rest.map((project, i) => (
-            <SmallProjectCard key={project.id || project.title} project={project} delay={i + 1} />
-          ))}
-        </div>
+        {/* ── Compact Grid for Additional Live Work (Only on full /work page) ── */}
+        {!isHome && (
+          <>
+            <div className="additional-work-header">
+              <h3>More shipped work</h3>
+              <p>Biometric banking auth, a job tracker, and a listings site with no framework at all.</p>
+            </div>
+
+            <div className="projects-grid">
+              {rest.map((project, i) => (
+                <SmallProjectCard key={project.id || project.title} project={project} delay={i + 1} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   )

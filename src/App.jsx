@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-route
 import './styles/globals.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import WhatsAppFloat from './components/WhatsAppFloat'
 import Home from './pages/Home'
 import Work from './pages/Work'
 import AboutPage from './pages/AboutPage'
@@ -49,13 +50,13 @@ export function AppShell() {
         <Route path="/support"  element={<ContactPage />} />
         <Route path="/privacy"  element={<Privacy />} />
         <Route path="/terms"    element={<Terms />} />
-        {/* Old portfolio URL. vercel.json 308s this before any HTML is served,
-            which is what crawlers follow; this route is the fallback for hosts
-            that do not apply that redirect. */}
+        <Route path="/home"     element={<Navigate to="/" replace />} />
+        <Route path="/projects" element={<Navigate to="/work" replace />} />
         <Route path="/contact"  element={<Navigate to="/support" replace />} />
         {/* Anything else is a real 404, not a silent redirect to home */}
         <Route path="*"         element={<NotFound />} />
       </Routes>
+      <WhatsAppFloat />
       <Footer />
     </>
   )

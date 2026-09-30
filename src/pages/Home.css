@@ -121,3 +121,97 @@
     min-width: 160px;
   }
 }
+
+/* ── Work Page Pitch Banner ────────────────────── */
+.work-pitch-card {
+  margin-top: 40px;
+  background: linear-gradient(135deg, #0B0F17 0%, #161D2B 100%);
+  border: 1px solid #1E293B;
+  border-radius: var(--radius-xl);
+  padding: 36px 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  text-align: left;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+}
+
+.work-pitch-info {
+  max-width: 660px;
+}
+
+.work-pitch-badge {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  color: #34D399;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.work-pitch-info h2 {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.025em;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.work-pitch-info p {
+  font-size: 14.5px;
+  color: #94A3B8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.work-pitch-action {
+  flex-shrink: 0;
+}
+
+.work-pitch-btn {
+  background: #059669;
+  border-color: #059669;
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35);
+  font-size: 14.5px;
+  padding: 14px 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.work-pitch-btn:hover {
+  background: #047857;
+  border-color: #047857;
+}
+
+.cta-btn-wa {
+  background: #059669;
+  border-color: #059669;
+}
+
+.cta-btn-wa:hover {
+  background: #047857;
+  border-color: #047857;
+}
+
+@media (max-width: 900px) {
+  .work-pitch-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 20px;
+    gap: 20px;
+  }
+
+  .work-pitch-action {
+    width: 100%;
+  }
+
+  .work-pitch-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,261 @@
+/* ── Why Get A Website Section ──────────────────── */
+.why-website-section {
+  padding: var(--section-y) 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.why-website-section .section-header {
+  margin-bottom: 48px;
+}
+
+.section-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  margin-bottom: 16px;
+}
+
+.badge-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+}
+
+.section-title {
+  font-size: clamp(28px, 3.8vw, 44px);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.section-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── 4 Benefits Grid ────────────────────────────── */
+.why-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.why-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 32px 28px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.why-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08);
+}
+
+.why-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.card-emerald .why-icon-wrap {
+  background: #ECFDF5;
+  color: #059669;
+}
+.card-emerald:hover { border-color: #A7F3D0; }
+
+.card-blue .why-icon-wrap {
+  background: #EFF6FF;
+  color: #2563EB;
+}
+.card-blue:hover { border-color: #BFDBFE; }
+
+.card-purple .why-icon-wrap {
+  background: #FAF5FF;
+  color: #9333EA;
+}
+.card-purple:hover { border-color: #E9D5FF; }
+
+.card-amber .why-icon-wrap {
+  background: #FFFBEB;
+  color: #D97706;
+}
+.card-amber:hover { border-color: #FDE68A; }
+
+.why-tagline {
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.why-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.why-desc {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Direct Pitch Box ───────────────────────────── */
+.why-cta-box {
+  background: linear-gradient(135deg, #0B0F17 0%, #161D2B 100%);
+  border: 1px solid #1E293B;
+  border-radius: var(--radius-xl);
+  padding: 40px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.25);
+  color: #FFFFFF;
+}
+
+.why-cta-left {
+  max-width: 600px;
+}
+
+.why-cta-badge {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  color: #34D399;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.why-cta-left h3 {
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.025em;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.why-cta-left p {
+  font-size: 15px;
+  color: #94A3B8;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.why-guarantee-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.why-guarantee-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #E2E8F0;
+  font-weight: 500;
+}
+
+.why-check {
+  color: #34D399;
+  flex-shrink: 0;
+}
+
+.why-cta-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.why-whatsapp-btn {
+  background: #059669;
+  border-color: #059669;
+  padding: 16px 28px;
+  font-size: 15px;
+  box-shadow: 0 8px 24px rgba(5, 150, 105, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.why-whatsapp-btn:hover {
+  background: #047857;
+  border-color: #047857;
+  transform: translateY(-2px);
+}
+
+.why-sla-text {
+  font-size: 12px;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 900px) {
+  .why-benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .why-cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 24px;
+    gap: 28px;
+  }
+
+  .why-cta-right {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .why-whatsapp-btn {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
+}

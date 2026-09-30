@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { LuCheck, LuArrowRight } from 'react-icons/lu'
-import { mailto } from '../seo/siteMeta.js'
+import { FaWhatsapp } from 'react-icons/fa6'
+import { waLink } from '../seo/siteMeta.js'
 import './Hero.css'
 
 export default function Hero() {
@@ -33,15 +34,25 @@ export default function Hero() {
         {/* ── Action Buttons ────────────────────────── */}
         <div className="hero-actions animate animate-delay-3">
           <a
-            href={mailto('Project Consultation Inquiry — SKKU Global')}
-            className="btn-primary"
+            href={waLink('Hello SKKU Global, I want to build a website/web application for my business. Can I get a consultation and quote?')}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-primary hero-btn-whatsapp"
           >
-            <span>Start a Project</span>
-            <LuArrowRight size={15} aria-hidden="true" />
+            <FaWhatsapp size={18} aria-hidden="true" />
+            <span>Chat on WhatsApp — Instant Quote</span>
           </a>
           <Link to="/work" className="btn-secondary">
             <span>Explore Case Studies</span>
+            <LuArrowRight size={15} aria-hidden="true" />
           </Link>
+        </div>
+
+        {/* ── Value & Turnaround Strip ─────────────── */}
+        <div className="hero-guarantee-strip animate animate-delay-3">
+          <span className="guarantee-pill">⚡ 5–7 Day Turnaround</span>
+          <span className="guarantee-pill">🛡️ Free SecuScan Audit</span>
+          <span className="guarantee-pill">🤝 Milestone Payments</span>
         </div>
 
         {/* ── Enterprise Trust Bar ─────────────────── */}

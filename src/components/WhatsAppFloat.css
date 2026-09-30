@@ -1,0 +1,188 @@
+/* ── Movable Floating WhatsApp Widget ── */
+.wa-floating-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.wa-floating-widget.is-dragging {
+  transition: none;
+  cursor: grabbing !important;
+  transform: scale(1.04);
+}
+
+.wa-floating-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 10px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(2, 6, 23, 0.98) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 9999px;
+  color: #FFFFFF;
+  text-decoration: none;
+  box-shadow:
+    0 12px 28px -4px rgba(0, 0, 0, 0.5),
+    0 4px 12px rgba(16, 185, 129, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: grab;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.wa-floating-widget.is-dragging .wa-floating-capsule {
+  cursor: grabbing !important;
+  border-color: #10B981;
+  box-shadow:
+    0 20px 38px -4px rgba(0, 0, 0, 0.65),
+    0 6px 20px rgba(16, 185, 129, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.wa-floating-capsule:hover {
+  border-color: rgba(16, 185, 129, 0.65);
+  box-shadow:
+    0 14px 32px -4px rgba(0, 0, 0, 0.55),
+    0 6px 18px rgba(16, 185, 129, 0.32);
+}
+
+/* ── 6-Dot Grip Texture ── */
+.wa-drag-grip {
+  display: grid;
+  grid-template-columns: repeat(2, 3px);
+  grid-gap: 3px;
+  padding: 4px 3px;
+  opacity: 0.45;
+  transition: opacity 0.2s ease;
+}
+
+.wa-floating-capsule:hover .wa-drag-grip,
+.wa-floating-widget.is-dragging .wa-drag-grip {
+  opacity: 0.9;
+}
+
+.grip-dot {
+  width: 3px;
+  height: 3px;
+  background: #94A3B8;
+  border-radius: 50%;
+}
+
+/* ── WhatsApp Icon with Glowing Radar ── */
+.wa-bubble-icon {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.4);
+}
+
+.wa-svg-icon {
+  color: #FFFFFF;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Radar Beacon Status */
+.wa-radar-beacon {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wa-radar-core {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #34D399;
+  border: 1.5px solid #0F172A;
+  border-radius: 50%;
+}
+
+.wa-radar-wave {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(52, 211, 153, 0.6);
+  animation: wa-radar-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes wa-radar-ping {
+  75%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* ── Typography & Copy ── */
+.wa-capsule-copy {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  text-align: left;
+}
+
+.wa-copy-eyebrow {
+  font-family: var(--font-heading, -apple-system, sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  color: #34D399;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.wa-copy-title {
+  font-family: var(--font-heading, -apple-system, sans-serif);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #F8FAFC;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+
+/* ── Mobile Optimization ── */
+@media (max-width: 640px) {
+  .wa-floating-widget {
+    bottom: 20px;
+    right: 16px;
+  }
+
+  .wa-floating-capsule {
+    padding: 7px 14px 7px 8px;
+    gap: 8px;
+  }
+
+  .wa-bubble-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .wa-svg-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .wa-copy-eyebrow {
+    font-size: 9.5px;
+  }
+
+  .wa-copy-title {
+    font-size: 12.5px;
+  }
+}
