@@ -58,7 +58,7 @@ const pageEntries = [
     title: 'About SKKU Global',
     category: 'Company',
     url: '/about',
-    keywords: 'about company team founder who we are mission story global operations',
+    keywords: 'about company team founder who we are mission story global operations nigeria nigerian lagos cac registered incorporated abdulkabir ajiboye leadership',
   },
   {
     title: 'Contact & Consultation',
