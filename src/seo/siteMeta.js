@@ -70,7 +70,7 @@ export const AREA_SERVED = [
   'Worldwide',
 ]
 
-const OG_IMAGE = `${ORIGIN}/og-image.png`
+const OG_IMAGE = `${ORIGIN}/og-image.png?v=2`
 
 /**
  * Every indexable route. `scripts/prerender.mjs` walks this list to decide what
