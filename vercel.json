@@ -4,6 +4,12 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.skkuglobal.com" }],
+      "destination": "https://skkuglobal.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/contact",
       "destination": "/support",
       "permanent": true
