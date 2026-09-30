@@ -5,13 +5,13 @@ export const projects = [
     badge: 'Live in Production',
     featured: true,
     category: 'Cybersecurity SaaS',
-    tagline: 'Automated vulnerability detection, security header verification, and OWASP audit engine.',
+    tagline: 'Automated OWASP scans, security header checks, and fix instructions.',
     description:
-      'Enterprise-grade automated web security audit platform. Scans target domains for missing security headers, authentication loopholes, cross-site scripting risks, exposed endpoints, and SSL misconfigurations with instant severity-graded reporting.',
+      'Scans a site for missing security headers, auth gaps, XSS, exposed endpoints and SSL problems, then grades each finding by severity.',
     detail:
-      'Engineered with a high-concurrency FastAPI/Python backend, PostgreSQL vulnerability database, and a responsive React frontend dashboard.',
+      'FastAPI and Python backend, PostgreSQL, React dashboard.',
     outcome:
-      'Active SaaS platform with tiered scanning (Free, Pro, Enterprise), automated PDF executive report exports, and sub-30-second scan execution.',
+      'Live SaaS. Three tiers, PDF reports, scans under 30 seconds.',
     stack: ['Python', 'FastAPI', 'React', 'PostgreSQL', 'Docker', 'Vercel'],
     liveUrl: 'https://secuscan-orpin.vercel.app/',
     siteLabel: 'secuscan-orpin.vercel.app',
@@ -19,43 +19,43 @@ export const projects = [
     slides: [
       {
         id: 1,
-        title: '01. Instant Scan Input & Target Validation',
+        title: '01. Scan any domain',
         caption:
-          'Single-click vulnerability scanner. Enter any production domain or API endpoint to initiate a deep, non-destructive security inspection.',
+          'Paste a domain or API endpoint. The scan only reads — it never changes the target.',
         image: '/screenshots/secuscan/slide-1.webp',
-        highlight: 'Sub-30s Scan Execution · Non-destructive Inspection',
+        highlight: 'Under 30s · Read-only',
       },
       {
         id: 2,
-        title: '02. Scan Engine & Architectural Analysis',
+        title: '02. What it tests',
         caption:
-          'Multi-threaded vulnerability engine tests for SSL/TLS posture, HTTP security headers (HSTS, CSP, X-Frame-Options), and cookie flag weaknesses.',
+          'SSL/TLS setup, security headers (HSTS, CSP, X-Frame-Options) and cookie flags.',
         image: '/screenshots/secuscan/slide-2.webp',
-        highlight: 'OWASP Top 10 Coverage · Automated Header Checks',
+        highlight: 'OWASP Top 10 · Header checks',
       },
       {
         id: 3,
-        title: '03. Full Security Checks & Risk Categorisation',
+        title: '03. Findings, ranked',
         caption:
-          'Deep audit categorises threats into Critical, High, Medium, and Low severity with step-by-step remediation instructions for engineering teams.',
+          'Critical, high, medium or low — each with the steps to fix it.',
         image: '/screenshots/secuscan/slide-3.webp',
-        highlight: 'Colour-coded Severity · Developer Remediation Guides',
+        highlight: 'Colour-coded · Fix steps',
       },
       {
         id: 4,
-        title: '04. Tiered Plans & Executive Audit Reports',
+        title: '04. Plans and reports',
         caption:
-          'Enterprise subscription tiers with automated continuous scans, team seat management, and downloadable compliance-ready PDF security reports.',
+          'Repeat scans, team seats, and a PDF report you can hand to a client.',
         image: '/screenshots/secuscan/slide-4.webp',
-        highlight: 'PDF Report Export · Continuous Monitoring Tiers',
+        highlight: 'PDF export · Repeat scans',
       },
       {
         id: 5,
-        title: '05. Centralised Audit Management',
+        title: '05. One dashboard',
         caption:
-          'Secure dashboard overview showing historical scan trajectories, vulnerability resolution trackers, and verified safety certifications.',
+          'Past scans, what is still open, and what is now fixed.',
         image: '/screenshots/secuscan/slide-5.webp',
-        highlight: 'Continuous Security Posture · Real-time Status',
+        highlight: 'History · Live status',
       },
     ],
   },
@@ -65,13 +65,13 @@ export const projects = [
     badge: 'Live in Production',
     featured: true,
     category: 'E-Commerce & Retail Tech',
-    tagline: 'High-converting luxury retail storefront with dynamic Naira pricing and WhatsApp checkout.',
+    tagline: 'Luxury storefront with Naira pricing and WhatsApp checkout.',
     description:
-      'Full-featured luxury e-commerce platform built for high-end virgin hair bundles, HD lace frontals, and custom wigs. Features an immersive boutique aesthetic, responsive product galleries, interactive bag drawer, and seamless WhatsApp order processing.',
+      'E-commerce store for virgin hair bundles, HD lace frontals and custom wigs, with a product gallery, cart drawer and WhatsApp ordering.',
     detail:
-      'Built with modern React, bespoke CSS architecture, dynamic currency handling (₦), and automated order routing.',
+      'React, hand-written CSS, Naira pricing, automated order routing.',
     outcome:
-      'Production storefront deployed with complete catalog search, real-time cart state management, and direct-to-concierge WhatsApp sales integration.',
+      'Live store with catalogue search, a working cart, and orders that land in WhatsApp.',
     stack: ['React', 'JavaScript', 'Vanilla CSS', 'Node.js', 'Vercel'],
     liveUrl: 'https://luxehair-tau.vercel.app/',
     siteLabel: 'luxehair-tau.vercel.app',
@@ -79,43 +79,43 @@ export const projects = [
     slides: [
       {
         id: 1,
-        title: '01. Haute Coiffure Luxury Storefront',
+        title: '01. Storefront',
         caption:
-          'Editorial brand presentation engineered to establish instant luxury positioning, high consumer trust, and compelling conversion incentives.',
+          'Editorial layout, built to look expensive and earn trust fast.',
         image: '/screenshots/luxehair/slide-1.webp',
-        highlight: 'Editorial Luxury UX · High-Conversion Hero Banner',
+        highlight: 'Editorial layout · Hero banner',
       },
       {
         id: 2,
-        title: '02. Complete Catalog & Live Pricing Grid',
+        title: '02. Catalogue and prices',
         caption:
-          'Interactive product directory featuring raw virgin hair bundles, closures, and custom frontals with live ₦ pricing and instant stock status.',
+          'Bundles, closures and frontals with live ₦ prices and stock status.',
         image: '/screenshots/luxehair/slide-2.webp',
-        highlight: 'Dynamic Naira (₦) Currency · Real-time Stock Display',
+        highlight: 'Naira pricing · Live stock',
       },
       {
         id: 3,
-        title: '03. Curated Collections & Premium Categories',
+        title: '03. Collections',
         caption:
-          'Multi-collection categorization allowing customers to filter between Vietnamese straight, Cambodian curls, and HD lace closures seamlessly.',
+          'Filter between Vietnamese straight, Cambodian curls and HD lace closures.',
         image: '/screenshots/luxehair/slide-3.webp',
-        highlight: 'Frictionless Category Navigation · Visual Hierarchy',
+        highlight: 'Easy filtering',
       },
       {
         id: 4,
-        title: '04. Detailed Product Specifications & Texture Guide',
+        title: '04. Product detail',
         caption:
-          'Comprehensive product views showing multiple high-res angles, inch/length selectors, donor hair origin information, and verified client reviews.',
+          'Several angles, a length picker, hair origin, and customer reviews.',
         image: '/screenshots/luxehair/slide-4.webp',
-        highlight: 'Inch Length Pickers · Verified Customer Reviews',
+        highlight: 'Length picker · Reviews',
       },
       {
         id: 5,
-        title: '05. Interactive Cart & Concierge WhatsApp Checkout',
+        title: '05. Cart and checkout',
         caption:
-          'Slide-out shopping drawer with live subtotal calculation and one-click order handover to dedicated WhatsApp concierge for fast sales completion.',
+          'Slide-out cart with a running subtotal, then one tap to order on WhatsApp.',
         image: '/screenshots/luxehair/slide-5.webp',
-        highlight: 'Instant Cart State · 1-Click WhatsApp Order Routing',
+        highlight: 'Live subtotal · 1-tap ordering',
       },
     ],
   },
@@ -125,13 +125,13 @@ export const projects = [
     badge: 'Live Platform',
     featured: true,
     category: 'Marketplace Platform',
-    tagline: 'Vehicle marketplace with smart inventory filtration, spec sheets, and photo galleries.',
+    tagline: 'Vehicle marketplace with filters, spec sheets and photo galleries.',
     description:
-      'Digital automotive marketplace connecting verified vehicle dealerships with buyers. Features multi-criteria filtering by make, model, year, transmission, and budget, complete with photo carousels and technical vehicle inspection sheets.',
+      'Marketplace linking dealerships to buyers. Filter by make, model, year, transmission and budget, with photo carousels and inspection sheets.',
     detail:
-      'High-performance React/Vite web application with optimized image CDN delivery and sub-100ms client search queries.',
+      'React and Vite, images on a CDN, search under 100ms.',
     outcome:
-      'Shipped full marketplace platform with complete inventory search, dealer inquiry system, and vehicle gallery engine.',
+      'Live marketplace with inventory search, dealer enquiries and galleries.',
     stack: ['React', 'Vite', 'JavaScript', 'CSS3', 'Vercel'],
     liveUrl: 'https://carbreezy-react.vercel.app/',
     siteLabel: 'carbreezy-react.vercel.app',
@@ -139,43 +139,43 @@ export const projects = [
     slides: [
       {
         id: 1,
-        title: '01. Showroom Hero & Live Inventory Telemetry',
+        title: '01. Showroom',
         caption:
-          'Rotating flagship carousel pairing each marque with headline performance specs, backed by live analogue stat dials and a running inventory ticker.',
+          'A rotating carousel pairs each marque with its headline specs, over a live stock ticker.',
         image: '/screenshots/carbreezy/slide-1.webp',
-        highlight: 'Auto-rotating Hero Carousel · Live Stock Ticker',
+        highlight: 'Carousel · Stock ticker',
       },
       {
         id: 2,
-        title: '02. New Vehicle Inventory & Spec Grid',
+        title: '02. New stock',
         caption:
-          'New-condition listings rendered as a responsive spec grid — year, body style, mileage, and Naira pricing surfaced on every card with condition badges and ratings.',
+          'Every card shows year, body style, mileage and Naira price.',
         image: '/screenshots/carbreezy/slide-2.webp',
-        highlight: 'Responsive Spec Cards · Dynamic Naira (₦) Pricing',
+        highlight: 'Spec cards · Naira pricing',
       },
       {
         id: 3,
-        title: '03. Certified Pre-Owned Catalogue',
+        title: '03. Used stock',
         caption:
-          'Separately routed used-inventory catalogue with the same card architecture, letting buyers compare inspected pre-owned stock against new units directly.',
+          'A separate catalogue on the same cards, so buyers can compare used against new.',
         image: '/screenshots/carbreezy/slide-3.webp',
-        highlight: 'Condition-segmented Routing · Inspection Ratings',
+        highlight: 'Separate routes · Inspection ratings',
       },
       {
         id: 4,
-        title: '04. Shop by Brand — Radio Tuner Selector',
+        title: '04. Shop by brand',
         caption:
-          'Signature browse experience: a radio-dial brand selector that “tunes” across fifteen marques and re-filters the showroom in place, with a mechanical flip-counter match readout.',
+          'A radio dial tunes across fifteen brands and re-filters the showroom in place.',
         image: '/screenshots/carbreezy/slide-4.webp',
-        highlight: 'Bespoke Tuner UI · Instant Client-side Re-filtering',
+        highlight: 'Tuner dial · Instant filtering',
       },
       {
         id: 5,
-        title: '05. Current Offers & Promotional Engine',
+        title: '05. Offers',
         caption:
-          'Seasonal pricing and bundled service plans presented as tear-off coupon cards with discount seals, expiry dating, and deep links into the matching vehicle.',
+          'Seasonal deals as tear-off coupons, each linking to the car it applies to.',
         image: '/screenshots/carbreezy/slide-5.webp',
-        highlight: 'Coupon-styled Offer Cards · Deep-linked Inventory',
+        highlight: 'Coupon cards · Linked stock',
       },
     ],
   },
@@ -185,9 +185,9 @@ export const projects = [
     badge: 'Security Prototype',
     category: 'Fintech Security',
     description:
-      'Next-generation banking platform integrating client-side biometric facial recognition and OTP authentication for high-security transaction authorization.',
-    detail: 'Face recognition neural models running client-side with face-api.js and Next.js / Prisma backend.',
-    outcome: 'Biometric + OTP banking login shipped live — security-first authentication prototype.',
+      'Banking login that checks your face in the browser, then an OTP, before it authorises a transaction.',
+    detail: 'face-api.js in the browser, Next.js and Prisma behind it.',
+    outcome: 'Live prototype. Face and OTP login, both working.',
     stack: ['Next.js', 'Prisma', 'face-api.js', 'TailwindCSS'],
     liveUrl: 'https://skku-bank.vercel.app',
     siteLabel: 'skku-bank.vercel.app',
@@ -198,9 +198,9 @@ export const projects = [
     badge: 'Operations Web App',
     category: 'Workflow Management',
     description:
-      'Field service and job tracking system connecting service staff with scheduled vehicle wash bookings, optimized for mobile low-bandwidth devices.',
-    detail: 'Ultra-lightweight React architecture engineered to run smoothly on budget Android hardware.',
-    outcome: 'Live operations platform deployed with zero layout shift and minimal data payload consumption.',
+      'Job tracker that puts wash bookings in front of the staff doing them, built for weak mobile signal.',
+    detail: 'Light enough to run on a budget Android phone.',
+    outcome: 'Live, with no layout shift and very little data used.',
     stack: ['React', 'Node.js', 'REST API'],
     liveUrl: 'https://tema-car-wash.vercel.app',
     siteLabel: 'tema-car-wash.vercel.app',
@@ -211,9 +211,9 @@ export const projects = [
     badge: 'Zero-Framework',
     category: 'Real Estate Platform',
     description:
-      'Real estate directory for rental and purchase properties built purely in vanilla HTML/CSS/JavaScript with sub-100ms initial paint.',
-    detail: 'Zero runtime dependencies, ultra-lean DOM architecture, and accessible filter components.',
-    outcome: 'Sub-100ms first contentful paint, fully deployed and responsive across all screen sizes.',
+      'Property listings for rent and sale, in plain HTML, CSS and JavaScript. First paint under 100ms.',
+    detail: 'No dependencies, a small DOM, and filters that work with a keyboard.',
+    outcome: 'First paint under 100ms, live, and works at every screen size.',
     stack: ['JavaScript', 'HTML5', 'CSS3', 'Vercel'],
     liveUrl: 'https://apartment-ls-ready.vercel.app',
     siteLabel: 'apartment-ls-ready.vercel.app',

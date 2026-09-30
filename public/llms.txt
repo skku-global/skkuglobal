@@ -23,17 +23,17 @@ Four capabilities are live and sold today:
   with severity grading. https://skkuglobal.com/services#security-audits
 - **E-Commerce & Retail Systems** — storefronts with real-time inventory and
   integrated payments. https://skkuglobal.com/services#ecommerce
-- **Enterprise Digital Defense & Infrastructure** — domain identity, cloud
+- **Digital Defense & Infrastructure** — domain identity, cloud
   assets and administrative access hardening.
   https://skkuglobal.com/services#digital-security
 
 Four more are in active development and are **not currently for sale**. They are
 listed on the site as pipeline, not as available services:
 
-- iOS & Android Native Mobile Engineering — https://skkuglobal.com/services#mobile-apps
-- Enterprise AI & Autonomous Agents — https://skkuglobal.com/services#ai-ml
-- Cloud DevOps & Kubernetes Orchestration — https://skkuglobal.com/services#cloud-devops
-- Smart Contract Architecture & Verification — https://skkuglobal.com/services#web3-contracts
+- Mobile Apps — iOS & Android — https://skkuglobal.com/services#mobile-apps
+- AI & Automation — https://skkuglobal.com/services#ai-ml
+- Cloud DevOps & Kubernetes — https://skkuglobal.com/services#cloud-devops
+- Smart Contracts — https://skkuglobal.com/services#web3-contracts
 
 ## SecuScan
 

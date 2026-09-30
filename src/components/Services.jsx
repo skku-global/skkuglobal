@@ -33,50 +33,50 @@ const categories = [
 const lifecycleSteps = [
   {
     step: '01',
-    title: 'Discovery & Threat Modeling',
+    title: 'Scope it',
     icon: LuSearch,
-    desc: 'Deep-dive technical scoping, architectural review, and attack surface assessment completed within 24 hours.',
+    desc: 'We map what you need and where it could be attacked. Back within 24 hours.',
   },
   {
     step: '02',
-    title: 'Bespoke Architecture & Engineering',
+    title: 'Build it',
     icon: LuLayers,
-    desc: 'Engineered with clean, modular code, resilient database schemas, and zero-bloat dependencies.',
+    desc: 'Clean modular code, a solid database schema, no bloat.',
   },
   {
     step: '03',
-    title: 'Automated SecuScan Verification',
+    title: 'Scan it',
     icon: LuShieldCheck,
-    desc: 'Every endpoint and build undergoes automated penetration sweeps, header audits, and OWASP Top 10 tests.',
+    desc: 'Every endpoint gets penetration sweeps, header audits and OWASP Top 10 tests.',
   },
   {
     step: '04',
-    title: 'Cloud Deployment & SLA Handover',
+    title: 'Ship it',
     icon: LuServer,
-    desc: 'Zero-downtime production deployment with containerized CI/CD, complete documentation, and ongoing support.',
+    desc: 'Deployed with CI/CD, documented, and handed over.',
   },
 ]
 
 const guarantees = [
   {
     icon: LuUserCheck,
-    title: 'Founder-Led Engineering',
-    desc: 'Direct architectural oversight by senior engineers for every line of production code.',
+    title: 'Founder-led',
+    desc: 'The founder writes and reviews the code.',
   },
   {
     icon: LuFileCode,
-    title: '100% Code & IP Ownership',
-    desc: 'Full repository handoff upon delivery with zero vendor lock-in and clean documentation.',
+    title: 'You own the code',
+    desc: 'The whole repo is handed over at delivery. No lock-in.',
   },
   {
     icon: LuActivity,
-    title: 'Sub-30s Automated Audit Rigor',
-    desc: 'Built-in SecuScan inspection engine to verify security posture before and after launch.',
+    title: 'Audited before launch',
+    desc: 'SecuScan checks the build before and after it goes live.',
   },
   {
     icon: LuShieldCheck,
-    title: 'CAC-Registered & NDA Protected',
-    desc: 'Legally incorporated Nigerian entity with mutual NDA protection before project scoping.',
+    title: 'Registered, under NDA',
+    desc: 'A CAC-registered Nigerian company. Mutual NDA on request.',
   },
 ]
 
@@ -106,15 +106,14 @@ export default function Services({ hideHeader = false, showExtended = !hideHeade
           <div className="services-header-wrapper animate">
             <div className="services-badge-pill">
               <span className="services-pulse-dot" aria-hidden="true" />
-              CAPABILITIES &amp; CORE COMPETENCIES
+              WHAT WE DO
             </div>
             <h1 id="services-heading" className="services-main-heading">
               What We Build.{' '}
               <span className="gradient-text">What We Secure.</span>
             </h1>
             <p className="services-lead-text">
-              From bespoke full-stack applications, cybersecurity audits, and e-commerce systems available today,
-              to upcoming mobile, enterprise AI, and cloud infrastructure pipelines engineered for high-growth ventures.
+              Four things you can book today. Four more in development.
             </p>
 
             {/* Interactive Filter Pills */}
@@ -264,10 +263,10 @@ export default function Services({ hideHeader = false, showExtended = !hideHeade
                   DELIVERY METHODOLOGY
                 </div>
                 <h2 className="sub-heading">
-                  From Scoping to <span className="gradient-text">Zero-Downtime Launch</span>
+                  From scoping to <span className="gradient-text">launch</span>
                 </h2>
                 <p className="sub-lead">
-                  Our structured 4-phase execution framework eliminates architectural risks, ensures full test coverage, and accelerates delivery.
+                  Four phases, so you always know what happens next.
                 </p>
               </div>
 
@@ -318,11 +317,11 @@ export default function Services({ hideHeader = false, showExtended = !hideHeade
               <div className="faq-header text-center">
                 <div className="services-badge-pill">
                   <span className="services-pulse-dot" aria-hidden="true" />
-                  TRANSPARENCY &amp; CLARITY
+                  QUESTIONS
                 </div>
                 <h2 className="sub-heading">Frequently Asked Questions</h2>
                 <p className="sub-lead">
-                  Clear answers regarding our technology stack, SecuScan audits, payment routing, and project onboarding.
+                  Stack, audits, payments, getting started.
                 </p>
               </div>
 

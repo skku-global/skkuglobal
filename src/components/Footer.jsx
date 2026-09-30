@@ -84,7 +84,7 @@ export default function Footer() {
         {/* ── Concise Regulatory / Identity Note ── */}
         <section className="apple-footer-notes" aria-label="Regulatory Notice">
           <p>
-            SKKU Global Technologies Limited is a CAC-registered tech solutions provider operating online globally from Nigeria, delivering full-stack web engineering and SecuScan security audits worldwide.
+            SKKU Global Technologies Limited — CAC-registered in Nigeria, working online worldwide.
           </p>
         </section>
 

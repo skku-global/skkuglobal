@@ -82,7 +82,7 @@ export const ROUTES = [
     path: '/',
     title: 'SKKU Global — Web Development & SecuScan Security Audits',
     description:
-      'SKKU Global Technologies Limited engineers custom full-stack web applications, runs SecuScan vulnerability audits, and ships e-commerce systems for clients worldwide.',
+      'We build custom web apps, run SecuScan vulnerability audits and ship e-commerce systems. CAC-registered in Nigeria, working worldwide.',
     breadcrumb: 'Enterprise Web & Security',
     priority: '1.0',
   },
@@ -90,7 +90,7 @@ export const ROUTES = [
     path: '/services',
     title: 'Services — Web, SaaS, E-Commerce & Security | SKKU Global',
     description:
-      'Four live capabilities: custom web and SaaS engineering, SecuScan vulnerability audits, e-commerce systems, and enterprise digital defense. Mobile, AI, cloud and smart contracts in development.',
+      'Web and SaaS engineering, SecuScan vulnerability audits, e-commerce systems and digital defense. Mobile, AI, cloud and smart contracts in development.',
     breadcrumb: 'Capabilities & Services',
     priority: '0.9',
   },
@@ -98,7 +98,7 @@ export const ROUTES = [
     path: '/work',
     title: 'Case Studies & Live Deployments | SKKU Global',
     description:
-      'Production software engineered end-to-end: the SecuScan vulnerability scanner, Luxe Hair Co luxury e-commerce, the CarBreezy automotive marketplace, and more - all live.',
+      'Live work: the SecuScan vulnerability scanner, Luxe Hair Co e-commerce, the CarBreezy marketplace and more. All running in production.',
     breadcrumb: 'Production Case Studies',
     priority: '0.9',
   },
@@ -259,25 +259,25 @@ export const LIVE_SERVICES = [
     id: 'web-dev',
     name: 'Custom Web & SaaS Engineering',
     description:
-      'High-performance web applications, API architectures and conversion-optimized platforms built for scale.',
+      'Web apps and APIs built to stay fast as they grow.',
   },
   {
     id: 'security-audits',
     name: 'SecuScan Web Vulnerability Audits',
     description:
-      'Automated penetration testing and vulnerability analysis to eliminate security loopholes before malicious actors exploit them.',
+      'Automated penetration testing that finds security holes before an attacker does.',
   },
   {
     id: 'ecommerce',
     name: 'E-Commerce & Retail Systems',
     description:
-      'Conversion-focused online stores with secure payment routing, live inventory and order management.',
+      'Online stores with live carts, several currencies and secure payments.',
   },
   {
     id: 'digital-security',
-    name: 'Enterprise Digital Defense & Infrastructure',
+    name: 'Digital Defense & Infrastructure',
     description:
-      'Protection across domain identity, cloud assets, administrative accounts and business communications.',
+      'Protection for your domain, your cloud and your admin accounts.',
   },
 ]
 

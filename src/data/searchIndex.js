@@ -12,6 +12,12 @@
  * in each entry's tech stack, so typing "FastAPI", "PostgreSQL" or "Shopify"
  * surfaces the work that used it — which is how a visitor evaluating us for a
  * specific stack actually searches.
+ *
+ * It also folds in each service's `includes` bullets and each project's
+ * description. The visible copy was deliberately shortened, which took terms
+ * like "penetration testing", "DMARC" and "Face ID" out of the summaries; they
+ * still live in the detail, and search reads the detail. So the cards stay short
+ * to read while the index stays wide to search.
  */
 import { services } from './services.js'
 import { projects } from './projects.js'
@@ -20,14 +26,16 @@ const serviceEntries = services.map((service) => ({
   title: service.title,
   category: service.status === 'live' ? service.categoryLabel : `${service.categoryLabel} · In development`,
   url: `/services#${service.id}`,
-  keywords: [service.summary, service.categoryLabel, ...(service.techStack || [])].join(' '),
+  keywords: [service.summary, service.categoryLabel, ...(service.techStack || []),
+    ...(service.includes || [])].join(' '),
 }))
 
 const projectEntries = projects.map((project) => ({
   title: project.title,
   category: project.category,
   url: `/work#${project.id}`,
-  keywords: [project.tagline, project.category, ...(project.stack || [])].join(' '),
+  keywords: [project.tagline, project.category, ...(project.stack || []),
+    project.description || ''].join(' '),
 }))
 
 // Pages have no data array to derive from, so they are listed here. The

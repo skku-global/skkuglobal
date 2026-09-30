@@ -9,13 +9,12 @@ export default function Work() {
       {/* Page hero */}
       <section className="page-hero">
         <div className="shell">
-          <div className="section-label animate">PRODUCTION ARCHITECTURE</div>
+          <div className="section-label animate">CASE STUDIES</div>
           <h1 className="animate animate-delay-1">
             Case Studies &amp; <span className="gradient-text">Live Deployments</span>
           </h1>
           <p className="animate animate-delay-2">
-            Real software systems engineered and deployed end-to-end with high-concurrency backends,
-            sub-second response latencies, and rigorous SecuScan vulnerability defenses.
+            Everything below is live. Click any of it and use it.
           </p>
         </div>
       </section>

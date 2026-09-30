@@ -59,7 +59,7 @@ Target Launch Date: [e.g. Within 30 days]
 Additional Requirements: `,
   },
   'digital-security': {
-    title: 'Enterprise Digital Defense & Infrastructure',
+    title: 'Digital Defense & Infrastructure',
     category: 'Infrastructure & Defense',
     brief: `Security Requirements: Corporate domain spoofing defense (SPF/DKIM/DMARC), credential isolation, cloud asset hardening
 Current Setup: [Google Workspace / Microsoft 365 / Cloud servers]
@@ -72,7 +72,7 @@ const servicesList = [
   'Custom Web & SaaS Engineering',
   'SecuScan Web Vulnerability Audits',
   'E-Commerce & Retail Systems',
-  'Enterprise Digital Defense & Infrastructure',
+  'Digital Defense & Infrastructure',
   'Build & Secure Package (Web App + Security Audit)',
   'Other / General Technical Inquiry',
 ]
@@ -166,17 +166,17 @@ export default function Contact() {
     const { name, email, message } = formData
     if (!name.trim()) {
       setStatus('error')
-      setFeedback('Please enter your full name or company name.')
+      setFeedback('Please add your name.')
       return false
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       setStatus('error')
-      setFeedback('Please enter a valid email address so we can send your consultation brief.')
+      setFeedback('That email address does not look right.')
       return false
     }
     if (!message.trim()) {
       setStatus('error')
-      setFeedback('Please provide some project details or requirements.')
+      setFeedback('Tell us a little about the project.')
       return false
     }
     return true
@@ -210,7 +210,7 @@ Official Channel: ${CONTACT_EMAIL}`
       )}&body=${encodeURIComponent(body)}`
 
       setStatus('done')
-      setFeedback('Opening your email client — your inquiry has been pre-formatted for direct review by our engineering team.')
+      setFeedback('Opening your email app — the message is already written.')
       return
     }
 
@@ -234,7 +234,7 @@ Official Channel: ${CONTACT_EMAIL}`
       if (!res.ok) throw new Error(`Server returned ${res.status}`)
 
       setStatus('done')
-      setFeedback('Thank you! Your consultation inquiry has been submitted. Our engineering team will review it and reply within 24 hours.')
+      setFeedback('Sent. We reply within 24 hours.')
     } catch {
       // Graceful fallback to mailto if endpoint encounters issue
       window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
@@ -250,7 +250,7 @@ Official Channel: ${CONTACT_EMAIL}`
     if (e) e.preventDefault()
     if (!formData.name.trim()) {
       setStatus('error')
-      setFeedback('Please enter your name before messaging on WhatsApp.')
+      setFeedback('Please add your name first.')
       return
     }
 
@@ -262,13 +262,13 @@ Official Channel: ${CONTACT_EMAIL}`
 *Service:* ${service}
 
 *Project Brief:*
-${message.trim() || 'I would like to discuss scoping and architecture for this service.'}`
+${message.trim() || 'I would like to discuss this service.'}`
 
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
 
     setStatus('done')
-    setFeedback('Opening WhatsApp with your pre-filled inquiry. Our team will respond shortly.')
+    setFeedback('Opening WhatsApp with your message ready.')
   }
 
   return (
@@ -276,11 +276,10 @@ ${message.trim() || 'I would like to discuss scoping and architecture for this s
       <div id="contact" style={{ position: 'relative', top: '-80px' }} aria-hidden="true" />
       <div className="shell">
         <div className="section-header animate">
-          <div className="section-label">CLIENT SUPPORT &amp; INQUIRIES</div>
+          <div className="section-label">GET IN TOUCH</div>
           <h2>Let&apos;s build or secure your project</h2>
           <p>
-            Have a project in mind, need a security audit, or want to collaborate?
-            Fill out the pre-structured consultation form or reach out directly.
+            Tell us what you need built or secured.
           </p>
         </div>
 
@@ -370,7 +369,7 @@ ${message.trim() || 'I would like to discuss scoping and architecture for this s
                 name="message"
                 rows="6"
                 className="form-textarea form-textarea-rich"
-                placeholder="Describe your goals, requirements, timeline, or current challenges..."
+                placeholder="What do you need built or secured?"
                 value={formData.message}
                 onChange={handleChange}
                 required
@@ -385,7 +384,7 @@ ${message.trim() || 'I would like to discuss scoping and architecture for this s
                 disabled={status === 'loading'}
               >
                 <LuMail size={16} aria-hidden="true" />
-                <span>{status === 'loading' ? 'Formatting Inquiry…' : 'Send Official Email (Recommended)'}</span>
+                <span>{status === 'loading' ? 'Sending…' : 'Send email'}</span>
               </button>
 
               <button
@@ -421,7 +420,7 @@ ${message.trim() || 'I would like to discuss scoping and architecture for this s
               <div className="direct-badge">DIRECT CHANNELS</div>
               <h3>Prefer direct communication?</h3>
               <p>
-                We respond within 24 hours. Reach out directly via official email or WhatsApp for immediate scoping.
+                Email or WhatsApp. We reply within 24 hours.
               </p>
 
               <div className="direct-actions">
@@ -449,7 +448,7 @@ ${message.trim() || 'I would like to discuss scoping and architecture for this s
                   </span>
                   <div>
                     <span className="direct-btn-title">Chat on WhatsApp</span>
-                    <span className="direct-btn-sub">08057215622 · Direct scoping</span>
+                    <span className="direct-btn-sub">08057215622 · WhatsApp</span>
                   </div>
                 </a>
 
@@ -469,7 +468,7 @@ ${message.trim() || 'I would like to discuss scoping and architecture for this s
 
               <div className="direct-guarantee">
                 <span className="guarantee-dot" aria-hidden="true" />
-                <span>Mutual NDA &amp; confidentiality guaranteed on all corporate consultations.</span>
+                <span>Mutual NDA available on request.</span>
               </div>
             </div>
           </aside>

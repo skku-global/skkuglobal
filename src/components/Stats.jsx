@@ -4,32 +4,33 @@ import {
   LuActivity,
   LuCircleCheck,
 } from 'react-icons/lu'
+import { projects } from '../data/projects.js'
 import './Stats.css'
 
 const stats = [
   {
     icon: LuRocket,
-    num: '7+',
-    label: 'Production Platforms Shipped',
-    desc: 'Bespoke web, SaaS & retail systems deployed live',
+    num: String(projects.length),
+    label: 'Platforms shipped',
+    desc: 'Web, SaaS and retail systems',
   },
   {
     icon: LuShieldCheck,
     num: '<30s',
-    label: 'SecuScan Audit Speed',
-    desc: 'Multi-threaded automated vulnerability inspection',
+    label: 'Audit time',
+    desc: 'A full SecuScan run',
   },
   {
     icon: LuActivity,
     num: '24/7',
-    label: 'Security Incident Support',
-    desc: 'Continuous threat response & engineering oversight',
+    label: 'Scan on demand',
+    desc: 'SecuScan runs whenever you need it',
   },
   {
     icon: LuCircleCheck,
     num: '100%',
-    label: 'Delivery SLA Record',
-    desc: 'Milestones guaranteed with founder-led execution',
+    label: 'Live in production',
+    desc: 'Every case study here is running',
   },
 ]
 
@@ -40,14 +41,11 @@ export default function Stats() {
         <div className="stats-header animate text-center">
           <div className="stats-badge-pill">
             <span className="badge-pulse-dot" aria-hidden="true" />
-            PROVEN TRACK RECORD
+            TRACK RECORD
           </div>
           <h3 className="stats-heading">
-            Engineering Rigor in <span className="gradient-text">Verifiable Numbers</span>
+            By the <span className="gradient-text">numbers</span>
           </h3>
-          <p className="stats-subtext">
-            Every solution we build is backed by measurable reliability, rapid turnaround, and uncompromising zero-trust security.
-          </p>
         </div>
 
         <div className="stats-grid">

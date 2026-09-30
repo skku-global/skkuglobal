@@ -5,10 +5,10 @@ import './Home.css'
 import './Legal.css'
 
 const suggestions = [
-  { to: '/services', title: 'Services', hint: 'Web engineering, SecuScan audits, e-commerce, digital defense' },
-  { to: '/work', title: 'Case Studies', hint: 'Production systems we designed, built and deployed' },
+  { to: '/services', title: 'Services', hint: 'What you can book today' },
+  { to: '/work', title: 'Case Studies', hint: 'Live systems we built' },
   { to: '/about', title: 'About SKKU Global', hint: 'Who we are and how we work' },
-  { to: '/support', title: 'Support & Consultation', hint: 'Start a project or request a security audit' },
+  { to: '/support', title: 'Support & Consultation', hint: 'Start a project or ask for an audit' },
 ]
 
 export default function NotFound() {
@@ -24,8 +24,8 @@ export default function NotFound() {
             This page doesn&apos;t exist
           </h1>
           <p className="animate animate-delay-2">
-            The link may be out of date, or the address may have a typo. Everything on
-            skkuglobal.com is reachable from the four sections below.
+            The link may be out of date. Everything on skkuglobal.com is reachable
+            from the four sections below.
           </p>
           <div className="notfound-actions animate animate-delay-2">
             <Link to="/" className="btn-primary">

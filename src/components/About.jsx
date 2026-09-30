@@ -6,41 +6,42 @@ import {
   LuBug,
   LuCpu,
 } from 'react-icons/lu'
+import { projects } from '../data/projects.js'
 import './About.css'
 
 const companyHighlights = [
   {
     icon: LuShieldCheck,
-    title: 'Security-First Architecture',
-    body: 'Every application we ship is engineered with rigorous authentication, strict data privacy controls, and proactive exposure defense from day one.',
+    title: 'Security comes first',
+    body: 'Authentication, data privacy and exposure defence are in from day one, not bolted on later.',
   },
   {
     icon: LuRocket,
-    title: '100% Shipped Production Work',
-    body: 'We build real, working platforms and deploy them live. Every case study in our portfolio is active in production — frontend, backend, database, and cloud infrastructure.',
+    title: 'Everything here is live',
+    body: 'Every case study on this site is running in production. You can click it and use it.',
   },
   {
     icon: LuBuilding2,
-    title: 'Verified Corporate Entity',
-    body: 'SKKU Global Technologies Limited is a legally registered Nigerian entity (CAC) with corporate banking, official enterprise domain, and enterprise-grade code infrastructure.',
+    title: 'A registered company',
+    body: 'SKKU Global Technologies Limited is registered in Nigeria with the CAC, with corporate banking and its own domain.',
   },
 ]
 
 const founderHighlights = [
   {
     icon: LuGraduationCap,
-    title: 'Engineering Pedigree',
-    body: 'Completing the ADSE diploma at Aptech Mokola, Ibadan — on a direct academic pathway to a BSc in Computer Science at Middlesex University, UK.',
+    title: 'Training',
+    body: 'ADSE diploma at Aptech Mokola, Ibadan, then a BSc in Computer Science at Middlesex University, UK.',
   },
   {
     icon: LuBug,
-    title: 'Vulnerability Research',
-    body: 'Independently identified critical authentication weaknesses in active fintech applications on the market, inspiring the development of the SecuScan audit engine.',
+    title: 'Research',
+    body: 'Found critical auth weaknesses in live fintech apps. That is why SecuScan exists.',
   },
   {
     icon: LuCpu,
-    title: 'Execution Over Theory',
-    body: 'Self-directed builder with production software in active use. Every architecture decision is tested against real-world throughput and security benchmarks.',
+    title: 'Building, not theorising',
+    body: 'Self-taught, with software in daily use. Every decision gets tested against real traffic.',
   },
 ]
 
@@ -53,39 +54,37 @@ export default function About() {
         <div className="section-header animate">
           <div className="section-label">ABOUT THE COMPANY</div>
           <h2 id="about-heading">
-            Enterprise Engineering.{' '}
-            <span className="gradient-text">Built Security-First.</span>
+            Good software.{' '}
+            <span className="gradient-text">Secured properly.</span>
           </h2>
           <p>
-            SKKU Global Technologies Limited is a technology solutions company delivering custom
-            web platforms, SecuScan automated vulnerability audits, and e-commerce infrastructure
-            for ambitious founders, high-growth startups, and established enterprises.
+            We build custom web platforms, run SecuScan vulnerability audits, and ship
+            e-commerce systems.
           </p>
         </div>
 
         <div className="about-grid">
           <div className="about-bio animate animate-delay-1">
             <p>
-              Headquartered in Nigeria’s commercial tech corridor, we engineer software for a global client base spanning North America, the United Kingdom, Europe, Africa, and the Middle East.
-              Our competitive advantage lies at the intersection of production-hardened full-stack engineering and deep vulnerability research.
+              Based in Nigeria, building for clients in North America, the UK, Europe, Africa and the Middle East.
             </p>
             <p>
-              Rather than treating cybersecurity as a secondary checklist, security is baked into our foundational schemas, API routing, and state machines.
-              Clients receive clean, maintainable codebases with documented architecture, enterprise SLA uptime, and zero guesswork.
+              Security is not a checklist at the end. It is in the schema, the API routes and the login flow
+              from the first commit. What you get back is a clean codebase with the architecture written down.
             </p>
             
             <div className="about-metrics-row">
               <div className="metric-box">
                 <span className="metric-num">100%</span>
-                <span className="metric-text">Production Deployment Rate</span>
+                <span className="metric-text">Deployed live</span>
               </div>
               <div className="metric-box">
                 <span className="metric-num">&lt;30s</span>
-                <span className="metric-text">SecuScan Audit Speed</span>
+                <span className="metric-text">Audit time</span>
               </div>
               <div className="metric-box">
-                <span className="metric-num">8</span>
-                <span className="metric-text">Platforms Shipped to Production</span>
+                <span className="metric-num">{projects.length}</span>
+                <span className="metric-text">Platforms shipped</span>
               </div>
             </div>
           </div>
@@ -114,25 +113,24 @@ export default function About() {
         {/* ── Block 2: Founder Leadership ───────────────────────────── */}
         <div className="section-header animate about-founders-header">
           <div className="section-label">FOUNDER &amp; LEAD ENGINEER</div>
-          <h2>Abdulkabir Ajiboye — Founder &amp; Lead Systems Architect</h2>
+          <h2>Abdulkabir Ajiboye</h2>
           <p>
-            Hands-on technical leadership with direct engineering oversight on every production solution.
+            Every project here is built with my hands on it.
           </p>
         </div>
 
         <div className="about-grid">
           <div className="about-bio animate animate-delay-1">
             <p>
-              I am Abdulkabir — a full-stack software engineer and the founder of SKKU Global Technologies Limited.
-              My engineering philosophy is rooted in concrete execution: building real software that handles actual traffic, protects real user data, and converts visitors into loyal customers.
+              I am Abdulkabir, a full-stack engineer and the founder of SKKU Global. I build software that
+              handles real traffic and protects real user data.
             </p>
             <p>
-              After independently uncovering security vulnerabilities in active fintech products, I built <strong>SecuScan</strong> to make automated security auditing accessible, rigorous, and fast.
-              That exact mindset governs every client engagement at SKKU Global.
+              After finding security holes in live fintech products, I built <strong>SecuScan</strong> so that
+              kind of audit is fast and cheap enough for anyone to run.
             </p>
             <p>
-              Beyond software systems, I have spent years trading global financial markets (XAUUSD, BTCUSD) using strict quantitative risk management models.
-              That same structured discipline, risk management, and mathematical precision is applied to our server architectures, database integrity, and client deliverables.
+              I also trade global markets under strict risk rules. The same discipline goes into what we ship.
             </p>
           </div>
 

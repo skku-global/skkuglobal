@@ -31,8 +31,8 @@ export default function Projects() {
 
         {/* ── Compact Grid for Additional Live Work ── */}
         <div className="additional-work-header">
-          <h3>Additional Production Deployments</h3>
-          <p>Full-stack platforms, client-side neural auth, and zero-framework high-speed web apps.</p>
+          <h3>More shipped work</h3>
+          <p>Biometric banking auth, a job tracker, and a listings site with no framework at all.</p>
         </div>
 
         <div className="projects-grid">

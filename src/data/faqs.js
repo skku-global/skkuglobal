@@ -7,23 +7,23 @@
  */
 export const faqs = [
   {
-    q: 'Can SKKU Global build both the frontend application and backend API infrastructure?',
-    a: 'Yes. We specialize in end-to-end full-stack architectures. We develop modern responsive frontends (React, Next.js) tightly integrated with robust backend APIs (FastAPI, Node.js) and production databases (PostgreSQL, Prisma, MongoDB), packaged with Docker CI/CD pipelines.',
+    q: 'Do you build both the frontend and the backend?',
+    a: 'Yes. React or Next.js on the front, FastAPI or Node.js behind it, PostgreSQL, Prisma or MongoDB for data, shipped with Docker and CI/CD.',
   },
   {
-    q: 'What vulnerabilities does the SecuScan engine inspect?',
-    a: 'SecuScan conducts multi-threaded automated penetration tests including OWASP Top 10 vulnerabilities (SQLi, XSS, SSRF), session hijacking, authentication loopholes, missing security headers (CSP, HSTS), open CORS policies, and API parameter tampering. Each scan outputs an executive remediation report with exact code fixes.',
+    q: 'What does SecuScan check for?',
+    a: 'The OWASP Top 10 — SQL injection, XSS, SSRF — plus session handling, auth gaps, missing security headers (CSP, HSTS), open CORS and API parameter tampering. Every scan ends with a report that names the fix.',
   },
   {
-    q: 'Can you integrate multi-currency payments for local and international customers?',
-    a: 'Yes. We integrate multi-currency payment routing supporting Nigerian Naira (₦), US Dollars ($), British Pounds (£), and Euros (€) via secure providers like Paystack and Stripe, alongside direct WhatsApp concierge checkout drawers for high-conversion retail closing.',
+    q: 'Can you take payments in more than one currency?',
+    a: 'Yes — Naira, dollars, pounds and euros through Paystack or Stripe, plus WhatsApp checkout for retail.',
   },
   {
-    q: 'How do upcoming capabilities work (Mobile, AI, Cloud DevOps)?',
-    a: 'Our core live services are actively available for booking today. Our upcoming engineering capabilities (Native Mobile, Enterprise AI, Cloud DevOps, and Smart Contracts) are currently in active internal development. Clients can pre-register or inquire early to secure priority scheduling as these modules open for production onboarding.',
+    q: 'What about the services marked in development?',
+    a: 'Mobile, AI, cloud DevOps and smart contracts are still being built, so they are not for sale yet. Ask early and you get first scheduling when they open.',
   },
   {
-    q: 'How do we get started with a project consultation?',
-    a: 'Click "Consult On This Service" on any capability card above, or click "Start a Project". Our intake questionnaire automatically pre-populates your selected service so we can analyze your requirements and respond with technical scoping within 24 hours.',
+    q: 'How do we start?',
+    a: 'Hit Consult on any card above, or Start a Project. The form fills in what you picked. You get a reply within 24 hours.',
   },
 ]

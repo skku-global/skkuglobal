@@ -14,7 +14,7 @@ export default function Hero() {
         {/* ── Status Pill ──────────────────────────── */}
         <div className="hero-status-pill animate">
           <span className="live-status-dot" aria-hidden="true" />
-          <span>Verified Tech Solutions · Now Booking Q3/Q4 Projects</span>
+          <span>Now booking Q3/Q4 projects</span>
         </div>
 
         {/* ── Main High-Impact Headline ────────────── */}
@@ -26,9 +26,8 @@ export default function Hero() {
         </h1>
 
         <p className="hero-subtitle animate animate-delay-2">
-          SKKU Global Technologies Limited engineers mission-critical web applications,
-          conducts automated vulnerability audits via <strong>SecuScan</strong>, and builds high-conversion e-commerce systems.
-          CAC-registered in Nigeria, delivering software globally.
+          We build web apps and e-commerce systems, then audit them for security
+          flaws with <strong>SecuScan</strong>. CAC-registered in Nigeria, working worldwide.
         </p>
 
         {/* ── Action Buttons ────────────────────────── */}
@@ -49,22 +48,22 @@ export default function Hero() {
         <div className="hero-trust-strip animate animate-delay-4">
           <div className="trust-item">
             <LuCheck size={14} className="trust-check" aria-hidden="true" />
-            <span>CAC-Registered Limited Entity</span>
+            <span>CAC-registered company</span>
           </div>
           <span className="trust-divider" aria-hidden="true">/</span>
           <div className="trust-item">
             <LuCheck size={14} className="trust-check" aria-hidden="true" />
-            <span>SecuScan Security Engine</span>
+            <span>Our own scan engine</span>
           </div>
           <span className="trust-divider" aria-hidden="true">/</span>
           <div className="trust-item">
             <LuCheck size={14} className="trust-check" aria-hidden="true" />
-            <span>Founder-Led Engineering</span>
+            <span>Founder-led</span>
           </div>
           <span className="trust-divider" aria-hidden="true">/</span>
           <div className="trust-item">
             <LuCheck size={14} className="trust-check" aria-hidden="true" />
-            <span>Sub-30s Automated Audits</span>
+            <span>Scans under 30s</span>
           </div>
         </div>
       </div>

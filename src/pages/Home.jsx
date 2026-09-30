@@ -20,11 +20,10 @@ export default function Home() {
         <div className="shell">
           <div className="cta-banner-card animate">
             <div className="cta-banner-content">
-              <span className="cta-badge">DIRECT FOUNDER CONSULTATION</span>
-              <h2>Ready to engineer or secure your next platform?</h2>
+              <span className="cta-badge">TALK TO THE FOUNDER</span>
+              <h2>Ready to start?</h2>
               <p>
-                From custom full-stack web applications to comprehensive SecuScan vulnerability audits,
-                we ship production-ready tech solutions that protect and grow your business.
+                Web apps, e-commerce, or a security audit. Email or WhatsApp us.
               </p>
             </div>
             <div className="cta-banner-actions">
