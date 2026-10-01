@@ -36,12 +36,52 @@ function ScrollToTop() {
   return null
 }
 
+// Watches every .animate element and adds .is-visible when it enters the
+// viewport, triggering the scroll-reveal fadeUp animation from globals.css.
+// Rendered as a null component so it can live inside AppShell's JSX tree.
+function ScrollReveal() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    // Small delay so newly-routed DOM elements are painted before we query
+    const timerId = setTimeout(() => {
+      const els = document.querySelectorAll('.animate:not(.is-visible)')
+      if (!els.length) return
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible')
+              observer.unobserve(entry.target)
+            }
+          })
+        },
+        {
+          // Reveal once element is 8% into the viewport
+          threshold: 0.08,
+          // Catch elements just below the fold
+          rootMargin: '0px 0px -40px 0px',
+        },
+      )
+
+      els.forEach((el) => observer.observe(el))
+      return () => observer.disconnect()
+    }, 50)
+
+    return () => clearTimeout(timerId)
+  }, [pathname])
+
+  return null
+}
+
 export function AppShell() {
   return (
     <>
       <a href="#main" className="skip-link">Skip to content</a>
       <Navbar />
       <ScrollToTop />
+      <ScrollReveal />
       <Routes>
         <Route path="/"         element={<Home />} />
         <Route path="/work"     element={<Work />} />

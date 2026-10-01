@@ -215,3 +215,158 @@
     justify-content: center;
   }
 }
+
+/* ── Founder Direct Trust Section ─────────────── */
+.founder-trust-section {
+  padding: 80px 0;
+  background: #F8FAFC;
+  border-bottom: 1px solid var(--border);
+}
+
+.founder-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+}
+
+.founder-meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  max-width: 760px;
+}
+
+.founder-avatar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.founder-monogram {
+  width: 68px;
+  height: 68px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #059669 0%, #0284C7 100%);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(5, 150, 105, 0.25);
+}
+
+.founder-status-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: #065F46;
+  background: #D1FAE5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.founder-info h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.founder-role {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #059669;
+  margin-bottom: 14px;
+}
+
+.founder-quote {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-style: italic;
+  margin-bottom: 18px;
+}
+
+.founder-credentials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cred-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  padding: 5px 11px;
+  border-radius: 6px;
+}
+
+.cred-icon {
+  color: #059669;
+  flex-shrink: 0;
+}
+
+.founder-cta {
+  flex-shrink: 0;
+}
+
+.founder-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #059669;
+  border: 1px solid #047857;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.28);
+  transition: all 0.2s ease;
+}
+
+.founder-btn:hover {
+  background: #047857;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.38);
+}
+
+@media (max-width: 900px) {
+  .founder-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 24px;
+  }
+  .founder-meta {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .founder-cta {
+    width: 100%;
+  }
+  .founder-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

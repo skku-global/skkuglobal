@@ -66,6 +66,7 @@ Every one of these is deployed and publicly reachable:
   Docker) — https://secuscan-orpin.vercel.app/
 - **Luxe Hair Co** — luxury e-commerce platform — https://luxehair-tau.vercel.app/
 - **CarBreezy** — automotive marketplace — https://carbreezy-react.vercel.app/
+- **JuniCash** — personal finance & digital wallet (React, Node.js, Express, MongoDB, Resend) — https://junicash.vercel.app
 - **skku-bank** — biometric banking authentication — https://skku-bank.vercel.app
 - **Tema Car Wash** — job and service tracker — https://tema-car-wash.vercel.app
 - **Apartment Listing** — real estate hub — https://apartment-ls-ready.vercel.app

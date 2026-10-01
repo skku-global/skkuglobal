@@ -289,21 +289,32 @@ p {
   box-shadow: var(--shadow-md);
 }
 
-/* ── Subtle Micro-Animations ──────────────────── */
+/* ── Scroll-Triggered Micro-Animations ────────── */
+/*
+  Elements with .animate start invisible.
+  When they enter the viewport the IntersectionObserver
+  in App.jsx adds .is-visible, which plays the fadeUp.
+*/
 .animate {
-  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: none; /* let the animation handle it */
 }
 
-.animate-delay-1 { animation-delay: 0.08s; }
-.animate-delay-2 { animation-delay: 0.16s; }
-.animate-delay-3 { animation-delay: 0.24s; }
-.animate-delay-4 { animation-delay: 0.32s; }
-.animate-delay-5 { animation-delay: 0.40s; }
+.animate.is-visible {
+  animation: fadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-delay-1.is-visible { animation-delay: 0.08s; }
+.animate-delay-2.is-visible { animation-delay: 0.16s; }
+.animate-delay-3.is-visible { animation-delay: 0.24s; }
+.animate-delay-4.is-visible { animation-delay: 0.32s; }
+.animate-delay-5.is-visible { animation-delay: 0.40s; }
 
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;

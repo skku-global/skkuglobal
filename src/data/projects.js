@@ -180,6 +180,66 @@ export const projects = [
     ],
   },
   {
+    id: 'junicash',
+    title: 'JuniCash — Personal Finance & Digital Wallet',
+    badge: 'Full-Stack Fintech',
+    featured: true,
+    category: 'Fintech & Wallet',
+    tagline: 'Personal finance wallet with email OTP sign-in and internal transfers.',
+    description:
+      'Budgeting, wallet balances and peer-to-peer transfers, with email OTP sign-in and a transaction ledger.',
+    detail:
+      'React front end, Node.js and Express API, MongoDB, email via Resend.',
+    outcome:
+      'Live full-stack app with OTP sign-in and transaction history.',
+    stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Resend', 'JWT'],
+    liveUrl: 'https://junicash.vercel.app',
+    siteLabel: 'junicash.vercel.app',
+    poster: '/screenshots/junicash/slide-1.webp',
+    slides: [
+      {
+        id: 1,
+        title: '01. Landing page',
+        caption:
+          'App store links, adoption numbers, and a compliance trust bar.',
+        image: '/screenshots/junicash/slide-1.webp',
+        highlight: 'App store links · Trust bar',
+      },
+      {
+        id: 2,
+        title: '02. Product grid',
+        caption:
+          'Six modules: transfers, borrowing, savings, premium, cards and investments.',
+        image: '/screenshots/junicash/slide-2.webp',
+        highlight: 'Six modules',
+      },
+      {
+        id: 3,
+        title: '03. Premium tier',
+        caption:
+          'Paid tier panel: cashback, higher savings rates, partner discounts.',
+        image: '/screenshots/junicash/slide-3.webp',
+        highlight: 'Paid tier · Cashback',
+      },
+      {
+        id: 4,
+        title: '04. Comparison table',
+        caption:
+          'In-app comparison against traditional banking on fees, onboarding and interest.',
+        image: '/screenshots/junicash/slide-4.webp',
+        highlight: 'Comparison table · Sign-up CTA',
+      },
+      {
+        id: 5,
+        title: '05. Sign-up',
+        caption:
+          'Validated registration form with masked password entry, ahead of email OTP.',
+        image: '/screenshots/junicash/slide-5.webp',
+        highlight: 'Field validation · Email OTP',
+      },
+    ],
+  },
+  {
     id: 'skku-bank',
     title: 'skku-bank — Biometric Banking Authentication',
     badge: 'Security Prototype',

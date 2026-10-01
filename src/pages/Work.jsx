@@ -1,7 +1,7 @@
 import Projects from '../components/Projects'
 import Seo from '../components/Seo'
 import { FaWhatsapp } from 'react-icons/fa6'
-import { LuArrowRight } from 'react-icons/lu'
+import { LuArrowRight, LuZap } from 'react-icons/lu'
 import { waLink, mailto } from '../seo/siteMeta.js'
 import './Home.css'
 
@@ -24,7 +24,10 @@ export default function Work() {
           {/* ── High-Converting Project Pitch Banner ── */}
           <div className="work-pitch-card animate animate-delay-3">
             <div className="work-pitch-info">
-              <span className="work-pitch-badge">⚡ FAST 5–7 DAY DELIVERY</span>
+              <span className="work-pitch-badge">
+                <LuZap size={13} aria-hidden="true" />
+                <span>FAST 5–7 DAY DELIVERY</span>
+              </span>
               <h2>Want a custom website or platform like these for your business?</h2>
               <p>
                 We handle end-to-end architecture, mobile design, dynamic pricing, and pre-launch penetration testing. Transparent milestone pricing with direct founder oversight.
