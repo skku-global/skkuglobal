@@ -2,6 +2,9 @@ export const projects = [
   {
     id: 'secuscan',
     title: 'SecuScan — Web Vulnerability Scanner',
+    clientName: 'SecuScan',
+    editorialHeadline: 'Most business systems launch with hidden vulnerabilities. Now one automated engine audits every attack surface in 30 seconds.',
+    architectQuote: 'Engineered Python FastAPI microservices with OWASP compliance and Docker-isolated scanners for real-time threat telemetry.',
     badge: 'Live in Production',
     featured: true,
     category: 'Cybersecurity SaaS',
@@ -62,6 +65,9 @@ export const projects = [
   {
     id: 'luxehair',
     title: 'Luxe Hair Co — Luxury E-Commerce Platform',
+    clientName: 'Luxe Hair Co',
+    editorialHeadline: 'High-end retail brands lose buyers to sluggish manual DM orders. Now one luxury storefront unites live Naira catalogues with instant WhatsApp checkout.',
+    architectQuote: 'Custom lightweight React architecture with zero framework bloat, sub-second product filtering, and automated cart-to-WhatsApp dispatch.',
     badge: 'Live in Production',
     featured: true,
     category: 'E-Commerce & Retail Tech',
