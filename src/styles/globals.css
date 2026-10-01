@@ -7,30 +7,74 @@
 }
 
 :root {
-  /* ── Core Light Palette — All White Backgrounds ── */
+  /* ── Core Light Palette ── */
   --bg:               #FFFFFF;
   --bg-surface:       #FFFFFF;
-  --bg-subtle:        #FFFFFF;
+  --bg-subtle:        #F8FAFC;
   --bg-card:          #FFFFFF;
   --bg-dark-accent:   #0B0F17;
   --bg-dark-surface:  #111622;
-  
+
   /* ── Borders ── */
   --border:           #E2E8F0;
   --border-subtle:    rgba(15, 23, 42, 0.06);
   --border-hover:     #CBD5E1;
   --primary-border:   rgba(5, 150, 105, 0.25);
 
-  /* ── Tech Emerald & Cyan (Brand Trust & Engineering) ── */
-  --primary:          #059669;
-  --primary-hover:    #047857;
-  --primary-light:    #ECFDF5;
-  --primary-glow:     rgba(5, 150, 105, 0.15);
-  
+  /* ══════════════════════════════════════════════
+     ACCENT SYSTEM — 5 semantic accent colours.
+     Each page / section sets --accent-* overrides.
+     Components use var(--accent) instead of
+     hard-coding a colour wherever possible.
+     ══════════════════════════════════════════════ */
+
+  /* 01 · Emerald — Hero, security, primary brand */
+  --emerald:          #059669;
+  --emerald-hover:    #047857;
+  --emerald-light:    #ECFDF5;
+  --emerald-glow:     rgba(5, 150, 105, 0.18);
+  --emerald-border:   rgba(5, 150, 105, 0.28);
+
+  /* 02 · Violet — AI section, future tech, innovation */
+  --violet:           #7C3AED;
+  --violet-hover:     #6D28D9;
+  --violet-light:     #F5F3FF;
+  --violet-glow:      rgba(124, 58, 237, 0.18);
+  --violet-border:    rgba(124, 58, 237, 0.28);
+
+  /* 03 · Blue — Services, engineering, reliability */
+  --blue:             #2563EB;
+  --blue-hover:       #1D4ED8;
+  --blue-light:       #EFF6FF;
+  --blue-glow:        rgba(37, 99, 235, 0.18);
+  --blue-border:      rgba(37, 99, 235, 0.28);
+
+  /* 04 · Amber — Work / Case studies, results, proof */
+  --amber:            #D97706;
+  --amber-hover:      #B45309;
+  --amber-light:      #FFFBEB;
+  --amber-glow:       rgba(217, 119, 6, 0.18);
+  --amber-border:     rgba(217, 119, 6, 0.28);
+
+  /* 05 · Rose — About, founder, human story */
+  --rose:             #E11D48;
+  --rose-hover:       #BE123C;
+  --rose-light:       #FFF1F2;
+  --rose-glow:        rgba(225, 29, 72, 0.18);
+  --rose-border:      rgba(225, 29, 72, 0.28);
+
+  /* ── Active accent (defaults to emerald; overridden per page/section) ── */
+  --primary:          var(--emerald);
+  --primary-hover:    var(--emerald-hover);
+  --primary-light:    var(--emerald-light);
+  --primary-glow:     var(--emerald-glow);
+  --primary-border:   var(--emerald-border);
+
+  /* Legacy aliases kept for existing components */
   --tech-cyan:        #0284C7;
-  --tech-blue:        #2563EB;
-  
-  /* ── Typography & Text Colors ── */
+  --tech-blue:        var(--blue);
+
+  /* ── Typography ── */
   --font-heading:     'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono:        'Space Grotesk', monospace;
@@ -40,10 +84,10 @@
   --text-muted:       #64748B;
   --text-inverse:     #F8FAFC;
 
-  /* ── Badges ── */
-  --badge-bg:         #ECFDF5;
+  /* ── Badges (inherit from primary accent) ── */
+  --badge-bg:         var(--primary-light);
   --badge-text:       #065F46;
-  --badge-border:     rgba(16, 185, 129, 0.25);
+  --badge-border:     var(--primary-border);
 
   /* ── Geometry & Layout ── */
   --radius-xs:        4px;
@@ -62,6 +106,53 @@
   --shadow-lg:        0 10px 25px -5px rgba(15, 23, 42, 0.07), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
   --shadow-card:      0 20px 40px -15px rgba(15, 23, 42, 0.06);
 }
+
+/* ── Page-level accent overrides ──────────────────────
+   Add these classes to <main> or <section> elements
+   and all components that use --primary will pick
+   up the right colour automatically.
+   ──────────────────────────────────────────────────── */
+.accent-violet {
+  --primary:        var(--violet);
+  --primary-hover:  var(--violet-hover);
+  --primary-light:  var(--violet-light);
+  --primary-glow:   var(--violet-glow);
+  --primary-border: var(--violet-border);
+  --badge-bg:       var(--violet-light);
+  --badge-text:     #4C1D95;
+  --badge-border:   var(--violet-border);
+}
+.accent-blue {
+  --primary:        var(--blue);
+  --primary-hover:  var(--blue-hover);
+  --primary-light:  var(--blue-light);
+  --primary-glow:   var(--blue-glow);
+  --primary-border: var(--blue-border);
+  --badge-bg:       var(--blue-light);
+  --badge-text:     #1E3A8A;
+  --badge-border:   var(--blue-border);
+}
+.accent-amber {
+  --primary:        var(--amber);
+  --primary-hover:  var(--amber-hover);
+  --primary-light:  var(--amber-light);
+  --primary-glow:   var(--amber-glow);
+  --primary-border: var(--amber-border);
+  --badge-bg:       var(--amber-light);
+  --badge-text:     #78350F;
+  --badge-border:   var(--amber-border);
+}
+.accent-rose {
+  --primary:        var(--rose);
+  --primary-hover:  var(--rose-hover);
+  --primary-light:  var(--rose-light);
+  --primary-glow:   var(--rose-glow);
+  --primary-border: var(--rose-border);
+  --badge-bg:       var(--rose-light);
+  --badge-text:     #9F1239;
+  --badge-border:   var(--rose-border);
+}
+
 
 /* ── Base ─────────────────────────────────────── */
 html {
