@@ -119,49 +119,65 @@
   letter-spacing: 0.3px;
 }
 
-/* Card Left: Whiteboard session (Portrait) */
+/* Card Left: Whiteboard session (Portrait flush to left edge like Think Company) */
 .think-floating-card.card-left {
-  left: -20px;
-  top: 90px;
-  width: 220px;
-  height: 310px;
-  transform: rotate(-3deg);
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(-1.5deg);
+  width: clamp(160px, 16vw, 240px);
+  height: clamp(240px, 24vw, 360px);
   animation: floatLeft 6s ease-in-out infinite alternate;
+}
+
+.think-floating-card.card-left .think-photo-frame {
+  border-radius: 0 16px 16px 0;
+  border-left: none;
+  height: 100%;
 }
 
 /* Card Top: Pair programming at workstation */
 .think-floating-card.card-top {
-  top: -45px;
+  top: 18px;
   left: 50%;
   transform: translateX(-50%);
-  width: 270px;
-  height: 180px;
+  width: clamp(180px, 18vw, 260px);
+  height: clamp(100px, 10vw, 150px);
   animation: floatTop 7s ease-in-out infinite alternate;
 }
 
-/* Card Right: Team discussion lounge */
+.think-floating-card.card-top .think-photo-frame {
+  height: 100%;
+}
+
+/* Card Right: Team discussion lounge flush to right edge */
 .think-floating-card.card-right {
-  right: -20px;
-  top: 140px;
-  width: 270px;
-  height: 200px;
-  transform: rotate(2.5deg);
+  right: 0;
+  top: 50%;
+  transform: translateY(-45%) rotate(1.5deg);
+  width: clamp(180px, 20vw, 300px);
+  height: clamp(130px, 14vw, 210px);
   animation: floatRight 6.5s ease-in-out infinite alternate;
 }
 
+.think-floating-card.card-right .think-photo-frame {
+  border-radius: 16px 0 0 16px;
+  border-right: none;
+  height: 100%;
+}
+
 @keyframes floatLeft {
-  0% { transform: translateY(0px) rotate(-3deg); }
-  100% { transform: translateY(-12px) rotate(-2deg); }
+  0% { transform: translateY(-50%) rotate(-1.5deg); }
+  100% { transform: translateY(calc(-50% - 10px)) rotate(-0.5deg); }
 }
 
 @keyframes floatTop {
   0% { transform: translateX(-50%) translateY(0px); }
-  100% { transform: translateX(-50%) translateY(-10px); }
+  100% { transform: translateX(-50%) translateY(-8px); }
 }
 
 @keyframes floatRight {
-  0% { transform: translateY(0px) rotate(2.5deg); }
-  100% { transform: translateY(-14px) rotate(3.5deg); }
+  0% { transform: translateY(-45%) rotate(1.5deg); }
+  100% { transform: translateY(calc(-45% - 10px)) rotate(2.5deg); }
 }
 
 /* ── Eyebrow Badge ── */

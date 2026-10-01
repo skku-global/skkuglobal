@@ -47,44 +47,44 @@ export default function Hero() {
         <div className="think-hero-noise" />
       </div>
 
+      {/* ── Surrounding Floating Candid Photos (Think Company Framing) ── */}
+      <div className="think-floating-card card-left animate" aria-hidden="true">
+        <div className="think-photo-frame">
+          <img
+            src="/team/whiteboard.jpg"
+            alt="Systems architecture & code review whiteboard session"
+            className="think-card-img"
+            loading="eager"
+          />
+          <div className="think-card-tag">Architecture &amp; Flow</div>
+        </div>
+      </div>
+
+      <div className="think-floating-card card-top animate" aria-hidden="true">
+        <div className="think-photo-frame">
+          <img
+            src="/team/pairing.jpg"
+            alt="Engineers pair-programming and code auditing"
+            className="think-card-img"
+            loading="eager"
+          />
+          <div className="think-card-tag">Full-Stack Code Audit</div>
+        </div>
+      </div>
+
+      <div className="think-floating-card card-right animate" aria-hidden="true">
+        <div className="think-photo-frame">
+          <img
+            src="/team/lounge.jpg"
+            alt="Software team discussing product strategy and wireframes"
+            className="think-card-img"
+            loading="eager"
+          />
+          <div className="think-card-tag">Roadmap &amp; Strategy</div>
+        </div>
+      </div>
+
       <div className="shell think-hero-shell">
-        {/* ── Surrounding Floating Candid Photos ── */}
-        <div className="think-floating-card card-left animate" aria-hidden="true">
-          <div className="think-photo-frame">
-            <img
-              src="/team/whiteboard.jpg"
-              alt="Systems architecture & code review whiteboard session"
-              className="think-card-img"
-              loading="eager"
-            />
-            <div className="think-card-tag">Architecture &amp; Flow</div>
-          </div>
-        </div>
-
-        <div className="think-floating-card card-top animate" aria-hidden="true">
-          <div className="think-photo-frame">
-            <img
-              src="/team/pairing.jpg"
-              alt="Engineers pair-programming and code auditing"
-              className="think-card-img"
-              loading="eager"
-            />
-            <div className="think-card-tag">Full-Stack Code Audit</div>
-          </div>
-        </div>
-
-        <div className="think-floating-card card-right animate" aria-hidden="true">
-          <div className="think-photo-frame">
-            <img
-              src="/team/lounge.jpg"
-              alt="Software team discussing product strategy and wireframes"
-              className="think-card-img"
-              loading="eager"
-            />
-            <div className="think-card-tag">Roadmap &amp; Strategy</div>
-          </div>
-        </div>
-
         {/* ── Main Typographic Hero Core ── */}
         <div className="think-hero-center">
           <div className="think-hero-eyebrow animate">
