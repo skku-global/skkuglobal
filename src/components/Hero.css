@@ -1,19 +1,28 @@
-/* ── Think Company Aesthetic Hero ────────────────────────────── */
-.think-hero {
+/* ══════════════════════════════════════════════════════════════
+   STRUCT Agency Theme Hero & Philosophy Block
+   Visual Reference: media_1790862238050.png
+   ══════════════════════════════════════════════════════════════ */
+
+.struct-wrapper {
+  background: #000000;
+  color: #FFFFFF;
   position: relative;
   overflow: hidden;
-  background: #080D1A;
-  color: #F8FAFC;
-  padding: 80px 0 70px;
-  min-height: 85vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* ── Atmospheric Canvas & Gradients ── */
-.think-hero-canvas {
+/* ── Hero Section Shell ── */
+.struct-hero {
+  position: relative;
+  min-height: 92vh;
+  padding: 85px 0 50px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #000000;
+}
+
+/* ── Deep Amber / Bronze Ambient Glows ── */
+.struct-ambient-bg {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -21,603 +30,641 @@
   overflow: hidden;
 }
 
-.think-hero-glow {
+.struct-glow-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.35;
+  filter: blur(120px);
 }
 
-.think-hero-glow.glow-top {
-  top: -120px;
+.struct-glow-orb.struct-glow-amber {
+  top: 15%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 700px;
-  height: 400px;
-  background: radial-gradient(circle, #2563EB 0%, #1D4ED8 40%, transparent 70%);
+  transform: translate(-50%, -20%);
+  width: 650px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(255, 115, 0, 0.35) 0%, rgba(217, 83, 0, 0.15) 50%, transparent 75%);
 }
 
-.think-hero-glow.glow-bottom {
-  bottom: -150px;
+.struct-glow-orb.struct-glow-warm {
+  bottom: 5%;
   right: 15%;
-  width: 500px;
-  height: 350px;
-  background: radial-gradient(circle, #FF3823 0%, #B91C1C 40%, transparent 70%);
-  opacity: 0.18;
+  width: 480px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.22) 0%, transparent 65%);
 }
 
-.think-hero-noise {
+.struct-noise-overlay {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
-  background-size: 28px 28px;
-  opacity: 0.6;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 32px 32px;
+  opacity: 0.5;
 }
 
-/* ── Hero Shell & Positioning ── */
-.think-hero-shell {
+/* ── Hero Shell & Asymmetrical Grid ── */
+.struct-hero-shell {
   position: relative;
   z-index: 2;
   width: 100%;
-}
-
-.think-hero-center {
-  position: relative;
-  z-index: 3;
-  max-width: 860px;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+  min-height: 580px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-rows: auto auto;
   align-items: center;
+  gap: 16px 0;
 }
 
-/* ── Floating Candid Photo Cards (Desktop) ── */
-.think-floating-card {
+/* ── Top Left: Main Headline ── */
+.struct-headline-box {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  z-index: 3;
+  padding-bottom: 10px;
+}
+
+.struct-main-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(34px, 4.4vw, 62px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+/* ── Center: Cinematic Silhouette Portrait with Amber Rim Light ── */
+.struct-center-portrait {
   position: absolute;
-  z-index: 1;
-  pointer-events: auto;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -46%);
+  z-index: 2;
+  width: clamp(280px, 32vw, 440px);
+  max-width: 450px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.think-floating-card:hover {
-  transform: translateY(-8px) scale(1.03) !important;
-  z-index: 4;
-}
-
-.think-photo-frame {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05);
-  background: #0F172A;
-}
-
-.think-card-img {
-  display: block;
+.portrait-glow-halo {
+  position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  filter: saturate(1.05) contrast(1.02);
+  background: radial-gradient(circle at 60% 40%, rgba(255, 122, 0, 0.4) 0%, transparent 65%);
+  filter: blur(50px);
+  z-index: 1;
 }
 
-.think-card-tag {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #F8FAFC;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
-  letter-spacing: 0.3px;
+.struct-model-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.9));
+  mask-image: linear-gradient(to bottom, black 80%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 98%);
 }
 
-/* Card Left: Whiteboard session (Portrait flush to left edge like Think Company) */
-.think-floating-card.card-left {
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%) rotate(-1.5deg);
-  width: clamp(160px, 16vw, 240px);
-  height: clamp(240px, 24vw, 360px);
-  animation: floatLeft 6s ease-in-out infinite alternate;
+/* ── Top Right: "FUTURE-READY" Floating Card ── */
+.struct-floating-card.card-future-ready {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  justify-self: end;
+  align-self: start;
+  z-index: 4;
+  margin-top: -20px;
+  width: 100%;
+  max-width: 310px;
 }
 
-.think-floating-card.card-left .think-photo-frame {
-  border-radius: 0 16px 16px 0;
-  border-left: none;
-  height: 100%;
-}
-
-/* Card Top: Pair programming at workstation */
-.think-floating-card.card-top {
-  top: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(180px, 18vw, 260px);
-  height: clamp(100px, 10vw, 150px);
-  animation: floatTop 7s ease-in-out infinite alternate;
-}
-
-.think-floating-card.card-top .think-photo-frame {
-  height: 100%;
-}
-
-/* Card Right: Team discussion lounge flush to right edge */
-.think-floating-card.card-right {
-  right: 0;
-  top: 50%;
-  transform: translateY(-45%) rotate(1.5deg);
-  width: clamp(180px, 20vw, 300px);
-  height: clamp(130px, 14vw, 210px);
-  animation: floatRight 6.5s ease-in-out infinite alternate;
-}
-
-.think-floating-card.card-right .think-photo-frame {
-  border-radius: 16px 0 0 16px;
-  border-right: none;
-  height: 100%;
-}
-
-@keyframes floatLeft {
-  0% { transform: translateY(-50%) rotate(-1.5deg); }
-  100% { transform: translateY(calc(-50% - 10px)) rotate(-0.5deg); }
-}
-
-@keyframes floatTop {
-  0% { transform: translateX(-50%) translateY(0px); }
-  100% { transform: translateX(-50%) translateY(-8px); }
-}
-
-@keyframes floatRight {
-  0% { transform: translateY(-45%) rotate(1.5deg); }
-  100% { transform: translateY(calc(-45% - 10px)) rotate(2.5deg); }
-}
-
-/* ── Eyebrow Badge ── */
-.think-hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.06);
+.future-card-content {
+  background: rgba(18, 18, 20, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 5px 14px;
-  border-radius: 9999px;
+  border-radius: 18px;
+  padding: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  transition: transform 0.25s ease;
+}
+
+.future-card-content:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 122, 0, 0.4);
+}
+
+.future-card-header {
+  margin-bottom: 8px;
+}
+
+.future-badge {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #CBD5E1;
-  margin-bottom: 22px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.think-eyebrow-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 8px #10B981;
-}
-
-/* ── Big Typographic Headline ── */
-.think-hero-headline {
-  font-family: var(--font-heading);
-  font-size: clamp(38px, 6.2vw, 76px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  color: #FFFFFF;
-  margin-bottom: 20px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-}
-
-.think-hero-highlight {
-  color: #FF3823;
-  display: inline-block;
-  position: relative;
-  text-shadow: 0 0 30px rgba(255, 56, 35, 0.35);
-}
-
-/* ── Subtitle ── */
-.think-hero-sub {
-  font-size: clamp(16px, 1.8vw, 18.5px);
-  color: #94A3B8;
-  line-height: 1.65;
-  max-width: 740px;
-  margin-bottom: 32px;
-}
-
-/* ── Interactive "Ask us anything..." Pill ── */
-.think-ask-wrapper {
-  width: 100%;
-  max-width: 520px;
-  margin-bottom: 34px;
-}
-
-.think-ask-pill {
-  width: 100%;
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 32px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  text-align: left;
-}
-
-.think-ask-pill:hover {
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 56, 35, 0.15);
-}
-
-.think-ask-pill.open {
-  border-radius: 20px;
-  border-color: rgba(255, 56, 35, 0.45);
-  box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 56, 35, 0.2);
-  cursor: default;
-}
-
-.ask-pill-input-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
-}
-
-.ask-icon {
-  color: #FF3823;
-  flex-shrink: 0;
-}
-
-.ask-pill-field {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-family: var(--font-body);
-  font-size: 15px;
-  color: #FFFFFF;
-}
-
-.ask-pill-field::placeholder {
-  color: #94A3B8;
-  font-weight: 500;
-}
-
-.ask-pill-hint {
-  font-size: 12px;
-  color: #64748B;
-  font-family: var(--font-mono);
-  background: rgba(255, 255, 255, 0.05);
-  padding: 3px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.ask-pill-close-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: none;
-  color: #CBD5E1;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.ask-pill-close-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: #FFFFFF;
-}
-
-/* Expanded Ask Panel */
-.ask-expand-body {
-  padding: 0 20px 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  margin-top: 4px;
-}
-
-.ask-prompt-chips {
-  padding-top: 14px;
-}
-
-.chips-label {
-  display: block;
-  font-size: 11.5px;
-  color: #64748B;
-  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  color: #FFA34D;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 10px;
 }
 
-.chips-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.future-card-desc {
+  font-size: 12px;
+  color: #A1A1AA;
+  line-height: 1.5;
+  margin-bottom: 14px;
 }
 
-.chip-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  padding: 8px 12px;
-  color: #E2E8F0;
-  font-size: 13px;
-  font-weight: 500;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.chip-btn:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(255, 255, 255, 0.18);
-  color: #FFFFFF;
-  transform: translateX(3px);
-}
-
-.chip-btn.active {
-  background: rgba(255, 56, 35, 0.15);
-  border-color: rgba(255, 56, 35, 0.4);
-  color: #FFA59E;
-}
-
-.ask-answer-box {
-  margin-top: 14px;
-  padding: 14px 16px;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  border-left: 3px solid #FF3823;
-}
-
-.answer-header {
-  font-size: 13.5px;
-  color: #FFFFFF;
-  margin-bottom: 6px;
-}
-
-.answer-text {
-  font-size: 13px;
-  color: #CBD5E1;
-  line-height: 1.55;
-}
-
-.ask-custom-reply {
-  margin-top: 14px;
-  padding: 12px 14px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  font-size: 13px;
-  color: #E2E8F0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.ask-wa-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  align-self: flex-start;
-  padding: 8px 16px;
-  font-size: 12.5px;
-  background: #059669;
-  border: 1px solid #047857;
-  color: #FFFFFF;
-  border-radius: 9999px;
-  text-decoration: none;
-}
-
-.ask-footer-meta {
+.future-card-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 14px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 11.5px;
-  color: #64748B;
-  font-family: var(--font-mono);
-}
-
-.ask-direct-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: #38BDF8;
-  text-decoration: none;
-}
-
-.ask-direct-link:hover {
-  text-decoration: underline;
-}
-
-/* ── Hero Actions ── */
-.think-hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 38px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.think-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 28px;
-  font-size: 15px;
-  font-weight: 700;
-  background: #FF3823;
-  border: 1px solid #E02C18;
-  color: #FFFFFF;
-  border-radius: 9999px;
-  box-shadow: 0 6px 20px rgba(255, 56, 35, 0.35);
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.think-btn-primary:hover {
-  background: #E02C18;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(255, 56, 35, 0.45);
-}
-
-.think-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 26px;
-  font-size: 15px;
-  font-weight: 600;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #F8FAFC;
-  border-radius: 9999px;
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.think-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.28);
-  transform: translateY(-2px);
-}
-
-/* ── Mobile Candid Thumbnails Strip (Hidden on Desktop) ── */
-.think-mobile-gallery {
-  display: none;
   gap: 12px;
-  width: 100%;
-  max-width: 520px;
-  margin-bottom: 32px;
-  justify-content: center;
 }
 
-.mobile-thumb {
-  position: relative;
-  flex: 1;
-  height: 90px;
-  border-radius: 12px;
+.future-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #000000;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.future-pill-btn:hover {
+  background: #FF6B00;
+  border-color: #FF6B00;
+}
+
+.future-thumb-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 122, 0, 0.3);
+  background: #000000;
+  flex-shrink: 0;
 }
 
-.mobile-thumb img {
+.future-thumb-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.mobile-thumb span {
-  position: absolute;
-  bottom: 6px;
-  left: 6px;
-  background: rgba(0, 0, 0, 0.7);
-  font-size: 9.5px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  color: #FFFFFF;
-  font-family: var(--font-mono);
+/* ── Bottom Left: Stacked Floating Cards ── */
+.struct-bottom-left-stack {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  z-index: 4;
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  margin-top: 10px;
 }
 
-/* ── Trust Credential Strip ── */
-.think-trust-strip {
+/* Orange Card: Digital Strategy & Research */
+.struct-orange-card {
+  background: linear-gradient(135deg, #FF7A00 0%, #E05300 100%);
+  border-radius: 18px;
+  padding: 20px 22px;
+  color: #FFFFFF;
+  width: 190px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 16px 36px rgba(234, 88, 12, 0.35);
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.struct-orange-card:hover {
+  transform: translateY(-4px);
+}
+
+.card-dots-row {
+  display: flex;
+  gap: 5px;
+}
+
+.card-dots-row .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.orange-card-title {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+}
+
+/* White Glass Card: Full-Cycle */
+.struct-fullcycle-card {
+  background: #FFFFFF;
+  color: #0F172A;
+  border-radius: 18px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 310px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  transition: transform 0.25s ease;
+}
+
+.struct-fullcycle-card:hover {
+  transform: translateY(-4px);
+}
+
+.fullcycle-text {
+  flex: 1;
+}
+
+.fullcycle-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #0F172A;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.fullcycle-desc {
+  font-size: 11.5px;
+  color: #475569;
+  line-height: 1.45;
+  margin: 0 0 8px 0;
+}
+
+.fullcycle-link {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #0F172A;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.fullcycle-action-thumb {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+}
+
+.fullcycle-art-preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000000;
+}
+
+.fullcycle-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fullcycle-arrow-circle {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #000000;
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  width: 100%;
-  max-width: 780px;
 }
 
-.think-trust-item {
+/* ── Bottom Right: Massive Typography & CTA ── */
+.struct-bottom-right-anchor {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  justify-self: end;
+  align-self: end;
+  z-index: 4;
+}
+
+.struct-agency-callout {
+  text-align: right;
+}
+
+.agency-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 16px;
+  line-height: 0.9;
+}
+
+.agency-bold-text {
+  font-family: var(--font-heading);
+  font-size: clamp(52px, 7vw, 104px);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #FFFFFF;
+  text-transform: lowercase;
+}
+
+.struct-start-project-btn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  justify-content: center;
+  background: linear-gradient(135deg, #FF7A00 0%, #FF5100 100%);
+  color: #FFFFFF;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(255, 122, 0, 0.45);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  vertical-align: middle;
+  transform: translateY(-8px);
+}
+
+.struct-start-project-btn:hover {
+  background: linear-gradient(135deg, #FF8C1A 0%, #FF6014 100%);
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(255, 122, 0, 0.6);
+}
+
+.agency-subline-text {
+  font-family: var(--font-heading);
+  font-size: clamp(52px, 7vw, 104px);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #FFFFFF;
+  text-transform: lowercase;
+  line-height: 0.85;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PHILOSOPHY INTRODUCTORY BLOCK (01/ philosophy)
+   ══════════════════════════════════════════════════════════════ */
+.struct-philosophy-section {
+  background: #000000;
+  color: #FFFFFF;
+  padding: 100px 0 120px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.struct-philosophy-shell {
+  display: grid;
+  grid-template-columns: 0.85fr 1.35fr;
+  gap: 72px;
+  align-items: start;
+}
+
+/* Left Column: Number & Manifesto */
+.philosophy-col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.philosophy-number-tag {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #FF7A00;
+  letter-spacing: 0.08em;
+}
+
+.philosophy-manifesto h4 {
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.philosophy-manifesto p {
+  font-size: 13.5px;
+  color: #71717A;
+  line-height: 1.65;
+  max-width: 320px;
+  margin: 0;
+}
+
+/* Right Column: Statement & Visual Cards */
+.philosophy-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.philosophy-headline {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.struct-amber-text {
+  color: #FF7A00;
+  font-weight: 600;
+}
+
+/* Visual Cards Grid */
+.philosophy-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.philosophy-image-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 250px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+.philosophy-corridor-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.corridor-ambient-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
+  pointer-events: none;
+}
+
+.philosophy-white-card {
+  background: #FFFFFF;
+  color: #0F172A;
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.white-card-dots {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.white-card-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.white-card-dots .dot.dark { background: #0F172A; }
+.white-card-dots .dot.orange { background: #FF7A00; }
+
+.white-card-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0F172A;
+  margin-bottom: 10px;
+}
+
+.white-card-desc {
   font-size: 13px;
-  color: #94A3B8;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
 }
 
-.think-trust-item strong {
-  color: #F8FAFC;
+.white-card-footer {
+  padding-top: 12px;
+  border-top: 1px solid #E2E8F0;
 }
 
-.think-trust-item .trust-icon {
-  color: #10B981;
+.white-card-spec {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #FF7A00;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-/* ── Responsive Adjustments ── */
-@media (max-width: 1280px) {
-  .think-floating-card.card-left {
-    left: 8px;
-    width: 190px;
-    height: 270px;
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN (Matching Mobile Adaptation in Mockup)
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 1080px) {
+  .struct-hero-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 32px;
+    min-height: auto;
   }
-  .think-floating-card.card-right {
-    right: 8px;
-    width: 220px;
-    height: 170px;
-  }
-  .think-floating-card.card-top {
-    width: 220px;
-    height: 150px;
-    top: -30px;
-  }
-}
 
-@media (max-width: 1040px) {
-  /* Hide floating cards when screen narrows to prevent overlap with headline */
-  .think-floating-card {
-    display: none;
+  .struct-headline-box {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    padding-bottom: 0;
+    text-align: center;
   }
-  .think-mobile-gallery {
-    display: flex;
+
+  .struct-center-portrait {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 420px;
   }
-  .think-hero {
-    padding: 60px 0 50px;
+
+  .struct-floating-card.card-future-ready {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    justify-self: center;
+    margin-top: 0;
+  }
+
+  .struct-bottom-left-stack {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    justify-content: center;
+    margin-top: 0;
+    flex-wrap: wrap;
+  }
+
+  .struct-bottom-right-anchor {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .agency-title-row {
+    justify-content: center;
+  }
+
+  .struct-philosophy-shell {
+    grid-template-columns: 1fr;
+    gap: 48px;
   }
 }
 
 @media (max-width: 640px) {
-  .think-hero-headline {
-    font-size: 34px;
+  .struct-hero {
+    padding: 90px 0 60px;
   }
-  .think-hero-sub {
-    font-size: 15.5px;
+
+  .struct-main-heading {
+    font-size: 36px;
   }
-  .think-hero-actions {
-    flex-direction: column;
+
+  .struct-orange-card {
     width: 100%;
+    height: auto;
+    padding: 16px;
   }
-  .think-btn-primary, .think-btn-secondary {
+
+  .struct-fullcycle-card {
     width: 100%;
-    justify-content: center;
+    max-width: 100%;
   }
-  .think-trust-strip {
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-    padding-left: 12px;
+
+  .agency-bold-text, .agency-subline-text {
+    font-size: 54px;
+  }
+
+  .struct-start-project-btn {
+    font-size: 12px;
+    padding: 10px 18px;
+  }
+
+  .philosophy-cards-grid {
+    grid-template-columns: 1fr;
   }
 }

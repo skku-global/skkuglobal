@@ -1,263 +1,193 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { LuSearch, LuArrowRight, LuSparkles, LuCheck, LuX, LuShieldCheck, LuZap, LuBuilding2, LuMessageSquare } from 'react-icons/lu'
+import { LuArrowUpRight, LuArrowRight, LuSparkles, LuCheck, LuShieldCheck, LuZap } from 'react-icons/lu'
 import { FaWhatsapp } from 'react-icons/fa6'
 import { waLink } from '../seo/siteMeta.js'
 import './Hero.css'
 
-const FAQ_PROMPTS = [
-  {
-    q: 'How fast can you deliver my website?',
-    a: '5–7 business days for custom company websites, luxury e-commerce, and client platforms — fully responsive and SEO optimized.'
-  },
-  {
-    q: 'What does SecuScan test on my site?',
-    a: 'SecuScan runs automated OWASP Top 10 audits, security headers (CSP, HSTS), SSL TLS posture, and exposed endpoint vulnerability checks.'
-  },
-  {
-    q: 'Can I work directly with the founder?',
-    a: 'Yes. Abdulkabir (Lead Systems Architect) personally designs your database, writes your core logic, and conducts the pre-launch audit.'
-  },
-  {
-    q: 'How does project payment work?',
-    a: 'We use a transparent 50/50 milestone model: 50% deposit on contract kickoff, 50% upon completed deployment and approval.'
-  }
-]
-
 export default function Hero() {
-  const [askOpen, setAskOpen] = useState(false)
-  const [customQuestion, setCustomQuestion] = useState('')
-  const [selectedFaq, setSelectedFaq] = useState(null)
-
-  const handleSelectFaq = (faq) => {
-    setSelectedFaq(faq)
-  }
-
-  const handleClear = () => {
-    setSelectedFaq(null)
-    setCustomQuestion('')
-  }
-
   return (
-    <section className="think-hero" id="top" aria-label="Hero Introduction">
-      {/* ── Atmospheric Canvas & Grid Overlay ── */}
-      <div className="think-hero-canvas" aria-hidden="true">
-        <div className="think-hero-glow glow-top" />
-        <div className="think-hero-glow glow-bottom" />
-        <div className="think-hero-noise" />
-      </div>
-
-      {/* ── Surrounding Floating Candid Photos (Think Company Framing) ── */}
-      <div className="think-floating-card card-left animate" aria-hidden="true">
-        <div className="think-photo-frame">
-          <img
-            src="/team/whiteboard.jpg"
-            alt="Systems architecture & code review whiteboard session"
-            className="think-card-img"
-            loading="eager"
-          />
-          <div className="think-card-tag">Architecture &amp; Flow</div>
+    <div className="struct-wrapper">
+      {/* ══════════════════════════════════════════════════════════════
+          HERO SECTION (STRUCT Agency Reference)
+          ══════════════════════════════════════════════════════════════ */}
+      <section className="struct-hero" id="top" aria-label="STRUCT Hero Introduction">
+        {/* Deep Dark Ambient Canvas & Warm Glows */}
+        <div className="struct-ambient-bg" aria-hidden="true">
+          <div className="struct-glow-orb struct-glow-amber" />
+          <div className="struct-glow-orb struct-glow-warm" />
+          <div className="struct-noise-overlay" />
         </div>
-      </div>
 
-      <div className="think-floating-card card-top animate" aria-hidden="true">
-        <div className="think-photo-frame">
-          <img
-            src="/team/pairing.jpg"
-            alt="Engineers pair-programming and code auditing"
-            className="think-card-img"
-            loading="eager"
-          />
-          <div className="think-card-tag">Full-Stack Code Audit</div>
-        </div>
-      </div>
-
-      <div className="think-floating-card card-right animate" aria-hidden="true">
-        <div className="think-photo-frame">
-          <img
-            src="/team/lounge.jpg"
-            alt="Software team discussing product strategy and wireframes"
-            className="think-card-img"
-            loading="eager"
-          />
-          <div className="think-card-tag">Roadmap &amp; Strategy</div>
-        </div>
-      </div>
-
-      <div className="shell think-hero-shell">
-        {/* ── Main Typographic Hero Core ── */}
-        <div className="think-hero-center">
-          <div className="think-hero-eyebrow animate">
-            <span className="think-eyebrow-dot" aria-hidden="true" />
-            <span>SKKU GLOBAL · SOFTWARE ENGINEERING &amp; SECURITY</span>
+        <div className="shell struct-hero-shell">
+          {/* ── Top Left: Main Headline ── */}
+          <div className="struct-headline-box animate">
+            <h1 className="struct-main-heading">
+              Design That<br />
+              Reveals The True<br />
+              Essence Of Your<br />
+              Brand
+            </h1>
           </div>
 
-          <h1 className="think-hero-headline animate animate-delay-1">
-            We’re the engineers<br />
-            <span className="think-hero-highlight">you want in the room.</span>
-          </h1>
+          {/* ── Center: Cinematic Silhouette Portrait with Amber Rim Light ── */}
+          <div className="struct-center-portrait animate animate-delay-1">
+            <div className="portrait-glow-halo" aria-hidden="true" />
+            <img
+              src="/struct/hero-portrait.jpg"
+              alt="SKKU Global — Modern Digital Engineering"
+              className="struct-model-img"
+              loading="eager"
+            />
+          </div>
 
-          <p className="think-hero-sub animate animate-delay-2">
-            SKKU Global is a team of full-stack engineers and security architects who partner with ambitious businesses navigating real complexity — to work through the hard stuff, find what needs solving, and build what works.
-          </p>
-
-          {/* ── Interactive "Ask us anything..." Pill ── */}
-          <div className="think-ask-wrapper animate animate-delay-2">
-            <div
-              className={`think-ask-pill ${askOpen ? 'open' : ''}`}
-              onClick={() => !askOpen && setAskOpen(true)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setAskOpen(true)}
-              aria-label="Ask us anything about our engineering services"
-            >
-              <div className="ask-pill-input-row">
-                <LuSearch className="ask-icon" aria-hidden="true" size={17} />
-                <input
-                  type="text"
-                  placeholder="Ask us anything..."
-                  value={customQuestion}
-                  onChange={(e) => {
-                    setCustomQuestion(e.target.value)
-                    if (!askOpen) setAskOpen(true)
-                  }}
-                  onFocus={() => setAskOpen(true)}
-                  className="ask-pill-field"
-                  aria-label="Ask a question about timelines, audits, or pricing"
-                />
-                {askOpen ? (
-                  <button
-                    type="button"
-                    className="ask-pill-close-btn"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      setAskOpen(false)
-                      handleClear()
-                    }}
-                    aria-label="Close question dialog"
-                  >
-                    <LuX size={15} />
-                  </button>
-                ) : (
-                  <span className="ask-pill-hint">Press to explore</span>
-                )}
+          {/* ── Top Right: "FUTURE-READY" Floating Card ── */}
+          <div className="struct-floating-card card-future-ready animate animate-delay-2">
+            <div className="future-card-content">
+              <div className="future-card-header">
+                <span className="future-badge">FUTURE-READY</span>
               </div>
+              <p className="future-card-desc">
+                Integrating advanced AI solutions and high-end design to keep your brand ahead of the digital wave.
+              </p>
+              <div className="future-card-bottom">
+                <a
+                  href={waLink("Hello SKKU Global, I want to book a consultation for a future-ready website/platform.")}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="future-pill-btn"
+                >
+                  <span>Consultation</span>
+                  <LuArrowUpRight size={13} aria-hidden="true" />
+                </a>
+                <div className="future-thumb-box">
+                  <img
+                    src="/struct/future-avatar.jpg"
+                    alt="Futuristic AI wireframe visual"
+                    className="future-thumb-img"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
-              {/* Expanded Prompt Panel */}
-              {askOpen && (
-                <div className="ask-expand-body" onClick={(e) => e.stopPropagation()}>
-                  <div className="ask-prompt-chips">
-                    <span className="chips-label">Popular client questions:</span>
-                    <div className="chips-list">
-                      {FAQ_PROMPTS.map((item, idx) => (
-                        <button
-                          key={idx}
-                          type="button"
-                          className={`chip-btn ${selectedFaq?.q === item.q ? 'active' : ''}`}
-                          onClick={() => handleSelectFaq(item)}
-                        >
-                          <LuSparkles size={12} aria-hidden="true" />
-                          <span>{item.q}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+          {/* ── Bottom Left: Stacked Floating Cards ── */}
+          <div className="struct-bottom-left-stack animate animate-delay-2">
+            {/* Orange Card: Digital Strategy & Research */}
+            <div className="struct-orange-card">
+              <div className="card-dots-row">
+                <span className="dot" /><span className="dot" /><span className="dot" />
+              </div>
+              <div className="orange-card-title">
+                DIGITAL<br />
+                STRATEGY &amp;<br />
+                RESEARCH
+              </div>
+            </div>
 
-                  {selectedFaq && (
-                    <div className="ask-answer-box">
-                      <div className="answer-header">
-                        <strong>{selectedFaq.q}</strong>
-                      </div>
-                      <p className="answer-text">{selectedFaq.a}</p>
-                    </div>
-                  )}
-
-                  {customQuestion.trim().length > 0 && !selectedFaq && (
-                    <div className="ask-custom-reply">
-                      <p>Have specific requirements for &ldquo;{customQuestion}&rdquo;?</p>
-                      <a
-                        href={waLink(`Hello SKKU Global, I have a question about my project: "${customQuestion}". Can we discuss?`)}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="btn-primary ask-wa-action"
-                      >
-                        <FaWhatsapp size={15} aria-hidden="true" />
-                        <span>Ask Abdulkabir on WhatsApp</span>
-                      </a>
-                    </div>
-                  )}
-
-                  <div className="ask-footer-meta">
-                    <span>⚡ Founder response time: &lt; 15 mins on WhatsApp</span>
-                    <a
-                      href={waLink("Hello Abdulkabir, I'd like a direct consultation for my business website/software.")}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="ask-direct-link"
-                    >
-                      <span>Direct Chat</span>
-                      <LuArrowRight size={13} aria-hidden="true" />
-                    </a>
+            {/* White Glass Card: Full-Cycle */}
+            <div className="struct-fullcycle-card">
+              <div className="fullcycle-text">
+                <span className="fullcycle-badge">FULL-CYCLE</span>
+                <p className="fullcycle-desc">
+                  From deep-rooted strategy to flawless code. We build the core of your digital success.
+                </p>
+                <Link to="/services" className="fullcycle-link">
+                  <span>View services</span>
+                </Link>
+              </div>
+              <div className="fullcycle-action-thumb">
+                <div className="fullcycle-art-preview">
+                  <img
+                    src="/struct/future-avatar.jpg"
+                    alt="Full-cycle preview"
+                    className="fullcycle-art-img"
+                  />
+                  <div className="fullcycle-arrow-circle">
+                    <LuArrowRight size={13} />
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
 
-          {/* ── Action Buttons ── */}
-          <div className="think-hero-actions animate animate-delay-3">
-            <a
-              href={waLink('Hello SKKU Global, I want to discuss building a website or custom software for my business. Can we talk about requirements and pricing?')}
-              target="_blank"
-              rel="noreferrer"
-              className="think-btn-primary"
-            >
-              <FaWhatsapp size={18} aria-hidden="true" />
-              <span>Chat on WhatsApp</span>
-            </a>
-            <Link to="/work" className="think-btn-secondary">
-              <span>View Case Studies</span>
-              <LuArrowRight size={15} aria-hidden="true" />
-            </Link>
-          </div>
-
-          {/* ── Bottom Mobile Candid Gallery (Shown on small viewports) ── */}
-          <div className="think-mobile-gallery" aria-label="Team in action">
-            <div className="mobile-thumb">
-              <img src="/team/whiteboard.jpg" alt="Architecture whiteboard" />
-              <span>Architecture</span>
-            </div>
-            <div className="mobile-thumb">
-              <img src="/team/pairing.jpg" alt="Pair programming" />
-              <span>Security Audit</span>
-            </div>
-            <div className="mobile-thumb">
-              <img src="/team/lounge.jpg" alt="Strategy roadmap" />
-              <span>Strategy</span>
-            </div>
-          </div>
-
-          {/* ── Trust Credential Strip ── */}
-          <div className="think-trust-strip animate animate-delay-4">
-            <div className="think-trust-item">
-              <LuBuilding2 size={14} className="trust-icon" aria-hidden="true" />
-              <span>CAC Registered: <strong>RC 7306232</strong></span>
-            </div>
-            <div className="think-trust-item">
-              <LuZap size={14} className="trust-icon" aria-hidden="true" />
-              <span>Fast <strong>5–7 Day</strong> Turnaround</span>
-            </div>
-            <div className="think-trust-item">
-              <LuShieldCheck size={14} className="trust-icon" aria-hidden="true" />
-              <span>Built-in <strong>SecuScan</strong> Audit</span>
-            </div>
-            <div className="think-trust-item">
-              <LuMessageSquare size={14} className="trust-icon" aria-hidden="true" />
-              <span>Direct <strong>Lead Architect</strong> Access</span>
+          {/* ── Bottom Right: Massive Typography & CTA ── */}
+          <div className="struct-bottom-right-anchor animate animate-delay-3">
+            <div className="struct-agency-callout">
+              <div className="agency-title-row">
+                <span className="agency-bold-text">digital</span>
+                <a
+                  href={waLink("Hello SKKU Global, I'm ready to start a project. Let's discuss requirements and get a quote.")}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="struct-start-project-btn"
+                >
+                  <span>Start a Project</span>
+                </a>
+              </div>
+              <div className="agency-subline-text">agency</div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          PHILOSOPHY INTRODUCTORY BLOCK (STRUCT Reference Section 01)
+          ══════════════════════════════════════════════════════════════ */}
+      <section className="struct-philosophy-section" aria-label="Agency Philosophy">
+        <div className="shell struct-philosophy-shell">
+          {/* Left Column: Number & Manifesto */}
+          <div className="philosophy-col-left animate">
+            <span className="philosophy-number-tag">01/ philosophy</span>
+
+            <div className="philosophy-manifesto">
+              <h4>DECONSTRUCT.<br />STRUCTURE. ELEVATE.</h4>
+              <p>
+                We strip away the digital noise to find the core of your business. By structuring chaos into logic and UI/UX, we create digital ecosystems that command authority and drive growth.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Column: Statement & Visual Cards */}
+          <div className="philosophy-col-right animate animate-delay-1">
+            <h2 className="philosophy-headline">
+              We don&apos;t just draw interfaces.{' '}
+              <span className="struct-amber-text">We build the invisible architecture</span>{' '}
+              that supports your brand&apos;s growth. Engineering aesthetics for visionaries.
+            </h2>
+
+            {/* Visual Cards Row */}
+            <div className="philosophy-cards-grid">
+              {/* Card 1: Warm Golden Corridor Image */}
+              <div className="philosophy-image-card">
+                <img
+                  src="/struct/gold-corridor.jpg"
+                  alt="Futuristic architectural illuminated corridor"
+                  className="philosophy-corridor-img"
+                  loading="lazy"
+                />
+                <div className="corridor-ambient-vignette" />
+              </div>
+
+              {/* Card 2: White Zero Templates Card */}
+              <div className="philosophy-white-card">
+                <div className="white-card-dots">
+                  <span className="dot dark" />
+                  <span className="dot orange" />
+                  <span className="dot orange" />
+                </div>
+                <h3 className="white-card-title">Zero Templates</h3>
+                <p className="white-card-desc">
+                  We design from absolute scratch. Every digital system by SKKU Global is custom-crafted to your business objectives, creating a distinctive market presence that cannot be replicated.
+                </p>
+                <div className="white-card-footer">
+                  <span className="white-card-spec">100% Custom Engineering</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
