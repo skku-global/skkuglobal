@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { LuArrowRight, LuBrain, LuZap, LuEye, LuCode2 } from 'react-icons/lu'
+import { LuArrowRight, LuBrain, LuZap, LuEye, LuCode } from 'react-icons/lu'
 import './AiSection.css'
 
 const FEATURES = [
@@ -19,7 +19,7 @@ const FEATURES = [
     copy: 'Continuous scans after launch. Your stack stays clean over time.',
   },
   {
-    icon: LuCode2,
+    icon: LuCode,
     label: 'Works With Anything',
     copy: 'React, Next.js, Node, Django, raw PHP — one tool, every stack.',
   },
