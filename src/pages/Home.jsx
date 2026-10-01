@@ -1,5 +1,6 @@
 import Hero from '../components/Hero'
 import ScrollCapability from '../components/ScrollCapability'
+import AiSection from '../components/AiSection'
 import Projects from '../components/Projects'
 import WhyGetAWebsite from '../components/WhyGetAWebsite'
 import Stats from '../components/Stats'
@@ -15,6 +16,7 @@ export default function Home() {
       <Seo route="/" />
       <Hero />
       <ScrollCapability />
+      <AiSection />
       <Projects isHome={true} limit={2} />
       <WhyGetAWebsite />
 
