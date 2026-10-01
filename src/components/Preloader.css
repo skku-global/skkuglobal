@@ -1,0 +1,252 @@
+/* ── Fullscreen Cinematic Brand Preloader ─────────────────── */
+.brand-preloader-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: #070B14;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.5s ease;
+  will-change: transform;
+}
+
+.brand-preloader-curtain.is-exiting {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+/* ── Ambient Background Glows ── */
+.preloader-bg-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.preloader-glow-orb.glow-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, rgba(37, 99, 235, 0.12) 40%, transparent 70%);
+  filter: blur(80px);
+  animation: orbPulse 3s ease-in-out infinite alternate;
+}
+
+.preloader-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 32px 32px;
+  opacity: 0.7;
+}
+
+@keyframes orbPulse {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.85; }
+}
+
+/* ── Centered Content ── */
+.preloader-content-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px;
+}
+
+/* ── Animated Monogram Emblem ── */
+.preloader-monogram-container {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  animation: monogramAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.monogram-glow-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%);
+  filter: blur(8px);
+  animation: ringPulse 2s ease-in-out infinite alternate;
+}
+
+.preloader-monogram-img {
+  position: relative;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.6));
+}
+
+@keyframes monogramAppear {
+  0% { transform: scale(0.6) rotate(-10deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes ringPulse {
+  0% { transform: scale(0.85); opacity: 0.4; }
+  100% { transform: scale(1.2); opacity: 0.9; }
+}
+
+/* ── Staggered Letter Reveal for Company Name ── */
+.preloader-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.preloader-letter-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.preloader-letter {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 5.5vw, 56px);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  line-height: 1;
+  transform: translateY(115%);
+  opacity: 0;
+  animation: letterRise 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.preloader-letter-space {
+  display: inline-block;
+  width: clamp(14px, 2.5vw, 24px);
+}
+
+@keyframes letterRise {
+  0% {
+    transform: translateY(115%) rotateX(45deg);
+    opacity: 0;
+    filter: blur(4px);
+  }
+  100% {
+    transform: translateY(0%) rotateX(0deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+/* ── Subtitle Row ── */
+.preloader-sub-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInSub 0.6s ease 0.45s forwards;
+  margin-bottom: 28px;
+}
+
+.preloader-subtext {
+  font-family: var(--font-mono);
+  font-size: clamp(10.5px, 1.4vw, 13px);
+  font-weight: 700;
+  color: #94A3B8;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.preloader-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+}
+
+@keyframes fadeInSub {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Animated Progress Bar ── */
+.preloader-progress-track {
+  width: 220px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.preloader-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #10B981 0%, #06B6D4 60%, #3B82F6 100%);
+  border-radius: 9999px;
+  box-shadow: 0 0 12px #10B981;
+  animation: progressFill 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+
+@keyframes progressFill {
+  0% { width: 0%; }
+  40% { width: 45%; }
+  75% { width: 85%; }
+  100% { width: 100%; }
+}
+
+/* ── Top Bar for Fast Subsequent Route Navigations ── */
+.route-loader-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #10B981 0%, #06B6D4 50%, #3B82F6 100%);
+  z-index: 999999;
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+}
+
+.route-loader-bar.running {
+  animation: routeProgress 0.4s ease-out forwards;
+}
+
+@keyframes routeProgress {
+  0% { transform: translateX(-100%); opacity: 1; }
+  60% { transform: translateX(-15%); opacity: 1; }
+  100% { transform: translateX(0%); opacity: 0; }
+}
+
+/* ── Responsive Mobile ── */
+@media (max-width: 640px) {
+  .preloader-progress-track {
+    width: 170px;
+  }
+  .preloader-monogram-container {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 18px;
+  }
+  .preloader-subtext {
+    letter-spacing: 0.14em;
+    font-size: 10px;
+  }
+}
