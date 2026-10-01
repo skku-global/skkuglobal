@@ -5,7 +5,7 @@ import Seo from '../components/Seo'
 
 export default function AboutPage() {
   return (
-    <main id="main" className="page-enter">
+    <main id="main" className="page-enter about-page-wrapper" style={{ background: '#FFFFFF', minHeight: '100vh' }}>
       <Seo route="/about" />
       <AboutHero />
       <About />
