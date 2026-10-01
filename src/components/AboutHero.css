@@ -1,0 +1,273 @@
+/* ── AboutHero ──────────────────────────────────────────────────────────────
+   Cinematic dark hero for the About page.
+   Full viewport height, split left/right layout.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@keyframes ah-float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes ah-pulse-ring {
+  0%   { opacity: 0.5; transform: scale(1); }
+  70%  { opacity: 0;   transform: scale(1.12); }
+  100% { opacity: 0;   transform: scale(1.12); }
+}
+
+@keyframes ah-glow-breathe {
+  0%, 100% { box-shadow: 0 0 60px 20px rgba(5, 150, 105, 0.25); }
+  50%       { box-shadow: 0 0 100px 40px rgba(5, 150, 105, 0.45); }
+}
+
+/* ── Section shell ── */
+.ah-hero {
+  position: relative;
+  min-height: 100vh;
+  background: #0A0D0F;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Noise grain texture */
+.ah-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ambient colour wash */
+.ah-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: 0;
+  width: 55%;
+  height: 90%;
+  background: radial-gradient(ellipse at 75% 60%, rgba(5, 150, 105, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Top bar ── */
+.ah-topbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.ah-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.ah-back:hover { color: rgba(255, 255, 255, 0.85); }
+
+.ah-back-dot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.ah-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.ah-bc-sep { color: rgba(255, 255, 255, 0.2); }
+
+.ah-bc-name { color: rgba(255, 255, 255, 0.65); }
+
+/* ── Body split ── */
+.ah-body {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding-bottom: 80px;
+}
+
+/* ── Left: text ── */
+.ah-text {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.ah-heading {
+  font-size: clamp(44px, 6vw, 84px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+
+.ah-heading-light {
+  color: #FFFFFF;
+}
+
+.ah-heading-dim {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.ah-bio {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.72;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 480px;
+  margin: 0;
+}
+
+.ah-meta {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.ah-location {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.ah-location-dot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 8px 2px rgba(5, 150, 105, 0.6);
+  flex-shrink: 0;
+}
+
+/* ── Right: portrait ── */
+.ah-portrait-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ah-float 6s ease-in-out infinite;
+}
+
+/* Glowing ring — outer (pulsing) */
+.ah-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ah-ring--outer {
+  width: 420px;
+  height: 420px;
+  border: 1.5px solid rgba(5, 150, 105, 0.2);
+  animation: ah-pulse-ring 3.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+.ah-ring--inner {
+  width: 360px;
+  height: 360px;
+  border: 2px solid rgba(5, 150, 105, 0.4);
+}
+
+/* Portrait circle */
+.ah-portrait-circle {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  animation: ah-glow-breathe 4s ease-in-out infinite;
+  border: 2.5px solid rgba(5, 150, 105, 0.5);
+  flex-shrink: 0;
+}
+
+.ah-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ── Scroll indicator ── */
+.ah-scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  right: 48px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.28);
+  writing-mode: initial;
+}
+
+.ah-scroll-line {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .ah-body {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 56px;
+    padding-top: 24px;
+  }
+
+  .ah-text { order: 2; }
+  .ah-portrait-wrap { order: 1; }
+
+  .ah-bio { margin: 0 auto; }
+  .ah-meta { justify-content: center; }
+
+  .ah-portrait-circle { width: 240px; height: 240px; }
+  .ah-ring--outer { width: 310px; height: 310px; }
+  .ah-ring--inner { width: 270px; height: 270px; }
+
+  .ah-scroll-hint { display: none; }
+}
+
+@media (max-width: 480px) {
+  .ah-heading { font-size: 38px; }
+  .ah-portrait-circle { width: 200px; height: 200px; }
+  .ah-ring--outer { width: 260px; height: 260px; }
+  .ah-ring--inner { width: 226px; height: 226px; }
+}
