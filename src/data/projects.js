@@ -128,6 +128,9 @@ export const projects = [
   {
     id: 'carbreezy',
     title: 'CarBreezy — Automotive Marketplace',
+    clientName: 'CarBreezy',
+    editorialHeadline: 'Vehicle buyers face opaque dealer pricing and fragmented listings. Now one verified platform streamlines vehicle inspections and instant WhatsApp inquiries.',
+    architectQuote: 'High-performance Vite/React catalog with fast client-side faceted filtering and responsive inspection reports.',
     badge: 'Live Platform',
     featured: true,
     category: 'Marketplace Platform',
@@ -188,6 +191,9 @@ export const projects = [
   {
     id: 'junicash',
     title: 'JuniCash — Personal Finance & Digital Wallet',
+    clientName: 'JuniCash',
+    editorialHeadline: 'Traditional digital wallets overwhelm users with rigid legacy screens. Now one intuitive portal powers secure transfers, OTP auth, and transaction tracking.',
+    architectQuote: 'Full-stack Express and MongoDB backend paired with Resend email OTP authentication and cryptographic JWT session management.',
     badge: 'Full-Stack Fintech',
     featured: true,
     category: 'Fintech & Wallet',

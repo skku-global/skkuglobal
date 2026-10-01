@@ -13,12 +13,12 @@ export default function Work() {
       {/* Page Hero */}
       <section className="page-hero">
         <div className="shell">
-          <div className="section-label animate">CASE STUDIES</div>
-          <h1 className="animate animate-delay-1">
-            Case Studies &amp; <span className="gradient-text">Live Deployments</span>
+          <div className="section-label animate">PRODUCTION PORTFOLIO</div>
+          <h1 className="animate animate-delay-1" style={{ fontSize: 'clamp(42px, 6vw, 76px)', letterSpacing: '-0.04em', marginBottom: '8px' }}>
+            Our Work
           </h1>
-          <p className="animate animate-delay-2">
-            Explore live software systems engineered and deployed by SKKU Global.
+          <p className="animate animate-delay-2" style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: 'clamp(22px, 3vw, 36px)', color: 'var(--text-primary)', fontStyle: 'italic', marginBottom: '24px' }}>
+            We solve the problems worth solving.
           </p>
 
           {/* ── High-Converting Project Pitch Banner ── */}
