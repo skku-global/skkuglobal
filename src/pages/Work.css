@@ -7,9 +7,9 @@
    ══════════════════════════════════════════════════════════════════ */
 
 .work-page-main {
-  background-color: #ffffff;
+  background-color: #000000;
   min-height: 100vh;
-  padding-top: 100px;
+  padding-top: 76px;
   color: #FFFFFF;
   font-family: var(--font-sans, -apple-system, sans-serif);
   overflow-x: hidden;
@@ -17,9 +17,10 @@
 
 /* ── 1. Top Header ── */
 .work-page-hero {
-  padding: 60px 0 50px;
-  background-color: #fcfcff;
+  padding: 24px 0 36px;
+  background-color: #ffffff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color:#FFFFFF
 }
 
 .work-hero-container {
