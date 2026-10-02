@@ -60,14 +60,6 @@
   color: var(--black-pure, #000000);
 }
 
-.footer-logo-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--accent-violet, #6E2CF3);
-  margin-bottom: 3px;
-}
-
 .skku-footer-tagline {
   font-size: 13.5px;
   line-height: 1.55;

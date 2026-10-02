@@ -30,7 +30,6 @@ export default function PushMenu({ isOpen, onClose }) {
           <div className="push-header-col-center">
             <div className="push-brand-static" aria-label="SKKU Global">
               <span className="push-brand-text">SKKU</span>
-              <span className="push-brand-dot" />
             </div>
           </div>
 

@@ -78,14 +78,6 @@
   color: #FFFFFF;
 }
 
-.push-brand-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-violet, #6E2CF3);
-  margin-bottom: 4px;
-}
-
 /* Right: Menu text + circular close button (X) */
 .push-header-col-right {
   display: flex;

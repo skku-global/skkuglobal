@@ -14,7 +14,6 @@ export default function Footer() {
           <div className="skku-footer-brand">
             <div className="skku-footer-logo" aria-label="SKKU Global">
               <span className="footer-logo-text">SKKU</span>
-              <span className="footer-logo-dot" />
             </div>
             <p className="skku-footer-tagline">
               Thoughtful digital systems engineered for brands that refuse to blend in. CAC RC 7306232.

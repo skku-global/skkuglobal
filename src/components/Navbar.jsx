@@ -26,7 +26,6 @@ export default function Navbar({ onOpen, isHidden }) {
         <div className="skku-header-col-center">
           <div className="skku-brand-static" aria-label="SKKU Global">
             <span className="skku-brand-text">SKKU</span>
-            <span className="skku-brand-dot" />
           </div>
         </div>
 
