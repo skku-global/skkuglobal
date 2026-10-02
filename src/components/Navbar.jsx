@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NavLink, Link, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { ArrowRight, Menu, X } from 'lucide-react'
 import './Navbar.css'
 
@@ -48,15 +48,15 @@ export default function Navbar() {
         {/* Mobile Spacer (keeps logo centered on mobile) */}
         <div className="mobile-grid-spacer" />
 
-        {/* ── 2. CENTER: LOGO BETWEEN THEM ── */}
+        {/* ── 2. CENTER: LOGO BETWEEN THEM (Static, not a link) ── */}
         <div className="apple-nav-center">
-          <Link to="/" className="apple-brand-link" aria-label="SKKU Global Home">
+          <div className="apple-brand-mark" aria-label="SKKU Global">
             <span className="apple-brand-text">SKKU</span>
             <span className="apple-brand-dot" />
-          </Link>
+          </div>
         </div>
 
-        {/* ── 3. RIGHT NAV: Services, Work, and CTA ── */}
+        {/* ── 3. RIGHT NAV: Services, Work ── */}
         <div className="apple-nav-right">
           <nav className="apple-nav-right-links" aria-label="Right Navigation">
             <NavLink
@@ -76,11 +76,6 @@ export default function Navbar() {
               Work
             </NavLink>
           </nav>
-
-          <Link to="/contact" className="apple-cta-pill">
-            <span>Start a project</span>
-            <ArrowRight size={13} />
-          </Link>
 
           {/* Mobile menu toggle */}
           <button
@@ -148,17 +143,6 @@ export default function Navbar() {
               <span>Contact</span>
               <ArrowRight size={14} style={{ color: 'var(--text-titanium)' }} />
             </NavLink>
-
-            <div style={{ paddingTop: '16px' }}>
-              <Link
-                to="/contact"
-                className="btn-apple-violet"
-                style={{ width: '100%', justifyContent: 'center' }}
-              >
-                <span>Start a project</span>
-                <ArrowRight size={14} />
-              </Link>
-            </div>
           </nav>
         </div>
       )}

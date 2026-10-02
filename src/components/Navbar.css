@@ -52,25 +52,20 @@
   }
 }
 
-/* ── 2. Center: Logo between Left and Right ── */
+/* ── 2. Center: Logo between Left and Right (Static mark, not a link) ── */
 .apple-nav-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.apple-brand-link {
+.apple-brand-mark {
   display: flex;
   align-items: center;
   gap: 6px;
-  text-decoration: none;
-  color: var(--text-obsidian, #1D1D1F);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.apple-brand-link:hover {
-  opacity: 0.82;
-  transform: scale(1.02);
+  user-select: none;
+  cursor: default;
+  pointer-events: none;
 }
 
 .apple-brand-text {
@@ -90,7 +85,7 @@
   margin-bottom: 4px;
 }
 
-/* ── 3. Right Nav: Services, Work, and CTA ── */
+/* ── 3. Right Nav: Services and Work ── */
 .apple-nav-right {
   display: flex;
   align-items: center;
@@ -141,34 +136,6 @@
   height: 1.5px;
   background-color: var(--accent-violet, #6E2CF3);
   border-radius: 1px;
-}
-
-/* ── CTA Pill Button ── */
-.apple-cta-pill {
-  display: none;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 16px;
-  border-radius: 9999px;
-  background: var(--text-obsidian, #1D1D1F);
-  color: #FFFFFF;
-  font-family: var(--font-sans, sans-serif);
-  font-size: 12.5px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@media (min-width: 900px) {
-  .apple-cta-pill {
-    display: inline-flex;
-  }
-}
-
-.apple-cta-pill:hover {
-  background: var(--accent-violet, #6E2CF3);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(110, 44, 243, 0.28);
 }
 
 /* ── Mobile Hamburger Button ── */
