@@ -68,7 +68,8 @@
 }
 
 .legal-prose a:hover {
-  border-bottom-color: #047857;
+  border-bottom-color: #E65100;
+  color: #E65100;
 }
 
 .legal-prose strong {
@@ -81,7 +82,7 @@
 .notfound-code {
   display: block;
   margin-bottom: 8px;
-  background: linear-gradient(135deg, #059669 0%, #0F172A 100%);
+  background: linear-gradient(135deg, #E65100 0%, #0F172A 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -130,13 +131,14 @@
   font-size: 0.94rem;
   font-weight: 650;
   text-decoration: none;
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
 }
 
 .notfound-links a:hover {
-  border-color: #059669;
+  border-color: #E65100;
+  color: #E65100;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 8px 20px rgba(230, 81, 0, 0.12);
 }
 
 .notfound-links span {

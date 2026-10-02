@@ -160,6 +160,11 @@ p {
 a {
   color: inherit;
   text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: #E65100;
 }
 
 /* ── Utility Highlights in #E65100 ── */
