@@ -58,11 +58,11 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-6">
               <span className="font-mono text-xs uppercase tracking-[0.24em] text-[#6E2CF3] font-semibold block mb-3">
-                OUR PHILOSOPHY
+                STUDIO PHILOSOPHY — ONE CALL, NOT FOUR AGENCIES
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl text-[#1D1D1F] font-normal leading-tight mb-6">
-                Why managing four disconnected agencies{' '}
-                <span className="italic font-normal">is destroying your momentum.</span>
+                One call, not four agencies.{' '}
+                <span className="italic font-normal">Why managing disconnected vendors destroys your momentum.</span>
               </h2>
               <div className="space-y-4 text-sm sm:text-base text-[#6E6E73] font-sans leading-relaxed">
                 <p>

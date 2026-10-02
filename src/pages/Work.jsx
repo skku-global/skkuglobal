@@ -187,7 +187,7 @@ export default function Work() {
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className="w-2 h-2 rounded-full bg-[#6E2CF3]" />
                       <strong className="font-mono text-xs uppercase tracking-wider text-[#1D1D1F]">
-                        1. The Encounter
+                        [ The Encounter ]
                       </strong>
                     </div>
                     <p className="text-[#6E6E73] leading-relaxed text-xs sm:text-sm">
@@ -195,12 +195,12 @@ export default function Work() {
                     </p>
                   </div>
 
-                  {/* 2. The Obstacle */}
+                  {/* 2. The Friction */}
                   <div className="bg-[#F5F5F7] border border-[#E5E5EA] rounded-2xl p-4 sm:p-5">
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className="w-2 h-2 rounded-full bg-amber-500" />
                       <strong className="font-mono text-xs uppercase tracking-wider text-[#1D1D1F]">
-                        2. The Obstacle
+                        [ The Friction ]
                       </strong>
                     </div>
                     <p className="text-[#6E6E73] leading-relaxed text-xs sm:text-sm">
@@ -208,12 +208,12 @@ export default function Work() {
                     </p>
                   </div>
 
-                  {/* 3. The Alignment & Build */}
+                  {/* 3. The Build */}
                   <div className="bg-[#F5F5F7] border border-[#E5E5EA] rounded-2xl p-4 sm:p-5">
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className="w-2 h-2 rounded-full bg-blue-500" />
                       <strong className="font-mono text-xs uppercase tracking-wider text-[#1D1D1F]">
-                        3. The Alignment &amp; Build
+                        [ The Build ]
                       </strong>
                     </div>
                     <p className="text-[#6E6E73] leading-relaxed text-xs sm:text-sm">
@@ -221,12 +221,12 @@ export default function Work() {
                     </p>
                   </div>
 
-                  {/* 4. The Win-Win Outcome */}
+                  {/* 4. The Result */}
                   <div className="bg-[#F5F0FF] border border-[#6E2CF3]/20 rounded-2xl p-4 sm:p-5">
                     <div className="flex items-center gap-2 mb-1.5">
                       <CheckCircle2 size={14} className="text-[#6E2CF3]" />
                       <strong className="font-mono text-xs uppercase tracking-wider text-[#6E2CF3]">
-                        4. The Win-Win Outcome
+                        [ The Result ]
                       </strong>
                     </div>
                     <p className="text-[#1D1D1F] leading-relaxed font-medium text-xs sm:text-sm">
