@@ -4,7 +4,7 @@ import '../pages/Home.css'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // HERO SLOGANS / ROTATING TEXTS SEQUENCE
-// 1. "SKKU"
+// 1. "SKKU" (Centered, with alternating S: black, K: #E65100, K: black, U: #E65100)
 // 2. Current text: "We are here to solve your tech problem." (with "problem." highlighted)
 // 3. Put your 3rd text here in quotes "" (user can replace this string anytime)
 // ─────────────────────────────────────────────────────────────────────────────
@@ -20,23 +20,41 @@ export const HERO_PHRASES = [
 ]
 
 /**
- * Parses phrase string into word objects with styling flags.
- * If word contains 'problem', highlights with #E65100.
+ * Parses phrase into units (letters for SKKU, words for sentences)
+ * S: black, K: #E65100, K: black, U: #E65100
+ * For sentences, highlights 'problem' in #E65100.
  */
-function parsePhraseWords(phrase) {
-  if (typeof phrase === 'string') {
-    const rawWords = phrase.trim().split(/\s+/)
-    const isBrandOnly = phrase.trim() === 'SKKU'
-    return rawWords.map((word) => {
+function parsePhraseUnits(phrase) {
+  if (typeof phrase !== 'string') return { isBrand: false, units: [] }
+
+  const trimmed = phrase.trim()
+
+  // 1. SKKU Brandmark: 4 individual letters with alternating colors S(Black) K(#E65100) K(Black) U(#E65100)
+  if (trimmed === 'SKKU') {
+    return {
+      isBrand: true,
+      units: [
+        { text: 'S', color: 'var(--black-pure, #000000)', isOrange: false },
+        { text: 'K', color: '#E65100', isOrange: true },
+        { text: 'K', color: 'var(--black-pure, #000000)', isOrange: false },
+        { text: 'U', color: '#E65100', isOrange: true },
+      ],
+    }
+  }
+
+  // 2. Multi-word phrases
+  const rawWords = trimmed.split(/\s+/)
+  return {
+    isBrand: false,
+    units: rawWords.map((word) => {
       const isProblem = word.toLowerCase().includes('problem')
       return {
         text: word,
-        isProblem,
-        isBrand: isBrandOnly,
+        color: isProblem ? '#E65100' : 'var(--black-pure, #000000)',
+        isOrange: isProblem,
       }
-    })
+    }),
   }
-  return []
 }
 
 export default function HomeHero() {
@@ -45,30 +63,33 @@ export default function HomeHero() {
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
   const cardRef = useRef(null)
 
-  const currentWords = parsePhraseWords(HERO_PHRASES[phraseIndex])
+  const { isBrand, units } = parsePhraseUnits(HERO_PHRASES[phraseIndex])
 
-  // 1. Word-by-word typewriter reveal for active phrase
+  // 1. Typewriter reveal for active phrase (letters for SKKU, words for sentences)
   useEffect(() => {
     setVisibleCount(0)
 
+    // Letters in SKKU reveal slightly faster (160ms), words in sentences (190ms)
+    const intervalMs = isBrand ? 170 : 190
+
     const timer = setInterval(() => {
       setVisibleCount((prev) => {
-        if (prev < currentWords.length) {
+        if (prev < units.length) {
           return prev + 1
         }
         clearInterval(timer)
         return prev
       })
-    }, 180)
+    }, intervalMs)
 
     return () => clearInterval(timer)
-  }, [phraseIndex, currentWords.length])
+  }, [phraseIndex, isBrand, units.length])
 
   // 2. When animation completes, hold so visitor can read, then rotate to next phrase
   useEffect(() => {
-    if (visibleCount === currentWords.length && currentWords.length > 0) {
-      // Hold duration (SKKU holds ~2s, longer sentences hold ~2.5s)
-      const holdDuration = phraseIndex === 0 ? 2000 : 2600
+    if (visibleCount === units.length && units.length > 0) {
+      // Hold duration (SKKU holds ~2.2s, longer sentences hold ~2.6s)
+      const holdDuration = isBrand ? 2200 : 2600
 
       const holdTimer = setTimeout(() => {
         setPhraseIndex((prev) => (prev + 1) % HERO_PHRASES.length)
@@ -76,7 +97,7 @@ export default function HomeHero() {
 
       return () => clearTimeout(holdTimer)
     }
-  }, [visibleCount, currentWords.length, phraseIndex])
+  }, [visibleCount, units.length, isBrand, phraseIndex])
 
   // Interactive 3D tilt tracking for physical depth
   const handleMouseMove = (e) => {
@@ -113,7 +134,7 @@ export default function HomeHero() {
             }}
             className="home-3d-inner-box"
           >
-            <div className="home-3d-content-wrap">
+            <div className={`home-3d-content-wrap ${isBrand ? 'is-centered' : ''}`}>
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={phraseIndex}
@@ -121,24 +142,25 @@ export default function HomeHero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.35, ease: 'easeInOut' }}
-                  className={`home-3d-title ${phraseIndex === 0 ? 'home-title-brand' : ''}`}
+                  className={`home-3d-title ${isBrand ? 'home-title-brand' : ''}`}
                 >
-                  {currentWords.slice(0, visibleCount).map((word, index) => (
+                  {units.slice(0, visibleCount).map((unit, index) => (
                     <motion.span
                       key={index}
-                      initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                      initial={{ opacity: 0, y: 8, scale: 0.94 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       transition={{ duration: 0.2, ease: 'easeOut' }}
-                      className={`home-3d-word ${word.isProblem ? 'home-word-problem' : ''} ${
-                        word.isBrand ? 'home-word-brand' : ''
+                      style={{ color: unit.color }}
+                      className={`home-3d-unit ${isBrand ? 'home-brand-letter' : 'home-3d-word'} ${
+                        unit.isOrange ? 'home-text-orange' : ''
                       }`}
                     >
-                      {word.text}
+                      {unit.text}
                     </motion.span>
                   ))}
 
                   {/* Typewriter writing cursor */}
-                  {visibleCount < currentWords.length && (
+                  {visibleCount < units.length && (
                     <span className="home-writing-cursor" aria-hidden="true" />
                   )}
                 </motion.h1>
