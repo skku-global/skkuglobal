@@ -1,134 +1,181 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowUpRight } from 'lucide-react'
+import { Globe, ChevronDown, ArrowUpRight } from 'lucide-react'
 import { waLink } from '../seo/siteMeta.js'
 import './Footer.css'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
+  // Track expanded accordion sections on mobile (keyed by section index)
+  const [openSections, setOpenSections] = useState({})
+
+  const toggleSection = (index) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }))
+  }
+
+  const directorySections = [
+    {
+      title: 'Services & Engineering',
+      links: [
+        { label: 'Web & SaaS Architecture', to: '/services#engineering' },
+        { label: 'SecuScan Vulnerability Audits', to: '/services#secuscan' },
+        { label: 'E-Commerce Infrastructures', to: '/services#ecommerce' },
+        { label: 'Platform Security & Hardening', to: '/services#security' },
+        { label: 'Cloud & API Systems', to: '/services#cloud' },
+      ],
+    },
+    {
+      title: 'Selected Work',
+      links: [
+        { label: 'SecuScan Engine', to: '/work#secuscan' },
+        { label: 'Luxe Hair Co.', to: '/work#luxe-hair' },
+        { label: 'CarBreezy Auto', to: '/work#carbreezy' },
+        { label: 'JuniCash Wallet', to: '/work#junicash' },
+        { label: 'All Case Studies', to: '/work' },
+      ],
+    },
+    {
+      title: 'Studio & Philosophy',
+      links: [
+        { label: 'About SKKU', to: '/about' },
+        { label: 'Leadership & Founder', to: '/about#founder' },
+        { label: 'Ethics & Verification', to: '/about#philosophy' },
+        { label: 'Three Core Principles', to: '/about#principles' },
+        { label: 'Technical Advisories', to: '/about#advisories' },
+      ],
+    },
+    {
+      title: 'Client Services',
+      links: [
+        { label: 'Project Consultation', to: '/contact' },
+        { label: 'Client Support Portal', to: '/support' },
+        { label: 'Security Advisories', to: '/services#secuscan' },
+        { label: 'System Uptime Status', to: '/support#status' },
+        { label: 'Technical FAQ', to: '/contact#faq' },
+      ],
+    },
+    {
+      title: 'SKKU Values & Legal',
+      links: [
+        { label: 'Privacy First Architecture', to: '/privacy' },
+        { label: 'Responsible Engineering', to: '/about#principles' },
+        { label: 'CAC Compliance (RC 7306232)', to: '/about#compliance' },
+        { label: 'Terms of Use', to: '/terms' },
+        { label: 'Privacy Policy', to: '/privacy' },
+      ],
+    },
+  ]
+
   return (
-    <footer className="apple-footer-wrap" role="contentinfo">
-      <div className="apple-footer-container">
-        {/* ── Studio Headline & Status ── */}
-        <div className="apple-footer-top">
-          <div>
-            <div className="apple-footer-brand-title">
-              <span className="brand-name">SKKU Global</span>
-              <span className="brand-dot" />
-            </div>
-            <p className="apple-footer-desc">
-              Thoughtful digital systems engineered for brands that refuse to blend in. CAC-registered (RC 7306232) in Nigeria, deploying globally.
-            </p>
-          </div>
+    <footer className="apple-globalfooter" role="contentinfo">
+      <div className="apple-globalfooter-content">
+        {/* ── 1. FOOTNOTES (Apple Iconic Numbered Disclaimers) ── */}
+        <section className="apple-footer-footnotes" aria-label="Footnotes">
+          <ol>
+            <li>
+              SecuScan automated vulnerability assessments and code telemetry require active staging credentials and client DNS verification.
+            </li>
+            <li>
+              Production deployments include 90 days of zero-regression warranty and platform hardening monitoring.
+            </li>
+            <li>
+              Registered with the Corporate Affairs Commission (RC 7306232) in Nigeria, deploying systems globally across Africa, Europe, and North America.
+            </li>
+          </ol>
+        </section>
 
-          <div>
-            <span className="apple-footer-badge">
-              <span className="pulse-emerald" />
-              <span>Studio Accepting Q4 &amp; 2027 Commissions</span>
-            </span>
-          </div>
-        </div>
+        {/* ── 2. BREADCRUMB (Apple Signature Breadcrumb Trail) ── */}
+        <nav className="apple-footer-breadcrumbs" aria-label="Breadcrumbs">
+          <span className="apple-breadcrumb-home">SKKU</span>
+          <span className="apple-breadcrumb-separator">›</span>
+          <span className="apple-breadcrumb-current">Digital Engineering &amp; Platform Architecture</span>
+        </nav>
 
-        {/* ── 4 Clean Columns Directory ── */}
-        <div className="apple-footer-grid">
-          {/* Column 1: Services */}
-          <div className="apple-footer-col">
-            <h4>Services</h4>
-            <ul className="apple-footer-links">
-              <li>
-                <Link to="/services#engineering">Web &amp; SaaS Engineering</Link>
-              </li>
-              <li>
-                <Link to="/services#secuscan">SecuScan Audits</Link>
-              </li>
-              <li>
-                <Link to="/services#ecommerce">E-Commerce Systems</Link>
-              </li>
-              <li>
-                <Link to="/services#security">Platform Hardening</Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 2: Selected Work */}
-          <div className="apple-footer-col">
-            <h4>Selected Work</h4>
-            <ul className="apple-footer-links">
-              <li>
-                <Link to="/work#secuscan">SecuScan Engine</Link>
-              </li>
-              <li>
-                <Link to="/work#luxe-hair">Luxe Hair Co</Link>
-              </li>
-              <li>
-                <Link to="/work#carbreezy">CarBreezy Auto</Link>
-              </li>
-              <li>
-                <Link to="/work#junicash">JuniCash Wallet</Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Studio */}
-          <div className="apple-footer-col">
-            <h4>Studio</h4>
-            <ul className="apple-footer-links">
-              <li>
-                <Link to="/about">About SKKU</Link>
-              </li>
-              <li>
-                <Link to="/about#philosophy">Philosophy &amp; Ethics</Link>
-              </li>
-              <li>
-                <Link to="/about#principles">Three Core Principles</Link>
-              </li>
-              <li>
-                <Link to="/about#founder">Founder Leadership</Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Contact & Legal */}
-          <div className="apple-footer-col">
-            <h4>Contact &amp; Legal</h4>
-            <ul className="apple-footer-links">
-              <li>
-                <Link to="/contact" style={{ fontWeight: 600 }}>Start a Project →</Link>
-              </li>
-              <li>
-                <a href="mailto:hello@skkuglobal.com">
-                  <span>hello@skkuglobal.com</span>
-                  <ArrowUpRight size={12} />
-                </a>
-              </li>
-              <li>
-                <a
-                  href={waLink('Hello SKKU Global, I would like to discuss a project.')}
-                  target="_blank"
-                  rel="noreferrer"
+        {/* ── 3. DIRECTORY COLUMNS (5 Columns | Accordion on Mobile) ── */}
+        <nav className="apple-footer-directory" aria-label="Directory">
+          {directorySections.map((section, idx) => {
+            const isOpen = !!openSections[idx]
+            return (
+              <div
+                key={idx}
+                className={`apple-directory-column ${isOpen ? 'is-open' : ''}`}
+              >
+                <div
+                  className="apple-directory-header"
+                  onClick={() => toggleSection(idx)}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isOpen}
                 >
-                  <span>Direct WhatsApp</span>
-                  <ArrowUpRight size={12} />
-                </a>
-              </li>
-              <li>
-                <Link to="/privacy" style={{ color: 'var(--text-titanium)' }}>Privacy Policy</Link>
-              </li>
-              <li>
-                <Link to="/terms" style={{ color: 'var(--text-titanium)' }}>Terms of Use</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
+                  <h3 className="apple-directory-title">{section.title}</h3>
+                  <ChevronDown size={14} className="apple-directory-chevron" />
+                </div>
 
-        {/* ── Hairline Divider & Micro-Typography ── */}
-        <div className="apple-footer-bottom">
-          <p>© {currentYear} SKKU Global Inc. All rights reserved.</p>
-          <div className="apple-footer-bottom-meta">
-            <span>Ibadan · Lagos · Worldwide</span>
-            <span>Est. 2026</span>
+                <ul className="apple-directory-list">
+                  {section.links.map((link, linkIdx) => (
+                    <li key={linkIdx} className="apple-directory-item">
+                      <Link to={link.to} className="apple-directory-link">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          })}
+        </nav>
+
+        {/* ── 4. DIRECT ENGAGEMENT NOTICE ── */}
+        <section className="apple-footer-engagement">
+          <p>
+            More ways to engage: Email{' '}
+            <a href="mailto:hello@skkuglobal.com" className="apple-footer-inline-link">
+              hello@skkuglobal.com
+            </a>
+            , connect via{' '}
+            <a
+              href={waLink('Hello SKKU Global, I want to discuss a project.')}
+              target="_blank"
+              rel="noreferrer"
+              className="apple-footer-inline-link"
+            >
+              WhatsApp (+234 814 745 5285)
+            </a>
+            , or schedule a{' '}
+            <Link to="/contact" className="apple-footer-inline-link">
+              technical briefing
+            </Link>
+            .
+          </p>
+        </section>
+
+        {/* ── 5. LEGAL & COPYRIGHT ROW ── */}
+        <section className="apple-footer-legal">
+          <div className="apple-legal-copyright">
+            Copyright © {currentYear} SKKU Global Inc. All rights reserved.
           </div>
-        </div>
+
+          <div className="apple-legal-links">
+            <Link to="/privacy" className="apple-legal-link">Privacy Policy</Link>
+            <span className="apple-legal-separator">|</span>
+            <Link to="/terms" className="apple-legal-link">Terms of Use</Link>
+            <span className="apple-legal-separator">|</span>
+            <Link to="/support" className="apple-legal-link">Sales &amp; Consultations</Link>
+            <span className="apple-legal-separator">|</span>
+            <Link to="/services#security" className="apple-legal-link">Security Advisory</Link>
+            <span className="apple-legal-separator">|</span>
+            <Link to="/services" className="apple-legal-link">Site Map</Link>
+          </div>
+
+          <div className="apple-legal-locale">
+            <Globe size={13} style={{ color: '#6e6e73' }} />
+            <span>Nigeria (English)</span>
+          </div>
+        </section>
       </div>
     </footer>
   )
