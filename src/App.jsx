@@ -89,12 +89,12 @@ export function AppShell() {
         <Route path="/work"     element={<Work />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/about"    element={<AboutPage />} />
+        <Route path="/contact"  element={<ContactPage />} />
         <Route path="/support"  element={<ContactPage />} />
         <Route path="/privacy"  element={<Privacy />} />
         <Route path="/terms"    element={<Terms />} />
         <Route path="/home"     element={<Navigate to="/" replace />} />
         <Route path="/projects" element={<Navigate to="/work" replace />} />
-        <Route path="/contact"  element={<Navigate to="/support" replace />} />
         {/* Anything else is a real 404, not a silent redirect to home */}
         <Route path="*"         element={<NotFound />} />
       </Routes>

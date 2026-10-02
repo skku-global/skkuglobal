@@ -1,242 +1,127 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
-import { LuSearch, LuX, LuChevronRight, LuExternalLink } from 'react-icons/lu'
-import { FaWhatsapp } from 'react-icons/fa6'
-import { waLink } from '../seo/siteMeta.js'
-import { searchSite } from '../data/searchIndex.js'
-import './Navbar.css'
+import { ArrowRight, Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { to: '/work', label: 'Work' },
   { to: '/services', label: 'Services' },
+  { to: '/work', label: 'Work' },
   { to: '/about', label: 'About' },
-  { to: '/support', label: 'Support' },
+  { to: '/contact', label: 'Contact' },
 ]
-
-// The dropdown is a dropdown, not a results page, so it stays short. With no
-// query it shows a curated handful; a query can surface a few more.
-const QUICK_LINK_COUNT = 6
-const MAX_RESULTS = 8
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
   const [scrolled, setScrolled] = useState(false)
-  const searchInputRef = useRef(null)
-  const { pathname, hash } = useLocation()
+  const { pathname } = useLocation()
 
-  // Every nav link closes the menu itself; this only covers a browser
-  // back/forward taken with it still open. Adjusting state during render is
-  // React's documented pattern for this — an effect cascades an extra render.
-  const routeKey = pathname + hash
-  const [lastRoute, setLastRoute] = useState(routeKey)
-  if (routeKey !== lastRoute) {
-    setLastRoute(routeKey)
+  // Close mobile drawer on route change
+  useEffect(() => {
     setMobileOpen(false)
-    setSearchOpen(false)
-    setSearchQuery('')
-  }
+  }, [pathname])
 
-  // Scroll shadow effect
+  // Scroll detection for subtle border shadow
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  // Auto focus search input when opened
-  useEffect(() => {
-    if (searchOpen && searchInputRef.current) {
-      setTimeout(() => searchInputRef.current?.focus(), 50)
-    }
-  }, [searchOpen])
-
-  // Escape key handler
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        setMobileOpen(false)
-        setSearchOpen(false)
-      }
-    }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [])
-
-  // Handle smooth scroll for anchor links
-  const handleNavClick = (e, to) => {
-    setMobileOpen(false)
-    setSearchOpen(false)
-
-    if (to.includes('#')) {
-      const [path, targetHash] = to.split('#')
-      if (pathname === path || (path === '/' && pathname === '')) {
-        e.preventDefault()
-        const el = document.getElementById(targetHash)
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' })
-        }
-      }
-    }
-  }
-
-  // Every capability and case study is searchable; the index is built from the
-  // same data the pages render, so it cannot go stale.
-  const query = searchQuery.trim()
-  const filteredResults = query
-    ? searchSite(query).slice(0, MAX_RESULTS)
-    : searchSite('').slice(0, QUICK_LINK_COUNT)
 
   return (
-    <>
-      <header className={`apple-navbar ${scrolled ? 'scrolled' : ''}`}>
-        <div className="apple-nav-container">
-          {/* ── Left: Logo ── */}
-          <Link to="/" className="apple-nav-logo" aria-label="SKKU Global Home">
-            <img
-              src="/brand/skku-monogram.png"
-              alt="SKKU Global"
-              className="apple-nav-logo-img"
-              width="20"
-              height="20"
-            />
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+        scrolled
+          ? 'bg-white/85 backdrop-blur-md border-b border-black/[0.06] shadow-[0_1px_8px_rgba(0,0,0,0.02)]'
+          : 'bg-white/80 backdrop-blur-md border-b border-black/[0.04]'
+      }`}
+      style={{ height: '52px' }}
+    >
+      <div className="max-w-[1160px] mx-auto h-full px-6 md:px-10 flex items-center justify-between">
+        {/* ── Left: Brand mark in italic editorial serif ── */}
+        <Link
+          to="/"
+          className="flex items-center gap-1.5 group text-[#1D1D1F] hover:opacity-80 transition-opacity"
+          aria-label="SKKU Global Home"
+        >
+          <span className="font-serif italic font-semibold text-2xl tracking-tight text-[#1D1D1F]">
+            SKKU
+          </span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#6E2CF3] inline-block mb-1 group-hover:scale-125 transition-transform" />
+        </Link>
+
+        {/* ── Center: Minimal navigation links ── */}
+        <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) =>
+                `text-[13.5px] font-medium tracking-[-0.01em] transition-colors py-1 ${
+                  isActive
+                    ? 'text-[#1D1D1F] font-semibold'
+                    : 'text-[#6E6E73] hover:text-[#1D1D1F]'
+                }`
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        {/* ── Right: Minimal pill action button ── */}
+        <div className="flex items-center gap-3">
+          <Link
+            to="/contact"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#1D1D1F] text-white text-[12.5px] font-medium tracking-tight hover:bg-[#6E2CF3] hover:shadow-[0_4px_14px_rgba(110,44,243,0.25)] transition-all"
+          >
+            <span>Start a project</span>
+            <ArrowRight size={13} className="text-white/80" />
           </Link>
 
-          {/* ── Center: Minimalist Apple-Style Links ── */}
-          <nav className="apple-nav-links" aria-label="Main Navigation">
+          {/* Mobile menu toggle */}
+          <button
+            type="button"
+            className="md:hidden p-1.5 text-[#1D1D1F] hover:text-[#6E2CF3] transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </div>
+
+      {/* ── Mobile Navigation Drawer ── */}
+      {mobileOpen && (
+        <div className="md:hidden fixed top-[52px] left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-black/[0.08] shadow-xl px-6 py-6 transition-all animate-fadeIn">
+          <nav className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <NavLink
-                key={link.label}
+                key={link.to}
                 to={link.to}
                 className={({ isActive }) =>
-                  `apple-nav-link ${isActive && !link.to.includes('#') ? 'active' : ''}`
+                  `text-base font-medium py-2 border-b border-black/[0.04] flex items-center justify-between ${
+                    isActive ? 'text-[#6E2CF3] font-semibold' : 'text-[#1D1D1F]'
+                  }`
                 }
-                onClick={(e) => handleNavClick(e, link.to)}
               >
-                {link.label}
+                <span>{link.label}</span>
+                <ArrowRight size={14} className="text-[#6E6E73]" />
               </NavLink>
             ))}
-          </nav>
-
-          {/* ── Right: Search Icon ── */}
-          <div className="apple-nav-actions">
-            <button
-              type="button"
-              className={`apple-nav-icon-btn ${searchOpen ? 'active' : ''}`}
-              aria-label={searchOpen ? 'Close search' : 'Open search'}
-              onClick={() => setSearchOpen(!searchOpen)}
-            >
-              <LuSearch size={15} className="apple-search-svg" aria-hidden="true" />
-            </button>
-
-            {/* Mobile Hamburger Button */}
-            <button
-              type="button"
-              className="apple-nav-mobile-toggle"
-              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={mobileOpen}
-              onClick={() => {
-                setMobileOpen(!mobileOpen)
-                setSearchOpen(false)
-              }}
-            >
-              <span className={`apple-burger-line line-1 ${mobileOpen ? 'open' : ''}`} />
-              <span className={`apple-burger-line line-2 ${mobileOpen ? 'open' : ''}`} />
-            </button>
-          </div>
-        </div>
-
-        {/* ── Apple-Style Search Dropdown / Spotlight Overlay ── */}
-        <div className={`apple-search-overlay ${searchOpen ? 'open' : ''}`}>
-          <div className="apple-search-container">
-            <div className="apple-search-input-wrapper">
-              <LuSearch size={15} className="search-input-icon" aria-hidden="true" />
-              <input
-                ref={searchInputRef}
-                type="text"
-                placeholder="Search platforms, security audits, or location..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="apple-search-input"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  className="apple-search-clear"
-                  onClick={() => setSearchQuery('')}
-                  aria-label="Clear input"
-                >
-                  <LuX size={14} aria-hidden="true" />
-                </button>
-              )}
-            </div>
-
-            <div className="apple-search-results">
-              <span className="results-label">
-                {searchQuery ? 'SEARCH RESULTS' : 'QUICK LINKS'}
-              </span>
-              {query && filteredResults.length === 0 && (
-                <p className="results-empty">
-                  Nothing matched &ldquo;{query}&rdquo;. Try a capability, a stack
-                  (React, FastAPI, PostgreSQL) or{' '}
-                  <Link to="/support" onClick={() => setSearchOpen(false)}>ask us directly</Link>.
-                </p>
-              )}
-              <ul className="results-list">
-                {filteredResults.map((item) => (
-                  <li key={item.title}>
-                    <Link
-                      to={item.url}
-                      className="result-item"
-                      onClick={(e) => handleNavClick(e, item.url)}
-                    >
-                      <LuChevronRight size={13} className="result-arrow" aria-hidden="true" />
-                      <span className="result-title">{item.title}</span>
-                      <span className="result-category">{item.category}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Apple-Style Fullscreen Mobile Navigation Drawer ── */}
-        <div className={`apple-mobile-menu ${mobileOpen ? 'open' : ''}`}>
-          <div className="apple-mobile-inner">
-            <nav className="apple-mobile-links">
-              {navLinks.map((link, idx) => (
-                <NavLink
-                  key={link.label}
-                  to={link.to}
-                  className="apple-mobile-link"
-                  style={{ animationDelay: `${idx * 0.05 + 0.1}s` }}
-                  onClick={(e) => handleNavClick(e, link.to)}
-                >
-                  {link.label}
-                </NavLink>
-              ))}
-            </nav>
-
-            <div className="apple-mobile-footer">
-              <a
-                href={waLink('Hello SKKU Global')}
-                target="_blank"
-                rel="noreferrer"
-                className="apple-mobile-contact-btn"
+            <div className="pt-3">
+              <Link
+                to="/contact"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-[#6E2CF3] text-white font-medium text-sm shadow-[0_4px_16px_rgba(110,44,243,0.3)]"
               >
-                <FaWhatsapp size={16} aria-hidden="true" />
-                <span>Chat on WhatsApp</span>
-                <LuExternalLink size={13} aria-hidden="true" />
-              </a>
-              <p className="apple-mobile-copy">
-                SKKU Global Technologies Limited · CAC-Registered
-              </p>
+                <span>Start a project</span>
+                <ArrowRight size={15} />
+              </Link>
             </div>
-          </div>
+          </nav>
         </div>
-      </header>
-    </>
+      )}
+    </header>
   )
 }

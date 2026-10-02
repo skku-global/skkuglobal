@@ -1,455 +1,248 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+@import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  :root {
+    /* ── Apple-Grade Clean Slate Light Mode Palette ── */
+    --bg-base: #FFFFFF;
+    --bg-panel: #F5F5F7;
+    --bg-panel-subtle: #FAFAFB;
+    
+    /* ── Typography Palette ── */
+    --text-obsidian: #1D1D1F;
+    --text-titanium: #6E6E73;
+    --text-secondary: #86868B;
+    
+    /* ── Accent System ── */
+    --accent-violet: #6E2CF3;
+    --accent-violet-glow: #7928CA;
+    --accent-violet-subtle: #F5F0FF;
+    --accent-violet-border: rgba(110, 44, 243, 0.2);
+    
+    /* ── Hairline Borders ── */
+    --hairline: rgba(0, 0, 0, 0.08);
+    --hairline-solid: #E5E5EA;
+    --hairline-subtle: #F0F0F2;
+    
+    /* ── Typography Fonts ── */
+    --font-serif: 'Newsreader', Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    
+    /* ── Dimensions ── */
+    --nav-height: 52px;
+    --max-w-content: 1160px;
+    --max-w-narrow: 760px;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-height) + 24px);
+    background-color: var(--bg-base);
+    color: var(--text-obsidian);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-obsidian);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background-color: rgba(110, 44, 243, 0.15);
+    color: #1D1D1F;
+  }
 }
 
-:root {
-  /* ── Core Light Palette ── */
-  --bg:               #FFFFFF;
-  --bg-surface:       #FFFFFF;
-  --bg-subtle:        #F8FAFC;
-  --bg-card:          #FFFFFF;
-  --bg-dark-accent:   #0B0F17;
-  --bg-dark-surface:  #111622;
-
-  /* ── Borders ── */
-  --border:           #E2E8F0;
-  --border-subtle:    rgba(15, 23, 42, 0.06);
-  --border-hover:     #CBD5E1;
-  --primary-border:   rgba(5, 150, 105, 0.25);
-
-  /* ══════════════════════════════════════════════
-     ACCENT SYSTEM — 5 semantic accent colours.
-     Each page / section sets --accent-* overrides.
-     Components use var(--accent) instead of
-     hard-coding a colour wherever possible.
-     ══════════════════════════════════════════════ */
-
-  /* 01 · Emerald — Hero, security, primary brand */
-  --emerald:          #059669;
-  --emerald-hover:    #047857;
-  --emerald-light:    #ECFDF5;
-  --emerald-glow:     rgba(5, 150, 105, 0.18);
-  --emerald-border:   rgba(5, 150, 105, 0.28);
-
-  /* 02 · Violet — AI section, future tech, innovation */
-  --violet:           #7C3AED;
-  --violet-hover:     #6D28D9;
-  --violet-light:     #F5F3FF;
-  --violet-glow:      rgba(124, 58, 237, 0.18);
-  --violet-border:    rgba(124, 58, 237, 0.28);
-
-  /* 03 · Blue — Services, engineering, reliability */
-  --blue:             #2563EB;
-  --blue-hover:       #1D4ED8;
-  --blue-light:       #EFF6FF;
-  --blue-glow:        rgba(37, 99, 235, 0.18);
-  --blue-border:      rgba(37, 99, 235, 0.28);
-
-  /* 04 · Amber — Work / Case studies, results, proof */
-  --amber:            #D97706;
-  --amber-hover:      #B45309;
-  --amber-light:      #FFFBEB;
-  --amber-glow:       rgba(217, 119, 6, 0.18);
-  --amber-border:     rgba(217, 119, 6, 0.28);
-
-  /* 05 · Rose — About, founder, human story */
-  --rose:             #E11D48;
-  --rose-hover:       #BE123C;
-  --rose-light:       #FFF1F2;
-  --rose-glow:        rgba(225, 29, 72, 0.18);
-  --rose-border:      rgba(225, 29, 72, 0.28);
-
-  /* ── Active accent (defaults to emerald; overridden per page/section) ── */
-  --primary:          var(--emerald);
-  --primary-hover:    var(--emerald-hover);
-  --primary-light:    var(--emerald-light);
-  --primary-glow:     var(--emerald-glow);
-  --primary-border:   var(--emerald-border);
-
-  /* Legacy aliases kept for existing components */
-  --tech-cyan:        #0284C7;
-  --tech-blue:        var(--blue);
-
-  /* ── Typography ── */
-  --font-heading:     'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono:        'Space Grotesk', monospace;
-
-  --text-primary:     #0F172A;
-  --text-secondary:   #334155;
-  --text-muted:       #64748B;
-  --text-inverse:     #F8FAFC;
-
-  /* ── Badges (inherit from primary accent) ── */
-  --badge-bg:         var(--primary-light);
-  --badge-text:       #065F46;
-  --badge-border:     var(--primary-border);
-
-  /* ── Geometry & Layout ── */
-  --radius-xs:        4px;
-  --radius-sm:        8px;
-  --radius:           12px;
-  --radius-lg:        18px;
-  --radius-xl:        24px;
-
-  --shell:            1180px;
-  --pad-x:            32px;
-  --section-y:        88px;
-
-  /* ── Shadows ── */
-  --shadow-sm:        0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md:        0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
-  --shadow-lg:        0 10px 25px -5px rgba(15, 23, 42, 0.07), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
-  --shadow-card:      0 20px 40px -15px rgba(15, 23, 42, 0.06);
+/* ── Typography Utilities ── */
+.font-serif {
+  font-family: var(--font-serif);
 }
 
-/* ── Page-level accent overrides ──────────────────────
-   Add these classes to <main> or <section> elements
-   and all components that use --primary will pick
-   up the right colour automatically.
-   ──────────────────────────────────────────────────── */
-.accent-violet {
-  --primary:        var(--violet);
-  --primary-hover:  var(--violet-hover);
-  --primary-light:  var(--violet-light);
-  --primary-glow:   var(--violet-glow);
-  --primary-border: var(--violet-border);
-  --badge-bg:       var(--violet-light);
-  --badge-text:     #4C1D95;
-  --badge-border:   var(--violet-border);
-}
-.accent-blue {
-  --primary:        var(--blue);
-  --primary-hover:  var(--blue-hover);
-  --primary-light:  var(--blue-light);
-  --primary-glow:   var(--blue-glow);
-  --primary-border: var(--blue-border);
-  --badge-bg:       var(--blue-light);
-  --badge-text:     #1E3A8A;
-  --badge-border:   var(--blue-border);
-}
-.accent-amber {
-  --primary:        var(--amber);
-  --primary-hover:  var(--amber-hover);
-  --primary-light:  var(--amber-light);
-  --primary-glow:   var(--amber-glow);
-  --primary-border: var(--amber-border);
-  --badge-bg:       var(--amber-light);
-  --badge-text:     #78350F;
-  --badge-border:   var(--amber-border);
-}
-.accent-rose {
-  --primary:        var(--rose);
-  --primary-hover:  var(--rose-hover);
-  --primary-light:  var(--rose-light);
-  --primary-glow:   var(--rose-glow);
-  --primary-border: var(--rose-border);
-  --badge-bg:       var(--rose-light);
-  --badge-text:     #9F1239;
-  --badge-border:   var(--rose-border);
+.font-sans {
+  font-family: var(--font-sans);
 }
 
-
-/* ── Base ─────────────────────────────────────── */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 56px;
-  background-color: var(--bg);
+.font-mono {
+  font-family: var(--font-mono);
 }
 
-body {
-  font-family: var(--font-body);
-  background-color: var(--bg);
-  color: var(--text-secondary);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  color: var(--text-primary);
-  font-weight: 700;
-  line-height: 1.2;
+/* Editorial headline styling */
+.editorial-title {
+  font-family: var(--font-serif);
+  color: var(--text-obsidian);
   letter-spacing: -0.025em;
+  line-height: 1.12;
 }
 
-p {
-  line-height: 1.65;
+.editorial-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
 }
 
-/* ── Container ────────────────────────────────── */
-.shell {
-  max-width: var(--shell);
-  margin: 0 auto;
-  padding: 0 var(--pad-x);
-  width: 100%;
-}
-
-/* ── Section Header ───────────────────────────── */
-.section-header {
-  margin-bottom: 48px;
-}
-
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-heading);
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--primary);
-  letter-spacing: 1.5px;
+/* Monospaced studio eyebrow */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  color: var(--text-titanium);
 }
 
-.section-label::before {
-  content: '';
-  display: inline-block;
-  width: 16px;
-  height: 2px;
-  background: var(--primary);
-  border-radius: 2px;
+/* ── Apple-Grade Layouts & Containers ── */
+.apple-shell {
+  max-width: var(--max-w-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
-.section-header h2 {
-  font-size: clamp(28px, 3.5vw, 42px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
-  margin-bottom: 14px;
+@media (min-width: 768px) {
+  .apple-shell {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 }
 
-.section-header p {
-  font-size: 16.5px;
-  color: var(--text-secondary);
-  max-width: 680px;
-  line-height: 1.65;
+.apple-shell-narrow {
+  max-width: var(--max-w-narrow);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-/* ── Gradient Text ────────────────────────────── */
-.gradient-text {
-  background: linear-gradient(135deg, #059669 0%, #0284C7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ── Apple Cards & Panels ── */
+.apple-panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--hairline);
+  border-radius: 20px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ── Buttons ──────────────────────────────────── */
-.btn-primary {
+.apple-panel-white {
+  background-color: #FFFFFF;
+  border: 1px solid var(--hairline-solid);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-panel-white:hover {
+  border-color: rgba(110, 44, 243, 0.3);
+  box-shadow: 0 12px 32px -4px rgba(110, 44, 243, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Interactive Buttons & Badges ── */
+.btn-apple-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--primary);
+  background-color: var(--text-obsidian);
   color: #FFFFFF;
-  font-family: var(--font-heading);
-  font-size: 14.5px;
-  font-weight: 600;
-  padding: 12px 24px;
-  border-radius: 10px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: 10px 20px;
+  border-radius: 9999px;
   text-decoration: none;
   border: 1px solid transparent;
-  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.2);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
 }
 
-.btn-primary:hover {
-  background: var(--primary-hover);
+.btn-apple-primary:hover {
+  background-color: var(--accent-violet);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.28);
+  box-shadow: 0 6px 18px rgba(110, 44, 243, 0.28);
 }
 
-.btn-secondary {
+.btn-apple-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: #FFFFFF;
-  color: var(--text-primary);
-  font-family: var(--font-heading);
-  font-size: 14.5px;
-  font-weight: 600;
-  padding: 12px 24px;
-  border-radius: 10px;
+  background-color: #FFFFFF;
+  color: var(--text-obsidian);
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: 10px 20px;
+  border-radius: 9999px;
   text-decoration: none;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--hairline-solid);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
 }
 
-.btn-secondary:hover {
-  background: #F8FAFC;
-  border-color: #CBD5E1;
-  color: #0F172A;
-  transform: translateY(-1px);
+.btn-apple-secondary:hover {
+  border-color: var(--text-obsidian);
+  background-color: var(--bg-panel);
 }
 
-.link-btn {
+.btn-apple-violet {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: var(--primary);
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--accent-violet);
   color: #FFFFFF;
-  font-family: var(--font-heading);
-  font-size: 13px;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: 10px 22px;
+  border-radius: 9999px;
   text-decoration: none;
-  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 14px rgba(110, 44, 243, 0.25);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
-.link-btn:hover {
-  background: var(--primary-hover);
+.btn-apple-violet:hover {
+  background-color: #5D22D6;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(110, 44, 243, 0.35);
 }
 
-.link-btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #F1F5F9;
-  color: var(--text-primary);
-  font-family: var(--font-heading);
-  font-size: 13px;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  border: 1px solid var(--border);
-  transition: all 0.2s ease;
+/* Hairline divider */
+.hairline-divider {
+  height: 1px;
+  width: 100%;
+  background-color: var(--hairline-solid);
 }
 
-.link-btn-ghost:hover {
-  background: #E2E8F0;
-}
-
-/* ── Tags / Badges ────────────────────────────── */
-.tag {
-  display: inline-flex;
-  align-items: center;
-  font-size: 12px;
-  font-weight: 600;
-  color: #334155;
-  background: #F1F5F9;
-  border: 1px solid #E2E8F0;
-  padding: 3px 9px;
-  border-radius: 6px;
-}
-
-.card-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--badge-text);
-  background: var(--badge-bg);
-  border: 1px solid var(--badge-border);
-  padding: 3px 9px;
-  border-radius: 6px;
-}
-
-.badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--primary);
-}
-
-/* ── Standard Card ────────────────────────────── */
-.card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  border-color: #CBD5E1;
-  box-shadow: var(--shadow-md);
-}
-
-/* ── Scroll-Triggered Micro-Animations ────────── */
-/*
-  Elements with .animate start invisible.
-  When they enter the viewport the IntersectionObserver
-  in App.jsx adds .is-visible, which plays the fadeUp.
-*/
-.animate {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: none; /* let the animation handle it */
-}
-
-.animate.is-visible {
-  animation: fadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.animate-delay-1.is-visible { animation-delay: 0.08s; }
-.animate-delay-2.is-visible { animation-delay: 0.16s; }
-.animate-delay-3.is-visible { animation-delay: 0.24s; }
-.animate-delay-4.is-visible { animation-delay: 0.32s; }
-.animate-delay-5.is-visible { animation-delay: 0.40s; }
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ── Accessibility ────────────────────────────── */
+/* Accessibility Skip link */
 .skip-link {
   position: absolute;
-  top: -100px;
-  left: 16px;
-  background: var(--primary);
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-weight: 700;
-  z-index: 9999;
-  text-decoration: none;
+  top: -120px;
+  left: 20px;
+  background-color: var(--accent-violet);
+  color: #FFFFFF;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 10000;
   transition: top 0.2s ease;
+  text-decoration: none;
 }
 
 .skip-link:focus {
   top: 16px;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-@media (max-width: 768px) {
-  :root {
-    --pad-x: 20px;
-    --section-y: 64px;
-  }
-  .hide-mobile {
-    display: none;
-  }
 }

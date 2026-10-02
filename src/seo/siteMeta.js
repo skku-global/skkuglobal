@@ -111,6 +111,14 @@ export const ROUTES = [
     priority: '0.7',
   },
   {
+    path: '/contact',
+    title: 'Contact Studio — What Did You Have In Mind? | SKKU Global',
+    description:
+      'Start a project inquiry, request a SecuScan vulnerability audit, or discuss your digital architecture directly with founder Abdulkabir Ajiboye.',
+    breadcrumb: 'Contact Studio',
+    priority: '0.8',
+  },
+  {
     path: '/support',
     title: 'Support & Project Consultation | SKKU Global',
     description:
