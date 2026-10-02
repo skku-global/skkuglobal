@@ -1,8 +1,44 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Seo from '../components/Seo'
 import './Work.css'
+
+// ── Live Typewriter Animation: animates like it was just written ──
+function TypewriterText({ text, speed = 36, delay = 250 }) {
+  const isServer = typeof window === 'undefined'
+  const [displayedText, setDisplayedText] = useState(isServer ? text : '')
+  const [isDone, setIsDone] = useState(false)
+
+  useEffect(() => {
+    setDisplayedText('')
+    setIsDone(false)
+    let currentIndex = 0
+
+    const timer = setTimeout(() => {
+      const interval = setInterval(() => {
+        if (currentIndex < text.length) {
+          currentIndex++
+          setDisplayedText(text.slice(0, currentIndex))
+        } else {
+          clearInterval(interval)
+          setIsDone(true)
+        }
+      }, speed)
+
+      return () => clearInterval(interval)
+    }, delay)
+
+    return () => clearTimeout(timer)
+  }, [text, speed, delay])
+
+  return (
+    <p className="work-hero-subtext">
+      <span>{displayedText}</span>
+      <span className={`work-typing-cursor ${isDone ? 'is-done' : ''}`} aria-hidden="true" />
+    </p>
+  )
+}
 
 // ── Standard Normal React SVG Icons (Zero external icon library dependency) ──
 function ExternalLinkIcon({ size = 12 }) {
@@ -69,8 +105,7 @@ const CASE_STUDIES = [
     client: 'SecuScan Security',
     tagline: 'SecuScan | Automated zero-state vulnerability scanner for mission-critical web platforms',
     heading: 'SECUSCAN AUDIT ENGINE',
-    hoverColor: '#0C182A', // Deep Midnight Oceanic Navy (Deep, rich, not too light)
-    note: 'The founders were losing enterprise deals without certified audits. We engineered an isolated zero-state scanner crawling endpoints for OWASP leaks, CORS disclosures, and SSL ciphers with zero database impact.',
+    hoverColor: '#0C182A', // Deep Midnight Oceanic Navy
     liveUrl: 'https://secuscan-orpin.vercel.app/',
     images: [
       { src: '/screenshots/secuscan/slide-1.webp', label: 'Overview Dashboard' },
@@ -78,20 +113,13 @@ const CASE_STUDIES = [
       { src: '/screenshots/secuscan/slide-3.webp', label: 'Vulnerability Matrix' },
       { src: '/screenshots/secuscan/slide-4.webp', label: 'Compliance PDF' },
     ],
-    achievements: [
-      { num: '<30s', label: 'Audit Speed' },
-      { num: '100%', label: 'OWASP Coverage' },
-      { num: '4.8k', label: 'Threat Vectors' },
-      { num: '0ms', label: 'Production Impact' },
-    ],
   },
   {
     id: 'luxehair',
     client: 'Luxe Hair Co.',
     tagline: 'Luxe Hair Co. | Transforming manual DM exchanges into luxury digital retail',
     heading: 'LUXE HAIR STOREFRONT',
-    hoverColor: '#28160B', // Deep Warm Espresso Bronze (Deep, rich, not too light)
-    note: 'Losing high-ticket clients across London, New York, and Lagos to fragmented direct messages drained 15 hours weekly. We engineered a custom React storefront with 1-tap WhatsApp invoice routing.',
+    hoverColor: '#28160B', // Deep Warm Espresso Bronze
     liveUrl: 'https://luxehair-tau.vercel.app/',
     images: [
       { src: '/screenshots/luxehair/slide-1.webp', label: 'Luxury Store' },
@@ -99,20 +127,13 @@ const CASE_STUDIES = [
       { src: '/screenshots/luxehair/slide-3.webp', label: 'Cart & Currencies' },
       { src: '/screenshots/luxehair/slide-4.webp', label: 'WhatsApp Invoicing' },
     ],
-    achievements: [
-      { num: '+62%', label: 'Conversion' },
-      { num: '1-Tap', label: 'WhatsApp Order' },
-      { num: '3', label: 'Currencies' },
-      { num: '15h', label: 'Weekly Saved' },
-    ],
   },
   {
     id: 'carbreezy',
     client: 'CarBreezy Automotive',
     tagline: 'CarBreezy | Re-engineering vehicle purchasing with verified inspection badges',
     heading: 'CARBREEZY MARKETPLACE',
-    hoverColor: '#0A2315', // Deep Emerald Forest (Deep, rich, not too light)
-    note: 'Traditional classifieds were notorious for duplicate spam and salvage titles. We engineered a client-side catalog with sub-100ms faceted filters, condition badges, and instant dealer communication.',
+    hoverColor: '#0A2315', // Deep Emerald Forest
     liveUrl: 'https://carbreezy-react.vercel.app/',
     images: [
       { src: '/screenshots/carbreezy/slide-1.webp', label: 'Vehicle Catalog' },
@@ -120,32 +141,19 @@ const CASE_STUDIES = [
       { src: '/screenshots/carbreezy/slide-3.webp', label: 'Inspection Badges' },
       { src: '/screenshots/carbreezy/slide-4.webp', label: 'Dealer Connect' },
     ],
-    achievements: [
-      { num: '<100ms', label: 'Search Latency' },
-      { num: '2.4x', label: 'Lead Velocity' },
-      { num: '120+', label: 'Inspected' },
-      { num: '0%', label: 'Duplicate Spam' },
-    ],
   },
   {
     id: 'junicash',
     client: 'JuniCash Global',
     tagline: 'JuniCash | Intuitive neo-banking wallet designed with Swiss private finish',
     heading: 'JUNICASH WALLET',
-    hoverColor: '#1C122F', // Deep Royal Midnight Violet (Deep, rich, not too light)
-    note: 'Sluggish OTP deliveries eroded user trust during fintech onboarding. We built an Express & MongoDB core paired with Resend email OTP verification, cryptographic JWT sessions, and real-time ledger histories.',
+    hoverColor: '#1C122F', // Deep Royal Midnight Violet
     liveUrl: 'https://junicash.vercel.app',
     images: [
       { src: '/screenshots/junicash/slide-1.webp', label: 'Wallet Portfolio' },
       { src: '/screenshots/junicash/slide-2.webp', label: 'Secure OTP Auth' },
       { src: '/screenshots/junicash/slide-3.webp', label: 'Real-Time Ledger' },
       { src: '/screenshots/junicash/slide-4.webp', label: 'Instant Transfers' },
-    ],
-    achievements: [
-      { num: '256-bit', label: 'Cryptographic Auth' },
-      { num: '<1s', label: 'Ledger Latency' },
-      { num: '100%', label: 'Pilot Onboarding' },
-      { num: '0', label: 'Discrepancies' },
     ],
   },
 ]
@@ -174,33 +182,21 @@ function WorkBannerRow({ study, index }) {
       transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="work-banner-inner">
-        {/* ── TEXT CONTENT BLOCK ── */}
+        {/* ── TEXT CONTENT BLOCK: Short & Just Two (Head + Subtitle / Little Info) ── */}
         <div className="work-banner-text-col">
-          {/* Main Title: Bends & Slants on Hover! */}
-          <h2 className="work-banner-title">
-            {study.heading}
-          </h2>
+          <div className="work-banner-header-block">
+            {/* Main Head: Bends & Slants on Hover! */}
+            <h2 className="work-banner-title">
+              {study.heading}
+            </h2>
 
-          {/* Subtitle / Client Line */}
-          <p className="work-banner-tagline">
-            {study.tagline}
-          </p>
-
-          {/* Editorial Note narrative */}
-          <p className="work-banner-note">
-            {study.note}
-          </p>
-
-          {/* Minimalist Metrics Badges */}
-          <div className="work-banner-metrics">
-            {study.achievements.map((item, i) => (
-              <span key={i} className="work-banner-metric-pill">
-                <strong>{item.num}</strong> {item.label}
-              </span>
-            ))}
+            {/* Subtitle / Little Info */}
+            <p className="work-banner-tagline">
+              {study.tagline}
+            </p>
           </div>
 
-          {/* Floating 'EXPLORE' Button */}
+          {/* Clean 'EXPLORE' Button */}
           <div className="work-banner-actions">
             <a
               href={study.liveUrl}
@@ -211,14 +207,6 @@ function WorkBannerRow({ study, index }) {
               <span>EXPLORE</span>
               <ExternalLinkIcon size={12} />
             </a>
-
-            <Link
-              to={`/contact?objective=${encodeURIComponent(study.heading)}`}
-              className="work-inquire-link"
-            >
-              <span>Build similar</span>
-              <ArrowRightIcon size={13} />
-            </Link>
           </div>
         </div>
 
@@ -269,13 +257,10 @@ export default function Work() {
       {/* ── Top Header ── */}
       <section className="work-page-hero">
         <div className="work-hero-container">
-          <span className="work-hero-kicker">SELECTED WORK</span>
           <h1 className="work-hero-headline">
             OUR WORK
           </h1>
-          <p className="work-hero-subtext">
-            Explore, we really put our time and effort into this cause this is special
-          </p>
+          <TypewriterText text="Explore, we really put our time and effort into this cause this is special" />
         </div>
       </section>
 

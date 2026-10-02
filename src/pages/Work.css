@@ -18,24 +18,30 @@
 
 /* ── 1. Top Header ── */
 .work-page-hero {
-  padding: 56px 0 48px;
+  padding: 68px 0 44px;
   background-color: #FFFFFF;
   border-bottom: 1px solid #EDEDF0;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .work-hero-container {
-  max-width: 1280px;
+  max-width: 860px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
   .work-hero-container {
-    padding: 0 48px;
+    padding: 0 40px;
   }
 }
 
@@ -57,23 +63,52 @@
 
 .work-hero-headline {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", sans-serif;
-  font-size: clamp(38px, 5.5vw, 68px);
+  font-size: clamp(40px, 6vw, 76px);
   font-weight: 900;
   line-height: 1.02;
   letter-spacing: -0.035em;
   text-transform: uppercase;
   color: #000000;
-  margin: 0 0 16px;
+  margin: 0 auto 16px;
   text-align: center;
+  width: 100%;
 }
 
 .work-hero-subtext {
-  font-size: clamp(15.5px, 1.4vw, 18px);
+  font-size: clamp(15.5px, 1.4vw, 18.5px);
   line-height: 1.6;
-  color: #555558;
+  color: #4A4A4E;
   max-width: 640px;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
+  min-height: 56px;
+  display: inline-block;
+}
+
+/* Live Typewriter Cursor: animates like text is being actively typed out */
+.work-typing-cursor {
+  display: inline-block;
+  width: 2.5px;
+  height: 1.15em;
+  background-color: #E65100;
+  margin-left: 4px;
+  vertical-align: -0.15em;
+  border-radius: 1px;
+  animation: typingCursorBlink 0.75s step-start infinite;
+}
+
+.work-typing-cursor.is-done {
+  animation: typingCursorBlink 1.1s step-start infinite;
+}
+
+@keyframes typingCursorBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 /* ── 2. Full Feed Container ── */
@@ -151,15 +186,23 @@
 .work-banner-text-col {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.work-banner-header-block {
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
 }
 
 /* ── The Dynamic Bending Title ── */
 .work-banner-title {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", sans-serif;
-  font-size: clamp(30px, 3.8vw, 50px);
-  font-weight: 850;
-  line-height: 1.04;
+  font-size: clamp(34px, 4.4vw, 58px);
+  font-weight: 900;
+  line-height: 1.0;
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: #000000;
@@ -180,92 +223,36 @@
   color: #FFFFFF;
 }
 
-/* Subtitle Line */
+/* Subtitle Line / Little Info */
 .work-banner-tagline {
   font-family: var(--font-sans, -apple-system, sans-serif);
-  font-size: clamp(14.5px, 1.2vw, 16px);
-  font-weight: 600;
-  line-height: 1.5;
-  color: #1D1D1F;
-  margin: 0 0 14px 0;
+  font-size: clamp(14px, 1.25vw, 17px);
+  font-weight: 500;
+  line-height: 1.55;
+  color: #555558;
+  margin: 0;
+  max-width: 520px;
   transition: color 0.3s ease;
 }
 
 .work-banner-row:hover .work-banner-tagline {
-  color: #FFFFFF;
-}
-
-/* Editorial Note */
-.work-banner-note {
-  font-size: 14.5px;
-  line-height: 1.65;
-  color: #4A4A4E;
-  margin: 0 0 22px 0;
-  transition: color 0.3s ease;
-}
-
-.work-banner-row:hover .work-banner-note {
-  color: rgba(255, 255, 255, 0.84);
-}
-
-/* Minimalist metric pills */
-.work-banner-metrics {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 26px;
-}
-
-.work-banner-metric-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #FFFFFF;
-  border: 1px solid #E5E5EB;
-  border-radius: 8px;
-  padding: 5px 12px;
-  font-family: var(--font-mono, monospace);
-  font-size: 11px;
-  color: #222226;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-}
-
-.work-banner-metric-pill strong {
-  font-weight: 800;
-  color: #E65100;
-  transition: color 0.3s ease;
-}
-
-.work-banner-row:hover .work-banner-metric-pill {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.22);
-  color: #FFFFFF;
-}
-
-.work-banner-row:hover .work-banner-metric-pill strong {
-  color: #FF7722;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 /* Action row */
 .work-banner-actions {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
 }
 
-/* Crisp Black 'EXPLORE' Button with Signature Orange Hover */
+/* Crisp Rectangular 'EXPLORE' Button with Signature Orange Hover */
 .work-explore-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   background-color: #000000;
   color: #FFFFFF;
-  padding: 11px 22px;
+  padding: 12px 26px;
   border-radius: 4px;
   font-family: var(--font-mono, monospace);
   font-size: 11.5px;
@@ -293,36 +280,6 @@
 .work-banner-row:hover .work-explore-btn:hover {
   background-color: #E65100;
   color: #FFFFFF;
-}
-
-.work-inquire-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #1D1D1F;
-  font-family: var(--font-mono, monospace);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-decoration: none;
-  opacity: 0.85;
-  transition: all 0.2s ease;
-}
-
-.work-inquire-link:hover {
-  color: #E65100;
-  opacity: 1;
-  text-decoration: underline;
-}
-
-.work-banner-row:hover .work-inquire-link {
-  color: #FFFFFF;
-  opacity: 1;
-}
-
-.work-banner-row:hover .work-inquire-link:hover {
-  color: #FF7722;
 }
 
 .work-banner-visual-col {
