@@ -1,32 +1,36 @@
-/* ── Apple-Grade Frosted Glass Header (Pure Vanilla CSS) ── */
+/* ══════════════════════════════════════════════════════════════════
+   SPLIT NAVIGATION BAR — PURE VANILLA CSS
+   [ Home · About ] ── [ LOGO ] ── [ Services · Work · Action ]
+   ══════════════════════════════════════════════════════════════════ */
+
 .apple-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  height: var(--nav-height, 52px);
+  height: var(--nav-height, 54px);
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline, rgba(0, 0, 0, 0.08));
   transition: all 0.25s ease;
 }
 
 .apple-header.scrolled {
-  background: rgba(255, 255, 255, 0.92);
-  border-bottom-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.03);
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom-color: rgba(0, 0, 0, 0.09);
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.03);
 }
 
 .apple-header-inner {
-  max-width: var(--max-w-content);
+  max-width: var(--max-w-content, 1160px);
   margin: 0 auto;
   height: 100%;
   padding: 0 24px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
 }
 
 @media (min-width: 768px) {
@@ -35,110 +39,146 @@
   }
 }
 
-/* ── Brand Logo ── */
-.apple-brand-link {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  color: var(--text-obsidian);
-  transition: opacity 0.2s ease;
-}
-
-.apple-brand-link:hover {
-  opacity: 0.8;
-}
-
-.apple-brand-text {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 600;
-  font-size: 23px;
-  letter-spacing: -0.02em;
-  color: var(--text-obsidian);
-}
-
-.apple-brand-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-violet);
-  margin-bottom: 4px;
-}
-
-/* ── Navigation Links ── */
-.apple-nav-list {
+/* ── 1. Left Nav: Home, About ── */
+.apple-nav-left {
   display: none;
   align-items: center;
   gap: 32px;
 }
 
 @media (min-width: 768px) {
-  .apple-nav-list {
+  .apple-nav-left {
     display: flex;
   }
 }
 
+/* ── 2. Center: Logo between Left and Right ── */
+.apple-nav-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.apple-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--text-obsidian, #1D1D1F);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.apple-brand-link:hover {
+  opacity: 0.82;
+  transform: scale(1.02);
+}
+
+.apple-brand-text {
+  font-family: var(--font-serif, serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  color: var(--text-obsidian, #1D1D1F);
+}
+
+.apple-brand-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-violet, #6E2CF3);
+  margin-bottom: 4px;
+}
+
+/* ── 3. Right Nav: Services, Work, and CTA ── */
+.apple-nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+}
+
+.apple-nav-right-links {
+  display: none;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .apple-nav-right-links {
+    display: flex;
+  }
+}
+
+/* ── Shared Nav Item Styles ── */
 .apple-nav-item {
-  font-family: var(--font-sans);
+  font-family: var(--font-sans, sans-serif);
   font-size: 13.5px;
   font-weight: 500;
   letter-spacing: -0.01em;
-  color: var(--text-titanium);
+  color: var(--text-titanium, #6E6E73);
   text-decoration: none;
   padding: 6px 0;
   transition: color 0.15s ease;
+  position: relative;
 }
 
 .apple-nav-item:hover {
-  color: var(--text-obsidian);
+  color: var(--text-obsidian, #1D1D1F);
 }
 
 .apple-nav-item.active {
-  color: var(--text-obsidian);
+  color: var(--text-obsidian, #1D1D1F);
   font-weight: 600;
 }
 
-/* ── Right Actions ── */
-.apple-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.apple-nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background-color: var(--accent-violet, #6E2CF3);
+  border-radius: 1px;
 }
 
+/* ── CTA Pill Button ── */
 .apple-cta-pill {
   display: none;
   align-items: center;
   gap: 6px;
   padding: 7px 16px;
   border-radius: 9999px;
-  background: var(--text-obsidian);
+  background: var(--text-obsidian, #1D1D1F);
   color: #FFFFFF;
+  font-family: var(--font-sans, sans-serif);
   font-size: 12.5px;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 900px) {
   .apple-cta-pill {
     display: inline-flex;
   }
 }
 
 .apple-cta-pill:hover {
-  background: var(--accent-violet);
+  background: var(--accent-violet, #6E2CF3);
   transform: translateY(-1px);
   box-shadow: 0 4px 14px rgba(110, 44, 243, 0.28);
 }
 
+/* ── Mobile Hamburger Button ── */
 .apple-burger-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
   border: none;
-  color: var(--text-obsidian);
+  color: var(--text-obsidian, #1D1D1F);
   padding: 6px;
   cursor: pointer;
 }
@@ -149,16 +189,27 @@
   }
 }
 
-/* ── Mobile Drawer ── */
+/* Mobile Spacer for 3-column grid alignment */
+.mobile-grid-spacer {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .mobile-grid-spacer {
+    display: none;
+  }
+}
+
+/* ── Mobile Navigation Drawer ── */
 .apple-mobile-drawer {
   position: fixed;
-  top: var(--nav-height, 52px);
+  top: var(--nav-height, 54px);
   left: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--hairline-solid);
+  border-bottom: 1px solid var(--hairline-solid, #E5E5EA);
   padding: 24px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   display: flex;
@@ -170,15 +221,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 12px 0;
   font-size: 16px;
   font-weight: 500;
-  color: var(--text-obsidian);
+  color: var(--text-obsidian, #1D1D1F);
   text-decoration: none;
-  border-bottom: 1px solid var(--hairline-subtle);
+  border-bottom: 1px solid var(--hairline-subtle, #F0F0F2);
 }
 
 .apple-mobile-link.active {
-  color: var(--accent-violet);
+  color: var(--accent-violet, #6E2CF3);
   font-weight: 600;
 }

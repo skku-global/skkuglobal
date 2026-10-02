@@ -3,13 +3,6 @@ import { NavLink, Link, useLocation } from 'react-router-dom'
 import { ArrowRight, Menu, X } from 'lucide-react'
 import './Navbar.css'
 
-const navLinks = [
-  { to: '/services', label: 'Services' },
-  { to: '/work', label: 'Work' },
-  { to: '/about', label: 'About' },
-  { to: '/contact', label: 'Contact' },
-]
-
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -20,7 +13,7 @@ export default function Navbar() {
     setMobileOpen(false)
   }, [pathname])
 
-  // Scroll detection for subtle border shadow
+  // Scroll detection for subtle shadow
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10)
@@ -32,29 +25,58 @@ export default function Navbar() {
   return (
     <header className={`apple-header ${scrolled ? 'scrolled' : ''}`}>
       <div className="apple-header-inner">
-        {/* ── Left: Brand mark in italic editorial serif ── */}
-        <Link to="/" className="apple-brand-link" aria-label="SKKU Global Home">
-          <span className="apple-brand-text">SKKU</span>
-          <span className="apple-brand-dot" />
-        </Link>
+        {/* ── 1. LEFT NAV: Home, About ── */}
+        <nav className="apple-nav-left" aria-label="Left Navigation">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `apple-nav-item ${isActive ? 'active' : ''}`
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `apple-nav-item ${isActive ? 'active' : ''}`
+            }
+          >
+            About
+          </NavLink>
+        </nav>
 
-        {/* ── Center: Minimal navigation links ── */}
-        <nav className="apple-nav-list" aria-label="Main Navigation">
-          {navLinks.map((link) => (
+        {/* Mobile Spacer (keeps logo centered on mobile) */}
+        <div className="mobile-grid-spacer" />
+
+        {/* ── 2. CENTER: LOGO BETWEEN THEM ── */}
+        <div className="apple-nav-center">
+          <Link to="/" className="apple-brand-link" aria-label="SKKU Global Home">
+            <span className="apple-brand-text">SKKU</span>
+            <span className="apple-brand-dot" />
+          </Link>
+        </div>
+
+        {/* ── 3. RIGHT NAV: Services, Work, and CTA ── */}
+        <div className="apple-nav-right">
+          <nav className="apple-nav-right-links" aria-label="Right Navigation">
             <NavLink
-              key={link.to}
-              to={link.to}
+              to="/services"
               className={({ isActive }) =>
                 `apple-nav-item ${isActive ? 'active' : ''}`
               }
             >
-              {link.label}
+              Services
             </NavLink>
-          ))}
-        </nav>
+            <NavLink
+              to="/work"
+              className={({ isActive }) =>
+                `apple-nav-item ${isActive ? 'active' : ''}`
+              }
+            >
+              Work
+            </NavLink>
+          </nav>
 
-        {/* ── Right: Minimal pill action button ── */}
-        <div className="apple-header-actions">
           <Link to="/contact" className="apple-cta-pill">
             <span>Start a project</span>
             <ArrowRight size={13} />
@@ -76,19 +98,57 @@ export default function Navbar() {
       {/* ── Mobile Navigation Drawer ── */}
       {mobileOpen && (
         <div className="apple-mobile-drawer">
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                className={({ isActive }) =>
-                  `apple-mobile-link ${isActive ? 'active' : ''}`
-                }
-              >
-                <span>{link.label}</span>
-                <ArrowRight size={14} style={{ color: 'var(--text-titanium)' }} />
-              </NavLink>
-            ))}
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `apple-mobile-link ${isActive ? 'active' : ''}`
+              }
+            >
+              <span>Home</span>
+              <ArrowRight size={14} style={{ color: 'var(--text-titanium)' }} />
+            </NavLink>
+
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                `apple-mobile-link ${isActive ? 'active' : ''}`
+              }
+            >
+              <span>About</span>
+              <ArrowRight size={14} style={{ color: 'var(--text-titanium)' }} />
+            </NavLink>
+
+            <NavLink
+              to="/services"
+              className={({ isActive }) =>
+                `apple-mobile-link ${isActive ? 'active' : ''}`
+              }
+            >
+              <span>Services</span>
+              <ArrowRight size={14} style={{ color: 'var(--text-titanium)' }} />
+            </NavLink>
+
+            <NavLink
+              to="/work"
+              className={({ isActive }) =>
+                `apple-mobile-link ${isActive ? 'active' : ''}`
+              }
+            >
+              <span>Work</span>
+              <ArrowRight size={14} style={{ color: 'var(--text-titanium)' }} />
+            </NavLink>
+
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `apple-mobile-link ${isActive ? 'active' : ''}`
+              }
+            >
+              <span>Contact</span>
+              <ArrowRight size={14} style={{ color: 'var(--text-titanium)' }} />
+            </NavLink>
+
             <div style={{ paddingTop: '16px' }}>
               <Link
                 to="/contact"
