@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import './styles/globals.css'
 import Navbar from './components/Navbar'
+import PushMenu from './components/PushMenu'
 import Footer from './components/Footer'
 import WhatsAppFloat from './components/WhatsAppFloat'
 import Home from './pages/Home'
@@ -36,14 +37,10 @@ function ScrollToTop() {
   return null
 }
 
-// Watches every .animate element and adds .is-visible when it enters the
-// viewport, triggering the scroll-reveal fadeUp animation from globals.css.
-// Rendered as a null component so it can live inside AppShell's JSX tree.
 function ScrollReveal() {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    // Small delay so newly-routed DOM elements are painted before we query
     const timerId = setTimeout(() => {
       const els = document.querySelectorAll('.animate:not(.is-visible)')
       if (!els.length) return
@@ -58,9 +55,7 @@ function ScrollReveal() {
           })
         },
         {
-          // Reveal once element is 8% into the viewport
           threshold: 0.08,
-          // Catch elements just below the fold
           rootMargin: '0px 0px -40px 0px',
         },
       )
@@ -76,29 +71,70 @@ function ScrollReveal() {
 }
 
 export function AppShell() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const { pathname } = useLocation()
+
+  // Close menu on route navigation
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [pathname])
+
+  // Lock body scroll when push menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
   return (
-    <>
+    <div className={`skku-site-shell ${menuOpen ? 'menu-active' : ''}`}>
       <a href="#main" className="skip-link">Skip to content</a>
-      <Navbar />
-      <ScrollToTop />
-      <ScrollReveal />
-      <Routes>
-        <Route path="/"         element={<Home />} />
-        <Route path="/work"     element={<Work />} />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/about"    element={<AboutPage />} />
-        <Route path="/contact"  element={<ContactPage />} />
-        <Route path="/support"  element={<ContactPage />} />
-        <Route path="/privacy"  element={<Privacy />} />
-        <Route path="/terms"    element={<Terms />} />
-        <Route path="/home"     element={<Navigate to="/" replace />} />
-        <Route path="/projects" element={<Navigate to="/work" replace />} />
-        {/* Anything else is a real 404, not a silent redirect to home */}
-        <Route path="*"         element={<NotFound />} />
-      </Routes>
-      <WhatsAppFloat />
-      <Footer />
-    </>
+
+      {/* ── 1. BLACK PUSH-DOWN MENU DRAWER (Revealed at top) ── */}
+      <PushMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+
+      {/* ── 2. THE WHOLE WHITE PAGE CANVAS (Slides down on open) ── */}
+      <div
+        className={`skku-page-canvas ${menuOpen ? 'canvas-is-pushed' : ''}`}
+      >
+        <Navbar onOpen={() => setMenuOpen(true)} isHidden={menuOpen} />
+        <ScrollToTop />
+        <ScrollReveal />
+
+        <main id="main">
+          <Routes>
+            <Route path="/"         element={<Home />} />
+            <Route path="/work"     element={<Work />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/about"    element={<AboutPage />} />
+            <Route path="/contact"  element={<ContactPage />} />
+            <Route path="/support"  element={<ContactPage />} />
+            <Route path="/privacy"  element={<Privacy />} />
+            <Route path="/terms"    element={<Terms />} />
+            <Route path="/home"     element={<Navigate to="/" replace />} />
+            <Route path="/projects" element={<Navigate to="/work" replace />} />
+            <Route path="*"         element={<NotFound />} />
+          </Routes>
+        </main>
+
+        <WhatsAppFloat />
+        <Footer />
+
+        {/* Soft overlay on pushed canvas: clicking anywhere glides canvas back up */}
+        {menuOpen && (
+          <div
+            className="canvas-pushed-dimmer"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Click to close menu and return to page"
+          />
+        )}
+      </div>
+    </div>
   )
 }
 

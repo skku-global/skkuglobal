@@ -70,11 +70,55 @@ html {
 }
 
 body {
-  background-color: var(--bg-base);
+  background-color: #0A0A0C;
   color: var(--text-obsidian);
   overflow-x: hidden;
   min-height: 100vh;
   line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PUSH MENU SLIDING CANVAS ARCHITECTURE
+   Deep Black #0A0A0C Background | Sliding White Page Canvas
+   ══════════════════════════════════════════════════════════════════ */
+
+.skku-site-shell {
+  background-color: #0A0A0C;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.skku-page-canvas {
+  position: relative;
+  z-index: 20;
+  background-color: #FFFFFF;
+  min-height: 100vh;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              border-radius 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.55s ease;
+  will-change: transform;
+}
+
+.skku-page-canvas.canvas-is-pushed {
+  transform: translateY(clamp(470px, 64vh, 580px));
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  box-shadow: 0 -25px 70px rgba(0, 0, 0, 0.65);
+}
+
+.canvas-pushed-dimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  transition: opacity 0.3s ease;
 }
 
 ::selection {
