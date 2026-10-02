@@ -12,7 +12,6 @@ import ContactPage from './pages/ContactPage'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import NotFound from './pages/NotFound'
-import Preloader from './components/Preloader'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -79,7 +78,6 @@ function ScrollReveal() {
 export function AppShell() {
   return (
     <>
-      <Preloader />
       <a href="#main" className="skip-link">Skip to content</a>
       <Navbar />
       <ScrollToTop />
