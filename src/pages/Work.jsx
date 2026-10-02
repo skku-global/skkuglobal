@@ -28,7 +28,7 @@ const CASE_STUDIES = [
     client: 'SecuScan Security',
     tagline: 'SecuScan | Automated zero-state vulnerability scanner for mission-critical web platforms',
     heading: 'SECUSCAN AUDIT ENGINE',
-    hoverColor: '#F0F4FA', // Cool, dim atmospheric Slate Ice
+    hoverColor: '#90baf9ff', // Cool, dim atmospheric Slate Ice
     note: 'The founders were losing enterprise deals without certified audits. We engineered an isolated zero-state scanner crawling endpoints for OWASP leaks, CORS disclosures, and SSL ciphers with zero database impact.',
     liveUrl: 'https://secuscan-orpin.vercel.app/',
     images: [
@@ -49,7 +49,7 @@ const CASE_STUDIES = [
     client: 'Luxe Hair Co.',
     tagline: 'Luxe Hair Co. | Transforming manual DM exchanges into luxury digital retail',
     heading: 'LUXE HAIR STOREFRONT',
-    hoverColor: '#FAF5EE', // Cool, dim subtle Sand Cashmere
+    hoverColor: '#f7cb8cff', // Cool, dim subtle Sand Cashmere
     note: 'Losing high-ticket clients across London, New York, and Lagos to fragmented direct messages drained 15 hours weekly. We engineered a custom React storefront with 1-tap WhatsApp invoice routing.',
     liveUrl: 'https://luxehair-tau.vercel.app/',
     images: [
@@ -70,7 +70,7 @@ const CASE_STUDIES = [
     client: 'CarBreezy Automotive',
     tagline: 'CarBreezy | Re-engineering vehicle purchasing with verified inspection badges',
     heading: 'CARBREEZY MARKETPLACE',
-    hoverColor: '#EFF7F2', // Cool, dim subtle Sage Mint
+    hoverColor: '#81f3aaff', // Cool, dim subtle Sage Mint
     note: 'Traditional classifieds were notorious for duplicate spam and salvage titles. We engineered a client-side catalog with sub-100ms faceted filters, condition badges, and instant dealer communication.',
     liveUrl: 'https://carbreezy-react.vercel.app/',
     images: [
@@ -91,7 +91,7 @@ const CASE_STUDIES = [
     client: 'JuniCash Global',
     tagline: 'JuniCash | Intuitive neo-banking wallet designed with Swiss private finish',
     heading: 'JUNICASH WALLET',
-    hoverColor: '#F4F0FA', // Cool, dim subtle Twilight Violet
+    hoverColor: '#b68ef1ff', // Cool, dim subtle Twilight Violet
     note: 'Sluggish OTP deliveries eroded user trust during fintech onboarding. We built an Express & MongoDB core paired with Resend email OTP verification, cryptographic JWT sessions, and real-time ledger histories.',
     liveUrl: 'https://junicash.vercel.app',
     images: [
@@ -247,15 +247,18 @@ export default function Work() {
 
       {/* ── Bottom Inquiries Card ── */}
       <section className="work-bottom-cta">
-        <div className="work-hero-container">
-          <h2 className="work-cta-bold">HAVE A FRICTION WORTH SOLVING?</h2>
-          <p className="work-cta-sub">
-            We handle the strategy, the architecture, and the production launch with verified engineering velocity.
-          </p>
-          <Link to="/contact" className="work-explore-btn" style={{ display: 'inline-flex', padding: '14px 32px', fontSize: '13px' }}>
-            <span>START A PROJECT INQUIRY</span>
-            <ArrowRight size={14} />
-          </Link>
+        <div className="work-cta-container">
+          <div className="work-cta-card">
+            <span className="work-hero-kicker" style={{ marginBottom: '16px' }}>LET&apos;S TALK</span>
+            <h2 className="work-cta-bold">HAVE A FRICTION WORTH SOLVING?</h2>
+            <p className="work-cta-sub">
+              We handle the strategy, the architecture, and the production launch with verified engineering velocity.
+            </p>
+            <Link to="/contact" className="work-explore-btn" style={{ display: 'inline-flex', padding: '14px 34px', fontSize: '12px' }}>
+              <span>START A PROJECT INQUIRY</span>
+              <ArrowRight size={14} />
+            </Link>
+          </div>
         </div>
       </section>
     </main>
