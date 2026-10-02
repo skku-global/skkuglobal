@@ -50,34 +50,25 @@ export default function PushMenu({ isOpen, onClose }) {
           </div>
         </div>
 
-        {/* ── 2. Three Columns Menu (Matches User's Reference Image) ── */}
+        {/* ── 2. Three Columns Menu (Clean Project Spec) ── */}
         <div className="push-menu-grid">
-          {/* Column 1: Services & Work */}
+          {/* Column 1: Primary Navigation */}
           <div className="push-menu-col">
+            <Link to="/" className="push-menu-link" onClick={onClose}>
+              Home
+            </Link>
             <Link to="/services" className="push-menu-link" onClick={onClose}>
-              Our Services
-            </Link>
-            <Link to="/services#secuscan" className="push-menu-link" onClick={onClose}>
-              SecuScan Audits
-            </Link>
-            <Link to="/services#security" className="push-menu-link" onClick={onClose}>
-              Safety &amp; Hardening
+              Services
             </Link>
             <Link to="/work" className="push-menu-link" onClick={onClose}>
-              Selected Work
+              Work
             </Link>
           </div>
 
-          {/* Column 2: About & Contact */}
+          {/* Column 2: Studio & Contact */}
           <div className="push-menu-col">
             <Link to="/about" className="push-menu-link" onClick={onClose}>
-              About us
-            </Link>
-            <Link to="/about#founder" className="push-menu-link" onClick={onClose}>
-              Leadership
-            </Link>
-            <Link to="/about#principles" className="push-menu-link" onClick={onClose}>
-              Philosophy
+              About
             </Link>
             <Link to="/contact" className="push-menu-link" onClick={onClose}>
               Contact
