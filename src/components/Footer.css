@@ -1,308 +1,159 @@
-/* ── Apple-Style Minimalist Light Footer ──────────────────────────────── */
-.apple-footer {
-  background-color: #FFFFFF;
-  color: #6e6e73;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1.33337;
-  letter-spacing: -0.01em;
-  padding: 24px 0 40px;
-  border-top: 1px solid #d2d2d7;
-  position: relative;
-  z-index: 10;
-  -webkit-font-smoothing: antialiased;
+/* ── Apple-Grade Minimalist 4-Column Directory Footer (Pure Vanilla CSS) ── */
+.apple-footer-wrap {
+  background-color: var(--bg-panel);
+  border-top: 1px solid var(--hairline-solid);
+  color: var(--text-obsidian);
+  padding-top: 64px;
+  padding-bottom: 48px;
+  font-family: var(--font-sans);
 }
 
-.apple-footer-shell {
-  max-width: 1024px;
+.apple-footer-container {
+  max-width: var(--max-w-content);
   margin: 0 auto;
-  padding: 0 22px;
-  box-sizing: border-box;
+  padding: 0 24px;
 }
 
-/* ── Footnotes Section ── */
-.apple-footer-notes {
-  padding: 8px 0 16px;
-  font-size: 11px;
-  line-height: 1.55;
-  color: #86868b;
+@media (min-width: 768px) {
+  .apple-footer-container {
+    padding: 0 36px;
+  }
 }
 
-.apple-footer-notes p {
-  margin: 0 0 8px;
-  line-height: 1.55;
+.apple-footer-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--hairline-solid);
 }
 
-.apple-footer-notes p:last-child {
-  margin-bottom: 0;
+@media (min-width: 768px) {
+  .apple-footer-top {
+    flex-direction: row;
+    align-items: flex-end;
+  }
 }
 
-/* ── Thin Hairline Divider ── */
-.apple-footer-divider {
-  width: 100%;
-  height: 1px;
-  background-color: #d2d2d7;
-  margin: 14px 0 18px;
-}
-
-/* ── Breadcrumb Row ── */
-.apple-footer-breadcrumbs {
+.apple-footer-brand-title {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 8px;
-  padding: 4px 0 20px;
-  font-size: 12px;
-  color: #6e6e73;
+  margin-bottom: 12px;
 }
 
-.apple-breadcrumb-home {
+.apple-footer-brand-title .brand-name {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  color: var(--text-obsidian);
+}
+
+.apple-footer-brand-title .brand-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-violet);
+}
+
+.apple-footer-desc {
+  color: var(--text-titanium);
+  font-size: 14px;
+  max-width: 440px;
+  line-height: 1.6;
+}
+
+.apple-footer-badge {
   display: inline-flex;
   align-items: center;
-  text-decoration: none;
-  opacity: 0.85;
-  transition: opacity 0.2s ease;
-}
-
-.apple-breadcrumb-home:hover {
-  opacity: 1;
-}
-
-.apple-breadcrumb-logo {
-  display: block;
-  width: 14px;
-  height: 14px;
-  object-fit: contain;
-}
-
-.apple-breadcrumb-chevron {
-  color: #86868b;
-  font-size: 13px;
-  line-height: 1;
-  user-select: none;
-}
-
-.apple-breadcrumb-link {
-  color: #1d1d1f;
-  text-decoration: none;
-  font-weight: 400;
-  transition: color 0.15s ease;
-}
-
-.apple-breadcrumb-link:hover {
-  text-decoration: underline;
-}
-
-.apple-breadcrumb-current {
-  color: #424245;
-  font-weight: 500;
-}
-
-/* ── 3-Column Clean Directory Grid ── */
-.apple-footer-directory {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 40px;
-  row-gap: 28px;
-  padding-bottom: 24px;
-}
-
-.apple-footer-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.apple-footer-col-title {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0 0 10px 0;
-  text-align: left;
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 600;
-  color: #1d1d1f;
-  letter-spacing: -0.01em;
-  cursor: default;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.apple-footer-accordion-icon {
-  display: none;
-}
-
-.apple-footer-links-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
   gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: #FFFFFF;
+  border: 1px solid var(--hairline-solid);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-obsidian);
 }
 
-.apple-footer-link {
-  color: #424245;
-  font-size: 12px;
-  text-decoration: none;
-  line-height: 1.33337;
-  display: inline-block;
-  transition: color 0.15s ease;
+.pulse-emerald {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
 }
 
-.apple-footer-link:hover {
-  color: #000000;
-  text-decoration: underline;
+/* ── 4 Columns Grid ── */
+.apple-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  padding-top: 48px;
+  padding-bottom: 48px;
 }
 
-/* ── Retailer / Direct Connect Note ── */
-.apple-footer-connect-note {
-  padding: 4px 0 14px;
-  font-size: 12px;
-  line-height: 1.45;
-  color: #6e6e73;
+@media (min-width: 768px) {
+  .apple-footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
-.apple-footer-connect-note p {
-  margin: 0;
+.apple-footer-col h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-titanium);
+  margin-bottom: 16px;
+  font-weight: 600;
 }
 
-.apple-footer-blue-link {
-  color: #0066cc;
-  text-decoration: none;
-  transition: text-decoration 0.15s ease, color 0.15s ease;
-}
-
-.apple-footer-blue-link:hover {
-  text-decoration: underline;
-  color: #004499;
-}
-
-/* ── Legal Bar & Region ── */
-.apple-footer-legal {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 8px 0 12px;
-  font-size: 12px;
-  color: #6e6e73;
-}
-
-.apple-footer-copyright {
-  font-size: 12px;
-  color: #6e6e73;
-  white-space: nowrap;
-}
-
-.apple-footer-legal-links {
+.apple-footer-links {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.apple-footer-links a {
+  color: var(--text-obsidian);
+  font-size: 13.5px;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  display: inline-flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 4px;
 }
 
-.apple-footer-legal-links li {
-  display: inline-flex;
+.apple-footer-links a:hover {
+  color: var(--accent-violet);
+}
+
+/* ── Bottom Micro-Typography & Hairlines ── */
+.apple-footer-bottom {
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline-solid);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-}
-
-.apple-legal-link {
-  color: #424245;
+  justify-content: space-between;
+  gap: 16px;
   font-size: 12px;
-  text-decoration: none;
-  transition: color 0.15s ease;
+  color: var(--text-titanium);
 }
 
-.apple-legal-link:hover {
-  color: #1d1d1f;
-  text-decoration: underline;
+@media (min-width: 768px) {
+  .apple-footer-bottom {
+    flex-direction: row;
+  }
 }
 
-.apple-legal-separator {
-  color: #d2d2d7;
-  margin: 0 8px;
-  user-select: none;
-  font-size: 11px;
-}
-
-.apple-footer-region {
-  margin-left: auto;
-}
-
-.apple-region-link {
-  color: #424245;
-  font-size: 12px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-
-.apple-region-link:hover {
-  color: #1d1d1f;
-  text-decoration: underline;
-}
-
-/* ── Mobile Accordion Mode (iPhone / Android) ── */
-@media (max-width: 834px) {
-  .apple-footer-directory {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding-bottom: 12px;
-  }
-
-  .apple-footer-col {
-    border-bottom: 1px solid #d2d2d7;
-  }
-
-  .apple-footer-col:first-child {
-    border-top: 1px solid #d2d2d7;
-  }
-
-  .apple-footer-col-title {
-    margin: 0;
-    padding: 10px 0;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .apple-footer-accordion-icon {
-    display: inline-block;
-    font-size: 15px;
-    font-weight: 300;
-    color: #6e6e73;
-    transition: transform 0.2s ease;
-    line-height: 1;
-  }
-
-  .apple-footer-col.open .apple-footer-accordion-icon {
-    transform: rotate(45deg);
-  }
-
-  .apple-footer-links-list {
-    display: none;
-    padding: 4px 0 14px 4px;
-    gap: 10px;
-  }
-
-  .apple-footer-col.open .apple-footer-links-list {
-    display: flex;
-  }
-
-  .apple-footer-legal {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .apple-footer-region {
-    margin-left: 0;
-    margin-top: 4px;
-  }
+.apple-footer-bottom-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }

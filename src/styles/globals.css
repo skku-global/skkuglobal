@@ -1,69 +1,88 @@
-@import "tailwindcss";
+/* ══════════════════════════════════════════════════════════════════
+   SKKU GLOBAL — PURE VANILLA CSS (NO TAILWIND)
+   Apple-Grade Clean Slate Light Mode Design System
+   ══════════════════════════════════════════════════════════════════ */
 
-@layer base {
-  :root {
-    /* ── Apple-Grade Clean Slate Light Mode Palette ── */
-    --bg-base: #FFFFFF;
-    --bg-panel: #F5F5F7;
-    --bg-panel-subtle: #FAFAFB;
-    
-    /* ── Typography Palette ── */
-    --text-obsidian: #1D1D1F;
-    --text-titanium: #6E6E73;
-    --text-secondary: #86868B;
-    
-    /* ── Accent System ── */
-    --accent-violet: #6E2CF3;
-    --accent-violet-glow: #7928CA;
-    --accent-violet-subtle: #F5F0FF;
-    --accent-violet-border: rgba(110, 44, 243, 0.2);
-    
-    /* ── Hairline Borders ── */
-    --hairline: rgba(0, 0, 0, 0.08);
-    --hairline-solid: #E5E5EA;
-    --hairline-subtle: #F0F0F2;
-    
-    /* ── Typography Fonts ── */
-    --font-serif: 'Newsreader', Georgia, Cambria, 'Times New Roman', Times, serif;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-    --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    
-    /* ── Dimensions ── */
-    --nav-height: 52px;
-    --max-w-content: 1160px;
-    --max-w-narrow: 760px;
-  }
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--nav-height) + 24px);
-    background-color: var(--bg-base);
-    color: var(--text-obsidian);
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  body {
-    background-color: var(--bg-base);
-    color: var(--text-obsidian);
-    overflow-x: hidden;
-    min-height: 100vh;
-  }
-
-  ::selection {
-    background-color: rgba(110, 44, 243, 0.15);
-    color: #1D1D1F;
-  }
+:root {
+  /* ── Canvas & Panels ── */
+  --bg-base: #FFFFFF;
+  --bg-panel: #F5F5F7;
+  --bg-panel-hover: #EBEBEF;
+  --bg-panel-subtle: #FAFAFB;
+  
+  /* ── Typography Palette ── */
+  --text-obsidian: #1D1D1F;
+  --text-titanium: #6E6E73;
+  --text-secondary: #86868B;
+  --text-muted: #A1A1A6;
+  
+  /* ── Signature Brand Accent ── */
+  --accent-violet: #6E2CF3;
+  --accent-violet-hover: #5D22D6;
+  --accent-violet-glow: #7928CA;
+  --accent-violet-subtle: #F5F0FF;
+  --accent-violet-border: rgba(110, 44, 243, 0.2);
+  
+  /* ── Hairline Structural Borders ── */
+  --hairline: rgba(0, 0, 0, 0.08);
+  --hairline-solid: #E5E5EA;
+  --hairline-subtle: #F0F0F2;
+  
+  /* ── Typography Pairing ── */
+  --font-serif: 'Newsreader', Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  
+  /* ── Dimensions ── */
+  --nav-height: 52px;
+  --max-w-content: 1160px;
+  --max-w-narrow: 760px;
+  
+  /* ── Radii ── */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 9999px;
+  
+  /* ── Shadows ── */
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 12px 32px -4px rgba(110, 44, 243, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 6px 20px rgba(110, 44, 243, 0.28);
 }
 
-/* ── Typography Utilities ── */
+/* ── Universal Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 24px);
+  background-color: var(--bg-base);
+  color: var(--text-obsidian);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-obsidian);
+  overflow-x: hidden;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+::selection {
+  background-color: rgba(110, 44, 243, 0.15);
+  color: var(--text-obsidian);
+}
+
+/* ── Typography Classes ── */
 .font-serif {
   font-family: var(--font-serif);
 }
@@ -76,36 +95,14 @@
   font-family: var(--font-mono);
 }
 
-/* Editorial headline styling */
-.editorial-title {
-  font-family: var(--font-serif);
-  color: var(--text-obsidian);
-  letter-spacing: -0.025em;
-  line-height: 1.12;
-}
-
-.editorial-italic {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-}
-
-/* Monospaced studio eyebrow */
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--text-titanium);
-}
-
-/* ── Apple-Grade Layouts & Containers ── */
+/* ── Layout Shells ── */
 .apple-shell {
   max-width: var(--max-w-content);
   margin-left: auto;
   margin-right: auto;
   padding-left: 24px;
   padding-right: 24px;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -121,30 +118,10 @@
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
+  width: 100%;
 }
 
-/* ── Apple Cards & Panels ── */
-.apple-panel {
-  background-color: var(--bg-panel);
-  border: 1px solid var(--hairline);
-  border-radius: 20px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.apple-panel-white {
-  background-color: #FFFFFF;
-  border: 1px solid var(--hairline-solid);
-  border-radius: 20px;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.apple-panel-white:hover {
-  border-color: rgba(110, 44, 243, 0.3);
-  box-shadow: 0 12px 32px -4px rgba(110, 44, 243, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
-}
-
-/* ── Interactive Buttons & Badges ── */
+/* ── Button Tokens ── */
 .btn-apple-primary {
   display: inline-flex;
   align-items: center;
@@ -157,7 +134,7 @@
   font-weight: 500;
   letter-spacing: -0.01em;
   padding: 10px 20px;
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
   text-decoration: none;
   border: 1px solid transparent;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -167,7 +144,7 @@
 .btn-apple-primary:hover {
   background-color: var(--accent-violet);
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(110, 44, 243, 0.28);
+  box-shadow: var(--shadow-glow);
 }
 
 .btn-apple-secondary {
@@ -182,7 +159,7 @@
   font-weight: 500;
   letter-spacing: -0.01em;
   padding: 10px 20px;
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
   text-decoration: none;
   border: 1px solid var(--hairline-solid);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -206,7 +183,7 @@
   font-weight: 500;
   letter-spacing: -0.01em;
   padding: 10px 22px;
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
   text-decoration: none;
   border: 1px solid transparent;
   box-shadow: 0 4px 14px rgba(110, 44, 243, 0.25);
@@ -215,19 +192,12 @@
 }
 
 .btn-apple-violet:hover {
-  background-color: #5D22D6;
+  background-color: var(--accent-violet-hover);
   transform: translateY(-1px);
   box-shadow: 0 8px 24px rgba(110, 44, 243, 0.35);
 }
 
-/* Hairline divider */
-.hairline-divider {
-  height: 1px;
-  width: 100%;
-  background-color: var(--hairline-solid);
-}
-
-/* Accessibility Skip link */
+/* ── Accessibility ── */
 .skip-link {
   position: absolute;
   top: -120px;
