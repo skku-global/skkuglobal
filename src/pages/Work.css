@@ -205,7 +205,7 @@
 
 .work-banner-metric-pill strong {
   font-weight: 800;
-  color: #FFFFFF;
+  color: #E65100;
 }
 
 /* Action row */
@@ -236,7 +236,7 @@
 
 .work-explore-btn:hover {
   background-color: #000000;
-  color: #FFFFFF;
+  color: #E65100;
   transform: translateY(-1px);
 }
 
@@ -251,11 +251,12 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
+  opacity: 0.85;
+  transition: all 0.2s ease;
 }
 
 .work-inquire-link:hover {
+  color: #E65100;
   opacity: 1;
   text-decoration: underline;
 }
@@ -316,7 +317,7 @@
 }
 
 .work-banner-thumb-btn.is-active {
-  border-color: #FFFFFF;
+  border-color: #E65100;
 }
 
 .work-banner-thumb-btn img {
@@ -336,6 +337,12 @@
   justify-content: center;
   color: #FFFFFF;
   background: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.work-banner-add-btn:hover {
+  border-color: #E65100;
+  color: #E65100;
 }
 
 /* ── 6. Bottom Consultation Card ── */
