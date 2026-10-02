@@ -95,14 +95,14 @@ export function AppShell() {
     <div className={`skku-site-shell ${menuOpen ? 'menu-active' : ''}`}>
       <a href="#main" className="skip-link">Skip to content</a>
 
-      {/* ── 1. BLACK PUSH-DOWN MENU DRAWER (Revealed at top) ── */}
-      <PushMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+      {/* ── 1. PUSH-DOWN MENU DRAWER (Revealed at top, white on /work) ── */}
+      <PushMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} isWhite={pathname === '/work'} />
 
-      {/* ── 2. THE WHOLE WHITE PAGE CANVAS (Slides down on open) ── */}
+      {/* ── 2. THE WHOLE PAGE CANVAS (Slides down on open) ── */}
       <div
         className={`skku-page-canvas ${menuOpen ? 'canvas-is-pushed' : ''}`}
       >
-        <Navbar onOpen={() => setMenuOpen(true)} isHidden={menuOpen} />
+        <Navbar onOpen={() => setMenuOpen(true)} isHidden={menuOpen} isWhite={pathname === '/work'} />
         <ScrollToTop />
         <ScrollReveal />
 

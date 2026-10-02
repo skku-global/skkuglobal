@@ -119,3 +119,37 @@
   border-color: #1D1D1F;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
+
+/* ── 4. White Nav Mode for Work Page ── */
+.skku-header.nav-white-mode {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--black-pure, #000000);
+}
+
+.skku-header.nav-white-mode.scrolled {
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.skku-header.nav-white-mode .skku-brand-text {
+  color: var(--black-pure, #000000);
+}
+
+.skku-header.nav-white-mode .skku-menu-label {
+  color: var(--text-obsidian, #1D1D1F);
+}
+
+.skku-header.nav-white-mode .skku-menu-circle {
+  background-color: #FFFFFF;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.skku-header.nav-white-mode .skku-menu-line {
+  background-color: var(--black-pure, #000000);
+}
+
+.skku-header.nav-white-mode .skku-menu-btn:hover .skku-menu-circle {
+  border-color: #000000;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}

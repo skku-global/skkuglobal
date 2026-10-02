@@ -232,3 +232,69 @@
   font-size: 12px;
   color: #666666;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   WHITE PUSH MENU THEME (ACTIVATED ON WORK PAGE)
+   Clean White Background #FFFFFF | Black Typography | Orange Accents
+   ══════════════════════════════════════════════════════════════════ */
+
+.push-menu-drawer.push-menu-white {
+  background-color: #FFFFFF;
+  color: #000000;
+  border-bottom: 2px solid var(--black-pure, #000000);
+}
+
+.push-menu-drawer.push-menu-white .push-menu-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.push-menu-drawer.push-menu-white .push-brand-text {
+  color: var(--black-pure, #000000);
+}
+
+.push-menu-drawer.push-menu-white .push-close-label {
+  color: var(--text-obsidian, #1D1D1F);
+}
+
+.push-menu-drawer.push-menu-white .push-close-circle {
+  background-color: #E65100;
+  color: #FFFFFF;
+}
+
+.push-menu-drawer.push-menu-white .push-menu-link {
+  color: var(--black-pure, #000000);
+}
+
+.push-menu-drawer.push-menu-white .push-menu-link:hover {
+  color: #E65100;
+}
+
+.push-menu-drawer.push-menu-white .push-social-btn {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.push-menu-drawer.push-menu-white .push-social-btn:hover {
+  background-color: #E65100;
+  color: #FFFFFF;
+}
+
+.push-menu-drawer.push-menu-white .push-meta-email {
+  color: #333333;
+}
+
+.push-menu-drawer.push-menu-white .push-meta-email:hover {
+  color: #E65100;
+}
+
+.push-menu-drawer.push-menu-white .push-meta-rc {
+  color: #888888;
+}
+
+.push-menu-drawer.push-menu-white .push-lang-active {
+  color: #E65100;
+}
+
+.push-menu-drawer.push-menu-white .push-lang-inactive {
+  color: #AAAAAA;
+}
