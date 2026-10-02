@@ -9,7 +9,7 @@ const NODES = [
     number: '01',
     icon: ShieldAlert,
     tag: 'MARKET INVISIBILITY',
-    title: 'Not Enough Recognition',
+    title: 'Lack of Recognition',
     subtitle: 'Invisible in a crowded market.',
     description:
       'You have real operational excellence, but your online presence looks like a generic weekend template. High-value international clients leave before understanding what you actually offer.',
@@ -20,7 +20,7 @@ const NODES = [
     number: '02',
     icon: Sparkle,
     tag: 'THE CREDIBILITY GAP',
-    title: 'Want to Look Professional',
+    title: 'Professional Legitimacy',
     subtitle: 'Amateur presence misaligned with your true quality.',
     description:
       'Clunky fonts, slow load times, and mismatched mobile layouts undermine your reputation. Your digital front door should mirror the exact high-calibre standard of your services.',
@@ -31,7 +31,7 @@ const NODES = [
     number: '03',
     icon: LayoutGrid,
     tag: 'OPERATIONAL FRAGMENTATION',
-    title: 'All Offerings in One Clean Place',
+    title: 'Centralized Offerings & Tech Ease',
     subtitle: 'Unified platform, zero technical headache.',
     description:
       'Scattered Google forms, random WhatsApp chats, and disconnected spreadsheets lose valuable customer intent. Managing four different SaaS tools wastes hours every single day.',
