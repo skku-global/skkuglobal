@@ -325,9 +325,9 @@
   color: #FF7722;
 }
 
-/* ── 5. Visual Image Column ── */
 .work-banner-visual-col {
   width: 100%;
+  perspective: 1200px;
 }
 
 .work-banner-img-frame {
@@ -339,6 +339,11 @@
   background: #F4F4F6;
   border: 1px solid #E5E5EB;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
+  transform-origin: center center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease;
+  will-change: transform;
 }
 
 .work-banner-img {
@@ -347,11 +352,18 @@
   object-fit: cover;
   object-position: top;
   display: block;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.work-banner-row:hover .work-banner-img {
-  transform: scale(1.025);
+/* THE BEND ON HOVER: Image and frame bend elegantly without zooming */
+.work-banner-row:hover .work-banner-img-frame {
+  transform: perspective(1000px) rotateY(-7deg) skewX(-4deg) translateY(-2px);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.work-banner-row.image-on-left:hover .work-banner-img-frame {
+  transform: perspective(1000px) rotateY(7deg) skewX(4deg) translateY(-2px);
 }
 
 /* Mini thumbnail selector & space to add pictures */
