@@ -23,11 +23,8 @@ export default function PushMenu({ isOpen, onClose }) {
       <div className="push-menu-inner">
         {/* ── 1. Top Navbar in Black Header ── */}
         <div className="push-menu-header">
-          {/* Left spacer for perfect centering of logo */}
-          <div className="push-header-col-left" />
-
-          {/* Middle: Logo (Static, not a link) */}
-          <div className="push-header-col-center">
+          {/* Left: Logo (Static, not a link) */}
+          <div className="push-header-col-left">
             <div className="push-brand-static" aria-label="SKKU Global">
               <span className="push-brand-text">SKKU</span>
             </div>

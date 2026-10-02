@@ -19,17 +19,14 @@ export default function Navbar({ onOpen, isHidden }) {
       role="banner"
     >
       <div className="skku-header-inner">
-        {/* ── Left Spacer (guarantees mathematical centering of middle logo) ── */}
-        <div className="skku-header-col-left" />
-
-        {/* ── Middle: Logo (Static, not a link) ── */}
-        <div className="skku-header-col-center">
+        {/* ── Left: Logo (Static, not a link) ── */}
+        <div className="skku-header-col-left">
           <div className="skku-brand-static" aria-label="SKKU Global">
             <span className="skku-brand-text">SKKU</span>
           </div>
         </div>
 
-        {/* ── Right: Menu text + circular hamburger button (Matches Image 1) ── */}
+        {/* ── Right: Menu text + circular hamburger button ── */}
         <div className="skku-header-col-right">
           <button
             type="button"
