@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import './styles/globals.css'
 import Navbar from './components/Navbar'
@@ -95,14 +95,14 @@ export function AppShell() {
     <div className={`skku-site-shell ${menuOpen ? 'menu-active' : ''}`}>
       <a href="#main" className="skip-link">Skip to content</a>
 
-      {/* ── 1. PUSH-DOWN MENU DRAWER (Revealed at top, white on /work) ── */}
-      <PushMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} isWhite={pathname === '/work'} />
+      {/* ── 1. BLACK PUSH-DOWN MENU DRAWER (Revealed at top) ── */}
+      <PushMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 
-      {/* ── 2. THE WHOLE PAGE CANVAS (Slides down on open) ── */}
+      {/* ── 2. THE WHOLE WHITE PAGE CANVAS (Slides down on open) ── */}
       <div
         className={`skku-page-canvas ${menuOpen ? 'canvas-is-pushed' : ''}`}
       >
-        <Navbar onOpen={() => setMenuOpen(true)} isHidden={menuOpen} isWhite={pathname === '/work'} />
+        <Navbar onOpen={() => setMenuOpen(true)} isHidden={menuOpen} />
         <ScrollToTop />
         <ScrollReveal />
 

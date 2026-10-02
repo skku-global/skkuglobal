@@ -7,10 +7,10 @@
    ══════════════════════════════════════════════════════════════════ */
 
 .work-page-main {
-  background-color: #000000;
+  background-color: #f4f4f4;
   min-height: 100vh;
   padding-top: 76px;
-  color: #FFFFFF;
+  color: #000000;
   font-family: var(--font-sans, -apple-system, sans-serif);
   overflow-x: hidden;
 }
@@ -18,15 +18,17 @@
 /* ── 1. Top Header ── */
 .work-page-hero {
   padding: 24px 0 36px;
-  background-color: #ffffff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  color:#FFFFFF
+  background-color: #c0baba;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  color:#000000
 }
 
 .work-hero-container {
   max-width: 1320px;
+
   margin: 0 auto;
   padding: 0 24px;
+  border-bottom: #000000;
 }
 
 @media (min-width: 768px) {
@@ -147,7 +149,7 @@
   line-height: 0.95;
   letter-spacing: -0.025em;
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: #000000;
   margin: 0 0 14px 0;
   display: inline-block;
   transform-origin: 0% 50%;

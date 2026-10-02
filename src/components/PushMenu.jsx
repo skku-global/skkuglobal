@@ -4,7 +4,7 @@ import { X } from 'lucide-react'
 import { waLink } from '../seo/siteMeta.js'
 import './PushMenu.css'
 
-export default function PushMenu({ isOpen, onClose, isWhite }) {
+export default function PushMenu({ isOpen, onClose }) {
   // Close menu on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -16,7 +16,7 @@ export default function PushMenu({ isOpen, onClose, isWhite }) {
 
   return (
     <aside
-      className={`push-menu-drawer ${isOpen ? 'is-open' : ''} ${isWhite ? 'push-menu-white' : ''}`}
+      className={`push-menu-drawer ${isOpen ? 'is-open' : ''}`}
       aria-label="Expanded Navigation Menu"
       aria-hidden={!isOpen}
     >

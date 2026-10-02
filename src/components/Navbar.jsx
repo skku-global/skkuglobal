@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './Navbar.css'
 
-export default function Navbar({ onOpen, isHidden, isWhite }) {
+export default function Navbar({ onOpen, isHidden }) {
   const [scrolled, setScrolled] = useState(false)
 
   // Scroll detection for subtle background blur when scrolled down
@@ -15,7 +15,7 @@ export default function Navbar({ onOpen, isHidden, isWhite }) {
 
   return (
     <header
-      className={`skku-header ${scrolled ? 'scrolled' : ''} ${isHidden ? 'is-hidden' : ''} ${isWhite ? 'nav-white-mode' : ''}`}
+      className={`skku-header ${scrolled ? 'scrolled' : ''} ${isHidden ? 'is-hidden' : ''}`}
       role="banner"
     >
       <div className="skku-header-inner">
