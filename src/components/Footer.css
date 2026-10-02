@@ -53,12 +53,11 @@
 }
 
 .footer-logo-text {
-  font-family: var(--font-serif, Georgia, serif);
-  font-style: italic;
-  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 800;
   font-size: 22px;
-  letter-spacing: -0.02em;
-  color: var(--text-obsidian, #1D1D1F);
+  letter-spacing: -0.035em;
+  color: var(--black-pure, #000000);
 }
 
 .footer-logo-dot {
