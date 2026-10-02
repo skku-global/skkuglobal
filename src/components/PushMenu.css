@@ -71,11 +71,10 @@
 }
 
 .push-brand-text {
-  font-family: var(--font-serif, Georgia, serif);
-  font-style: italic;
-  font-weight: 600;
-  font-size: 24px;
-  letter-spacing: -0.02em;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.03em;
   color: #FFFFFF;
 }
 

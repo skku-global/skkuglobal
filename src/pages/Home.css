@@ -65,12 +65,12 @@
 }
 
 .home-hero-title {
-  font-family: var(--font-serif, serif);
-  font-size: clamp(38px, 6vw, 68px);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  color: var(--text-obsidian, #1D1D1F);
-  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(40px, 6.5vw, 76px);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  color: var(--black-pure, #000000);
+  font-weight: 700;
 }
 
 .home-hero-title .italic-accent {
