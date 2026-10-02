@@ -1,266 +1,281 @@
 /* ══════════════════════════════════════════════════════════════════
-   WORK PAGE — ULTRA-CLEAN EDITORIAL SPLIT LAYOUT
-   High-Impact Agency Style (Matching User Reference Image)
-   Alternating / Swapping Sides · Bold Typography · Clean Gallery
+   WORK PAGE — WE ARE THE ROMANS EDITORIAL BANNERS
+   - Hover Background Color Change (Blue, Orange, Green, Violet)
+   - Title Bends & Slants on Hover (font-style: italic, skewX)
+   - Alternating Sides: Row 1 Image on Right, Row 2 Image on Left
+   - Crisp 'EXPLORE' Badges & Clean Minimalist Dark Canvas
    ══════════════════════════════════════════════════════════════════ */
 
 .work-page-main {
-  background-color: #FFFFFF;
+  background-color: #0A0A0C;
   min-height: 100vh;
-  padding-top: 110px;
-  padding-bottom: 120px;
+  padding-top: 100px;
+  color: #FFFFFF;
   font-family: var(--font-sans, -apple-system, sans-serif);
   overflow-x: hidden;
 }
 
-.work-page-container {
-  max-width: 1280px;
+/* ── 1. Top Header ── */
+.work-page-hero {
+  padding: 60px 0 50px;
+  background-color: #0A0A0C;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.work-hero-container {
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 @media (min-width: 768px) {
-  .work-page-container {
-    padding: 0 44px;
+  .work-hero-container {
+    padding: 0 48px;
   }
 }
 
-/* ── 1. Page Header ── */
-.work-header-section {
-  max-width: 860px;
-  margin-bottom: 60px;
-  padding-top: 20px;
-}
-
-@media (min-width: 768px) {
-  .work-header-section {
-    margin-bottom: 80px;
-  }
-}
-
-/* Outlined Box Badge (Matches the 'ABOUT US' button in user reference) */
-.work-badge-box {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #FFFFFF;
-  color: var(--black-pure, #000000);
-  border: 1.5px solid var(--black-pure, #000000);
-  border-radius: 2px;
-  padding: 6px 14px;
+.work-hero-kicker {
+  display: inline-block;
   font-family: var(--font-mono, monospace);
   font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+  color: #E65100;
+  margin-bottom: 14px;
 }
 
-.work-header-title {
-  font-family: -apple-system, BlinkMacSystemFont, "Impact", "Inter", "Arial Black", sans-serif;
+.work-hero-headline {
+  font-family: -apple-system, BlinkMacSystemFont, "Impact", "Arial Black", "Inter", sans-serif;
   font-size: clamp(38px, 5.5vw, 68px);
-  font-weight: 900;
+  font-weight: 950;
   line-height: 0.96;
   letter-spacing: -0.025em;
   text-transform: uppercase;
-  color: var(--black-pure, #000000);
-  margin: 20px 0 16px;
+  color: #FFFFFF;
+  margin: 0 0 16px;
 }
 
-.work-header-subtitle {
-  font-size: clamp(16px, 1.8vw, 19px);
+.work-hero-subtext {
+  font-size: clamp(15.5px, 1.6vw, 18px);
   line-height: 1.6;
-  color: var(--text-titanium, #6E6E73);
-  max-width: 640px;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 680px;
+  margin: 0;
 }
 
-/* ── 2. Editorial Alternating Rows List ── */
-.work-rows-list {
+/* ── 2. Full-Width Banner Feed ── */
+.work-banners-feed {
   display: flex;
   flex-direction: column;
 }
 
-/* ── 3. Single Editorial Case Study Row (50/50 Split) ── */
-.work-editorial-row {
+/* ── 3. Single Project Banner Row ── */
+.work-banner-row {
+  position: relative;
+  background-color: #0E0E11;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: clamp(48px, 6vw, 84px) 0;
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+/* HOVER: Background changes to the project's signature vibrant color */
+.work-banner-row:hover {
+  background-color: var(--row-hover-bg) !important;
+}
+
+.work-banner-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 36px;
   align-items: center;
-  padding: 60px 0;
-  border-bottom: 1px solid #ECECEC;
+}
+
+@media (min-width: 768px) {
+  .work-banner-inner {
+    padding: 0 48px;
+  }
 }
 
 @media (min-width: 960px) {
-  .work-editorial-row {
-    grid-template-columns: 1fr 1fr;
+  .work-banner-inner {
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 64px;
-    padding: 88px 0;
   }
 
-  /* SWAPPING SIDES:
-     Normal: Text on Left (order 1), Visual on Right (order 2)
-     is-reversed: Visual on Left (order 1), Text on Right (order 2)
-  */
-  .work-editorial-row.is-reversed .work-editorial-content {
+  /* ── ALTERNATING SIDES SPECIFICATION:
+     Row 1 (index 0): Image on RIGHT, Text on LEFT
+     Row 2 (index 1): Image on LEFT, Text on RIGHT
+     Row 3 (index 2): Image on RIGHT, Text on LEFT
+     Row 4 (index 3): Image on LEFT, Text on RIGHT
+  ── */
+  .work-banner-row.image-on-right .work-banner-text-col {
+    order: 1;
+  }
+  .work-banner-row.image-on-right .work-banner-visual-col {
     order: 2;
   }
 
-  .work-editorial-row.is-reversed .work-editorial-visual {
+  .work-banner-row.image-on-left .work-banner-inner {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+  .work-banner-row.image-on-left .work-banner-text-col {
+    order: 2;
+  }
+  .work-banner-row.image-on-left .work-banner-visual-col {
     order: 1;
   }
 }
 
-/* ── 4. TEXT CONTENT SIDE (Agency Editorial Style) ── */
-.work-editorial-content {
+/* ── 4. Text Column ── */
+.work-banner-text-col {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 580px;
 }
 
-/* Massive Bold Uppercase Heading (Matches Reference) */
-.work-editorial-heading {
-  font-family: -apple-system, BlinkMacSystemFont, "Impact", "Inter", "Arial Black", sans-serif;
-  font-size: clamp(36px, 4.4vw, 62px);
-  font-weight: 900;
+/* ── The Bending Title ── */
+.work-banner-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Impact", "Arial Black", "Inter", sans-serif;
+  font-size: clamp(36px, 4.8vw, 70px);
+  font-weight: 950;
   line-height: 0.95;
   letter-spacing: -0.025em;
   text-transform: uppercase;
-  color: var(--black-pure, #000000);
-  margin: 20px 0 18px 0;
+  color: #FFFFFF;
+  margin: 0 0 14px 0;
+  display: inline-block;
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), font-style 0.35s ease;
 }
 
-/* Clean Editorial Description Paragraph */
-.work-editorial-note {
+/* THE BEND ON HOVER: Tilts, slants, and bends! */
+.work-banner-row:hover .work-banner-title {
+  font-style: italic;
+  transform: skewX(-9deg) scale(1.02);
+}
+
+/* Subtitle Line (Matches reference: "Lidl | Reacting to Oasis' comeback...") */
+.work-banner-tagline {
   font-family: var(--font-sans, -apple-system, sans-serif);
-  font-size: clamp(15.5px, 1.35vw, 17px);
-  line-height: 1.62;
-  color: #38383B;
-  margin-bottom: 24px;
+  font-size: clamp(15px, 1.4vw, 17px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 12px 0;
 }
 
-/* Minimalist Stat Line */
-.work-editorial-metrics {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  width: 100%;
-  padding: 16px 0;
-  margin-bottom: 28px;
-  border-top: 1px solid #EBEBEB;
-  border-bottom: 1px solid #EBEBEB;
+/* Editorial Note */
+.work-banner-note {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 580px;
+  margin: 0 0 20px 0;
 }
 
-@media (max-width: 540px) {
-  .work-editorial-metrics {
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 14px;
-  }
-}
-
-.work-metric-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.work-metric-num {
-  font-family: -apple-system, BlinkMacSystemFont, "Impact", "Inter", sans-serif;
-  font-size: clamp(20px, 2.2vw, 26px);
-  font-weight: 900;
-  line-height: 1;
-  color: var(--black-pure, #000000);
-}
-
-.work-metric-lbl {
-  font-family: var(--font-mono, monospace);
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #88888D;
-  margin-top: 4px;
-}
-
-/* Action Links */
-.work-editorial-actions {
+/* Minimalist metric pills */
+.work-banner-metrics {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  margin-bottom: 24px;
 }
 
-.work-clean-btn-primary {
+.work-banner-metric-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background-color: var(--black-pure, #000000);
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 4px 12px;
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
   color: #FFFFFF;
-  padding: 10px 22px;
-  border-radius: 2px;
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: all 0.2s ease;
 }
 
-.work-clean-btn-primary:hover {
-  background-color: var(--accent-violet, #6E2CF3);
+.work-banner-metric-pill strong {
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+/* Action row */
+.work-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Crisp White 'EXPLORE' Button (Matches Reference Screenshots) */
+.work-explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background-color: #FFFFFF;
+  color: #000000;
+  padding: 10px 20px;
+  border-radius: 2px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.work-explore-btn:hover {
+  background-color: #000000;
+  color: #FFFFFF;
   transform: translateY(-1px);
 }
 
-.work-clean-btn-secondary {
+.work-inquire-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background-color: transparent;
-  color: var(--black-pure, #000000);
-  border: 1.5px solid var(--black-pure, #000000);
-  padding: 9px 20px;
-  border-radius: 2px;
-  font-size: 13px;
+  gap: 6px;
+  color: #FFFFFF;
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
   font-weight: 700;
-  text-decoration: none;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: all 0.2s ease;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
 }
 
-.work-clean-btn-secondary:hover {
-  background-color: #F5F5F7;
+.work-inquire-link:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
 
-/* ── 5. VISUAL WORK IMAGE SIDE (Matches Reference) ── */
-.work-editorial-visual {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* ── 5. Visual Image Column ── */
+.work-banner-visual-col {
   width: 100%;
 }
 
-.work-clean-image-card {
+.work-banner-img-frame {
   position: relative;
   width: 100%;
-  height: 380px;
-  border-radius: 6px;
+  height: clamp(240px, 28vw, 360px);
+  border-radius: 4px;
   overflow: hidden;
-  background-color: #F5F5F7;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #18181B;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
 }
 
-@media (min-width: 768px) {
-  .work-clean-image-card {
-    height: 460px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .work-clean-image-card {
-    height: 520px;
-  }
-}
-
-.work-clean-image {
+.work-banner-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -269,106 +284,82 @@
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.work-clean-image-card:hover .work-clean-image {
-  transform: scale(1.02);
+.work-banner-row:hover .work-banner-img {
+  transform: scale(1.035);
 }
 
-/* Sleek Gallery Switcher Bar below the image */
-.work-clean-gallery-bar {
+/* Mini thumbnail selector & space to add pictures */
+.work-banner-thumbs {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 4px 2px;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.work-clean-thumbs {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.work-clean-thumb-btn {
-  width: 48px;
-  height: 34px;
+.work-banner-thumb-btn {
+  width: 32px;
+  height: 22px;
   border-radius: 2px;
   overflow: hidden;
   border: 1.5px solid transparent;
-  background: #EAEAEF;
-  cursor: pointer;
   padding: 0;
-  transition: all 0.2s ease;
+  cursor: pointer;
+  background: #222;
+  transition: border-color 0.2s ease;
 }
 
-.work-clean-thumb-btn:hover {
-  border-color: #999;
+.work-banner-thumb-btn.is-active {
+  border-color: #FFFFFF;
 }
 
-.work-clean-thumb-btn.is-active {
-  border-color: var(--black-pure, #000000);
-}
-
-.thumb-img {
+.work-banner-thumb-btn img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* Dedicated clean '+ Add' slot for user images */
-.work-clean-add-slot {
-  width: 48px;
-  height: 34px;
+.work-banner-add-btn {
+  width: 22px;
+  height: 22px;
   border-radius: 2px;
-  border: 1.5px dashed #AAAAAF;
+  border: 1px dashed rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  font-family: var(--font-mono, monospace);
-  font-size: 9px;
-  font-weight: 700;
-  color: #77777C;
-  background: #FAFAFA;
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.work-clean-count {
-  font-family: var(--font-mono, monospace);
-  font-size: 11px;
-  font-weight: 700;
-  color: #88888D;
-  letter-spacing: 0.08em;
-}
-
-/* ── 6. Bottom Consultation Banner ── */
-.work-cta-card {
-  margin-top: 60px;
-  background-color: #FAFAFA;
-  border: 1.5px solid var(--black-pure, #000000);
-  border-radius: 4px;
-  padding: 64px 32px;
+/* ── 6. Bottom Consultation Card ── */
+.work-bottom-cta {
+  padding: 100px 0;
+  background-color: #0A0A0C;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
 }
 
-@media (min-width: 768px) {
-  .work-cta-card {
-    padding: 80px 48px;
-  }
-}
-
-.work-cta-title {
-  font-family: -apple-system, BlinkMacSystemFont, "Impact", "Inter", "Arial Black", sans-serif;
-  font-size: clamp(32px, 5vw, 54px);
-  font-weight: 900;
-  letter-spacing: -0.02em;
+.work-cta-bold {
+  font-family: -apple-system, BlinkMacSystemFont, "Impact", "Arial Black", "Inter", sans-serif;
+  font-size: clamp(34px, 5.2vw, 64px);
+  font-weight: 950;
+  letter-spacing: -0.025em;
   text-transform: uppercase;
-  color: var(--black-pure, #000000);
-  margin-bottom: 16px;
+  color: #FFFFFF;
+  margin: 0 0 16px;
 }
 
-.work-cta-desc {
+.work-cta-sub {
   font-size: 16.5px;
   line-height: 1.6;
-  color: var(--text-titanium, #6E6E73);
+  color: rgba(255, 255, 255, 0.7);
   max-width: 580px;
-  margin: 0 auto 32px;
+  margin: 0 auto 36px;
 }
