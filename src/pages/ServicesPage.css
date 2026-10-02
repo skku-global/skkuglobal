@@ -1,0 +1,326 @@
+/* ══════════════════════════════════════════════════════════════════
+   SERVICES PAGE — ULTRA-CLEAN EDITORIAL (WHITE THEME)
+   - Pristine Pure White Background (#FFFFFF)
+   - Signature #E65100 Accents (Zero Clunky Purple)
+   - Consistent Typography with Work Page
+   - High-contrast Architecture Cards & Terms
+   ══════════════════════════════════════════════════════════════════ */
+
+.services-page-main {
+  background-color: #FFFFFF;
+  min-height: 100vh;
+  padding-top: 76px;
+  color: #1D1D1F;
+  font-family: var(--font-sans, -apple-system, sans-serif);
+  overflow-x: hidden;
+}
+
+/* ── Top Hero ── */
+.services-page-hero {
+  padding: 64px 0 44px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #EDEDF0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.services-hero-container {
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .services-hero-container {
+    padding: 0 40px;
+  }
+}
+
+.services-hero-headline {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", sans-serif;
+  font-size: clamp(40px, 6vw, 76px);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: #000000;
+  margin: 0 auto 16px;
+  text-align: center;
+  width: 100%;
+}
+
+.services-hero-subtext {
+  font-size: clamp(15.5px, 1.4vw, 18.5px);
+  line-height: 1.6;
+  color: #555558;
+  max-width: 660px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ── Directory Section ── */
+.services-directory-section {
+  padding: 80px 0 100px;
+  background-color: #FAFAFC;
+  border-top: 1px solid #EDEDF0;
+  border-bottom: 1px solid #EDEDF0;
+}
+
+.services-directory-container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .services-directory-container {
+    padding: 0 40px;
+  }
+}
+
+.services-dir-header {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.services-dir-kicker {
+  display: inline-flex;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #E65100;
+  background: rgba(230, 81, 0, 0.08);
+  border: 1px solid rgba(230, 81, 0, 0.2);
+  border-radius: 9999px;
+  padding: 4px 14px;
+  margin-bottom: 14px;
+}
+
+.services-dir-title {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", sans-serif;
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 850;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #000000;
+  margin: 0;
+}
+
+.services-capabilities-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+@media (min-width: 860px) {
+  .services-capabilities-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+.services-cap-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E5EB;
+  border-radius: 20px;
+  padding: clamp(28px, 3.5vw, 42px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+.services-cap-card:hover {
+  border-color: rgba(230, 81, 0, 0.4);
+  box-shadow: 0 16px 36px rgba(230, 81, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.services-cap-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.services-cap-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(230, 81, 0, 0.08);
+  color: #E65100;
+  border: 1px solid rgba(230, 81, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.services-cap-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #000000;
+  background: #F4F4F6;
+  border: 1px solid #E5E5EB;
+  border-radius: 9999px;
+  padding: 4px 12px;
+}
+
+.services-cap-title {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", sans-serif;
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #000000;
+  margin: 0 0 8px;
+}
+
+.services-cap-tagline {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #E65100;
+  margin: 0 0 14px;
+}
+
+.services-cap-summary {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555558;
+  margin: 0 0 20px;
+}
+
+.services-cap-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.services-cap-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #222226;
+}
+
+.services-cap-feature-item svg {
+  color: #E65100;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.services-cap-action {
+  padding-top: 20px;
+  border-top: 1px solid #EDEDF0;
+}
+
+.services-cap-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.services-cap-link:hover {
+  color: #E65100;
+  transform: translateX(3px);
+}
+
+/* ── SLA Guarantees Grid ── */
+.services-sla-section {
+  padding: 70px 0 90px;
+  background-color: #FFFFFF;
+}
+
+.services-sla-container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .services-sla-container {
+    padding: 0 40px;
+  }
+}
+
+.services-sla-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .services-sla-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+.services-sla-card {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background-color: #FAFAFC;
+  border: 1px solid #EBEBF0;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.services-sla-card:hover {
+  border-color: rgba(230, 81, 0, 0.4);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.04);
+}
+
+.services-sla-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #FFFFFF;
+  border: 1px solid #E5E5EB;
+  color: #E65100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.services-sla-card h4 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #000000;
+  margin: 0 0 8px;
+}
+
+.services-sla-card p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #66666B;
+  margin: 0;
+}

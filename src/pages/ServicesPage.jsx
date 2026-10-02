@@ -1,13 +1,86 @@
 import { Link } from 'react-router-dom'
 import ScrollStreamFlow from '../components/ScrollStreamFlow'
 import Seo from '../components/Seo'
-import { waLink } from '../seo/siteMeta.js'
-import { Code2, ShieldCheck, ShoppingBag, Server, ArrowRight, CheckCircle2, Lock, Zap } from 'lucide-react'
+import './ServicesPage.css'
+
+// ── Native Inline React SVG Icons (Zero external icon library dependency) ──
+function CodeIcon({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+    </svg>
+  )
+}
+
+function ShieldIcon({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <polyline points="9 12 11 14 15 10" />
+    </svg>
+  )
+}
+
+function ShoppingBagIcon({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <path d="M16 10a4 4 0 0 1-8 0" />
+    </svg>
+  )
+}
+
+function ServerIcon({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+      <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+      <line x1="6" y1="6" x2="6.01" y2="6" />
+      <line x1="6" y1="18" x2="6.01" y2="18" />
+    </svg>
+  )
+}
+
+function CheckIcon({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  )
+}
+
+function ArrowRightIcon({ size = 12 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </svg>
+  )
+}
+
+function ZapIcon({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+  )
+}
+
+function LockIcon({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </svg>
+  )
+}
 
 const DETAILED_CAPABILITIES = [
   {
     id: 'engineering',
-    icon: Code2,
+    icon: CodeIcon,
     badge: 'FULL-STACK DEVELOPMENT',
     title: 'Custom Web & SaaS Engineering',
     tagline: 'High-velocity web apps and APIs built to scale effortlessly.',
@@ -22,7 +95,7 @@ const DETAILED_CAPABILITIES = [
   },
   {
     id: 'secuscan',
-    icon: ShieldCheck,
+    icon: ShieldIcon,
     badge: 'PROPRIETARY AUDIT ENGINE',
     title: 'SecuScan Vulnerability Audits',
     tagline: 'Automated penetration testing that uncovers holes before attackers do.',
@@ -37,7 +110,7 @@ const DETAILED_CAPABILITIES = [
   },
   {
     id: 'ecommerce',
-    icon: ShoppingBag,
+    icon: ShoppingBagIcon,
     badge: 'GLOBAL RETAIL SYSTEMS',
     title: 'E-Commerce & Digital Commerce',
     tagline: 'Online retail engines with seamless multi-currency checkout.',
@@ -52,7 +125,7 @@ const DETAILED_CAPABILITIES = [
   },
   {
     id: 'security',
-    icon: Server,
+    icon: ServerIcon,
     badge: 'DIGITAL HARDENING',
     title: 'Platform Security & Infrastructure',
     tagline: 'Ironclad cloud defenses protecting your data and uptime.',
@@ -69,84 +142,66 @@ const DETAILED_CAPABILITIES = [
 
 export default function ServicesPage() {
   return (
-    <main id="main" className="bg-white min-h-screen pt-28 pb-20">
+    <main id="main" className="services-page-main">
       <Seo route="/services" />
 
-      {/* ── Page Header ── */}
-      <section className="max-w-[1160px] mx-auto px-6 md:px-10 mb-12">
-        <span className="font-mono text-xs uppercase tracking-[0.28em] text-[#6E2CF3] font-semibold block mb-4">
-          DISCIPLINES &amp; ARCHITECTURE
-        </span>
-        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#1D1D1F] font-normal leading-[1.08] max-w-4xl mb-6">
-          Bespoke systems engineered without{' '}
-          <span className="italic font-normal">technical compromise.</span>
-        </h1>
-        <p className="text-[#6E6E73] text-base sm:text-lg max-w-2xl font-sans leading-relaxed">
-          Every platform we release is custom-coded, secured with proprietary audits, and transferred directly to your control. No recurring agency lock-in.
-        </p>
+      {/* ── Page Hero: Clean, Bold, Minimal ── */}
+      <section className="services-page-hero">
+        <div className="services-hero-container">
+          <h1 className="services-hero-headline">SERVICES</h1>
+          <p className="services-hero-subtext">
+            Bespoke web platforms, vulnerability scanning, and e-commerce architectures engineered without technical compromise.
+          </p>
+        </div>
       </section>
 
-      {/* ── Scroll-Stream Flow Section (Core Requirement) ── */}
+      {/* ── The Hand-Drawn Transformation Stream (Oval Nodes + Arrows) ── */}
       <ScrollStreamFlow />
 
-      {/* ── Detailed Capabilities Directory ── */}
-      <section className="py-20 md:py-28 bg-[#F5F5F7] border-y border-[#E5E5EA]">
-        <div className="max-w-[1160px] mx-auto px-6 md:px-10">
-          <div className="max-w-2xl mb-16">
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-[#6E6E73] font-medium block mb-2">
-              TECHNICAL DIRECTORY
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#1D1D1F] font-normal">
+      {/* ── Technical Directory ── */}
+      <section className="services-directory-section" aria-label="Technical Directory">
+        <div className="services-directory-container">
+          <div className="services-dir-header">
+            <span className="services-dir-kicker">TECHNICAL DIRECTORY</span>
+            <h2 className="services-dir-title">
               Our 4 primary engineering capabilities.
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="services-capabilities-grid">
             {DETAILED_CAPABILITIES.map((cap) => {
               const Icon = cap.icon
               return (
-                <div
-                  key={cap.id}
-                  id={cap.id}
-                  className="bg-white border border-[#E5E5EA] rounded-3xl p-8 sm:p-10 hover:border-[#6E2CF3]/30 hover:shadow-xl transition-all flex flex-col justify-between"
-                >
+                <div key={cap.id} id={cap.id} className="services-cap-card">
                   <div>
-                    <div className="flex items-center justify-between gap-3 mb-6">
-                      <div className="w-12 h-12 rounded-2xl bg-[#F5F0FF] text-[#6E2CF3] flex items-center justify-center">
-                        <Icon size={22} />
+                    <div className="services-cap-card-top">
+                      <div className="services-cap-icon-box">
+                        <Icon size={20} />
                       </div>
-                      <span className="font-mono text-[11px] uppercase tracking-wider text-[#6E2CF3] bg-[#F5F0FF] px-3 py-1 rounded-full font-medium">
-                        {cap.badge}
-                      </span>
+                      <span className="services-cap-badge">{cap.badge}</span>
                     </div>
 
-                    <h3 className="font-serif text-2xl sm:text-3xl text-[#1D1D1F] mb-2 font-normal">
-                      {cap.title}
-                    </h3>
-                    <p className="font-serif italic text-sm text-[#6E2CF3] mb-4">
-                      {cap.tagline}
-                    </p>
-                    <p className="text-sm text-[#6E6E73] font-sans leading-relaxed mb-6">
-                      {cap.summary}
-                    </p>
+                    <h3 className="services-cap-title">{cap.title}</h3>
+                    <p className="services-cap-tagline">{cap.tagline}</p>
+                    <p className="services-cap-summary">{cap.summary}</p>
 
-                    <ul className="space-y-2.5 mb-8">
+                    <ul className="services-cap-features">
                       {cap.features.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#1D1D1F] font-sans">
-                          <CheckCircle2 size={15} className="text-[#6E2CF3] shrink-0 mt-0.5" />
+                        <li key={idx} className="services-cap-feature-item">
+                          <CheckIcon size={14} />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="pt-6 border-t border-[#E5E5EA]">
+                  <div className="services-cap-action">
                     <Link
                       to={`/contact?objective=${encodeURIComponent(cap.title)}`}
-                      className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#1D1D1F] hover:text-[#6E2CF3] transition-colors"
+                      className="services-cap-link"
                     >
                       <span>Inquire about this capability</span>
-                      <ArrowRight size={13} />
+                      <ArrowRightIcon size={12} />
                     </Link>
                   </div>
                 </div>
@@ -156,36 +211,36 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── Working Terms & SLA Guarantees ── */}
-      <section className="py-20 bg-white">
-        <div className="max-w-[1160px] mx-auto px-6 md:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA]">
-              <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-[#6E2CF3] mb-4">
-                <Zap size={20} />
+      {/* ── SLA Guarantees ── */}
+      <section className="services-sla-section" aria-label="Guarantees">
+        <div className="services-sla-container">
+          <div className="services-sla-grid">
+            <div className="services-sla-card">
+              <div className="services-sla-icon">
+                <ZapIcon size={20} />
               </div>
-              <h4 className="font-serif text-xl text-[#1D1D1F] mb-2">5–7 Day Launch</h4>
-              <p className="text-xs text-[#6E6E73] font-sans leading-relaxed">
+              <h4>5–7 Day Launch</h4>
+              <p>
                 Focused sprint development. We don&apos;t drag projects out across quarters. You receive working production builds within days.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA]">
-              <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-[#6E2CF3] mb-4">
-                <Lock size={20} />
+            <div className="services-sla-card">
+              <div className="services-sla-icon">
+                <LockIcon size={20} />
               </div>
-              <h4 className="font-serif text-xl text-[#1D1D1F] mb-2">100% Code Transfer</h4>
-              <p className="text-xs text-[#6E6E73] font-sans leading-relaxed">
+              <h4>100% Code Transfer</h4>
+              <p>
                 You own every single commit, database migration, and asset. Full handover to your GitHub and cloud account on final milestone.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA]">
-              <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-[#6E2CF3] mb-4">
-                <CheckCircle2 size={20} />
+            <div className="services-sla-card">
+              <div className="services-sla-icon">
+                <ShieldIcon size={20} />
               </div>
-              <h4 className="font-serif text-xl text-[#1D1D1F] mb-2">Milestone Contracts</h4>
-              <p className="text-xs text-[#6E6E73] font-sans leading-relaxed">
+              <h4>Milestone Contracts</h4>
+              <p>
                 50% commitment to kick off architecture, 50% only when the platform is fully approved and ready for live deployment.
               </p>
             </div>

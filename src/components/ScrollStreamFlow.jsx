@@ -1,59 +1,86 @@
-import { useState, useRef } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { motion, useScroll, useSpring } from 'framer-motion'
-import { ArrowDown, ArrowRight, Sparkles, CheckCircle2, ShieldAlert, Sparkle, LayoutGrid } from 'lucide-react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import './ScrollStreamFlow.css'
 
-const NODES = [
+// ── Native Inline React SVG Icons (Zero external icon library dependency) ──
+function ArrowDownIcon({ size = 18 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <polyline points="19 12 12 19 5 12" />
+    </svg>
+  )
+}
+
+function ArrowRightIcon({ size = 14 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </svg>
+  )
+}
+
+// ── Exact Nodes from the Handwritten Diagram ──
+const STREAM_NODES = [
   {
-    side: 'right',
-    number: '01',
-    icon: ShieldAlert,
-    tag: 'MARKET INVISIBILITY',
-    title: 'Lack of Recognition',
-    subtitle: 'Invisible in a crowded market.',
-    description:
-      'You have real operational excellence, but your online presence looks like a generic weekend template. High-value international clients leave before understanding what you actually offer.',
-    outcome: 'We engineer an authoritative digital presence that commands instant prestige and justifies premium fees.',
+    id: 'customer-issue',
+    position: 'pos-center',
+    stepNumber: '01',
+    heading: 'CUSTOMER ISSUE',
+    subtitle: 'Where the transformation story begins — identifying and isolating the core friction.',
+    hoverColor: '#0C182A', // Deep Midnight Oceanic Navy (Like Work)
   },
   {
-    side: 'left',
-    number: '02',
-    icon: Sparkle,
-    tag: 'THE CREDIBILITY GAP',
-    title: 'Professional Legitimacy',
-    subtitle: 'Amateur presence misaligned with your true quality.',
-    description:
-      'Clunky fonts, slow load times, and mismatched mobile layouts undermine your reputation. Your digital front door should mirror the exact high-calibre standard of your services.',
-    outcome: 'Apple-grade visual finish, custom typography pairing, micro-interactions, and sub-second page performance.',
+    id: 'recognition',
+    position: 'pos-right',
+    stepNumber: '02',
+    heading: 'NOT ENOUGH RECOGNITION',
+    subtitle: 'High operational excellence trapped behind market invisibility and generic templates.',
+    hoverColor: '#28160B', // Deep Warm Espresso Bronze (Like Work)
   },
   {
-    side: 'right',
-    number: '03',
-    icon: LayoutGrid,
-    tag: 'OPERATIONAL FRAGMENTATION',
-    title: 'Centralized Offerings & Tech Ease',
-    subtitle: 'Unified platform, zero technical headache.',
-    description:
-      'Scattered Google forms, random WhatsApp chats, and disconnected spreadsheets lose valuable customer intent. Managing four different SaaS tools wastes hours every single day.',
-    outcome: 'One centralized system housing your catalog, automated checkouts, user authentication, and SecuScan defense.',
+    id: 'professional',
+    position: 'pos-left',
+    stepNumber: '03',
+    heading: 'WANT TO BE PROFESSIONAL',
+    subtitle: 'Elevating your brand presence to command instant prestige and justify premium fees.',
+    hoverColor: '#0A2315', // Deep Emerald Forest (Like Work)
+  },
+  {
+    id: 'centralized',
+    position: 'pos-right',
+    stepNumber: '04',
+    heading: 'ALL PRODUCT & TECH IN ONE PLACE',
+    subtitle: 'Total control — all services, clear, easy, and engineered with modern web architecture.',
+    hoverColor: '#1C122F', // Deep Royal Midnight Violet (Like Work)
   },
 ]
 
 export default function ScrollStreamFlow() {
-  const containerRef = useRef(null)
   const [promptText, setPromptText] = useState('')
   const navigate = useNavigate()
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start center', 'end end'],
-  })
-
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 24,
-    restDelta: 0.001,
-  })
 
   const handlePromptSubmit = (e) => {
     e.preventDefault()
@@ -66,151 +93,80 @@ export default function ScrollStreamFlow() {
   }
 
   return (
-    <section ref={containerRef} className="py-20 md:py-32 bg-white relative overflow-hidden">
-      <div className="max-w-[1160px] mx-auto px-6 md:px-10">
+    <section className="stream-section" aria-label="Transformation Stream">
+      <div className="stream-container">
         
         {/* ── Section Header ── */}
-        <div className="text-center max-w-2xl mx-auto mb-20 md:mb-28">
-          <span className="font-mono text-xs uppercase tracking-[0.28em] text-[#6E2CF3] font-semibold block mb-3">
-            THE TRANSFORMATION STREAM
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-normal mb-6">
-            From market friction to{' '}
-            <span className="italic font-normal">absolute clarity.</span>
-          </h2>
-          <p className="text-[#6E6E73] text-base font-sans leading-relaxed">
-            Follow the stream. See how we dissolve the three most common bottlenecks that keep ambitious companies from dominating their industry.
+        <div className="stream-header">
+          <span className="stream-kicker">SERVICE STREAM</span>
+          <h2 className="stream-title">THE TRANSFORMATION STREAM</h2>
+          <p className="stream-intro">
+            Follow the flow — dissolving the friction between your current bottlenecks and complete digital authority.
           </p>
         </div>
 
-        {/* ── Scroll-Stream Vertical Track ── */}
-        <div className="relative">
-          {/* Center Background Hairline */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-36 w-[2px] -translate-x-1/2 bg-[#E5E5EA]" />
-          
-          {/* Animated Electric Violet Scroll Fill Track */}
+        {/* ── Oval Nodes & Curving Connecting Arrows ── */}
+        <div className="stream-track">
+          {STREAM_NODES.map((node, index) => (
+            <div key={node.id} className="w-full flex flex-col items-center">
+              {/* The Oval Capsule Card */}
+              <div className={`stream-node-row ${node.position}`}>
+                <motion.div
+                  className="stream-oval-card"
+                  style={{ '--oval-hover-bg': node.hoverColor }}
+                  initial={{ opacity: 0, y: 32 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <span className="stream-step-badge">STEP {node.stepNumber}</span>
+                  <h3 className="stream-oval-title">{node.heading}</h3>
+                  <p className="stream-oval-subtitle">{node.subtitle}</p>
+                </motion.div>
+              </div>
+
+              {/* Curving Flow Arrow linking to the next node */}
+              <div className="stream-arrow-connector">
+                <div className="stream-arrow-badge" title="Flowing to next step">
+                  <ArrowDownIcon size={18} />
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {/* ── Final Rectangular Box from Diagram: 'WHAT DID YOU HAVE IN MIND' ── */}
           <motion.div
-            style={{ scaleY, originY: 0 }}
-            className="hidden md:block absolute left-1/2 top-0 bottom-36 w-[2.5px] -translate-x-1/2 bg-gradient-to-b from-[#6E2CF3] via-[#7928CA] to-[#6E2CF3] shadow-[0_0_12px_rgba(110,44,243,0.5)] z-10"
-          />
+            className="stream-terminal-box"
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="stream-kicker" style={{ marginBottom: '14px' }}>THE RESOLUTION</span>
+            <h3 className="stream-terminal-title">WHAT DID YOU HAVE IN MIND?</h3>
+            <p className="stream-terminal-sub">
+              Tell us your bottleneck, product, or service vision. We build the solution and put you in total control.
+            </p>
 
-          {/* Stream Nodes */}
-          <div className="space-y-16 md:space-y-28">
-            {NODES.map((node, index) => {
-              const isRight = node.side === 'right'
-              const Icon = node.icon
+            <form onSubmit={handlePromptSubmit} className="stream-prompt-form">
+              <input
+                type="text"
+                value={promptText}
+                onChange={(e) => setPromptText(e.target.value)}
+                placeholder="[ Describe your product, service, or issue... ]"
+                className="stream-prompt-input"
+                aria-label="What did you have in mind?"
+              />
+              <button type="submit" className="stream-prompt-btn">
+                <span>SUBMIT INQUIRY</span>
+                <ArrowRightIcon size={14} />
+              </button>
+            </form>
 
-              return (
-                <div
-                  key={node.number}
-                  className={`relative flex flex-col md:flex-row items-center ${
-                    isRight ? 'md:flex-row-reverse' : ''
-                  }`}
-                >
-                  {/* Content Container (Oval Card) */}
-                  <div className="w-full md:w-[46%]">
-                    <motion.div
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: '-60px' }}
-                      transition={{ duration: 0.6, delay: 0.1 }}
-                      className="bg-[#F5F5F7] border border-[#E5E5EA] rounded-[32px] p-8 sm:p-10 hover:border-[#6E2CF3]/30 hover:shadow-xl transition-all relative group"
-                    >
-                      {/* Node Tag & Number */}
-                      <div className="flex items-center justify-between gap-3 mb-5">
-                        <span className="font-mono text-[11px] uppercase tracking-wider text-[#6E2CF3] font-semibold bg-white px-3 py-1 rounded-full border border-black/5 shadow-xs">
-                          {node.tag}
-                        </span>
-                        <span className="font-mono text-xs text-[#86868B]">
-                          PHASE {node.number}
-                        </span>
-                      </div>
-
-                      {/* Title & Subtitle */}
-                      <h3 className="font-serif text-2xl sm:text-3xl text-[#1D1D1F] font-normal mb-2">
-                        {node.title}
-                      </h3>
-                      <p className="font-serif italic text-base text-[#6E2CF3] mb-4">
-                        {node.subtitle}
-                      </p>
-
-                      {/* Description */}
-                      <p className="text-sm text-[#6E6E73] font-sans leading-relaxed mb-6">
-                        {node.description}
-                      </p>
-
-                      {/* The Fix / Outcome */}
-                      <div className="pt-4 border-t border-[#E5E5EA] flex items-start gap-2.5">
-                        <CheckCircle2 size={16} className="text-[#6E2CF3] shrink-0 mt-0.5" />
-                        <p className="text-xs sm:text-sm font-medium text-[#1D1D1F] font-sans leading-normal">
-                          <strong className="text-[#6E2CF3]">The Fix:</strong> {node.outcome}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </div>
-
-                  {/* Center Node Marker on Stream */}
-                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white border-2 border-[#6E2CF3] items-center justify-center shadow-md z-20">
-                    <span className="font-mono text-xs font-bold text-[#6E2CF3]">
-                      {node.number}
-                    </span>
-                  </div>
-
-                  {/* Empty Spacer on other side */}
-                  <div className="hidden md:block w-full md:w-[46%]" />
-                </div>
-              )
-            })}
-          </div>
-
-          {/* ── Culmination: Arrow pointing into Rectangular Prompt Input ── */}
-          <div className="pt-24 md:pt-32 text-center relative z-20">
-            {/* Stream Terminal Arrow */}
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#F5F0FF] border border-[#6E2CF3]/20 text-[#6E2CF3] mb-8 animate-bounce">
-              <ArrowDown size={20} />
-            </div>
-
-            <div className="max-w-2xl mx-auto">
-              <span className="font-mono text-xs uppercase tracking-[0.24em] text-[#6E6E73] font-medium block mb-3">
-                THE RESOLUTION
-              </span>
-              <h3 className="font-serif text-3xl sm:text-4xl text-[#1D1D1F] mb-6 font-normal">
-                Let&apos;s engineer your fix.
-              </h3>
-
-              {/* Rectangular Prompt Input with Instant Trigger */}
-              <form
-                onSubmit={handlePromptSubmit}
-                className="relative flex items-center bg-[#F5F5F7] border border-[#E5E5EA] rounded-2xl p-2 sm:p-3 shadow-md hover:border-[#6E2CF3]/40 focus-within:border-[#6E2CF3] focus-within:ring-4 focus-within:ring-[#6E2CF3]/10 transition-all"
-              >
-                <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-xl text-xs font-mono text-[#6E6E73] ml-1 border border-black/5">
-                  <Sparkles size={12} className="text-[#6E2CF3]" />
-                  <span>Interactive Stream</span>
-                </div>
-
-                <input
-                  type="text"
-                  value={promptText}
-                  onChange={(e) => setPromptText(e.target.value)}
-                  placeholder="[ What did you have in mind? ]"
-                  className="w-full bg-transparent px-4 py-3 text-sm sm:text-base text-[#1D1D1F] placeholder-[#86868B] font-mono focus:outline-none"
-                />
-
-                <button
-                  type="submit"
-                  className="px-5 py-3 rounded-xl bg-[#6E2CF3] hover:bg-[#5D22D6] text-white text-xs sm:text-sm font-medium tracking-tight flex items-center gap-2 shrink-0 shadow-[0_4px_12px_rgba(110,44,243,0.3)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
-                >
-                  <span>Submit Inquiry</span>
-                  <ArrowRight size={15} />
-                </button>
-              </form>
-
-              <p className="text-xs text-[#86868B] mt-4 font-mono">
-                Direct route to founder Abdulkabir Ajiboye · Response guaranteed in 24h
-              </p>
-            </div>
-          </div>
-
+            <p className="stream-terminal-note">
+              Direct route to founder Abdulkabir Ajiboye · Response guaranteed in 24h
+            </p>
+          </motion.div>
         </div>
 
       </div>
