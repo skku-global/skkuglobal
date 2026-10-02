@@ -73,6 +73,7 @@ function ScrollReveal() {
 export function AppShell() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { pathname } = useLocation()
+  const scrollPosRef = useRef(0)
 
   // Close menu on route navigation
   useEffect(() => {
@@ -91,18 +92,33 @@ export function AppShell() {
     }
   }, [menuOpen])
 
+  const handleOpenMenu = () => {
+    scrollPosRef.current = window.scrollY
+    if (window.scrollY > 0) {
+      window.scrollTo({ top: 0, behavior: 'instant' })
+    }
+    setMenuOpen(true)
+  }
+
+  const handleCloseMenu = () => {
+    setMenuOpen(false)
+    if (scrollPosRef.current > 0) {
+      window.scrollTo({ top: scrollPosRef.current, behavior: 'instant' })
+    }
+  }
+
   return (
     <div className={`skku-site-shell ${menuOpen ? 'menu-active' : ''}`}>
       <a href="#main" className="skip-link">Skip to content</a>
 
       {/* ── 1. BLACK PUSH-DOWN MENU DRAWER (Revealed at top) ── */}
-      <PushMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+      <PushMenu isOpen={menuOpen} onClose={handleCloseMenu} />
 
       {/* ── 2. THE WHOLE WHITE PAGE CANVAS (Slides down on open) ── */}
       <div
-        className={`skku-page-canvas ${menuOpen ? 'canvas-is-pushed' : ''}`}
+        className={`skku-page-canvas ${menuOpen ? 'canvas-pushed canvas-is-pushed' : ''}`}
       >
-        <Navbar onOpen={() => setMenuOpen(true)} isHidden={menuOpen} />
+        <Navbar onOpen={handleOpenMenu} isHidden={menuOpen} />
         <ScrollToTop />
         <ScrollReveal />
 
@@ -129,7 +145,7 @@ export function AppShell() {
         {menuOpen && (
           <div
             className="canvas-pushed-dimmer"
-            onClick={() => setMenuOpen(false)}
+            onClick={handleCloseMenu}
             aria-label="Click to close menu and return to page"
           />
         )}

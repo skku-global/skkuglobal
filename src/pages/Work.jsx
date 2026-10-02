@@ -28,7 +28,7 @@ const CASE_STUDIES = [
     client: 'SecuScan Security',
     tagline: 'SecuScan | Automated zero-state vulnerability scanner for mission-critical web platforms',
     heading: 'SECUSCAN AUDIT ENGINE',
-    hoverColor: '#0C1A2E', // Cool, dim Deep Cobalt Navy
+    hoverColor: '#F0F4FA', // Cool, dim atmospheric Slate Ice
     note: 'The founders were losing enterprise deals without certified audits. We engineered an isolated zero-state scanner crawling endpoints for OWASP leaks, CORS disclosures, and SSL ciphers with zero database impact.',
     liveUrl: 'https://secuscan-orpin.vercel.app/',
     images: [
@@ -49,7 +49,7 @@ const CASE_STUDIES = [
     client: 'Luxe Hair Co.',
     tagline: 'Luxe Hair Co. | Transforming manual DM exchanges into luxury digital retail',
     heading: 'LUXE HAIR STOREFRONT',
-    hoverColor: '#24140B', // Cool, dim Deep Dark Amber Espresso
+    hoverColor: '#FAF5EE', // Cool, dim subtle Sand Cashmere
     note: 'Losing high-ticket clients across London, New York, and Lagos to fragmented direct messages drained 15 hours weekly. We engineered a custom React storefront with 1-tap WhatsApp invoice routing.',
     liveUrl: 'https://luxehair-tau.vercel.app/',
     images: [
@@ -70,7 +70,7 @@ const CASE_STUDIES = [
     client: 'CarBreezy Automotive',
     tagline: 'CarBreezy | Re-engineering vehicle purchasing with verified inspection badges',
     heading: 'CARBREEZY MARKETPLACE',
-    hoverColor: '#0E1F16', // Cool, dim Deep Forest Obsidian
+    hoverColor: '#EFF7F2', // Cool, dim subtle Sage Mint
     note: 'Traditional classifieds were notorious for duplicate spam and salvage titles. We engineered a client-side catalog with sub-100ms faceted filters, condition badges, and instant dealer communication.',
     liveUrl: 'https://carbreezy-react.vercel.app/',
     images: [
@@ -91,7 +91,7 @@ const CASE_STUDIES = [
     client: 'JuniCash Global',
     tagline: 'JuniCash | Intuitive neo-banking wallet designed with Swiss private finish',
     heading: 'JUNICASH WALLET',
-    hoverColor: '#1A122C', // Cool, dim Deep Twilight Violet
+    hoverColor: '#F4F0FA', // Cool, dim subtle Twilight Violet
     note: 'Sluggish OTP deliveries eroded user trust during fintech onboarding. We built an Express & MongoDB core paired with Resend email OTP verification, cryptographic JWT sessions, and real-time ledger histories.',
     liveUrl: 'https://junicash.vercel.app',
     images: [
@@ -230,10 +230,10 @@ export default function Work() {
         <div className="work-hero-container">
           <span className="work-hero-kicker">SELECTED WORK</span>
           <h1 className="work-hero-headline">
-            PRODUCTION ARCHITECTURES. VERIFIED VELOCITY.
+            OUR WORK
           </h1>
           <p className="work-hero-subtext">
-            Hover over any project to inspect the system, explore deployment metrics, and review the live codebase.
+           Explore, we really put our time and effort into this cause this is special
           </p>
         </div>
       </section>
