@@ -9,8 +9,12 @@
   --bg-panel: #F5F5F7;
   --bg-panel-hover: #EBEBEF;
   --bg-panel-subtle: #FAFAFB;
+  --bg-black: #000000;
+  --black-pure: #000000;
+  --color-black: #000000;
   
   /* ── Typography Palette ── */
+  --text-black: #000000;
   --text-obsidian: #1D1D1F;
   --text-titanium: #6E6E73;
   --text-secondary: #86868B;
@@ -70,7 +74,7 @@ html {
 }
 
 body {
-  background-color: #0A0A0C;
+  background-color: var(--black-pure, #000000);
   color: var(--text-obsidian);
   overflow-x: hidden;
   min-height: 100vh;
@@ -79,11 +83,11 @@ body {
 
 /* ══════════════════════════════════════════════════════════════════
    PUSH MENU SLIDING CANVAS ARCHITECTURE
-   Deep Black #0A0A0C Background | Sliding White Page Canvas
+   Deep Pure Black #000000 Background | Sliding White Page Canvas
    ══════════════════════════════════════════════════════════════════ */
 
 .skku-site-shell {
-  background-color: #0A0A0C;
+  background-color: var(--black-pure, #000000);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;

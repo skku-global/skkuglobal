@@ -10,7 +10,7 @@
   right: 0;
   z-index: 10;
   height: clamp(470px, 64vh, 580px);
-  background-color: #0A0A0C;
+  background-color: var(--black-pure, #000000);
   color: #FFFFFF;
   opacity: 0;
   visibility: hidden;
