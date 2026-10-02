@@ -1,8 +1,26 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { X } from 'lucide-react'
 import { waLink } from '../seo/siteMeta.js'
 import './PushMenu.css'
+
+function CloseIcon({ size = 18, strokeWidth = 2.4 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+  )
+}
 
 export default function PushMenu({ isOpen, onClose }) {
   // Close menu on Escape key
@@ -40,7 +58,7 @@ export default function PushMenu({ isOpen, onClose }) {
             >
               <span className="push-close-label">Menu</span>
               <div className="push-close-circle">
-                <X size={18} strokeWidth={2.4} />
+                <CloseIcon size={18} strokeWidth={2.4} />
               </div>
             </button>
           </div>

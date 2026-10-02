@@ -2,25 +2,66 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Seo from '../components/Seo'
-import {
-  ExternalLink,
-  ArrowRight,
-  ShieldCheck,
-  Gauge,
-  Activity,
-  Cpu,
-  TrendingUp,
-  Zap,
-  Globe,
-  Clock,
-  BarChart3,
-  CheckCircle2,
-  Lock,
-  Award,
-  Layers,
-  Plus,
-} from 'lucide-react'
 import './Work.css'
+
+// ── Standard Normal React SVG Icons (Zero external icon library dependency) ──
+function ExternalLinkIcon({ size = 12 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  )
+}
+
+function ArrowRightIcon({ size = 13 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </svg>
+  )
+}
+
+function PlusIcon({ size = 11 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <line x1="5" y1="12" x2="19" y2="12" />
+    </svg>
+  )
+}
 
 const CASE_STUDIES = [
   {
@@ -28,7 +69,7 @@ const CASE_STUDIES = [
     client: 'SecuScan Security',
     tagline: 'SecuScan | Automated zero-state vulnerability scanner for mission-critical web platforms',
     heading: 'SECUSCAN AUDIT ENGINE',
-    hoverColor: '#90baf9ff', // Cool, dim atmospheric Slate Ice
+    hoverColor: '#0C182A', // Deep Midnight Oceanic Navy (Deep, rich, not too light)
     note: 'The founders were losing enterprise deals without certified audits. We engineered an isolated zero-state scanner crawling endpoints for OWASP leaks, CORS disclosures, and SSL ciphers with zero database impact.',
     liveUrl: 'https://secuscan-orpin.vercel.app/',
     images: [
@@ -38,10 +79,10 @@ const CASE_STUDIES = [
       { src: '/screenshots/secuscan/slide-4.webp', label: 'Compliance PDF' },
     ],
     achievements: [
-      { icon: Gauge, num: '<30s', label: 'Audit Speed' },
-      { icon: ShieldCheck, num: '100%', label: 'OWASP Coverage' },
-      { icon: Activity, num: '4.8k', label: 'Threat Vectors' },
-      { icon: Cpu, num: '0ms', label: 'Production Impact' },
+      { num: '<30s', label: 'Audit Speed' },
+      { num: '100%', label: 'OWASP Coverage' },
+      { num: '4.8k', label: 'Threat Vectors' },
+      { num: '0ms', label: 'Production Impact' },
     ],
   },
   {
@@ -49,7 +90,7 @@ const CASE_STUDIES = [
     client: 'Luxe Hair Co.',
     tagline: 'Luxe Hair Co. | Transforming manual DM exchanges into luxury digital retail',
     heading: 'LUXE HAIR STOREFRONT',
-    hoverColor: '#f7cb8cff', // Cool, dim subtle Sand Cashmere
+    hoverColor: '#28160B', // Deep Warm Espresso Bronze (Deep, rich, not too light)
     note: 'Losing high-ticket clients across London, New York, and Lagos to fragmented direct messages drained 15 hours weekly. We engineered a custom React storefront with 1-tap WhatsApp invoice routing.',
     liveUrl: 'https://luxehair-tau.vercel.app/',
     images: [
@@ -59,10 +100,10 @@ const CASE_STUDIES = [
       { src: '/screenshots/luxehair/slide-4.webp', label: 'WhatsApp Invoicing' },
     ],
     achievements: [
-      { icon: TrendingUp, num: '+62%', label: 'Conversion' },
-      { icon: Zap, num: '1-Tap', label: 'WhatsApp Order' },
-      { icon: Globe, num: '3', label: 'Currencies' },
-      { icon: Clock, num: '15h', label: 'Weekly Saved' },
+      { num: '+62%', label: 'Conversion' },
+      { num: '1-Tap', label: 'WhatsApp Order' },
+      { num: '3', label: 'Currencies' },
+      { num: '15h', label: 'Weekly Saved' },
     ],
   },
   {
@@ -70,7 +111,7 @@ const CASE_STUDIES = [
     client: 'CarBreezy Automotive',
     tagline: 'CarBreezy | Re-engineering vehicle purchasing with verified inspection badges',
     heading: 'CARBREEZY MARKETPLACE',
-    hoverColor: '#81f3aaff', // Cool, dim subtle Sage Mint
+    hoverColor: '#0A2315', // Deep Emerald Forest (Deep, rich, not too light)
     note: 'Traditional classifieds were notorious for duplicate spam and salvage titles. We engineered a client-side catalog with sub-100ms faceted filters, condition badges, and instant dealer communication.',
     liveUrl: 'https://carbreezy-react.vercel.app/',
     images: [
@@ -80,10 +121,10 @@ const CASE_STUDIES = [
       { src: '/screenshots/carbreezy/slide-4.webp', label: 'Dealer Connect' },
     ],
     achievements: [
-      { icon: Gauge, num: '<100ms', label: 'Search Latency' },
-      { icon: BarChart3, num: '2.4x', label: 'Lead Velocity' },
-      { icon: CheckCircle2, num: '120+', label: 'Inspected' },
-      { icon: Layers, num: '0%', label: 'Duplicate Spam' },
+      { num: '<100ms', label: 'Search Latency' },
+      { num: '2.4x', label: 'Lead Velocity' },
+      { num: '120+', label: 'Inspected' },
+      { num: '0%', label: 'Duplicate Spam' },
     ],
   },
   {
@@ -91,7 +132,7 @@ const CASE_STUDIES = [
     client: 'JuniCash Global',
     tagline: 'JuniCash | Intuitive neo-banking wallet designed with Swiss private finish',
     heading: 'JUNICASH WALLET',
-    hoverColor: '#b68ef1ff', // Cool, dim subtle Twilight Violet
+    hoverColor: '#1C122F', // Deep Royal Midnight Violet (Deep, rich, not too light)
     note: 'Sluggish OTP deliveries eroded user trust during fintech onboarding. We built an Express & MongoDB core paired with Resend email OTP verification, cryptographic JWT sessions, and real-time ledger histories.',
     liveUrl: 'https://junicash.vercel.app',
     images: [
@@ -101,10 +142,10 @@ const CASE_STUDIES = [
       { src: '/screenshots/junicash/slide-4.webp', label: 'Instant Transfers' },
     ],
     achievements: [
-      { icon: Lock, num: '256-bit', label: 'Cryptographic Auth' },
-      { icon: Clock, num: '<1s', label: 'Ledger Latency' },
-      { icon: Award, num: '100%', label: 'Pilot Onboarding' },
-      { icon: ShieldCheck, num: '0', label: 'Discrepancies' },
+      { num: '256-bit', label: 'Cryptographic Auth' },
+      { num: '<1s', label: 'Ledger Latency' },
+      { num: '100%', label: 'Pilot Onboarding' },
+      { num: '0', label: 'Discrepancies' },
     ],
   },
 ]
@@ -140,7 +181,7 @@ function WorkBannerRow({ study, index }) {
             {study.heading}
           </h2>
 
-          {/* Subtitle / Client Line (Matches user screenshots: "Lidl | Reacting to Oasis' comeback...") */}
+          {/* Subtitle / Client Line */}
           <p className="work-banner-tagline">
             {study.tagline}
           </p>
@@ -159,7 +200,7 @@ function WorkBannerRow({ study, index }) {
             ))}
           </div>
 
-          {/* Floating 'EXPLORE' Button matching reference screenshots */}
+          {/* Floating 'EXPLORE' Button */}
           <div className="work-banner-actions">
             <a
               href={study.liveUrl}
@@ -168,7 +209,7 @@ function WorkBannerRow({ study, index }) {
               className="work-explore-btn"
             >
               <span>EXPLORE</span>
-              <ExternalLink size={12} />
+              <ExternalLinkIcon size={12} />
             </a>
 
             <Link
@@ -176,7 +217,7 @@ function WorkBannerRow({ study, index }) {
               className="work-inquire-link"
             >
               <span>Build similar</span>
-              <ArrowRight size={13} />
+              <ArrowRightIcon size={13} />
             </Link>
           </div>
         </div>
@@ -210,7 +251,7 @@ function WorkBannerRow({ study, index }) {
 
               {/* Dedicated '+ Add' slot for upcoming images */}
               <div className="work-banner-add-btn" title="Space to add image">
-                <Plus size={11} />
+                <PlusIcon size={11} />
               </div>
             </div>
           </div>
@@ -233,12 +274,12 @@ export default function Work() {
             OUR WORK
           </h1>
           <p className="work-hero-subtext">
-           Explore, we really put our time and effort into this cause this is special
+            Explore, we really put our time and effort into this cause this is special
           </p>
         </div>
       </section>
 
-      {/* ── Full-Bleed Banners List with Hover Color Shift & Bending Typography ── */}
+      {/* ── Full Feed List with Hover Color Shift & Bending Typography ── */}
       <section className="work-banners-feed" aria-label="Selected Work Cases">
         {CASE_STUDIES.map((study, index) => (
           <WorkBannerRow key={study.id} study={study} index={index} />
@@ -256,7 +297,7 @@ export default function Work() {
             </p>
             <Link to="/contact" className="work-explore-btn" style={{ display: 'inline-flex', padding: '14px 34px', fontSize: '12px' }}>
               <span>START A PROJECT INQUIRY</span>
-              <ArrowRight size={14} />
+              <ArrowRightIcon size={14} />
             </Link>
           </div>
         </div>

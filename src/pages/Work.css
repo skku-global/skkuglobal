@@ -177,7 +177,7 @@
   font-style: italic;
   transform: skewX(-12deg) translateX(12px);
   letter-spacing: -0.015em;
-  color: #000000;
+  color: #FFFFFF;
 }
 
 /* Subtitle Line */
@@ -188,6 +188,11 @@
   line-height: 1.5;
   color: #1D1D1F;
   margin: 0 0 14px 0;
+  transition: color 0.3s ease;
+}
+
+.work-banner-row:hover .work-banner-tagline {
+  color: #FFFFFF;
 }
 
 /* Editorial Note */
@@ -196,6 +201,11 @@
   line-height: 1.65;
   color: #4A4A4E;
   margin: 0 0 22px 0;
+  transition: color 0.3s ease;
+}
+
+.work-banner-row:hover .work-banner-note {
+  color: rgba(255, 255, 255, 0.84);
 }
 
 /* Minimalist metric pills */
@@ -221,11 +231,23 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .work-banner-metric-pill strong {
   font-weight: 800;
   color: #E65100;
+  transition: color 0.3s ease;
+}
+
+.work-banner-row:hover .work-banner-metric-pill {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+}
+
+.work-banner-row:hover .work-banner-metric-pill strong {
+  color: #FF7722;
 }
 
 /* Action row */
@@ -262,6 +284,17 @@
   box-shadow: 0 6px 18px rgba(230, 81, 0, 0.35);
 }
 
+.work-banner-row:hover .work-explore-btn {
+  background-color: #FFFFFF;
+  color: #000000;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.work-banner-row:hover .work-explore-btn:hover {
+  background-color: #E65100;
+  color: #FFFFFF;
+}
+
 .work-inquire-link {
   display: inline-flex;
   align-items: center;
@@ -281,6 +314,15 @@
   color: #E65100;
   opacity: 1;
   text-decoration: underline;
+}
+
+.work-banner-row:hover .work-inquire-link {
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.work-banner-row:hover .work-inquire-link:hover {
+  color: #FF7722;
 }
 
 /* ── 5. Visual Image Column ── */
