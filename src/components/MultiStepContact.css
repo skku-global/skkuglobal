@@ -503,29 +503,58 @@
   font-weight: 700;
 }
 
-.msc-wa-btn {
+.msc-success-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.msc-email-btn {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  background: #25D366;
+  background: #E65100;
   color: #FFFFFF;
-  padding: 13px 28px;
+  padding: 14px 30px;
   border-radius: 9999px;
   font-family: var(--font-mono, monospace);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 750;
   letter-spacing: 0.06em;
   text-decoration: none;
   text-transform: uppercase;
-  margin-bottom: 20px;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(230, 81, 0, 0.35);
 }
 
-.msc-wa-btn:hover {
-  background: #1ebe5b;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.4);
+.msc-email-btn:hover {
+  background: #FF6D00;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(230, 81, 0, 0.45);
+}
+
+.msc-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #F4F4F7;
+  color: #1D1D1F;
+  border: 1px solid #E0E0E6;
+  padding: 9px 20px;
+  border-radius: 9999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.msc-copy-btn:hover {
+  background: #EBEBEF;
+  border-color: #D1D1D6;
 }
 
 .msc-reset-link {

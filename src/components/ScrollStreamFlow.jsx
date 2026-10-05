@@ -336,13 +336,11 @@ export default function ScrollStreamFlow() {
                 {/* Direct Action Triggers */}
                 <div className="stream-res-actions">
                   <a
-                    href={whatsAppUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="stream-btn-whatsapp"
+                    href={mailtoUrl}
+                    className="stream-btn-email"
                   >
-                    <WhatsAppIcon size={16} />
-                    <span>SEND VIA WHATSAPP (08057215622)</span>
+                    <MailIcon size={16} />
+                    <span>SEND BRIEF VIA EMAIL (ADMIN@SKKUGLOBAL.COM)</span>
                   </a>
 
                   <button
@@ -353,14 +351,6 @@ export default function ScrollStreamFlow() {
                     <span>AUTO-FILL CONTACT STUDIO</span>
                     <ArrowRightIcon size={14} />
                   </button>
-
-                  <a
-                    href={mailtoUrl}
-                    className="stream-btn-email"
-                  >
-                    <MailIcon size={15} />
-                    <span>SEND TO ADMIN@SKKUGLOBAL.COM</span>
-                  </a>
                 </div>
 
                 <div className="stream-res-footer">

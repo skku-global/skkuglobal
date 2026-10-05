@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CONTACT_EMAIL, waLink } from '../seo/siteMeta.js'
+import { CONTACT_EMAIL } from '../seo/siteMeta.js'
 import './MultiStepContact.css'
 
 // ── Inline SVG Icons ──────────────────────────────────────────────
@@ -52,19 +52,20 @@ function IconClock() {
     </svg>
   )
 }
-function IconWhatsApp() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-    </svg>
-  )
-}
 function IconExternal() {
   return (
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
       <polyline points="15 3 21 3 21 9" />
       <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  )
+}
+function IconCopy() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
     </svg>
   )
 }
@@ -103,7 +104,7 @@ const OBJECTIVES = [
   {
     id: 'flyer',
     title: 'Flyer / Social Media Design',
-    desc: 'Eye-catching flyer or graphic for WhatsApp, Instagram, or print marketing.',
+    desc: 'Eye-catching flyer or graphic for digital campaigns, social media, or print marketing.',
   },
   {
     id: 'adsvideo',
@@ -128,18 +129,19 @@ const QUICK_PROMPTS = [
 // ── Component ─────────────────────────────────────────────────────
 export default function MultiStepContact() {
   const [searchParams] = useSearchParams()
+
   const initialPrompt = searchParams.get('prompt') || ''
-  const initialObjective = searchParams.get('objective') || ''
+  const initialObjective = searchParams.get('objective') || 'website'
 
   const [step, setStep] = useState(1)
-  const [selectedObjective, setSelectedObjective] = useState(initialObjective || 'website')
+  const [selectedObjective, setSelectedObjective] = useState(initialObjective)
   const [description, setDescription] = useState(initialPrompt)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [budget, setBudget] = useState(BUDGETS[1])
   const [timeline, setTimeline] = useState('5–7 Day Sprint')
   const [submitted, setSubmitted] = useState(false)
-  const [handoffBlocked, setHandoffBlocked] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     if (initialPrompt && step === 1) setStep(2)
@@ -154,42 +156,44 @@ export default function MultiStepContact() {
     if (step > 1) setStep(step - 1)
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    // This used to be a bare setTimeout(700) that flipped `submitted` and sent
-    // the brief precisely nowhere, while the success screen told the visitor it
-    // had reached the founder. The brief now goes to WhatsApp.
-    //
-    // window.open MUST run synchronously inside the submit gesture — a popup
-    // opened from a timeout callback is discarded by every modern blocker, so
-    // the old fake delay could not have been kept here anyway. If the blocker
-    // wins regardless, window.open returns null and the success screen shows an
-    // explicit fallback link instead of silently losing the lead.
-    const opened = window.open(waLink(waMessage), '_blank', 'noopener,noreferrer')
-    setHandoffBlocked(!opened)
-    setSubmitted(true)
-  }
-
-  // This string is now the actual deliverable, not just decoration on the
-  // success screen, so it carries every field the form collects. Two things
-  // were wrong while it was unused: it interpolated the raw objective id
-  // ("Objective: webapp") instead of the readable title, and it omitted
-  // `timeline` altogether — the visitor picked a delivery window and it was
-  // thrown away.
   const objectiveTitle =
     OBJECTIVES.find((o) => o.id === selectedObjective)?.title || selectedObjective
 
-  const waMessage = [
-    'Hello SKKU Global, I want to start a project.',
-    '',
-    `Objective: ${objectiveTitle}`,
-    `Details: ${description || '(not provided)'}`,
-    `Name: ${name}`,
-    `Email: ${email}`,
-    `Budget: ${budget}`,
-    `Timeline: ${timeline}`,
+  const emailSubject = `Project Brief: ${objectiveTitle} — ${name || 'Client'}`
+  const emailBody = [
+    `Hello SKKU Global,`,
+    ``,
+    `I would like to submit a project brief to SKKU Global:`,
+    ``,
+    `PROJECT SPECIFICATIONS`,
+    `----------------------------------------`,
+    `• Service Objective : ${objectiveTitle}`,
+    `• Client Name       : ${name}`,
+    `• Contact Email     : ${email}`,
+    `• Budget Range      : ${budget}`,
+    `• Delivery Timeline : ${timeline}`,
+    ``,
+    `PROJECT BRIEF & REQUIREMENTS`,
+    `----------------------------------------`,
+    `${description || '(No additional brief notes provided)'}`,
+    ``,
+    `Submitted via skkuglobal.com Contact Studio.`,
   ].join('\n')
+
+  const emailMailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // Open user's default email client with structured brief pre-composed
+    window.location.href = emailMailtoUrl
+    setSubmitted(true)
+  }
+
+  const handleCopyBrief = () => {
+    navigator.clipboard.writeText(emailBody)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 3000)
+  }
 
   const STEP_LABELS = ['Your Goal', 'Project Details', 'Contact Info']
 
@@ -222,35 +226,39 @@ export default function MultiStepContact() {
           {step === 1 && !submitted && (
             <motion.div
               key="step1"
-              initial={{ opacity: 0, x: 18 }}
+              initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -18 }}
-              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="msc-step-body"
             >
-              <span className="msc-step-kicker">Step 01 — Goal</span>
-              <h2 className="msc-step-headline">What do you need?</h2>
-              <p className="msc-step-sub">Pick the service that matches what you want to achieve.</p>
+              <span className="msc-step-kicker">Step 01 of 03 · Core Objective</span>
+              <h2 className="msc-step-headline">What are we building for you?</h2>
+              <p className="msc-step-sub">
+                Choose the primary service that aligns with your goal. Every project is engineered directly by founder Abdulkabir Ajiboye.
+              </p>
 
-              <div className="msc-obj-grid">
+              <div className="msc-obj-grid" role="radiogroup" aria-label="Project objective">
                 {OBJECTIVES.map((obj) => {
                   const isSelected = selectedObjective === obj.id
                   return (
                     <button
                       key={obj.id}
                       type="button"
+                      role="radio"
+                      aria-checked={isSelected}
                       onClick={() => setSelectedObjective(obj.id)}
                       className={`msc-obj-card ${isSelected ? 'selected' : ''}`}
-                      aria-pressed={isSelected}
                     >
                       <div className="msc-obj-icon">
                         <ObjIcon id={obj.id} />
                       </div>
                       <div className="msc-obj-text">
-                        <strong className="msc-obj-title">{obj.title}</strong>
-                        <p className="msc-obj-desc">{obj.desc}</p>
+                        <span className="msc-obj-title">{obj.title}</span>
+                        <span className="msc-obj-desc">{obj.desc}</span>
                       </div>
-                      <div className={`msc-obj-radio ${isSelected ? 'selected' : ''}`}>
-                        {isSelected && <span className="msc-obj-radio-dot" />}
+                      <div className="msc-obj-radio" aria-hidden="true">
+                        <div className="msc-obj-radio-inner" />
                       </div>
                     </button>
                   )
@@ -258,7 +266,11 @@ export default function MultiStepContact() {
               </div>
 
               <div className="msc-nav msc-nav--end">
-                <button type="button" onClick={handleNext} className="msc-btn msc-btn--primary">
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="msc-btn msc-btn--primary"
+                >
                   <span>Continue</span>
                   <IconArrowRight />
                 </button>
@@ -266,43 +278,52 @@ export default function MultiStepContact() {
             </motion.div>
           )}
 
-          {/* ── STEP 2: Project Description ── */}
+          {/* ── STEP 2: Description & Context ── */}
           {step === 2 && !submitted && (
             <motion.div
               key="step2"
-              initial={{ opacity: 0, x: 18 }}
+              initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -18 }}
-              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="msc-step-body"
             >
-              <span className="msc-step-kicker">Step 02 — Details</span>
-              <h2 className="msc-step-headline">Describe the project.</h2>
+              <span className="msc-step-kicker">Step 02 of 03 · Project Details</span>
+              <h2 className="msc-step-headline">Tell us about your project.</h2>
               <p className="msc-step-sub">
-                What does your business do? What should this build achieve?
+                The more context you give, the faster we can scope your architecture and give you an accurate delivery timeline.
               </p>
 
-              <textarea
-                className="msc-textarea"
-                aria-label="Project description"
-                name="description"
-                rows={5}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="e.g. I run a foodstuff shop and I need a flyer for WhatsApp marketing. My brand colors are green and orange..."
-              />
+              <div className="msc-field">
+                <label className="msc-label" htmlFor="msc-description">
+                  Describe what you need
+                </label>
+                <textarea
+                  id="msc-description"
+                  name="description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  rows={5}
+                  className="msc-textarea"
+                  placeholder="e.g. I run a foodstuff shop and I need a flyer for digital marketing. My brand colors are green and orange, and I need it delivered within 48 hours..."
+                />
+              </div>
 
-              <div className="msc-quick-prompts">
-                <span className="msc-qp-label">Quick fill:</span>
-                {QUICK_PROMPTS.map((p) => (
-                  <button
-                    key={p}
-                    type="button"
-                    onClick={() => setDescription(p)}
-                    className="msc-qp-chip"
-                  >
-                    + {p}
-                  </button>
-                ))}
+              {/* Quick Prompt Chips */}
+              <div className="msc-chips-wrap">
+                <span className="msc-chips-label">Or start with a quick brief:</span>
+                <div className="msc-chips">
+                  {QUICK_PROMPTS.map((prompt, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setDescription(prompt)}
+                      className="msc-chip"
+                    >
+                      {prompt}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <div className="msc-nav msc-nav--between">
@@ -310,7 +331,11 @@ export default function MultiStepContact() {
                   <IconArrowLeft />
                   <span>Back</span>
                 </button>
-                <button type="button" onClick={handleNext} className="msc-btn msc-btn--primary">
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="msc-btn msc-btn--primary"
+                >
                   <span>Continue</span>
                   <IconArrowRight />
                 </button>
@@ -318,16 +343,17 @@ export default function MultiStepContact() {
             </motion.div>
           )}
 
-          {/* ── STEP 3: Contact Info ── */}
+          {/* ── STEP 3: Contact & Submission ── */}
           {step === 3 && !submitted && (
             <motion.div
               key="step3"
-              initial={{ opacity: 0, x: 18 }}
+              initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -18 }}
-              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="msc-step-body"
             >
-              <span className="msc-step-kicker">Step 03 — Contact</span>
+              <span className="msc-step-kicker">Step 03 of 03 · Contact &amp; Review</span>
               <h2 className="msc-step-headline">Where do we reach you?</h2>
               <p className="msc-step-sub">
                 Founder review. We reply within 24 hours with a clear plan and price.
@@ -336,11 +362,10 @@ export default function MultiStepContact() {
               <form onSubmit={handleSubmit} className="msc-form">
                 <div className="msc-form-row">
                   <div className="msc-field">
-                    <label className="msc-label" htmlFor="msc-name">Full Name</label>
+                    <label className="msc-label" htmlFor="msc-name">Full Name *</label>
                     <input
                       id="msc-name"
                       name="name"
-                      autoComplete="name"
                       type="text"
                       required
                       value={name}
@@ -350,11 +375,10 @@ export default function MultiStepContact() {
                     />
                   </div>
                   <div className="msc-field">
-                    <label className="msc-label" htmlFor="msc-email">Email Address</label>
+                    <label className="msc-label" htmlFor="msc-email">Email Address *</label>
                     <input
                       id="msc-email"
                       name="email"
-                      autoComplete="email"
                       type="email"
                       required
                       value={email}
@@ -405,7 +429,7 @@ export default function MultiStepContact() {
                     type="submit"
                     className="msc-btn msc-btn--submit"
                   >
-                    <span>Send Brief on WhatsApp</span>
+                    <span>Send Brief via Email</span>
                     <IconSend />
                   </button>
                 </div>
@@ -413,7 +437,7 @@ export default function MultiStepContact() {
             </motion.div>
           )}
 
-          {/* ── SUBMITTED ── */}
+          {/* ── SUBMITTED / SUCCESS SCREEN ── */}
           {submitted && (
             <motion.div
               key="submitted"
@@ -428,32 +452,38 @@ export default function MultiStepContact() {
                 <IconCheck />
               </div>
               <span className="msc-step-kicker">
-                {handoffBlocked ? 'One Last Step' : 'Brief Ready'}
+                Brief Prepared
               </span>
               <h2 className="msc-step-headline">Almost there, {name || 'there'}.</h2>
               <p className="msc-success-body">
-                {handoffBlocked
-                  ? 'Your browser blocked the WhatsApp tab. Open it with the button below — your brief is already written out, you only need to press send.'
-                  : 'Your brief is written out and waiting in WhatsApp. Press send there and it reaches founder Abdulkabir Ajiboye directly, who replies within 24 hours.'}
+                Your project brief has been formatted for <strong>{CONTACT_EMAIL}</strong>. Your default email app should open with your project details ready to send. Founder Abdulkabir Ajiboye will review your brief and reply within 24 hours with exact pricing.
               </p>
 
-              <a
-                href={waLink(waMessage)}
-                target="_blank"
-                rel="noreferrer"
-                className="msc-wa-btn"
-              >
-                <IconWhatsApp />
-                <span>{handoffBlocked ? 'Open WhatsApp to send' : 'Reopen WhatsApp'}</span>
-                <IconExternal />
-              </a>
+              <div className="msc-success-actions">
+                <a
+                  href={emailMailtoUrl}
+                  className="msc-email-btn"
+                >
+                  <IconMail />
+                  <span>Open Email Client</span>
+                  <IconExternal />
+                </a>
+
+                <button
+                  type="button"
+                  className="msc-copy-btn"
+                  onClick={handleCopyBrief}
+                >
+                  <IconCopy />
+                  <span>{copied ? 'Copied to Clipboard!' : 'Copy Brief to Clipboard'}</span>
+                </button>
+              </div>
 
               <button
                 type="button"
                 className="msc-reset-link"
                 onClick={() => {
                   setSubmitted(false)
-                  setHandoffBlocked(false)
                   setStep(1)
                   setDescription('')
                 }}
@@ -471,7 +501,7 @@ export default function MultiStepContact() {
         <div className="msc-sla-bar">
           <div className="msc-sla-item">
             <IconMail />
-            <span>Direct email: </span>
+            <span>Direct corporate email: </span>
             <a href={`mailto:${CONTACT_EMAIL}`} className="msc-sla-link">
               {CONTACT_EMAIL}
             </a>
@@ -479,7 +509,7 @@ export default function MultiStepContact() {
           <div className="msc-sla-divider" />
           <div className="msc-sla-item">
             <IconClock />
-            <strong>Response within 24 hours</strong>
+            <strong>Founder Response within 24 hours</strong>
           </div>
         </div>
       )}

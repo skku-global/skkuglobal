@@ -523,21 +523,27 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  background-color: #FAFAFC;
-  color: #1D1D1F;
-  border: 1.5px solid #E2E2EA;
+  gap: 9px;
+  background-color: #E65100;
+  color: #FFFFFF;
+  border: 1px solid #E65100;
+  font-family: var(--font-mono, monospace);
   font-size: 13px;
-  font-weight: 750;
-  padding: 15px 20px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 16px 24px;
   border-radius: 12px;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 18px rgba(230, 81, 0, 0.35);
 }
 
 .stream-btn-email:hover {
-  background-color: #F4F4F8;
-  border-color: #C8C8D2;
+  background-color: #FF6D00;
+  border-color: #FF6D00;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(230, 81, 0, 0.45);
 }
 
 /* Resolution Footer */
