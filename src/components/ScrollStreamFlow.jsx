@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import './ScrollStreamFlow.css'
@@ -56,12 +56,40 @@ function ResetIcon({ size = 14 }) {
   )
 }
 
+// ── 6 Core Transformations (Problem → What We Solve It To) ──
+const TRANSFORMATIONS = [
+  {
+    from: 'No Customers',
+    to: 'Overflowing Customers',
+  },
+  {
+    from: 'No Recognition',
+    to: 'International Recognition',
+  },
+  {
+    from: 'Unprofessional Image',
+    to: 'High-End Professional Authority',
+  },
+  {
+    from: 'Scattered Brand',
+    to: 'Brand in One Place',
+  },
+  {
+    from: 'Manual DM Chaos',
+    to: '24/7 Automated Revenue',
+  },
+  {
+    from: 'Sluggish Outdated Site',
+    to: 'Sub-Second Global Platform',
+  },
+]
+
 // ── 4 Interactive Questions Based on Transformation Stream ──
 const STREAM_QUESTIONS = [
   {
     stepNumber: '01',
-    heading: 'CUSTOMER ISSUE',
-    subtitle: 'Where the transformation story begins — identifying and isolating the core friction.',
+    heading: 'NO CUSTOMERS → OVERFLOW',
+    subtitle: 'Where the transformation story begins — identifying and solving your customer conversion friction.',
     question: 'What core friction or challenge is your business facing right now?',
     options: [
       'Need a fast, custom modern website built from scratch',
@@ -72,8 +100,8 @@ const STREAM_QUESTIONS = [
   },
   {
     stepNumber: '02',
-    heading: 'NOT ENOUGH RECOGNITION',
-    subtitle: 'High operational excellence trapped behind market invisibility and generic templates.',
+    heading: 'OBSCURITY → GLOBAL STATURE',
+    subtitle: 'From zero recognition to international credibility — breaking out of generic templates.',
     question: 'What is the visibility bottleneck holding your brand back?',
     options: [
       'Trapped behind generic social templates & market invisibility',
@@ -84,8 +112,8 @@ const STREAM_QUESTIONS = [
   },
   {
     stepNumber: '03',
-    heading: 'WANT TO BE PROFESSIONAL',
-    subtitle: 'Elevating your brand presence to command instant prestige and justify premium fees.',
+    heading: 'AMATEUR → HIGH-END AUTHORITY',
+    subtitle: 'From unprofessional image to high-end professional authority — commanding premium fees.',
     question: 'What standard of digital presence do you want to command?',
     options: [
       'Command instant prestige and justify premium client pricing',
@@ -96,8 +124,8 @@ const STREAM_QUESTIONS = [
   },
   {
     stepNumber: '04',
-    heading: 'ALL PRODUCT & TECH IN ONE PLACE',
-    subtitle: 'Total control — all services, clear, easy, and engineered with modern web architecture.',
+    heading: 'SCATTERED → BRAND IN ONE PLACE',
+    subtitle: 'From scattered identity to a unified digital ecosystem — total clarity and modern architecture.',
     question: 'How would you like your solution engineered and delivered?',
     options: [
       'Rapid sprint delivery: fully tested and live in 5–7 days',
@@ -110,6 +138,7 @@ const STREAM_QUESTIONS = [
 
 export default function ScrollStreamFlow() {
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
+  const [activeTransformIdx, setActiveTransformIdx] = useState(0)
   const [answers, setAnswers] = useState({
     '01': '',
     '02': '',
@@ -119,6 +148,14 @@ export default function ScrollStreamFlow() {
   const [customNote, setCustomNote] = useState('')
   const [clientName, setClientName] = useState('')
   const navigate = useNavigate()
+
+  // Gentle auto-rotation between transformations
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTransformIdx((prev) => (prev + 1) % TRANSFORMATIONS.length)
+    }, 3800)
+    return () => clearInterval(timer)
+  }, [])
 
   const currentQ = STREAM_QUESTIONS[currentStepIndex]
   const isComplete = currentStepIndex >= STREAM_QUESTIONS.length
@@ -152,18 +189,18 @@ export default function ScrollStreamFlow() {
 
   // Construct message for WhatsApp & Contact Pre-fill
   const blueprintSummary = [
-    `*SKKU GLOBAL — TRANSFORMATION STREAM BLUEPRINT*`,
+    `*SKKU GLOBAL — BUSINESS TRANSFORMATION BLUEPRINT*`,
     clientName.trim() ? `Client: ${clientName.trim()}` : null,
-    `1. CUSTOMER ISSUE: ${answers['01'] || 'Not specified'}`,
-    `2. BOTTLENECK: ${answers['02'] || 'Not specified'}`,
-    `3. DESIRED STANDARD: ${answers['03'] || 'Not specified'}`,
+    `1. CUSTOMER FLOW   : ${answers['01'] || 'Not specified'}`,
+    `2. RECOGNITION GAP : ${answers['02'] || 'Not specified'}`,
+    `3. DESIRED STATURE : ${answers['03'] || 'Not specified'}`,
     `4. TECH & EXECUTION: ${answers['04'] || 'Not specified'}`,
     customNote.trim() ? `Additional Note: ${customNote.trim()}` : null,
   ].filter(Boolean).join('\n')
 
   const whatsAppNumber = '2348057215622' // WhatsApp: 08057215622
   const whatsAppUrl = `https://wa.me/${whatsAppNumber}?text=${encodeURIComponent(blueprintSummary)}`
-  const mailtoUrl = `mailto:admin@skkuglobal.com?subject=${encodeURIComponent('Project Inquiry — Transformation Stream Blueprint')}&body=${encodeURIComponent(blueprintSummary)}`
+  const mailtoUrl = `mailto:admin@skkuglobal.com?subject=${encodeURIComponent('Project Inquiry — Transformation Blueprint')}&body=${encodeURIComponent(blueprintSummary)}`
 
   const handleNavigateToContact = () => {
     const objective = answers['01'] ? answers['01'].slice(0, 45) : 'Custom Web & Brand'
@@ -175,13 +212,51 @@ export default function ScrollStreamFlow() {
     <section id="transformation-stream" className="stream-section" aria-label="Interactive Transformation Stream">
       <div className="stream-container">
         
-        {/* ── Section Header ── */}
+        {/* ── Section Header (Transformation Blueprint) ── */}
         <div className="stream-header">
-          <span className="stream-kicker">INTERACTIVE DISCOVERY FLOW</span>
-          <h2 className="stream-title">THE TRANSFORMATION STREAM</h2>
+          <span className="stream-kicker">WHAT WE TRANSFORM</span>
+
+          <div className="stream-title-wrap">
+            <AnimatePresence mode="wait">
+              <motion.h2
+                key={activeTransformIdx}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                className="stream-title"
+              >
+                <span className="stream-title-from">{TRANSFORMATIONS[activeTransformIdx].from}</span>
+                <span className="stream-title-sep"> to </span>
+                <span className="stream-title-highlight">{TRANSFORMATIONS[activeTransformIdx].to}</span>
+              </motion.h2>
+            </AnimatePresence>
+          </div>
+
           <p className="stream-intro">
-            Answer 4 quick diagnostic questions to pinpoint your bottlenecks and generate your immediate digital blueprint.
+            We eliminate business bottlenecks and replace them with high-converting digital architecture. Select any transformation below or answer 4 quick questions to generate your custom roadmap.
           </p>
+
+          {/* Transformation Pills Grid */}
+          <div className="stream-pills-grid" role="tablist" aria-label="Core business transformations">
+            {TRANSFORMATIONS.map((t, idx) => {
+              const isActive = activeTransformIdx === idx
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`stream-pill ${isActive ? 'is-active' : ''}`}
+                  onClick={() => setActiveTransformIdx(idx)}
+                >
+                  <span className="stream-pill-from">{t.from}</span>
+                  <span className="stream-pill-arrow">→</span>
+                  <span className="stream-pill-to">{t.to}</span>
+                </button>
+              )
+            })}
+          </div>
         </div>
 
         {/* ── Flow Progress Indicator (Steps 01 to 04) ── */}

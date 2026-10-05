@@ -26,11 +26,11 @@
   }
 }
 
-/* ── Section Header ── */
+/* ── Section Header (Transformation Blueprint) ── */
 .stream-header {
   text-align: center;
-  max-width: 720px;
-  margin: 0 auto 48px;
+  max-width: 900px;
+  margin: 0 auto 52px;
 }
 
 .stream-kicker {
@@ -45,26 +45,113 @@
   background: rgba(230, 81, 0, 0.08);
   border: 1px solid rgba(230, 81, 0, 0.22);
   border-radius: 9999px;
-  padding: 5px 16px;
+  padding: 6px 18px;
+  margin-bottom: 20px;
+}
+
+.stream-title-wrap {
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 16px;
+}
+
+@media (max-width: 680px) {
+  .stream-title-wrap {
+    min-height: 104px;
+  }
 }
 
 .stream-title {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", sans-serif;
-  font-size: clamp(32px, 4.4vw, 56px);
+  font-size: clamp(28px, 4vw, 50px);
   font-weight: 900;
-  line-height: 1.05;
+  line-height: 1.15;
   letter-spacing: -0.03em;
-  text-transform: uppercase;
-  color: #000000;
-  margin: 0 0 14px;
+  color: #111113;
+  margin: 0;
+  text-align: center;
+}
+
+.stream-title-from {
+  color: #111113;
+}
+
+.stream-title-sep {
+  color: #8E8E93;
+  font-weight: 500;
+  padding: 0 4px;
+}
+
+.stream-title-highlight {
+  color: #E65100;
+  font-weight: 900;
+  display: inline-block;
+  text-shadow: 0 2px 20px rgba(230, 81, 0, 0.18);
 }
 
 .stream-intro {
   font-size: clamp(15px, 1.25vw, 17.5px);
   line-height: 1.6;
   color: #555558;
+  max-width: 680px;
+  margin: 0 auto 28px;
+}
+
+/* ── Transformation Pills Grid ── */
+.stream-pills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   margin: 0 auto;
+  max-width: 880px;
+}
+
+.stream-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #FFFFFF;
+  border: 1.5px solid #E5E5EB;
+  border-radius: 9999px;
+  padding: 9px 18px;
+  font-size: 13px;
+  line-height: 1.2;
+  color: #333336;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.stream-pill:hover {
+  border-color: #E65100;
+  background: #FFFBF8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(230, 81, 0, 0.14);
+}
+
+.stream-pill.is-active {
+  border-color: #E65100;
+  background: #FFF7F2;
+  box-shadow: 0 4px 18px rgba(230, 81, 0, 0.18);
+}
+
+.stream-pill-from {
+  font-weight: 600;
+  color: #555558;
+}
+
+.stream-pill-arrow {
+  color: #A0A0A8;
+  font-size: 12px;
+}
+
+.stream-pill-to {
+  font-weight: 800;
+  color: #E65100;
 }
 
 /* ── Step Progress Bar (01 to 04) ── */
