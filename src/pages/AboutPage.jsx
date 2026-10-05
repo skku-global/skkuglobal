@@ -123,7 +123,7 @@ export default function AboutPage() {
             </p>
 
             <p>
-              SKKU Global Technologies Limited was incorporated in Nigeria (CAC RC 7306232) to rebuild that model from first principles. We are a founder-led studio, which means the person who scopes your project is the same person who builds it, tests it, and hands you the keys. No project managers in between. No outsourced execution.
+              SKKU Global Technologies Limited (registered in Nigeria) was built to rebuild that model from first principles. We are a founder-led studio, which means the person who scopes your project is the same person who builds it, tests it, and hands you the keys. No project managers in between. No outsourced execution.
             </p>
 
             <p>
@@ -188,7 +188,7 @@ export default function AboutPage() {
 
         <div className="about-meta-pills">
           <span className="about-meta-pill">
-            LEGAL STATUS: <strong>CAC RC 7306232</strong>
+            LEGAL STATUS: <strong>SKKU GLOBAL TECHNOLOGIES LIMITED • REGISTERED IN NIGERIA</strong>
           </span>
           <span className="about-meta-pill">
             LOCATION: <strong>Ibadan · Lagos · Global</strong>

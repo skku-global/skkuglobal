@@ -29,7 +29,7 @@ export default function Privacy() {
 
           <h2>Who we are</h2>
           <p>
-            {LEGAL_NAME} (&ldquo;SKKU Global&rdquo;, &ldquo;we&rdquo;) is an engineering and technology company registered in Nigeria (CAC RC 7306232). Direct data inquiries may be routed to{' '}
+            {LEGAL_NAME} (&ldquo;SKKU Global&rdquo;, &ldquo;we&rdquo;) is an engineering and technology company registered in Nigeria (SKKU GLOBAL TECHNOLOGIES LIMITED • REGISTERED IN NIGERIA). Direct data inquiries may be routed to{' '}
             <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or WhatsApp / phone at {PHONE_CALLABLE_DISPLAY}.
           </p>
 

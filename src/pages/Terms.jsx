@@ -26,12 +26,12 @@ export default function Terms() {
         <div className="legal-prose-shell">
           <div className="legal-meta-badge">
             <span className="legal-meta-dot" />
-            <span>Last updated: 3 October 2026 · Registered RC 7306232</span>
+            <span>Last updated: 3 October 2026 · SKKU GLOBAL TECHNOLOGIES LIMITED • REGISTERED IN NIGERIA</span>
           </div>
 
           <h2>1. These terms</h2>
           <p>
-            {DOMAIN} is operated by {LEGAL_NAME} (RC 7306232), an engineering company registered with the Corporate Affairs Commission (CAC) of the Federal Republic of Nigeria. By using this site you accept these terms. They govern the website only &mdash; commercial engineering engagements are governed by the separate written scope and milestone contract we sign with you.
+            {DOMAIN} is operated by {LEGAL_NAME}, an engineering company registered in Nigeria (SKKU GLOBAL TECHNOLOGIES LIMITED • REGISTERED IN NIGERIA). By using this site you accept these terms. They govern the website only &mdash; commercial engineering engagements are governed by the separate written scope and milestone contract we sign with you.
           </p>
 
           <h2>2. What this site is</h2>
