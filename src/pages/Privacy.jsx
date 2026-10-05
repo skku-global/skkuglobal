@@ -1,123 +1,76 @@
 import { Link } from 'react-router-dom'
 import Seo from '../components/Seo'
 import { CONTACT_EMAIL, LEGAL_NAME, PHONE_CALLABLE_DISPLAY } from '../seo/siteMeta.js'
-import './Home.css'
 import './Legal.css'
 
 export default function Privacy() {
   return (
-    <main id="main" className="page-enter">
+    <main id="main" className="legal-page-main">
       <Seo route="/privacy" />
 
-      <section className="page-hero">
-        <div className="shell">
-          <div className="section-label animate">LEGAL</div>
-          <h1 className="animate animate-delay-1">
-            Privacy <span className="gradient-text">Policy</span>
+      <section className="legal-hero">
+        <div className="legal-hero-shell">
+          <span className="legal-kicker">LEGAL DOCUMENTATION</span>
+          <h1 className="legal-headline">
+            Privacy <span className="legal-highlight">Policy</span>
           </h1>
-          <p className="animate animate-delay-2">
-            What this website collects, why, and how to have it removed. Written to describe what
-            the site actually does &mdash; nothing more.
+          <p className="legal-subtext">
+            What this website collects, why, and how your data is strictly handled and protected under modern security standards.
           </p>
         </div>
       </section>
 
-      <section className="legal-prose">
-        <div className="shell">
-          <span className="legal-updated">Last updated: 29 September 2026</span>
+      <section className="legal-prose-section">
+        <div className="legal-prose-shell">
+          <div className="legal-meta-badge">
+            <span className="legal-meta-dot" />
+            <span>Last updated: 3 October 2026 · Data Controller: {LEGAL_NAME}</span>
+          </div>
 
           <h2>Who we are</h2>
           <p>
-            {LEGAL_NAME} (&ldquo;SKKU Global&rdquo;, &ldquo;we&rdquo;) is a technology company
-            registered in Nigeria, and is the data controller for this website. You can reach us at{' '}
-            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or {PHONE_CALLABLE_DISPLAY}.
+            {LEGAL_NAME} (&ldquo;SKKU Global&rdquo;, &ldquo;we&rdquo;) is an engineering and technology company registered in Nigeria (CAC RC 7306232). Direct data inquiries may be routed to{' '}
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or WhatsApp / phone at {PHONE_CALLABLE_DISPLAY}.
           </p>
 
-          <h2>What the contact form collects</h2>
+          <h2>What the consultation studio collects</h2>
           <p>
-            The consultation form on the <Link to="/support">Support</Link> page asks for four
-            things, and only these four:
+            When you submit an engineering or design inquiry through the <Link to="/contact">Contact Studio</Link>, we request only the necessary information to evaluate and respond to your brief:
           </p>
           <ul>
-            <li><strong>Your name or company name</strong> &mdash; so we know who we are replying to.</li>
-            <li><strong>Your email address</strong> &mdash; so we can reply.</li>
-            <li><strong>The service you selected</strong> &mdash; so the enquiry reaches the right person.</li>
-            <li><strong>Your project brief</strong> &mdash; the message you write.</li>
+            <li><strong>Your Name or Organization Name</strong> &mdash; to address you professionally in technical correspondence.</li>
+            <li><strong>Your Email Address or Phone</strong> &mdash; to deliver project proposals and architecture milestones.</li>
+            <li><strong>Project Objective & Budget Range</strong> &mdash; to route the project to founder engineering and schedule delivery.</li>
+            <li><strong>Project Brief / Message</strong> &mdash; your specific feature requirements, friction points, or design goals.</li>
           </ul>
           <p>
-            There are no hidden fields. We do not ask for, and have no use for, payment details,
-            government identifiers or any special category of personal data. Please do not put
-            credentials, API keys or production secrets in the message box &mdash; if you need to
-            share those for a security audit, we will agree a secure channel first.
+            We do not collect sensitive personal financial data, payment card numbers, or passwords on this public portal. Never submit private infrastructure credentials or secret API keys in the initial consultation form.
           </p>
 
-          <h2>Where the form sends it</h2>
+          <h2>Direct WhatsApp & Email Transmission</h2>
           <p>
-            Submitting the form sends those four fields to our enquiry inbox. If that delivery route
-            is unavailable, the site falls back to opening your own email application with the
-            message prefilled &mdash; in that case nothing is transmitted anywhere until you press
-            send in your own mail client.
-          </p>
-          <p>
-            The <strong>WhatsApp</strong> button works differently: it opens WhatsApp with your
-            message prefilled. That conversation travels through WhatsApp and is handled under
-            WhatsApp&rsquo;s own privacy terms, not ours.
+            Consultation requests submitted via our website form are securely routed to our corporate inbox at <strong>{CONTACT_EMAIL}</strong> with TLS encryption. Inquiries sent via the WhatsApp button are transmitted directly through WhatsApp under its end-to-end encryption protocols.
           </p>
 
-          <h2>Cookies and tracking</h2>
+          <h2>Zero Cookies & Zero Tracking Pixels</h2>
           <p>
-            This site sets <strong>no cookies</strong>. It contains no analytics, no advertising
-            tags, no tracking pixels and no cross-site profiling of any kind. Nothing is written to
-            your browser&rsquo;s local storage.
+            This website sets <strong>no third-party advertising tracking cookies</strong>. We do not use Facebook Pixels, invasive cross-site ad networks, or data brokers.
           </p>
 
-          <h2>Third parties that necessarily see a request</h2>
-          <ul>
-            <li>
-              <strong>Our hosting provider</strong> serves these pages and, like any web server,
-              records request metadata &mdash; IP address, user agent, URL and timestamp &mdash; for
-              delivery, diagnostics and abuse prevention.
-            </li>
-            <li>
-              <strong>Google Fonts</strong> serves the typefaces this site uses, so Google receives
-              your IP address when a page loads.
-            </li>
-          </ul>
+          <h2>Data Retention & Security</h2>
           <p>
-            We do not sell, rent or share enquiry data with anyone else, and we do not add it to
-            marketing lists.
+            Consultation correspondence is retained exclusively for ongoing client relationships, commercial contracts, and accounting compliance. You may request permanent deletion of your project correspondence at any time by emailing{' '}
+            <a href={`mailto:${CONTACT_EMAIL}?subject=Data%20Deletion%20Request`}>{CONTACT_EMAIL}</a> with &ldquo;Data Deletion Request&rdquo; in the subject line. We process verified requests within 3 business days.
           </p>
 
-          <h2>How long we keep it</h2>
+          <h2>Your Rights</h2>
           <p>
-            Enquiries stay in our inbox while the commercial conversation is live, and for up to 24
-            months afterwards so we have a record of what was discussed. After that they are
-            deleted. Ask us sooner and we will delete them sooner.
+            Under the Nigeria Data Protection Act (NDPA) and international data protection regulations, you hold the right to access, rectify, or erase any personal information provided to us.
           </p>
 
-          <h2>Your rights</h2>
+          <h2>Terms Reference</h2>
           <p>
-            You can ask us for a copy of what we hold about you, ask us to correct it, or ask us to
-            delete it. Email{' '}
-            <a href={`mailto:${CONTACT_EMAIL}?subject=Data%20request`}>{CONTACT_EMAIL}</a> with
-            &ldquo;Data request&rdquo; in the subject and we will respond within 30 days. If you are
-            in the EU or UK you also have the right to complain to your local data protection
-            authority; in Nigeria, to the Nigeria Data Protection Commission.
-          </p>
-
-          <h2>Children</h2>
-          <p>
-            This is a business-to-business site. It is not directed at children and we do not
-            knowingly collect information from anyone under 18.
-          </p>
-
-          <h2>Changes</h2>
-          <p>
-            If this policy changes we will update the date at the top of this page, and summarise
-            material changes here rather than quietly substituting them.
-          </p>
-          <p>
-            See also our <Link to="/terms">Terms of Use</Link>.
+            For conditions governing project handovers and code licenses, see our <Link to="/terms">Terms of Use</Link>.
           </p>
         </div>
       </section>

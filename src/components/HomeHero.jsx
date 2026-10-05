@@ -114,6 +114,16 @@ export default function HomeHero() {
 
   return (
     <section className="home-hero-section" aria-label="Hero Introduction">
+      {/* The real, stable <h1>. The rotating headline below cannot be one: it
+          renders units.slice(0, visibleCount) and visibleCount starts at 0, so
+          prerender emitted an empty <h1> for the homepage, and at runtime the
+          heading text changed every few seconds — re-announced by screen
+          readers each time. Copy is taken verbatim from the <title> in
+          index.html so there is no new claim here. */}
+      <h1 className="sr-only">
+        SKKU Global — web development and SecuScan security audits
+      </h1>
+
       <div className="home-hero-container">
         {/* ── 3D Perspective Stage ── */}
         <div className="home-3d-perspective-stage">
@@ -136,8 +146,9 @@ export default function HomeHero() {
           >
             <div className={`home-3d-content-wrap ${isBrand ? 'is-centered' : ''}`}>
               <AnimatePresence mode="wait">
-                <motion.h1
+                <motion.div
                   key={phraseIndex}
+                  aria-hidden="true"
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -12 }}
@@ -163,7 +174,7 @@ export default function HomeHero() {
                   {visibleCount < units.length && (
                     <span className="home-writing-cursor" aria-hidden="true" />
                   )}
-                </motion.h1>
+                </motion.div>
               </AnimatePresence>
             </div>
           </motion.div>

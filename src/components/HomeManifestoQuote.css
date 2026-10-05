@@ -1,0 +1,100 @@
+/* ══════════════════════════════════════════════════════════════════
+   HOME MANIFESTO QUOTE BANNER
+   - Replica of User Reference: Dark Cinematic Canvas
+   - Warm Stone / Champagne Quotation Mark (“ ”)
+   - Massive Bold Condensed Typography (Pluralized for Company)
+   - Subtle Orange Accents on Hover & CAC RC Attribution
+   ══════════════════════════════════════════════════════════════════ */
+
+.manifesto-section {
+  position: relative;
+  background-color: #0E0E12;
+  color: #ECE7DE;
+  padding: clamp(90px, 11vw, 150px) 0;
+  overflow: hidden;
+  border-top: 1px solid #1C1C24;
+  border-bottom: 1px solid #1C1C24;
+  background-image: 
+    radial-gradient(ellipse at 50% 30%, rgba(230, 81, 0, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+}
+
+.manifesto-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .manifesto-container {
+    padding: 0 40px;
+  }
+}
+
+/* ── Quotation Marks ── */
+.manifesto-quote-mark {
+  color: #D6CEBE;
+  opacity: 0.85;
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Giant Bold Condensed Typography ── */
+.manifesto-title {
+  /* Was: -apple-system, BlinkMacSystemFont, "Impact", "Haettenschweiler", ...
+     On Windows the first two don't resolve and this landed on Impact — a fixed
+     single-weight poster face, so font-weight:900 was a no-op and the tracking
+     below was tuned for a face that never rendered. Inter is already loaded in
+     index.html and carries a real 900, so the headline is now identical on
+     every platform. */
+  font-family: var(--font-sans), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(38px, 6.8vw, 86px);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+  text-transform: uppercase;
+  color: #DDD6C8;
+  margin: 0 0 24px;
+  max-width: 980px;
+  text-wrap: balance;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+}
+
+.manifesto-subtext {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: clamp(15.5px, 1.4vw, 18px);
+  line-height: 1.6;
+  color: #9E988D;
+  max-width: 620px;
+  margin: 0 auto 32px;
+}
+
+/* ── Brand Attribution Pill ── */
+.manifesto-brand-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #E65100;
+  background: rgba(230, 81, 0, 0.08);
+  border: 1px solid rgba(230, 81, 0, 0.25);
+  border-radius: 9999px;
+  padding: 6px 18px;
+}
+
+.manifesto-brand-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #E65100;
+  box-shadow: 0 0 8px rgba(230, 81, 0, 0.6);
+}

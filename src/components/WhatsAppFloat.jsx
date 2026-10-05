@@ -1,7 +1,14 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { FaWhatsapp } from 'react-icons/fa6'
 import { waLink } from '../seo/siteMeta.js'
 import './WhatsAppFloat.css'
+
+function WhatsAppNativeIcon({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.46 0-2.89-.39-4.14-1.13l-.3-.18-3.12.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.41c0-4.54 3.7-8.24 8.24-8.24m4.53 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06s-1.05-.39-2-1.23c-.74-.66-1.24-1.47-1.39-1.72s-.02-.38.11-.51c.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31s-.88.86-.88 2.1 1.02 2.44 1.16 2.63c.14.19 2.01 3.07 4.88 4.31.68.29 1.22.47 1.63.6.69.22 1.31.19 1.8.12.55-.08 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.3" />
+    </svg>
+  )
+}
 
 export default function WhatsAppFloat() {
   const containerRef = useRef(null)
@@ -16,7 +23,6 @@ export default function WhatsAppFloat() {
 
   // Handle pointer down (mouse or touch)
   const handlePointerDown = (e) => {
-    // Only primary button
     if (e.button !== 0 && e.pointerType === 'mouse') return
 
     const container = containerRef.current
@@ -120,13 +126,13 @@ export default function WhatsAppFloat() {
       aria-label="Movable WhatsApp Contact Button"
     >
       <a
-        href={waLink('Hello SKKU Global, I want to get a quote to build a website/web application for my business.')}
+        href={waLink('Hello SKKU Global, I want to discuss a project / get a quote.')}
         target="_blank"
         rel="noreferrer"
         className="wa-floating-capsule"
         onClick={handleClick}
         draggable={false}
-        aria-label="Chat on WhatsApp with Founder for Website Quote"
+        aria-label="Chat on WhatsApp: 08057215622"
       >
         {/* Subtle Grip Drag Handle */}
         <span className="wa-drag-grip" title="Drag to move anywhere" aria-hidden="true">
@@ -140,7 +146,7 @@ export default function WhatsAppFloat() {
 
         {/* WhatsApp Icon with Glowing Radar Beacon */}
         <span className="wa-bubble-icon" aria-hidden="true">
-          <FaWhatsapp size={21} className="wa-svg-icon" />
+          <WhatsAppNativeIcon size={20} />
           <span className="wa-radar-beacon">
             <span className="wa-radar-wave" />
             <span className="wa-radar-core" />
@@ -149,8 +155,8 @@ export default function WhatsAppFloat() {
 
         {/* Clear, High-Converting Client-Facing Label */}
         <span className="wa-capsule-copy">
-          <span className="wa-copy-eyebrow">NEED A WEBSITE?</span>
-          <span className="wa-copy-title">Get a Free Quote</span>
+          <span className="wa-copy-eyebrow">WHATSAPP: 08057215622</span>
+          <span className="wa-copy-title">Chat with Founder</span>
         </span>
       </a>
     </div>

@@ -103,7 +103,7 @@ const CASE_STUDIES = [
   {
     id: 'secuscan',
     client: 'SecuScan Security',
-    tagline: 'SecuScan | Automated zero-state vulnerability scanner for mission-critical web platforms',
+    tagline: 'SecuScan | Automated zero-state vulnerability auditor & JWT authenticator with Resend email transactional security',
     heading: 'SECUSCAN AUDIT ENGINE',
     hoverColor: '#0C182A', // Deep Midnight Oceanic Navy
     liveUrl: 'https://secuscan-orpin.vercel.app/',
@@ -112,6 +112,33 @@ const CASE_STUDIES = [
       { src: '/screenshots/secuscan/slide-2.webp', label: 'Live Scanner' },
       { src: '/screenshots/secuscan/slide-3.webp', label: 'Vulnerability Matrix' },
       { src: '/screenshots/secuscan/slide-4.webp', label: 'Compliance PDF' },
+    ],
+  },
+  {
+    id: 'tems',
+    client: 'TEMS Foodstuff & Brand',
+    tagline: 'TEMS | High-conversion promotional flyer & brand asset designed for digital campaigns & physical display',
+    heading: 'TEMS FLYER & VISUALS',
+    hoverColor: '#1A1208', // Deep Warm Amber Bronze
+    liveUrl: '/contact?objective=Flyer%20Design%20%26%20Ads%20Video',
+    isInternalLink: true,
+    images: [
+      { src: '/work/tems-mockup.png', label: 'Real-World Mockup Display' },
+      { src: '/work/tems-flyer.png', label: 'Campaign Digital Flyer' },
+    ],
+  },
+  {
+    id: 'brand-video',
+    client: 'SKKU Media & Ads Studio',
+    tagline: 'Promotional Ads Video | High-retention short-form video creative engineered for social advertising & brand elevation',
+    heading: 'ADS VIDEO PRODUCTION',
+    hoverColor: '#1A0A02', // Deep Warm Ember
+    isVideo: true,
+    videoSrc: '/work/brand-ads-video.mp4',
+    liveUrl: '/contact?objective=Flyer%20Design%20%26%20Ads%20Video',
+    isInternalLink: true,
+    images: [
+      { src: '/work/tems-mockup.png', label: 'Video Production' },
     ],
   },
   {
@@ -131,11 +158,12 @@ const CASE_STUDIES = [
   {
     id: 'carbreezy',
     client: 'CarBreezy Automotive',
-    tagline: 'CarBreezy | Re-engineering vehicle purchasing with verified inspection badges',
+    tagline: 'CarBreezy | Borderless luxury vehicle retail & live Ferrari showroom engine with verified inspection badges',
     heading: 'CARBREEZY MARKETPLACE',
-    hoverColor: '#0A2315', // Deep Emerald Forest
+    hoverColor: '#240608', // Deep Luxury Ferrari Crimson Red (Rosso Corsa)
     liveUrl: 'https://carbreezy-react.vercel.app/',
     images: [
+      { src: '/work/carbreezy-ferrari-hero.png', label: 'Ferrari 296 GTB Showroom Template' },
       { src: '/screenshots/carbreezy/slide-1.webp', label: 'Vehicle Catalog' },
       { src: '/screenshots/carbreezy/slide-2.webp', label: 'Faceted Filters' },
       { src: '/screenshots/carbreezy/slide-3.webp', label: 'Inspection Badges' },
@@ -162,13 +190,8 @@ const CASE_STUDIES = [
 function WorkBannerRow({ study, index }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0)
 
-  // Alternate sides per user request:
-  // Row 1 (index 0): Image on RIGHT, Text on LEFT
-  // Row 2 (index 1): Image on LEFT, Text on RIGHT (isImageLeft = true)
-  // Row 3 (index 2): Image on RIGHT, Text on LEFT
-  // Row 4 (index 3): Image on LEFT, Text on RIGHT (isImageLeft = true)
+  // Alternate sides per layout:
   const isImageLeft = index % 2 === 1
-
   const currentImage = study.images[activeImageIndex] || study.images[0]
 
   return (
@@ -178,70 +201,93 @@ function WorkBannerRow({ study, index }) {
       style={{ '--row-hover-bg': study.hoverColor }}
       initial={{ opacity: 0, y: 45 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.18 }}
+      viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="work-banner-inner">
-        {/* ── TEXT CONTENT BLOCK: Short & Just Two (Head + Subtitle / Little Info) ── */}
+        {/* ── TEXT CONTENT BLOCK ── */}
         <div className="work-banner-text-col">
           <div className="work-banner-header-block">
-            {/* Main Head: Bends & Slants on Hover! */}
+            {/* Main Head: Bends & Slants on Hover */}
             <h2 className="work-banner-title">
               {study.heading}
             </h2>
 
-            {/* Subtitle / Little Info */}
+            {/* Subtitle / Tagline */}
             <p className="work-banner-tagline">
               {study.tagline}
             </p>
           </div>
 
-          {/* Clean 'EXPLORE' Button */}
+          {/* Clean Action Button */}
           <div className="work-banner-actions">
-            <a
-              href={study.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="work-explore-btn"
-            >
-              <span>EXPLORE</span>
-              <ExternalLinkIcon size={12} />
-            </a>
+            {study.isInternalLink ? (
+              <Link to={study.liveUrl} className="work-explore-btn">
+                <span>INQUIRE THIS SERVICE</span>
+                <ArrowRightIcon size={12} />
+              </Link>
+            ) : (
+              <a
+                href={study.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="work-explore-btn"
+              >
+                <span>EXPLORE</span>
+                <ExternalLinkIcon size={12} />
+              </a>
+            )}
           </div>
         </div>
 
-        {/* ── VISUAL WORK IMAGE BLOCK (Alternates sides: 1 on Right, 2 on Left, etc.) ── */}
+        {/* ── VISUAL WORK IMAGE / VIDEO BLOCK ── */}
         <div className="work-banner-visual-col">
           <div className="work-banner-img-frame">
-            <img
-              src={currentImage.src}
-              alt={`${study.heading} - ${currentImage.label}`}
-              className="work-banner-img"
-              loading="lazy"
-            />
-
-            {/* Quick mini-switcher & space for more images */}
-            <div className="work-banner-thumbs">
-              {study.images.map((img, imgIdx) => (
-                <button
-                  key={imgIdx}
-                  type="button"
-                  className={`work-banner-thumb-btn ${activeImageIndex === imgIdx ? 'is-active' : ''}`}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setActiveImageIndex(imgIdx)
-                  }}
-                  title={img.label}
+            {study.isVideo ? (
+              <div className="work-banner-video-wrap">
+                <video
+                  src={study.videoSrc}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="work-banner-video"
+                  poster={study.images?.[0]?.src}
                 >
-                  <img src={img.src} alt={img.label} />
-                </button>
-              ))}
-
-              {/* Dedicated '+ Add' slot for upcoming images */}
-              <div className="work-banner-add-btn" title="Space to add image">
-                <PlusIcon size={11} />
+                  Your browser does not support the video tag.
+                </video>
               </div>
-            </div>
+            ) : (
+              <img
+                src={currentImage.src}
+                alt={`${study.heading} - ${currentImage.label}`}
+                className="work-banner-img"
+                loading="lazy"
+              />
+            )}
+
+            {/* Mini-switcher when multiple images exist */}
+            {!study.isVideo && study.images.length > 1 && (
+              <div className="work-banner-thumbs">
+                {study.images.map((img, imgIdx) => (
+                  <button
+                    key={imgIdx}
+                    type="button"
+                    className={`work-banner-thumb-btn ${activeImageIndex === imgIdx ? 'is-active' : ''}`}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setActiveImageIndex(imgIdx)
+                    }}
+                    title={img.label}
+                  >
+                    <img src={img.src} alt={img.label} />
+                  </button>
+                ))}
+
+                <div className="work-banner-add-btn" title="Case study images">
+                  <PlusIcon size={11} />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -276,7 +322,15 @@ export default function Work() {
         <div className="work-cta-container">
           <div className="work-cta-card">
             <span className="work-hero-kicker" style={{ marginBottom: '16px' }}>LET&apos;S TALK</span>
-            <h2 className="work-cta-bold">HAVE A FRICTION WORTH SOLVING?</h2>
+            <motion.h2
+              className="work-cta-bold"
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              HAVE A <span className="work-cta-orange">FRICTION</span> WORTH <span className="work-cta-orange">SOLVING?</span>
+            </motion.h2>
             <p className="work-cta-sub">
               We handle the strategy, the architecture, and the production launch with verified engineering velocity.
             </p>
@@ -290,3 +344,4 @@ export default function Work() {
     </main>
   )
 }
+

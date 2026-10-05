@@ -4,7 +4,6 @@ import './styles/globals.css'
 import Navbar from './components/Navbar'
 import PushMenu from './components/PushMenu'
 import Footer from './components/Footer'
-import WhatsAppFloat from './components/WhatsAppFloat'
 import Home from './pages/Home'
 import Work from './pages/Work'
 import AboutPage from './pages/AboutPage'
@@ -32,7 +31,10 @@ function ScrollToTop() {
       }, 100)
       return () => clearTimeout(timer)
     }
-    window.scrollTo(0, 0)
+    // Explicit 'instant' overrides the global `scroll-behavior: smooth`, which
+    // would otherwise animate a full-page scroll on every navigation. Anchor
+    // jumps above still animate, which is where smooth actually belongs.
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
   }, [pathname, hash])
   return null
 }
@@ -41,11 +43,16 @@ function ScrollReveal() {
   const { pathname } = useLocation()
 
   useEffect(() => {
+    // Declared out here so the effect's own cleanup can reach it. Returning a
+    // cleanup from inside the setTimeout callback does nothing — React only
+    // uses what the effect body itself returns.
+    let observer = null
+
     const timerId = setTimeout(() => {
       const els = document.querySelectorAll('.animate:not(.is-visible)')
       if (!els.length) return
 
-      const observer = new IntersectionObserver(
+      observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -61,10 +68,12 @@ function ScrollReveal() {
       )
 
       els.forEach((el) => observer.observe(el))
-      return () => observer.disconnect()
     }, 50)
 
-    return () => clearTimeout(timerId)
+    return () => {
+      clearTimeout(timerId)
+      if (observer) observer.disconnect()
+    }
   }, [pathname])
 
   return null
@@ -122,7 +131,10 @@ export function AppShell() {
         <ScrollToTop />
         <ScrollReveal />
 
-        <main id="main">
+        {/* Not a <main>: every page component renders its own <main id="main">.
+            Wrapping them in another one would nest the landmark and duplicate
+            the id, which breaks the skip-link and screen-reader navigation. */}
+        <div className="skku-route-outlet">
           <Routes>
             <Route path="/"         element={<Home />} />
             <Route path="/work"     element={<Work />} />
@@ -136,9 +148,8 @@ export function AppShell() {
             <Route path="/projects" element={<Navigate to="/work" replace />} />
             <Route path="*"         element={<NotFound />} />
           </Routes>
-        </main>
+        </div>
 
-        <WhatsAppFloat />
         <Footer />
 
         {/* Soft overlay on pushed canvas: clicking anywhere glides canvas back up */}

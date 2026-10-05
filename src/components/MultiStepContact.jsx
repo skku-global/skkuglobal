@@ -1,147 +1,237 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import {
-  ArrowRight,
-  ArrowLeft,
-  CheckCircle2,
-  Mail,
-  Clock,
-  Sparkles,
-  Send,
-  ExternalLink,
-} from 'lucide-react'
-import { FaWhatsapp } from 'react-icons/fa6'
-import { waLink } from '../seo/siteMeta.js'
+import { CONTACT_EMAIL, waLink } from '../seo/siteMeta.js'
+import './MultiStepContact.css'
 
+// ── Inline SVG Icons ──────────────────────────────────────────────
+function IconArrowRight() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </svg>
+  )
+}
+function IconArrowLeft() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="19" y1="12" x2="5" y2="12" />
+      <polyline points="12 19 5 12 12 5" />
+    </svg>
+  )
+}
+function IconCheck() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  )
+}
+function IconSend() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="22" y1="2" x2="11" y2="13" />
+      <polygon points="22 2 15 22 11 13 2 9 22 2" />
+    </svg>
+  )
+}
+function IconMail() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+      <polyline points="22,6 12,13 2,6" />
+    </svg>
+  )
+}
+function IconClock() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  )
+}
+function IconWhatsApp() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  )
+}
+function IconExternal() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  )
+}
+
+// ── Icon mapping per objective ────────────────────────────────────
+function ObjIcon({ id }) {
+  const icons = {
+    website: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+    ),
+    webapp: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+    ),
+    flyer: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    ),
+    adsvideo: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+    ),
+  }
+  return icons[id] || null
+}
+
+// ── Data ──────────────────────────────────────────────────────────
 const OBJECTIVES = [
   {
-    id: 'recognition',
-    title: 'International Recognition',
-    desc: 'Transforming an amateur look into an authoritative global digital presence.',
+    id: 'website',
+    title: 'New Website / Landing Page',
+    desc: 'A fast, custom-built React site that looks professional and converts visitors.',
   },
   {
-    id: 'rebuild',
-    title: 'Platform Rebuild',
-    desc: 'Migrating from slow, fragmented tools into a unified high-performance web app.',
+    id: 'webapp',
+    title: 'Web App / Client Portal',
+    desc: 'Full-stack application with user accounts, dashboards, and backend logic.',
   },
   {
-    id: 'security',
-    title: 'System Security',
-    desc: 'Automated SecuScan vulnerability audit, OWASP hardening & cloud protection.',
+    id: 'flyer',
+    title: 'Flyer / Social Media Design',
+    desc: 'Eye-catching flyer or graphic for WhatsApp, Instagram, or print marketing.',
   },
   {
-    id: 'ecommerce',
-    title: 'E-Commerce Launch',
-    desc: 'Multi-currency retail storefront with automated carts and WhatsApp checkout.',
+    id: 'adsvideo',
+    title: 'Ads Video Production',
+    desc: 'Short-form promotional video ad for your product, service, or business.',
   },
 ]
 
 const BUDGETS = [
-  'Under $1,500 / ₦2,000,000',
-  '$1,500 – $3,500 / ₦2m – ₦5m',
-  '$3,500 – $8,000 / ₦5m – ₦12m',
-  '$8,000+ / ₦12m+ (Enterprise)',
+  'Under ₦50,000 (Flyer / Small design)',
+  '₦50,000 – ₦250,000 (Landing page / Basic site)',
+  '₦250,000 – ₦1,000,000 (Full web app)',
+  '₦1,000,000+ (Enterprise / Ongoing retainer)',
 ]
 
+const QUICK_PROMPTS = [
+  'I need a landing page for my business',
+  'Design a flyer for my product',
+  'Build a booking/order web app',
+]
+
+// ── Component ─────────────────────────────────────────────────────
 export default function MultiStepContact() {
   const [searchParams] = useSearchParams()
   const initialPrompt = searchParams.get('prompt') || ''
   const initialObjective = searchParams.get('objective') || ''
 
   const [step, setStep] = useState(1)
-  const [selectedObjective, setSelectedObjective] = useState(initialObjective || 'recognition')
+  const [selectedObjective, setSelectedObjective] = useState(initialObjective || 'website')
   const [description, setDescription] = useState(initialPrompt)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [budget, setBudget] = useState(BUDGETS[1])
   const [timeline, setTimeline] = useState('5–7 Day Sprint')
   const [submitted, setSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [handoffBlocked, setHandoffBlocked] = useState(false)
 
-  // If initialPrompt exists, automatically advance to Step 2 so user sees their prompt!
   useEffect(() => {
-    if (initialPrompt && step === 1) {
-      setStep(2)
-    }
+    if (initialPrompt && step === 1) setStep(2)
   }, [initialPrompt])
 
   const handleNext = (e) => {
     if (e) e.preventDefault()
-    if (step < 3) {
-      setStep(step + 1)
-    }
+    if (step < 3) setStep(step + 1)
   }
 
   const handleBack = () => {
-    if (step > 1) {
-      setStep(step - 1)
-    }
+    if (step > 1) setStep(step - 1)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setSubmitted(true)
-    }, 600)
+
+    // This used to be a bare setTimeout(700) that flipped `submitted` and sent
+    // the brief precisely nowhere, while the success screen told the visitor it
+    // had reached the founder. The brief now goes to WhatsApp.
+    //
+    // window.open MUST run synchronously inside the submit gesture — a popup
+    // opened from a timeout callback is discarded by every modern blocker, so
+    // the old fake delay could not have been kept here anyway. If the blocker
+    // wins regardless, window.open returns null and the success screen shows an
+    // explicit fallback link instead of silently losing the lead.
+    const opened = window.open(waLink(waMessage), '_blank', 'noopener,noreferrer')
+    setHandoffBlocked(!opened)
+    setSubmitted(true)
   }
 
-  const waMessage = `Hello SKKU Global, I want to start a project.\nObjective: ${selectedObjective}\nDetails: ${description}\nName: ${name}\nEmail: ${email}\nBudget: ${budget}`
+  // This string is now the actual deliverable, not just decoration on the
+  // success screen, so it carries every field the form collects. Two things
+  // were wrong while it was unused: it interpolated the raw objective id
+  // ("Objective: webapp") instead of the readable title, and it omitted
+  // `timeline` altogether — the visitor picked a delivery window and it was
+  // thrown away.
+  const objectiveTitle =
+    OBJECTIVES.find((o) => o.id === selectedObjective)?.title || selectedObjective
+
+  const waMessage = [
+    'Hello SKKU Global, I want to start a project.',
+    '',
+    `Objective: ${objectiveTitle}`,
+    `Details: ${description || '(not provided)'}`,
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Budget: ${budget}`,
+    `Timeline: ${timeline}`,
+  ].join('\n')
+
+  const STEP_LABELS = ['Your Goal', 'Project Details', 'Contact Info']
 
   return (
-    <div className="max-w-[760px] mx-auto">
-      {/* ── Progress Indicators ── */}
+    <div className="msc-root">
+
+      {/* ── Progress Bar ── */}
       {!submitted && (
-        <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#E5E5EA]">
-          <div className="flex items-center gap-2">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="flex items-center gap-2">
-                <span
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-medium transition-all ${
-                    step === i
-                      ? 'bg-[#6E2CF3] text-white shadow-[0_2px_8px_rgba(110,44,243,0.3)]'
-                      : step > i
-                      ? 'bg-[#1D1D1F] text-white'
-                      : 'bg-[#F5F5F7] text-[#86868B] border border-[#E5E5EA]'
-                  }`}
-                >
-                  {i}
-                </span>
-                {i < 3 && <div className="w-8 sm:w-16 h-[1.5px] bg-[#E5E5EA]" />}
+        <div className="msc-progress-bar" aria-label="Form progress">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="msc-progress-step">
+              <div className={`msc-step-dot ${step === i ? 'active' : step > i ? 'done' : ''}`}>
+                {step > i ? <IconCheck /> : <span>{i}</span>}
               </div>
-            ))}
-          </div>
-          <span className="font-mono text-xs uppercase tracking-wider text-[#6E6E73]">
-            Step 0{step} of 03
-          </span>
+              <span className={`msc-step-label ${step >= i ? 'active' : ''}`}>
+                {STEP_LABELS[i - 1]}
+              </span>
+              {i < 3 && <div className={`msc-step-line ${step > i ? 'done' : ''}`} />}
+            </div>
+          ))}
+          <span className="msc-step-counter">Step 0{step} / 03</span>
         </div>
       )}
 
-      {/* ── Multi-Step Container ── */}
-      <div className="bg-[#F5F5F7] border border-[#E5E5EA] rounded-3xl p-6 sm:p-10 md:p-12 shadow-sm">
+      {/* ── Card Container ── */}
+      <div className="msc-card">
         <AnimatePresence mode="wait">
-          {/* ── STEP 1: Objective Selector ── */}
+
+          {/* ── STEP 1: Objective ── */}
           {step === 1 && !submitted && (
             <motion.div
               key="step1"
-              initial={{ opacity: 0, x: 10 }}
+              initial={{ opacity: 0, x: 18 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, x: -18 }}
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="font-mono text-xs uppercase tracking-[0.24em] text-[#6E2CF3] font-semibold block mb-2">
-                STEP 01
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl text-[#1D1D1F] mb-3 font-normal">
-                What is your primary objective?
-              </h2>
-              <p className="text-sm text-[#6E6E73] font-sans mb-8">
-                Select the main business challenge or outcome you are aiming to achieve.
-              </p>
+              <span className="msc-step-kicker">Step 01 — Goal</span>
+              <h2 className="msc-step-headline">What do you need?</h2>
+              <p className="msc-step-sub">Pick the service that matches what you want to achieve.</p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+              <div className="msc-obj-grid">
                 {OBJECTIVES.map((obj) => {
                   const isSelected = selectedObjective === obj.id
                   return (
@@ -149,302 +239,250 @@ export default function MultiStepContact() {
                       key={obj.id}
                       type="button"
                       onClick={() => setSelectedObjective(obj.id)}
-                      className={`text-left p-5 rounded-2xl border transition-all cursor-pointer ${
-                        isSelected
-                          ? 'bg-white border-[#6E2CF3] shadow-[0_4px_16px_rgba(110,44,243,0.12)] ring-2 ring-[#6E2CF3]/20'
-                          : 'bg-white/70 border-[#E5E5EA] hover:border-[#6E2CF3]/40 hover:bg-white'
-                      }`}
+                      className={`msc-obj-card ${isSelected ? 'selected' : ''}`}
+                      aria-pressed={isSelected}
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <strong className="text-sm font-semibold text-[#1D1D1F]">
-                          {obj.title}
-                        </strong>
-                        <span
-                          className={`w-4 h-4 rounded-full border flex items-center justify-center ${
-                            isSelected
-                              ? 'border-[#6E2CF3] bg-[#6E2CF3]'
-                              : 'border-[#CBD5E1] bg-white'
-                          }`}
-                        >
-                          {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
-                        </span>
+                      <div className="msc-obj-icon">
+                        <ObjIcon id={obj.id} />
                       </div>
-                      <p className="text-xs text-[#6E6E73] leading-relaxed">
-                        {obj.desc}
-                      </p>
+                      <div className="msc-obj-text">
+                        <strong className="msc-obj-title">{obj.title}</strong>
+                        <p className="msc-obj-desc">{obj.desc}</p>
+                      </div>
+                      <div className={`msc-obj-radio ${isSelected ? 'selected' : ''}`}>
+                        {isSelected && <span className="msc-obj-radio-dot" />}
+                      </div>
                     </button>
                   )
                 })}
               </div>
 
-              <div className="flex justify-end">
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="btn-apple-primary inline-flex items-center gap-2 px-6 py-2.5"
-                >
-                  <span>Continue to Problem Details</span>
-                  <ArrowRight size={14} />
+              <div className="msc-nav msc-nav--end">
+                <button type="button" onClick={handleNext} className="msc-btn msc-btn--primary">
+                  <span>Continue</span>
+                  <IconArrowRight />
                 </button>
               </div>
             </motion.div>
           )}
 
-          {/* ── STEP 2: Problem Description Text Area ── */}
+          {/* ── STEP 2: Project Description ── */}
           {step === 2 && !submitted && (
             <motion.div
               key="step2"
-              initial={{ opacity: 0, x: 10 }}
+              initial={{ opacity: 0, x: 18 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, x: -18 }}
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="font-mono text-xs uppercase tracking-[0.24em] text-[#6E2CF3] font-semibold block mb-2">
-                STEP 02
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl text-[#1D1D1F] mb-3 font-normal">
-                Describe the friction or vision.
-              </h2>
-              <p className="text-sm text-[#6E6E73] font-sans mb-6">
-                What does your business do, where are you losing clients, and what would a successful build look like?
+              <span className="msc-step-kicker">Step 02 — Details</span>
+              <h2 className="msc-step-headline">Describe the project.</h2>
+              <p className="msc-step-sub">
+                What does your business do? What should this build achieve?
               </p>
 
-              <div className="mb-4">
-                <textarea
-                  rows={5}
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  placeholder="e.g. We have a high-ticket service but our current website feels clunky and amateur. We want an Apple-grade web platform with automated booking and instant WhatsApp checkout..."
-                  className="w-full bg-white border border-[#E5E5EA] rounded-2xl p-4 text-sm sm:text-base text-[#1D1D1F] placeholder-[#86868B] focus:outline-none focus:border-[#6E2CF3] focus:ring-4 focus:ring-[#6E2CF3]/10 transition-all font-sans"
-                />
-              </div>
+              <textarea
+                className="msc-textarea"
+                aria-label="Project description"
+                name="description"
+                rows={5}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="e.g. I run a foodstuff shop and I need a flyer for WhatsApp marketing. My brand colors are green and orange..."
+              />
 
-              {/* Quick Prompt Starters */}
-              <div className="flex flex-wrap gap-2 mb-8">
-                <span className="text-xs font-mono text-[#86868B] py-1">Quick prompts:</span>
-                {[
-                  'Fix slow conversion & look international',
-                  'Run SecuScan audit on my live site',
-                  'E-Commerce with multi-currency checkouts',
-                ].map((starter) => (
+              <div className="msc-quick-prompts">
+                <span className="msc-qp-label">Quick fill:</span>
+                {QUICK_PROMPTS.map((p) => (
                   <button
-                    key={starter}
+                    key={p}
                     type="button"
-                    onClick={() => setDescription(starter)}
-                    className="text-xs font-sans px-3 py-1 rounded-full bg-white border border-[#E5E5EA] hover:border-[#6E2CF3] text-[#1D1D1F] transition-colors"
+                    onClick={() => setDescription(p)}
+                    className="msc-qp-chip"
                   >
-                    + {starter}
+                    + {p}
                   </button>
                 ))}
               </div>
 
-              <div className="flex items-center justify-between">
-                <button
-                  type="button"
-                  onClick={handleBack}
-                  className="btn-apple-secondary inline-flex items-center gap-1.5 px-4 py-2 text-xs"
-                >
-                  <ArrowLeft size={13} />
+              <div className="msc-nav msc-nav--between">
+                <button type="button" onClick={handleBack} className="msc-btn msc-btn--ghost">
+                  <IconArrowLeft />
                   <span>Back</span>
                 </button>
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="btn-apple-primary inline-flex items-center gap-2 px-6 py-2.5"
-                >
-                  <span>Continue to Contact Info</span>
-                  <ArrowRight size={14} />
+                <button type="button" onClick={handleNext} className="msc-btn msc-btn--primary">
+                  <span>Continue</span>
+                  <IconArrowRight />
                 </button>
               </div>
             </motion.div>
           )}
 
-          {/* ── STEP 3: Contact Information & Budget ── */}
+          {/* ── STEP 3: Contact Info ── */}
           {step === 3 && !submitted && (
             <motion.div
               key="step3"
-              initial={{ opacity: 0, x: 10 }}
+              initial={{ opacity: 0, x: 18 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, x: -18 }}
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="font-mono text-xs uppercase tracking-[0.24em] text-[#6E2CF3] font-semibold block mb-2">
-                STEP 03
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl text-[#1D1D1F] mb-3 font-normal">
-                Who should we send the roadmap to?
-              </h2>
-              <p className="text-sm text-[#6E6E73] font-sans mb-6">
-                Direct founder review. We will evaluate your requirements and reply with a milestone roadmap within 24 hours.
+              <span className="msc-step-kicker">Step 03 — Contact</span>
+              <h2 className="msc-step-headline">Where do we reach you?</h2>
+              <p className="msc-step-sub">
+                Founder review. We reply within 24 hours with a clear plan and price.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-4 mb-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[#6E6E73] mb-1.5">
-                      Your Full Name
-                    </label>
+              <form onSubmit={handleSubmit} className="msc-form">
+                <div className="msc-form-row">
+                  <div className="msc-field">
+                    <label className="msc-label" htmlFor="msc-name">Full Name</label>
                     <input
+                      id="msc-name"
+                      name="name"
+                      autoComplete="name"
                       type="text"
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="e.g. Alex Henderson"
-                      className="w-full bg-white border border-[#E5E5EA] rounded-xl px-4 py-2.5 text-sm text-[#1D1D1F] focus:outline-none focus:border-[#6E2CF3]"
+                      placeholder="e.g. Tunde Bakare"
+                      className="msc-input"
                     />
                   </div>
-
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[#6E6E73] mb-1.5">
-                      Work / Direct Email
-                    </label>
+                  <div className="msc-field">
+                    <label className="msc-label" htmlFor="msc-email">Email Address</label>
                     <input
+                      id="msc-email"
+                      name="email"
+                      autoComplete="email"
                       type="email"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="alex@company.com"
-                      className="w-full bg-white border border-[#E5E5EA] rounded-xl px-4 py-2.5 text-sm text-[#1D1D1F] focus:outline-none focus:border-[#6E2CF3]"
+                      placeholder="you@company.com"
+                      className="msc-input"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[#6E6E73] mb-1.5">
-                      Budget Bracket
-                    </label>
+                <div className="msc-form-row">
+                  <div className="msc-field">
+                    <label className="msc-label" htmlFor="msc-budget">Budget Range</label>
                     <select
+                      id="msc-budget"
+                      name="budget"
                       value={budget}
                       onChange={(e) => setBudget(e.target.value)}
-                      className="w-full bg-white border border-[#E5E5EA] rounded-xl px-4 py-2.5 text-sm text-[#1D1D1F] focus:outline-none focus:border-[#6E2CF3]"
+                      className="msc-select"
                     >
                       {BUDGETS.map((b) => (
-                        <option key={b} value={b}>
-                          {b}
-                        </option>
+                        <option key={b} value={b}>{b}</option>
                       ))}
                     </select>
                   </div>
-
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[#6E6E73] mb-1.5">
-                      Target Delivery
-                    </label>
+                  <div className="msc-field">
+                    <label className="msc-label" htmlFor="msc-timeline">Delivery Timeline</label>
                     <select
+                      id="msc-timeline"
+                      name="timeline"
                       value={timeline}
                       onChange={(e) => setTimeline(e.target.value)}
-                      className="w-full bg-white border border-[#E5E5EA] rounded-xl px-4 py-2.5 text-sm text-[#1D1D1F] focus:outline-none focus:border-[#6E2CF3]"
+                      className="msc-select"
                     >
-                      <option value="5–7 Day Sprint">5–7 Day Fast Sprint (Recommended)</option>
+                      <option value="5–7 Day Sprint">5–7 Day Sprint (Fast)</option>
                       <option value="2–3 Weeks Full Launch">2–3 Weeks Full Launch</option>
-                      <option value="Flexible / Q4 Roadmap">Flexible / Long-term Roadmap</option>
+                      <option value="Flexible / Long-term">Flexible / Long-term</option>
                     </select>
                   </div>
                 </div>
 
-                <div className="pt-4 flex items-center justify-between">
-                  <button
-                    type="button"
-                    onClick={handleBack}
-                    className="btn-apple-secondary inline-flex items-center gap-1.5 px-4 py-2 text-xs"
-                  >
-                    <ArrowLeft size={13} />
+                <div className="msc-nav msc-nav--between msc-form-footer">
+                  <button type="button" onClick={handleBack} className="msc-btn msc-btn--ghost">
+                    <IconArrowLeft />
                     <span>Back</span>
                   </button>
-
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="btn-apple-violet inline-flex items-center gap-2 px-8 py-3 text-sm cursor-pointer"
+                    className="msc-btn msc-btn--submit"
                   >
-                    <span>{isSubmitting ? 'Transmitting...' : 'Submit Inquiry'}</span>
-                    <Send size={14} />
+                    <span>Send Brief on WhatsApp</span>
+                    <IconSend />
                   </button>
                 </div>
               </form>
             </motion.div>
           )}
 
-          {/* ── SUBMITTED CONFIRMATION ── */}
+          {/* ── SUBMITTED ── */}
           {submitted && (
             <motion.div
               key="submitted"
-              initial={{ opacity: 0, scale: 0.96 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4 }}
-              className="text-center py-6"
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="msc-success"
+              role="status"
+              aria-live="polite"
             >
-              <div className="w-16 h-16 rounded-full bg-[#F5F0FF] border border-[#6E2CF3]/20 text-[#6E2CF3] flex items-center justify-center mx-auto mb-6">
-                <CheckCircle2 size={32} />
+              <div className="msc-success-icon">
+                <IconCheck />
               </div>
-
-              <span className="font-mono text-xs uppercase tracking-[0.24em] text-[#6E2CF3] font-semibold block mb-2">
-                INQUIRY LOGGED
+              <span className="msc-step-kicker">
+                {handoffBlocked ? 'One Last Step' : 'Brief Ready'}
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl text-[#1D1D1F] mb-4 font-normal">
-                Thank you, {name || 'there'}.
-              </h2>
-              <p className="text-sm sm:text-base text-[#6E6E73] font-sans max-w-md mx-auto mb-8 leading-relaxed">
-                Your project brief has been routed directly to founder Abdulkabir Ajiboye. We will review your objective and reply to <strong className="text-[#1D1D1F]">{email || 'your email'}</strong> within 24 hours.
+              <h2 className="msc-step-headline">Almost there, {name || 'there'}.</h2>
+              <p className="msc-success-body">
+                {handoffBlocked
+                  ? 'Your browser blocked the WhatsApp tab. Open it with the button below — your brief is already written out, you only need to press send.'
+                  : 'Your brief is written out and waiting in WhatsApp. Press send there and it reaches founder Abdulkabir Ajiboye directly, who replies within 24 hours.'}
               </p>
 
-              {/* Instant WhatsApp Alternative */}
-              <div className="bg-white border border-[#E5E5EA] rounded-2xl p-6 max-w-md mx-auto mb-6">
-                <span className="font-mono text-xs text-[#86868B] uppercase block mb-2">
-                  Need faster response?
-                </span>
-                <p className="text-xs text-[#6E6E73] mb-4">
-                  Skip the email queue and connect directly with the lead architect on WhatsApp.
-                </p>
-                <a
-                  href={waLink(waMessage)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs sm:text-sm shadow-sm transition-all"
-                >
-                  <FaWhatsapp size={16} />
-                  <span>Forward Brief to WhatsApp</span>
-                  <ExternalLink size={13} />
-                </a>
-              </div>
+              <a
+                href={waLink(waMessage)}
+                target="_blank"
+                rel="noreferrer"
+                className="msc-wa-btn"
+              >
+                <IconWhatsApp />
+                <span>{handoffBlocked ? 'Open WhatsApp to send' : 'Reopen WhatsApp'}</span>
+                <IconExternal />
+              </a>
 
               <button
                 type="button"
+                className="msc-reset-link"
                 onClick={() => {
                   setSubmitted(false)
+                  setHandoffBlocked(false)
                   setStep(1)
                   setDescription('')
                 }}
-                className="text-xs font-mono text-[#6E6E73] hover:text-[#6E2CF3] underline"
               >
-                Submit another inquiry
+                Start another brief
               </button>
             </motion.div>
           )}
+
         </AnimatePresence>
       </div>
 
-      {/* ── Direct Email Alternative & Response SLA ── */}
-      <div className="mt-12 p-6 rounded-2xl bg-white border border-[#E5E5EA] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-[#6E6E73]">
-        <div className="flex items-center gap-2">
-          <Mail size={16} className="text-[#6E2CF3]" />
-          <span>Direct email:</span>
-          <a
-            href="mailto:hello@skkuglobal.com"
-            className="font-medium text-[#1D1D1F] hover:text-[#6E2CF3] underline"
-          >
-            hello@skkuglobal.com
-          </a>
+      {/* ── Bottom SLA Bar ── */}
+      {!submitted && (
+        <div className="msc-sla-bar">
+          <div className="msc-sla-item">
+            <IconMail />
+            <span>Direct email: </span>
+            <a href={`mailto:${CONTACT_EMAIL}`} className="msc-sla-link">
+              {CONTACT_EMAIL}
+            </a>
+          </div>
+          <div className="msc-sla-divider" />
+          <div className="msc-sla-item">
+            <IconClock />
+            <strong>Response within 24 hours</strong>
+          </div>
         </div>
-
-        <div className="flex items-center gap-2">
-          <Clock size={16} className="text-[#6E2CF3]" />
-          <span className="font-mono text-xs text-[#1D1D1F] font-semibold">
-            Guaranteed Response SLA: Within 24 Hours
-          </span>
-        </div>
-      </div>
+      )}
     </div>
   )
 }

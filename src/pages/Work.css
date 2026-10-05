@@ -415,12 +415,20 @@
 
 .work-cta-bold {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", sans-serif;
-  font-size: clamp(30px, 4.4vw, 52px);
-  font-weight: 850;
-  letter-spacing: -0.03em;
+  font-style: italic;
+  font-size: clamp(28px, 4.2vw, 52px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  word-spacing: 0.18em;
   text-transform: uppercase;
   color: #000000;
-  margin: 0 0 16px;
+  margin: 0 0 20px;
+  line-height: 1.18;
+}
+
+.work-cta-orange {
+  color: #E65100;
+  font-style: italic;
 }
 
 .work-cta-sub {
@@ -430,3 +438,25 @@
   max-width: 580px;
   margin: 0 auto 32px;
 }
+
+/* ── 7. Work Banner Video Wrapper ── */
+.work-banner-video-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #000000;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.work-banner-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+

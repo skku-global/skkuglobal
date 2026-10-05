@@ -80,6 +80,9 @@ html {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Reserves the scrollbar track permanently, so locking body scroll for the
+     push menu no longer shifts the whole canvas sideways by ~15px. */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -312,6 +315,39 @@ a:hover {
 }
 
 /* ── Accessibility ── */
+
+/* Visible to screen readers and crawlers, painted nowhere. Used for the stable
+   hero <h1>, whose visible counterpart is a rotating animation. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Nothing in the site honoured prefers-reduced-motion before this: the hero
+   typewriter, the canvas push, the 3D tilt and every Framer reveal all ran
+   regardless. This collapses transitions/animations to effectively instant for
+   visitors who ask the OS for less motion, without changing any end state, and
+   also drops the smooth scroll that made navigation feel slow for them. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .skip-link {
   position: absolute;
   top: -120px;

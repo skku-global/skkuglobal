@@ -24,6 +24,28 @@ function ArrowRightIcon({ size = 13 }) {
   )
 }
 
+// ── Pillar Cards Data ──
+const pillars = [
+  {
+    id: 'eng',
+    label: 'Engineering',
+    headline: 'Custom React. No templates.',
+    body: 'Every platform is built from scratch in React + Vite. You receive 100% repository ownership at handover — no vendor tie-in, no hidden lock-in clause.',
+  },
+  {
+    id: 'sec',
+    label: 'Security',
+    headline: 'SecuScan™ on every release.',
+    body: 'Our proprietary vulnerability audit covers OWASP Top 10, JWT hardening, CORS policy, and rate-limit architecture before any build goes live.',
+  },
+  {
+    id: 'vel',
+    label: 'Velocity',
+    headline: '5–7 day sprint windows.',
+    body: 'Founder-led engagement means zero hand-off lag. One point of contact, one delivery standard — from wireframe through deployment on Vercel or Render.',
+  },
+]
+
 function ExternalLinkIcon({ size = 12 }) {
   return (
     <svg
@@ -93,15 +115,23 @@ export default function AboutPage() {
           {/* Letter Body: Authentic Editorial Narrative */}
           <div className="about-letter-body">
             <p className="about-letter-lead">
-              Think about everything that&apos;s gotten faster over the last decade. Cloud computing, artificial intelligence, open-source software, and global payment rails. Now think about your digital agency experience. It&apos;s gotten more fragmented, slower, and filled with friction. SKKU Global was built to fix that.
+              Think about everything that&apos;s gotten faster over the last decade — cloud computing, artificial intelligence, open-source infrastructure, global payment rails. Now think about your last digital agency experience. It probably got slower. More fragmented. More expensive. SKKU Global was built to fix that.
             </p>
 
             <p>
-              I grew up watching ambitious founders and enterprise teams get trapped between four disconnected vendors: a design studio that didn&apos;t write production code, a dev shop that didn&apos;t understand conversion psychology, and external consultants who arrived only after the launch. The result was always the same: blown timelines, clunky templates, and platforms that fractured under real traffic. We built SKKU Global to rebuild that model from first principles.
+              I grew up watching ambitious founders get trapped between four disconnected vendors: a design studio that didn&apos;t write production code, a dev shop that didn&apos;t understand conversion psychology, and external security consultants who arrived only after the breach. The result was always the same — blown timelines, clunky templates, and platforms that fractured under real load.
             </p>
 
             <p>
-              We unite custom React engineering, editorial storytelling, and our proprietary SecuScan vulnerability audits under one disciplined roof. Every platform we release is custom-coded, hardened against exploits, and transferred with 100% repository ownership directly into your hands. Zero agency lock-in. 5 to 7 day sprint velocity.
+              SKKU Global Technologies Limited was incorporated in Nigeria (CAC RC 7306232) to rebuild that model from first principles. We are a founder-led studio, which means the person who scopes your project is the same person who builds it, tests it, and hands you the keys. No project managers in between. No outsourced execution.
+            </p>
+
+            <p>
+              Our stack is deliberate: <strong>React / Vite</strong> for the frontend, <strong>Node / Express + MongoDB</strong> for the backend, <strong>Supabase</strong> for managed data where appropriate, <strong>Redis</strong> for caching, and <strong>JWT</strong> for stateless authentication. Every deployment ships with <strong>SecuScan™</strong> — our in-house vulnerability audit covering the OWASP Top 10 before a single user touches the interface.
+            </p>
+
+            <p>
+              The name SKKU carries personal weight. It is the legacy being built — one codebase, one client, one sprint at a time. The goal is not volume. It is quality that compounds.
             </p>
 
             <p className="about-letter-punchline">
@@ -116,6 +146,25 @@ export default function AboutPage() {
             </div>
           </div>
         </motion.article>
+      </section>
+
+      {/* ── Three Pillars ── */}
+      <section className="about-pillars-section" aria-label="Core Pillars">
+        <div className="about-pillars-grid">
+          {pillars.map((p, i) => (
+            <motion.div
+              key={p.id}
+              className="about-pillar-card"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.12 * i, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="about-pillar-label">{p.label}</span>
+              <h2 className="about-pillar-headline">{p.headline}</h2>
+              <p className="about-pillar-body">{p.body}</p>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* ── Direct Founder Actions & Institutional Verification ── */}
@@ -142,10 +191,13 @@ export default function AboutPage() {
             LEGAL STATUS: <strong>CAC RC 7306232</strong>
           </span>
           <span className="about-meta-pill">
-            LOCATION: <strong>Ibadan / Lagos · Global</strong>
+            LOCATION: <strong>Ibadan · Lagos · Global</strong>
           </span>
           <span className="about-meta-pill">
             CODE HANDOVER: <strong>100% Repository Rights</strong>
+          </span>
+          <span className="about-meta-pill">
+            EMAIL: <strong>admin@skkuglobal.com</strong>
           </span>
         </div>
       </section>

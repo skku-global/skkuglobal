@@ -297,16 +297,25 @@
 }
 
 .services-sla-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: #FFFFFF;
-  border: 1px solid #E5E5EB;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #FFF8F4;
+  border: 1.5px solid rgba(230, 81, 0, 0.22);
   color: #E65100;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(230, 81, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.services-sla-card:hover .services-sla-icon {
+  background: #FFF2EB;
+  border-color: #E65100;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 81, 0, 0.16);
 }
 
 .services-sla-card h4 {
@@ -324,3 +333,60 @@
   color: #66666B;
   margin: 0;
 }
+
+/* ── Secondary link in capability cards ── */
+.services-cap-secondary-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #E65100;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+}
+
+.services-cap-secondary-link:hover {
+  text-decoration: underline;
+  transform: translateX(2px);
+}
+
+/* ── Friction Banner Section ── */
+.services-friction-banner {
+  padding: 72px 0 20px;
+  background-color: #FFFFFF;
+  text-align: center;
+}
+
+.services-friction-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.services-friction-title {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", sans-serif;
+  font-style: italic;
+  font-size: clamp(28px, 4.4vw, 52px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  word-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #000000;
+  margin: 0 0 16px;
+  line-height: 1.15;
+}
+
+.services-friction-orange {
+  color: #E65100;
+  font-style: italic;
+}
+
+.services-friction-sub {
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: #555558;
+  max-width: 600px;
+  margin: 0 auto;
+}
+

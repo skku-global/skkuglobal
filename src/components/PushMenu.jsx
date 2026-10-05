@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { waLink } from '../seo/siteMeta.js'
+import { CONTACT_EMAIL, waLink } from '../seo/siteMeta.js'
 import './PushMenu.css'
 
 function CloseIcon({ size = 18, strokeWidth = 2.4 }) {
@@ -23,14 +23,22 @@ function CloseIcon({ size = 18, strokeWidth = 2.4 }) {
 }
 
 export default function PushMenu({ isOpen, onClose }) {
-  // Close menu on Escape key
+  // Close menu on Escape key.
+  //
+  // Guarded on isOpen: without it, Escape fired onClose() even when the drawer
+  // was already shut, and the parent's handleCloseMenu restores the scroll
+  // position saved when the menu was last opened. Repro was: open the menu
+  // deep in a page, close it, scroll somewhere else, press Escape — and the
+  // page jumped back to the old offset.
   useEffect(() => {
+    if (!isOpen) return
+
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose()
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [onClose])
+  }, [isOpen, onClose])
 
   return (
     <aside
@@ -147,8 +155,17 @@ export default function PushMenu({ isOpen, onClose }) {
 
             {/* Direct Contact Micro-Links */}
             <div className="push-contact-meta">
-              <a href="mailto:hello@skkuglobal.com" className="push-meta-email">
-                hello@skkuglobal.com
+              <a
+                href={waLink('Hello SKKU Global, I want to discuss a project.')}
+                target="_blank"
+                rel="noreferrer"
+                className="push-meta-whatsapp"
+                style={{ color: '#25D366', fontWeight: '750', textDecoration: 'none', display: 'block', marginBottom: '6px' }}
+              >
+                WhatsApp: 08057215622
+              </a>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="push-meta-email">
+                {CONTACT_EMAIL}
               </a>
               <span className="push-meta-rc">
                 CAC RC 7306232 · Ibadan, Nigeria
