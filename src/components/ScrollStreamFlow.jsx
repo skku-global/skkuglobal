@@ -76,11 +76,11 @@ const TRANSFORMATIONS = [
   },
   {
     from: 'Manual DM Chaos',
-    to: '24/7 Automated Revenue',
+    to: 'An Always-On Storefront',
   },
   {
     from: 'Sluggish Outdated Site',
-    to: 'Sub-Second Global Platform',
+    to: 'Rebuilt for Speed',
   },
 ]
 
@@ -147,15 +147,22 @@ export default function ScrollStreamFlow() {
   })
   const [customNote, setCustomNote] = useState('')
   const [clientName, setClientName] = useState('')
+  const [pillLocked, setPillLocked] = useState(false)
+  const [pillHovered, setPillHovered] = useState(false)
   const navigate = useNavigate()
 
-  // Gentle auto-rotation between transformations
+  // Gentle auto-rotation between transformations. It yields to the visitor:
+  // picking a pill stops it for good (the timer used to overwrite their choice
+  // within 3.8s), hovering or tabbing the grid pauses it, and it never starts
+  // for anyone whose OS asks for less motion.
   useEffect(() => {
+    if (pillLocked || pillHovered) return
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
     const timer = setInterval(() => {
       setActiveTransformIdx((prev) => (prev + 1) % TRANSFORMATIONS.length)
     }, 3800)
     return () => clearInterval(timer)
-  }, [])
+  }, [pillLocked, pillHovered])
 
   const currentQ = STREAM_QUESTIONS[currentStepIndex]
   const isComplete = currentStepIndex >= STREAM_QUESTIONS.length
@@ -216,7 +223,13 @@ export default function ScrollStreamFlow() {
         <div className="stream-header">
           <span className="stream-kicker">WHAT WE TRANSFORM</span>
 
-          <div className="stream-title-wrap">
+          {/* Announce only once the visitor drives the headline themselves —
+              a live region on the 3.8s rotation would chatter non-stop. */}
+          <div
+            className="stream-title-wrap"
+            aria-live={pillLocked ? 'polite' : 'off'}
+            aria-atomic="true"
+          >
             <AnimatePresence mode="wait">
               <motion.h2
                 key={activeTransformIdx}
@@ -234,21 +247,32 @@ export default function ScrollStreamFlow() {
           </div>
 
           <p className="stream-intro">
-            We eliminate business bottlenecks and replace them with high-converting digital architecture. Select any transformation below or answer 4 quick questions to generate your custom roadmap.
+            We remove business bottlenecks and replace them with digital architecture built to convert. Select any transformation below, or answer 4 quick questions to generate your roadmap.
           </p>
 
-          {/* Transformation Pills Grid */}
-          <div className="stream-pills-grid" role="tablist" aria-label="Core business transformations">
+          {/* Transformation Pills Grid — toggles that swap the headline, not
+              tabs: there is no panel for them to control. */}
+          <div
+            className="stream-pills-grid"
+            role="group"
+            aria-label="Core business transformations"
+            onMouseEnter={() => setPillHovered(true)}
+            onMouseLeave={() => setPillHovered(false)}
+            onFocusCapture={() => setPillHovered(true)}
+            onBlurCapture={() => setPillHovered(false)}
+          >
             {TRANSFORMATIONS.map((t, idx) => {
               const isActive = activeTransformIdx === idx
               return (
                 <button
                   key={idx}
                   type="button"
-                  role="tab"
-                  aria-selected={isActive}
+                  aria-pressed={isActive}
                   className={`stream-pill ${isActive ? 'is-active' : ''}`}
-                  onClick={() => setActiveTransformIdx(idx)}
+                  onClick={() => {
+                    setActiveTransformIdx(idx)
+                    setPillLocked(true)
+                  }}
                 >
                   <span className="stream-pill-from">{t.from}</span>
                   <span className="stream-pill-arrow">→</span>
