@@ -190,9 +190,36 @@ export default function MultiStepContact() {
   }
 
   const handleCopyBrief = () => {
-    navigator.clipboard.writeText(emailBody)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 3000)
+    const doSetCopied = () => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 3000)
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(emailBody)
+        .then(doSetCopied)
+        .catch(() => {
+          fallbackCopy(doSetCopied)
+        })
+    } else {
+      fallbackCopy(doSetCopied)
+    }
+  }
+
+  const fallbackCopy = (cb) => {
+    try {
+      const el = document.createElement('textarea')
+      el.value = emailBody
+      el.style.position = 'fixed'
+      el.style.opacity = '0'
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+      if (cb) cb()
+    } catch (err) {
+      console.warn('Clipboard copy fallback failed', err)
+    }
   }
 
   const STEP_LABELS = ['Your Goal', 'Project Details', 'Contact Info']
