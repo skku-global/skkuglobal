@@ -1,11 +1,11 @@
 /* ══════════════════════════════════════════════════════════════════
-   SERVICE POWERHOUSE — PURE WHITE EDITORIAL THEME (2 CORE PILLARS)
-   - Pristine Pure White Canvas (#FFFFFF)
-   - Large Bold Black Grotesque Typography (#000000)
-   - Real Interactive Visual Stages:
-     * Card 01: Client Website Showcase (CarBreezy / SecuScan / LuxeHair)
-     * Card 02: Real Promotional Ads Video & TEMS Flyer Showcase
-   - Sleek Bottom Right Pagination Slider Track & #E65100 Highlights
+   SERVICE POWERHOUSE — HORIZONTAL EXPANDING ACCORDION
+   - Pristine Pure White Page Canvas (#FFFFFF)
+   - Deep Matte Dark Theater Box (#08080A) with Rounded Corners
+   - Interactive Click-to-Expand Horizontal Accordion:
+     * Active Panel: Expands wide with 2-Column Arrow Capabilities & Visual
+     * Inactive Panel: Collapses into sleek vertical side strip with rotated text
+   - Exact replica of wearestokt.com interaction pattern
    ══════════════════════════════════════════════════════════════════ */
 
 .powerhouse-section {
@@ -18,7 +18,7 @@
 }
 
 .powerhouse-container {
-  max-width: 1320px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -36,7 +36,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 28px;
-  margin-bottom: clamp(40px, 4.5vw, 60px);
+  margin-bottom: clamp(36px, 4vw, 54px);
 }
 
 @media (min-width: 860px) {
@@ -112,64 +112,329 @@
   box-shadow: 0 6px 20px rgba(230, 81, 0, 0.25);
 }
 
-/* ── 2 Main Cards Track (Equal Columns) ── */
-.powerhouse-track {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 8px;
-  scrollbar-width: none;
-}
-
-.powerhouse-track::-webkit-scrollbar {
+/* ── Mobile Selector Tabs (< 860px) ── */
+.powerhouse-mobile-tabs {
   display: none;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
-@media (min-width: 860px) {
-  .powerhouse-track {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+@media (max-width: 859px) {
+  .powerhouse-mobile-tabs {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .powerhouse-mobile-tabs::-webkit-scrollbar {
+    display: none;
   }
 }
 
-/* ── Single Powerhouse Card ── */
-.powerhouse-card {
-  position: relative;
-  background-color: #FFFFFF;
-  border: 1.5px solid #E8E8EE;
+.powerhouse-mobile-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: #F3F3F6;
+  border: 1px solid #E5E5EB;
+  color: #555558;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.powerhouse-mobile-tab-btn.is-active {
+  background: #000000;
+  color: #FFFFFF;
+  border-color: #000000;
+}
+
+.powerhouse-mobile-tab-btn.is-active .p-mobile-tab-num {
+  color: #E65100;
+}
+
+/* ── Main Accordion Theater Container ── */
+.powerhouse-accordion-container {
+  display: flex;
+  background-color: #08080A;
+  border: 1.5px solid #1E1E26;
   border-radius: 24px;
   overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.14), 0 4px 16px rgba(0, 0, 0, 0.08);
+  min-height: 560px;
+  transition: all 0.4s ease;
+}
+
+@media (max-width: 859px) {
+  .powerhouse-accordion-container {
+    flex-direction: column;
+    min-height: auto;
+  }
+}
+
+/* ── Collapsed Vertical Strip (Side Tab) ── */
+.powerhouse-collapsed-bar {
+  width: clamp(70px, 6.5vw, 86px);
+  background-color: #0A0A0E;
+  border-right: 1px solid #1A1A24;
+  border-left: 1px solid #1A1A24;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  flex-shrink: 0;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  scroll-snap-align: start;
-  cursor: pointer;
 }
 
-.powerhouse-card:hover {
+.powerhouse-collapsed-bar:first-child {
+  border-left: none;
+}
+
+.powerhouse-collapsed-bar:last-child {
+  border-right: none;
+}
+
+.powerhouse-collapsed-bar:hover {
+  background-color: #121218;
   border-color: rgba(230, 81, 0, 0.4);
-  transform: translateY(-5px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08), 0 0 24px rgba(230, 81, 0, 0.06);
 }
 
-.powerhouse-card.is-active {
-  border-color: rgba(230, 81, 0, 0.35);
+.powerhouse-collapsed-bar:hover .powerhouse-collapsed-text {
+  color: #E65100;
 }
 
-/* ── Visual Showcase Stage (Widescreen 16:10 Ratio) ── */
-.powerhouse-card-visual {
+.powerhouse-collapsed-bar:hover .powerhouse-collapsed-num {
+  border-color: #E65100;
+  background: rgba(230, 81, 0, 0.2);
+}
+
+.powerhouse-collapsed-content {
+  transform: rotate(-90deg);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px;
+}
+
+.powerhouse-collapsed-num {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  color: #E65100;
+  background: rgba(230, 81, 0, 0.12);
+  border: 1px solid rgba(230, 81, 0, 0.3);
+  padding: 3px 8px;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+
+.powerhouse-collapsed-text {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  transition: color 0.25s ease;
+}
+
+@media (max-width: 859px) {
+  .powerhouse-collapsed-bar {
+    display: none;
+  }
+}
+
+/* ── Expanded Active Panel ── */
+.powerhouse-expanded-panel {
+  flex: 1;
+  min-width: 0;
+  background-color: #070709;
+  display: flex;
+  align-items: center;
+  padding: clamp(32px, 4vw, 56px);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.powerhouse-expanded-inner {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(28px, 3.5vw, 52px);
+  align-items: center;
+}
+
+@media (max-width: 1040px) {
+  .powerhouse-expanded-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+/* ── Left Column: Content Block ── */
+.powerhouse-expanded-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.powerhouse-acc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.powerhouse-acc-num {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  color: #E65100;
+  background: rgba(230, 81, 0, 0.12);
+  border: 1px solid rgba(230, 81, 0, 0.28);
+  padding: 2.5px 8px;
+  border-radius: 4px;
+}
+
+.powerhouse-acc-kicker {
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #A1A1A8;
+}
+
+.powerhouse-acc-title {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  font-size: clamp(30px, 3.4vw, 44px);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  margin: 0 0 16px;
+}
+
+.powerhouse-acc-sub {
+  font-size: clamp(14.5px, 1.2vw, 16.5px);
+  line-height: 1.6;
+  color: #9E9EA6;
+  margin: 0 0 32px;
+  max-width: 520px;
+}
+
+/* 2-Column Capability List with Arrows (Exact replica of screenshot) */
+.powerhouse-acc-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 28px;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 600px) {
+  .powerhouse-acc-features {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.powerhouse-acc-feat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s ease;
+}
+
+.powerhouse-acc-feat-item:hover {
+  transform: translateX(4px);
+}
+
+.powerhouse-feat-arrow {
+  font-size: 16px;
+  line-height: 1;
+  color: #A1A1A8;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.powerhouse-acc-feat-item:hover .powerhouse-feat-arrow {
+  color: #E65100;
+  transform: translateX(2px);
+}
+
+.powerhouse-feat-label {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  font-size: clamp(13.5px, 1.1vw, 15px);
+  font-weight: 600;
+  color: #E5E5EB;
+  letter-spacing: -0.01em;
+}
+
+/* Inquire Action Button */
+.powerhouse-acc-footer {
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.powerhouse-acc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: #E65100;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(230, 81, 0, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.powerhouse-acc-btn:hover {
+  background: #FF6D00;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(230, 81, 0, 0.5);
+}
+
+.powerhouse-acc-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.powerhouse-acc-btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* ── Right Column: Visual Stage ── */
+.powerhouse-expanded-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.powerhouse-acc-visual-stage {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
   background-color: #070709;
+  border-radius: 18px;
   overflow: hidden;
+  border: 1px solid #1E1E26;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #1C1C24;
 }
 
 .powerhouse-card-img {
@@ -180,7 +445,7 @@
   display: block;
 }
 
-.powerhouse-card:hover .powerhouse-card-img {
+.powerhouse-acc-visual-stage:hover .powerhouse-card-img {
   transform: scale(1.03);
 }
 
@@ -194,14 +459,14 @@
   object-position: center;
 }
 
-/* Top Browser Bar (Card 01) */
+/* Browser Frame Bar (Card 01) */
 .powerhouse-browser-bar {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 36px;
-  background: rgba(14, 14, 18, 0.88);
+  background: rgba(14, 14, 18, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: flex;
@@ -343,39 +608,20 @@
   transform: scale(1.06);
 }
 
-/* Gradient Vignette Overlay */
+/* Gradient Vignette */
 .powerhouse-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 70%, rgba(7, 7, 9, 0.75) 100%);
+  background: linear-gradient(180deg, transparent 72%, rgba(7, 7, 9, 0.75) 100%);
   pointer-events: none;
 }
 
-/* Card Number Indicator */
-.powerhouse-card-num {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  font-family: var(--font-mono, monospace);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  color: #D1D1D6;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  padding: 4px 10px;
-  border-radius: 6px;
-  z-index: 6;
-}
-
-/* Media Switcher Bottom Bar */
+/* Media Switcher Bottom Pills */
 .powerhouse-media-switcher {
   position: absolute;
   bottom: 12px;
   left: 12px;
-  right: 60px;
+  right: 12px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -410,100 +656,6 @@
   color: #FFFFFF;
   border-color: #E65100;
   box-shadow: 0 2px 8px rgba(230, 81, 0, 0.4);
-}
-
-/* ── Card Body Content ── */
-.powerhouse-card-body {
-  padding: 28px 24px 24px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  background-color: #FFFFFF;
-}
-
-.powerhouse-card-header {
-  margin-bottom: 12px;
-}
-
-.powerhouse-badge {
-  display: inline-block;
-  font-family: var(--font-mono, monospace);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #E65100;
-  margin-bottom: 8px;
-}
-
-.powerhouse-card-title {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
-  font-size: clamp(20px, 2.2vw, 24px);
-  font-weight: 850;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  color: #000000;
-  margin: 0;
-}
-
-.powerhouse-card-tagline {
-  font-size: 14.5px;
-  line-height: 1.55;
-  color: #555558;
-  margin: 0 0 20px;
-  flex: 1;
-}
-
-/* Deliverable Tags */
-.powerhouse-deliverables {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 24px;
-}
-
-.powerhouse-deliv-pill {
-  font-family: var(--font-mono, monospace);
-  font-size: 10.5px;
-  font-weight: 650;
-  letter-spacing: 0.02em;
-  color: #444448;
-  background-color: #F8F8FA;
-  border: 1px solid #EAEAEA;
-  padding: 4px 10px;
-  border-radius: 6px;
-}
-
-/* Card Footer / Inquire Link */
-.powerhouse-card-footer {
-  padding-top: 18px;
-  border-top: 1px solid #EDEDF2;
-}
-
-.powerhouse-inquire-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 750;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: #E65100;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.powerhouse-inquire-btn:hover {
-  color: #000000;
-  transform: translateX(3px);
-}
-
-.powerhouse-inquire-btn svg {
-  transition: transform 0.2s ease;
-}
-
-.powerhouse-inquire-btn:hover svg {
-  transform: translateX(3px);
 }
 
 /* ── Slider Indicator (Bottom Right) ── */
