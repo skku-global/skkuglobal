@@ -232,6 +232,7 @@ export default function ServicePowerhouse() {
         {/* ── Section Header ── */}
         <div className="powerhouse-header">
           <motion.div
+            className="powerhouse-header-content"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -241,13 +242,13 @@ export default function ServicePowerhouse() {
               OUR SERVICES
             </h1>
             <p className="powerhouse-subtitle">
-              Custom websites and ads content that put your business in front of the right people.
+              Custom websites and ads content that put your business in front of the right people
             </p>
           </motion.div>
 
-          {/* Nav / View Controls */}
-          <div className="powerhouse-nav-arrows">
-            {viewMode === 'accordion' && (
+          {/* Nav / View Controls (active in accordion mode) */}
+          {viewMode === 'accordion' && (
+            <div className="powerhouse-nav-arrows">
               <button
                 type="button"
                 className="powerhouse-grid-toggle-btn"
@@ -257,24 +258,24 @@ export default function ServicePowerhouse() {
                 <GridIcon size={14} />
                 <span>ALL SERVICES</span>
               </button>
-            )}
-            <button
-              type="button"
-              className="powerhouse-arrow-btn"
-              onClick={handlePrev}
-              aria-label="Previous service"
-            >
-              <ChevronLeftIcon size={18} />
-            </button>
-            <button
-              type="button"
-              className="powerhouse-arrow-btn"
-              onClick={handleNext}
-              aria-label="Next service"
-            >
-              <ChevronRightIcon size={18} />
-            </button>
-          </div>
+              <button
+                type="button"
+                className="powerhouse-arrow-btn"
+                onClick={handlePrev}
+                aria-label="Previous service"
+              >
+                <ChevronLeftIcon size={18} />
+              </button>
+              <button
+                type="button"
+                className="powerhouse-arrow-btn"
+                onClick={handleNext}
+                aria-label="Next service"
+              >
+                <ChevronRightIcon size={18} />
+              </button>
+            </div>
+          )}
         </div>
 
         {/* ── Mobile Selector Tabs (< 860px) ── */}
