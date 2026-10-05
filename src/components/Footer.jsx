@@ -16,7 +16,7 @@ export default function Footer() {
               <span className="footer-logo-text">SKKU</span>
             </div>
             <p className="skku-footer-tagline">
-              Thoughtful digital systems engineered for brands that refuse to blend in. CAC RC 7306232.
+              Thoughtful digital systems engineered for brands that refuse to blend in. SKKU GLOBAL TECHNOLOGIES LIMITED • REGISTERED IN NIGERIA.
             </p>
           </div>
 

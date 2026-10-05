@@ -38,6 +38,17 @@ function ExternalLinkIcon({ size = 12 }) {
   )
 }
 
+function GridIcon({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" rx="1.5" />
+      <rect x="14" y="3" width="7" height="7" rx="1.5" />
+      <rect x="14" y="14" width="7" height="7" rx="1.5" />
+      <rect x="3" y="14" width="7" height="7" rx="1.5" />
+    </svg>
+  )
+}
+
 function PlayIcon({ size = 13 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -154,7 +165,7 @@ const POWERHOUSE_SERVICES = [
     id: 'ads-video',
     index: '02',
     stripLabel: 'Flyer Design & Ads Video',
-    kicker: 'MOTION & VIDEO PRODUCTION',
+    kicker: 'MOTION & ADS PRODUCTION',
     title: 'Flyer Design & Ads Video',
     subtitle: 'Scroll-stopping short-form promotional ads video production and high-conversion flyer systems engineered for real sales.',
     features: [
@@ -171,6 +182,8 @@ const POWERHOUSE_SERVICES = [
 ]
 
 export default function ServicePowerhouse() {
+  // 'grid' (initial state at first) | 'accordion' (when clicked)
+  const [viewMode, setViewMode] = useState('grid')
   const [activeIndex, setActiveIndex] = useState(0)
   const [selectedSiteIdx, setSelectedSiteIdx] = useState(0)
   const [selectedMediaIdx, setSelectedMediaIdx] = useState(0)
@@ -181,6 +194,11 @@ export default function ServicePowerhouse() {
 
   const currentSite = WEBSITE_SHOWCASES[selectedSiteIdx]
   const currentMedia = ADS_MEDIA_OPTIONS[selectedMediaIdx]
+
+  const handleCardClick = (index) => {
+    setActiveIndex(index)
+    setViewMode('accordion')
+  }
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % POWERHOUSE_SERVICES.length)
@@ -211,7 +229,7 @@ export default function ServicePowerhouse() {
     <section className="powerhouse-section" id="services-powerhouse" aria-label="Digital Design & Engineering Powerhouse">
       <div className="powerhouse-container">
         
-        {/* ── Header: OUR SERVICES ── */}
+        {/* ── Section Header ── */}
         <div className="powerhouse-header">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -227,8 +245,19 @@ export default function ServicePowerhouse() {
             </p>
           </motion.div>
 
-          {/* Carousel Arrows */}
+          {/* Nav / View Controls */}
           <div className="powerhouse-nav-arrows">
+            {viewMode === 'accordion' && (
+              <button
+                type="button"
+                className="powerhouse-grid-toggle-btn"
+                onClick={() => setViewMode('grid')}
+                title="View All Services"
+              >
+                <GridIcon size={14} />
+                <span>ALL SERVICES</span>
+              </button>
+            )}
             <button
               type="button"
               className="powerhouse-arrow-btn"
@@ -250,12 +279,22 @@ export default function ServicePowerhouse() {
 
         {/* ── Mobile Selector Tabs (< 860px) ── */}
         <div className="powerhouse-mobile-tabs">
+          <button
+            type="button"
+            className={`powerhouse-mobile-tab-btn ${viewMode === 'grid' ? 'is-active' : ''}`}
+            onClick={() => setViewMode('grid')}
+          >
+            <span>Overview</span>
+          </button>
           {POWERHOUSE_SERVICES.map((srv, idx) => (
             <button
               key={srv.id}
               type="button"
-              className={`powerhouse-mobile-tab-btn ${activeIndex === idx ? 'is-active' : ''}`}
-              onClick={() => setActiveIndex(idx)}
+              className={`powerhouse-mobile-tab-btn ${viewMode === 'accordion' && activeIndex === idx ? 'is-active' : ''}`}
+              onClick={() => {
+                setActiveIndex(idx)
+                setViewMode('accordion')
+              }}
             >
               <span className="p-mobile-tab-num">{srv.index}</span>
               <span className="p-mobile-tab-label">{srv.stripLabel}</span>
@@ -263,212 +302,325 @@ export default function ServicePowerhouse() {
           ))}
         </div>
 
-        {/* ── Expanding Horizontal Accordion Container ── */}
-        <div className="powerhouse-accordion-container">
-          {POWERHOUSE_SERVICES.map((service, idx) => {
-            const isExpanded = activeIndex === idx
-
-            if (!isExpanded) {
-              /* ── Collapsed Vertical Strip (Click to expand) ── */
-              return (
-                <div
-                  key={service.id}
-                  className="powerhouse-collapsed-bar"
-                  onClick={() => setActiveIndex(idx)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault()
-                      setActiveIndex(idx)
-                    }
-                  }}
-                  aria-label={`Expand ${service.title}`}
-                  title={`Click to expand ${service.title}`}
-                >
-                  <div className="powerhouse-collapsed-content">
-                    <span className="powerhouse-collapsed-num">{service.index}</span>
-                    <span className="powerhouse-collapsed-text">{service.stripLabel}</span>
-                  </div>
-                </div>
-              )
-            }
-
-            /* ── Expanded Active Panel (Text on left, Visual on right) ── */
-            return (
-              <div key={service.id} className="powerhouse-expanded-panel">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={service.id}
-                    className="powerhouse-expanded-inner"
-                    initial={{ opacity: 0, x: idx === 0 ? -16 : 16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    {/* Left Column: Heading, Subtitle, 2-Column Features */}
-                    <div className="powerhouse-expanded-content">
-                      <div className="powerhouse-acc-tag">
-                        <span className="powerhouse-acc-num">{service.index}</span>
-                        <span className="powerhouse-acc-kicker">{service.kicker}</span>
-                      </div>
-
-                      <h3 className="powerhouse-acc-title">{service.title}</h3>
-                      <p className="powerhouse-acc-sub">{service.subtitle}</p>
-
-                      {/* 2-Column Capability List with Arrows */}
-                      <div className="powerhouse-acc-features">
-                        {service.features.map((feat, fIdx) => (
-                          <div key={fIdx} className="powerhouse-acc-feat-item">
-                            <span className="powerhouse-feat-arrow" aria-hidden="true">→</span>
-                            <span className="powerhouse-feat-label">{feat}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Inquire Action Button */}
-                      <div className="powerhouse-acc-footer">
-                        <Link to={service.inquireUrl} className="powerhouse-acc-btn">
-                          <span>INQUIRE THIS SERVICE</span>
-                          <ArrowRightIcon size={13} />
-                        </Link>
-                      </div>
-                    </div>
-
-                    {/* Right Column: Visual Asset Stage */}
-                    <div className="powerhouse-expanded-visual">
-                      {service.mediaType === 'website' ? (
-                        /* Card 01: Client Website Showcase */
-                        <div className="powerhouse-acc-visual-stage powerhouse-visual-website">
-                          <div className="powerhouse-browser-bar">
-                            <div className="powerhouse-browser-dots" aria-hidden="true">
-                              <span className="p-dot p-dot-red" />
-                              <span className="p-dot p-dot-yellow" />
-                              <span className="p-dot p-dot-green" />
-                            </div>
-                            <div className="powerhouse-browser-url">
-                              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                              </svg>
-                              <span>{currentSite.displayUrl}</span>
-                            </div>
-                            <a
-                              href={currentSite.url}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="powerhouse-browser-ext"
-                              title="Open live website in new tab"
-                            >
-                              <span>LIVE DEMO</span>
-                              <ExternalLinkIcon size={10} />
-                            </a>
-                          </div>
-
-                          <img
-                            src={currentSite.image}
-                            alt={currentSite.alt}
-                            className="powerhouse-card-img powerhouse-website-img"
-                            loading="lazy"
-                          />
-                          <div className="powerhouse-card-overlay" />
-
-                          {/* Website Switcher Pills */}
-                          <div className="powerhouse-media-switcher">
-                            {WEBSITE_SHOWCASES.map((site, sIdx) => (
-                              <button
-                                key={site.id}
-                                type="button"
-                                className={`powerhouse-media-tab ${selectedSiteIdx === sIdx ? 'is-active' : ''}`}
-                                onClick={() => setSelectedSiteIdx(sIdx)}
-                                title={site.label}
-                              >
-                                {site.shortLabel}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      ) : (
-                        /* Card 02: Real Promotional Ads Video & Flyer Showcase */
-                        <div className="powerhouse-acc-visual-stage powerhouse-visual-video">
-                          {currentMedia.type === 'video' ? (
-                            <div className="powerhouse-video-stage">
-                              <video
-                                ref={videoRef}
-                                src={currentMedia.src}
-                                poster={currentMedia.poster}
-                                className="powerhouse-card-video"
-                                playsInline
-                                muted={isMuted}
-                                loop
-                                autoPlay
-                                preload="metadata"
-                              >
-                                Your browser does not support the video tag.
-                              </video>
-
-                              {/* Video Overlay Controls */}
-                              <div className="powerhouse-video-ctrls">
-                                <button
-                                  type="button"
-                                  className="powerhouse-video-play-btn"
-                                  onClick={togglePlay}
-                                  aria-label={isPlaying ? 'Pause Ads Video' : 'Play Ads Video'}
-                                  title={isPlaying ? 'Pause Video' : 'Play Video'}
-                                >
-                                  {isPlaying ? <PauseIcon size={13} /> : <PlayIcon size={13} />}
-                                  <span>{isPlaying ? 'PAUSE' : 'PLAY'}</span>
-                                </button>
-
-                                <button
-                                  type="button"
-                                  className="powerhouse-video-mute-btn"
-                                  onClick={toggleMute}
-                                  aria-label={isMuted ? 'Unmute Ads Video' : 'Mute Ads Video'}
-                                  title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
-                                >
-                                  {isMuted ? <MuteIcon size={13} /> : <VolumeIcon size={13} />}
-                                </button>
+        {/* ── Main Theater Box ── */}
+        <div className="powerhouse-theater-box">
+          <AnimatePresence mode="wait">
+            
+            {/* ══════════════════════════════════════════════════════════
+                STATE 1: INITIAL DISPLAY AT FIRST (Side-by-side cards)
+                Matching user's reference screenshot:
+                - Floating visual asset in dark stage
+                - Title at bottom left (Web Design & Dev, Motion Systems)
+                - Orange text highlight on hover
+                - Click to expand
+               ══════════════════════════════════════════════════════════ */}
+            {viewMode === 'grid' ? (
+              <motion.div
+                key="grid-view"
+                className="powerhouse-cards-grid"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {POWERHOUSE_SERVICES.map((service, idx) => {
+                  const isHovered = activeIndex === idx
+                  return (
+                    <article
+                      key={service.id}
+                      className={`powerhouse-initial-card ${isHovered ? 'is-focused' : ''}`}
+                      onClick={() => handleCardClick(idx)}
+                      onMouseEnter={() => setActiveIndex(idx)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault()
+                          handleCardClick(idx)
+                        }
+                      }}
+                      aria-label={`Open ${service.title}`}
+                    >
+                      {/* Floating Visual Asset Stage */}
+                      <div className="powerhouse-initial-visual">
+                        {service.mediaType === 'website' ? (
+                          <div className="powerhouse-initial-browser">
+                            <div className="powerhouse-mini-bar">
+                              <div className="powerhouse-browser-dots" aria-hidden="true">
+                                <span className="p-dot p-dot-red" />
+                                <span className="p-dot p-dot-yellow" />
+                                <span className="p-dot p-dot-green" />
                               </div>
+                              <span className="powerhouse-mini-url">carbreezy-react.vercel.app</span>
+                              <span className="powerhouse-mini-badge">LIVE</span>
                             </div>
-                          ) : (
                             <img
-                              src={currentMedia.src}
-                              alt={currentMedia.alt}
-                              className="powerhouse-card-img powerhouse-flyer-img"
+                              src={WEBSITE_SHOWCASES[0].image}
+                              alt={WEBSITE_SHOWCASES[0].alt}
+                              className="powerhouse-initial-img"
                               loading="lazy"
                             />
-                          )}
-
-                          <div className="powerhouse-card-overlay" />
-
-                          {/* Media Switcher: Ads Video vs TEMS Flyer */}
-                          <div className="powerhouse-media-switcher">
-                            {ADS_MEDIA_OPTIONS.map((media, mIdx) => (
-                              <button
-                                key={media.id}
-                                type="button"
-                                className={`powerhouse-media-tab ${selectedMediaIdx === mIdx ? 'is-active' : ''}`}
-                                onClick={() => {
-                                  setSelectedMediaIdx(mIdx)
-                                  if (media.type === 'video') {
-                                    setIsPlaying(true)
-                                  }
-                                }}
-                                title={media.label}
-                              >
-                                {media.shortLabel}
-                              </button>
-                            ))}
                           </div>
+                        ) : (
+                          <div className="powerhouse-initial-video-wrap">
+                            <video
+                              src={ADS_MEDIA_OPTIONS[0].src}
+                              poster={ADS_MEDIA_OPTIONS[0].poster}
+                              className="powerhouse-initial-video"
+                              playsInline
+                              muted
+                              loop
+                              autoPlay
+                              preload="metadata"
+                            />
+                            <div className="powerhouse-initial-video-badge">
+                              <span>▶ PROMO VIDEO</span>
+                            </div>
+                          </div>
+                        )}
+                        <div className="powerhouse-card-overlay" />
+                        <span className="powerhouse-initial-num">{service.index}</span>
+                      </div>
+
+                      {/* Clean Bottom Label (Exact replica of reference) */}
+                      <div className="powerhouse-initial-label-bar">
+                        <h2 className="powerhouse-initial-title">
+                          {service.title}
+                        </h2>
+                        <span className="powerhouse-initial-cta">
+                          <span>EXPLORE</span>
+                          <ArrowRightIcon size={12} />
+                        </span>
+                      </div>
+                    </article>
+                  )
+                })}
+              </motion.div>
+            ) : (
+
+            /* ══════════════════════════════════════════════════════════
+                STATE 2: WHEN CLICKED (Expanding Horizontal Accordion)
+                Matching user's reference screenshot:
+                - Active card expands wide with Title, Subtitle,
+                  2-Column Arrow Capabilities, and Asset on right
+                - Inactive card collapses to vertical strip with rotated text
+                - Click any strip to expand that service
+               ══════════════════════════════════════════════════════════ */
+              <motion.div
+                key="accordion-view"
+                className="powerhouse-accordion-stage"
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {POWERHOUSE_SERVICES.map((service, idx) => {
+                  const isExpanded = activeIndex === idx
+
+                  if (!isExpanded) {
+                    /* Collapsed Vertical Strip */
+                    return (
+                      <div
+                        key={service.id}
+                        className="powerhouse-collapsed-bar"
+                        onClick={() => setActiveIndex(idx)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault()
+                            setActiveIndex(idx)
+                          }
+                        }}
+                        aria-label={`Expand ${service.title}`}
+                        title={`Click to expand ${service.title}`}
+                      >
+                        <div className="powerhouse-collapsed-content">
+                          <span className="powerhouse-collapsed-num">{service.index}</span>
+                          <span className="powerhouse-collapsed-text">{service.stripLabel}</span>
                         </div>
-                      )}
+                      </div>
+                    )
+                  }
+
+                  /* Expanded Active Panel */
+                  return (
+                    <div key={service.id} className="powerhouse-expanded-panel">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={service.id}
+                          className="powerhouse-expanded-inner"
+                          initial={{ opacity: 0, x: idx === 0 ? -16 : 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                          {/* Left Column: Heading, Subtitle, 2-Column Features */}
+                          <div className="powerhouse-expanded-content">
+                            <div className="powerhouse-acc-tag">
+                              <span className="powerhouse-acc-num">{service.index}</span>
+                              <span className="powerhouse-acc-kicker">{service.kicker}</span>
+                            </div>
+
+                            <h2 className="powerhouse-acc-title">{service.title}</h2>
+                            <p className="powerhouse-acc-sub">{service.subtitle}</p>
+
+                            {/* 2-Column Capability List with Arrows */}
+                            <div className="powerhouse-acc-features">
+                              {service.features.map((feat, fIdx) => (
+                                <div key={fIdx} className="powerhouse-acc-feat-item">
+                                  <span className="powerhouse-feat-arrow" aria-hidden="true">→</span>
+                                  <span className="powerhouse-feat-label">{feat}</span>
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Inquire Action Button */}
+                            <div className="powerhouse-acc-footer">
+                              <Link to={service.inquireUrl} className="powerhouse-acc-btn">
+                                <span>INQUIRE THIS SERVICE</span>
+                                <ArrowRightIcon size={13} />
+                              </Link>
+                            </div>
+                          </div>
+
+                          {/* Right Column: Visual Asset Stage */}
+                          <div className="powerhouse-expanded-visual">
+                            {service.mediaType === 'website' ? (
+                              /* Card 01: Client Website Showcase */
+                              <div className="powerhouse-acc-visual-stage powerhouse-visual-website">
+                                <div className="powerhouse-browser-bar">
+                                  <div className="powerhouse-browser-dots" aria-hidden="true">
+                                    <span className="p-dot p-dot-red" />
+                                    <span className="p-dot p-dot-yellow" />
+                                    <span className="p-dot p-dot-green" />
+                                  </div>
+                                  <div className="powerhouse-browser-url">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                    </svg>
+                                    <span>{currentSite.displayUrl}</span>
+                                  </div>
+                                  <a
+                                    href={currentSite.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="powerhouse-browser-ext"
+                                    title="Open live website in new tab"
+                                  >
+                                    <span>LIVE DEMO</span>
+                                    <ExternalLinkIcon size={10} />
+                                  </a>
+                                </div>
+
+                                <img
+                                  src={currentSite.image}
+                                  alt={currentSite.alt}
+                                  className="powerhouse-card-img powerhouse-website-img"
+                                  loading="lazy"
+                                />
+                                <div className="powerhouse-card-overlay" />
+
+                                {/* Website Switcher Pills */}
+                                <div className="powerhouse-media-switcher">
+                                  {WEBSITE_SHOWCASES.map((site, sIdx) => (
+                                    <button
+                                      key={site.id}
+                                      type="button"
+                                      className={`powerhouse-media-tab ${selectedSiteIdx === sIdx ? 'is-active' : ''}`}
+                                      onClick={() => setSelectedSiteIdx(sIdx)}
+                                      title={site.label}
+                                    >
+                                      {site.shortLabel}
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            ) : (
+                              /* Card 02: Real Promotional Ads Video Showcase */
+                              <div className="powerhouse-acc-visual-stage powerhouse-visual-video">
+                                {currentMedia.type === 'video' ? (
+                                  <div className="powerhouse-video-stage">
+                                    <video
+                                      ref={videoRef}
+                                      src={currentMedia.src}
+                                      poster={currentMedia.poster}
+                                      className="powerhouse-card-video"
+                                      playsInline
+                                      muted={isMuted}
+                                      loop
+                                      autoPlay
+                                      preload="metadata"
+                                    >
+                                      Your browser does not support the video tag.
+                                    </video>
+
+                                    {/* Video Overlay Controls */}
+                                    <div className="powerhouse-video-ctrls">
+                                      <button
+                                        type="button"
+                                        className="powerhouse-video-play-btn"
+                                        onClick={togglePlay}
+                                        aria-label={isPlaying ? 'Pause Ads Video' : 'Play Ads Video'}
+                                        title={isPlaying ? 'Pause Video' : 'Play Video'}
+                                      >
+                                        {isPlaying ? <PauseIcon size={13} /> : <PlayIcon size={13} />}
+                                        <span>{isPlaying ? 'PAUSE' : 'PLAY'}</span>
+                                      </button>
+
+                                      <button
+                                        type="button"
+                                        className="powerhouse-video-mute-btn"
+                                        onClick={toggleMute}
+                                        aria-label={isMuted ? 'Unmute Ads Video' : 'Mute Ads Video'}
+                                        title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
+                                      >
+                                        {isMuted ? <MuteIcon size={13} /> : <VolumeIcon size={13} />}
+                                      </button>
+                                    </div>
+                                  </div>
+                                ) : (
+                                  <img
+                                    src={currentMedia.src}
+                                    alt={currentMedia.alt}
+                                    className="powerhouse-card-img powerhouse-flyer-img"
+                                    loading="lazy"
+                                  />
+                                )}
+
+                                <div className="powerhouse-card-overlay" />
+
+                                {/* Media Switcher: Ads Video vs TEMS Flyer */}
+                                <div className="powerhouse-media-switcher">
+                                  {ADS_MEDIA_OPTIONS.map((media, mIdx) => (
+                                    <button
+                                      key={media.id}
+                                      type="button"
+                                      className={`powerhouse-media-tab ${selectedMediaIdx === mIdx ? 'is-active' : ''}`}
+                                      onClick={() => {
+                                        setSelectedMediaIdx(mIdx)
+                                        if (media.type === 'video') {
+                                          setIsPlaying(true)
+                                        }
+                                      }}
+                                      title={media.label}
+                                    >
+                                      {media.shortLabel}
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </motion.div>
+                      </AnimatePresence>
                     </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            )
-          })}
+                  )
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* ── Slider Indicator (Bottom Right Style) ── */}

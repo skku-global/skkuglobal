@@ -168,7 +168,7 @@ export default function PushMenu({ isOpen, onClose }) {
                 {CONTACT_EMAIL}
               </a>
               <span className="push-meta-rc">
-                CAC RC 7306232 · Ibadan, Nigeria
+                SKKU GLOBAL TECHNOLOGIES LIMITED • REGISTERED IN NIGERIA
               </span>
             </div>
           </div>

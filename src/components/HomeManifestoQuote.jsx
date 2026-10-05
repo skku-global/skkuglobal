@@ -52,7 +52,7 @@ export default function HomeManifestoQuote() {
           transition={{ duration: 0.5, delay: 0.35 }}
         >
           <span className="manifesto-brand-dot" />
-          <span>SKKU GLOBAL TECHNOLOGIES LIMITED · CAC RC 7306232</span>
+          <span>SKKU GLOBAL TECHNOLOGIES LIMITED • REGISTERED IN NIGERIA</span>
         </motion.div>
 
       </div>
