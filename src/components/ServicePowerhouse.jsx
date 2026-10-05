@@ -211,7 +211,7 @@ export default function ServicePowerhouse() {
     <section className="powerhouse-section" id="services-powerhouse" aria-label="Digital Design & Engineering Powerhouse">
       <div className="powerhouse-container">
         
-        {/* ── Editorial Header (Matching wearestokt.com) ── */}
+        {/* ── Header: OUR SERVICES ── */}
         <div className="powerhouse-header">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -219,12 +219,11 @@ export default function ServicePowerhouse() {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="powerhouse-kicker">SERVICES & CAPABILITIES</span>
-            <h2 className="powerhouse-title">
-              Digital Design Powerhouse
-            </h2>
+            <h1 className="powerhouse-title">
+              OUR SERVICES
+            </h1>
             <p className="powerhouse-subtitle">
-              Over the last decade, we&apos;ve refined a wide range of skills in digital design, offering services mastered to perfection and always driven by the purpose of motion.
+              Custom websites and ads content that put your business in front of the right people.
             </p>
           </motion.div>
 

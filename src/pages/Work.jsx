@@ -310,7 +310,7 @@ export default function Work() {
         </div>
       </section>
 
-      {/* ── Full Feed List with Hover Color Shift & Bending Typography ── */}
+      {/* ── Full Feed List with lets repla Color Shift & Bending Typography ── */}
       <section className="work-banners-feed" aria-label="Selected Work Cases">
         {CASE_STUDIES.map((study, index) => (
           <WorkBannerRow key={study.id} study={study} index={index} />
