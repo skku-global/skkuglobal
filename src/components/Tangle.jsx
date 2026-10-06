@@ -1,105 +1,119 @@
-import { useEffect, useRef } from "react";
-import { setupGsap, gsap, prefersReduced } from "../lib/gsap";
+import { useEffect, useRef, useState } from 'react'
 
-const N = 260;
-const W = 1000;
-const H = 200;
-const CY = 100;
-const TWO_PI = Math.PI * 2;
-const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const W = 1000
+const H = 160
+const LOOPS = 9
+const R = 52
+const DOT = 10
+const A = W / (LOOPS * 2 * Math.PI)
 
-function tanglePoint(t) {
-  const x = 500 + 380 * Math.sin(TWO_PI * 2.3 * t + 0.4) + 90 * Math.sin(TWO_PI * 7 * t + 1.1);
-  const y = CY + 70 * Math.sin(TWO_PI * 3.1 * t + 0.7) + 40 * Math.cos(TWO_PI * 9 * t);
-  return [x, y];
-}
-
-function linePoint(t) {
-  return [60 + 880 * t, CY];
-}
-
-function build(p) {
-  const spread = 0.8;
-  let d = "";
+function pathFor(k, ph) {
+  const b = R * k
+  const t0 = -2 * Math.PI
+  const span = (LOOPS + 2) * 2 * Math.PI
+  const N = 330
+  let d = ''
   for (let i = 0; i <= N; i++) {
-    const t = i / N;
-    const k = clamp(p * (1 + spread) - t * spread, 0, 1);
-    const e = k * k * (3 - 2 * k);
-    const a = tanglePoint(t);
-    const b = linePoint(t);
-    const x = a[0] + (b[0] - a[0]) * e;
-    const y = a[1] + (b[1] - a[1]) * e;
-    d += (i === 0 ? "M" : "L") + x.toFixed(1) + " " + y.toFixed(1);
+    const t = t0 + (i / N) * span
+    const x = A * t - b * Math.sin(t + ph)
+    const y = H / 2 - b * Math.cos(t + ph)
+    d += (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1)
   }
-  return d;
+  return d
 }
 
 export default function Tangle({ replayable = false }) {
-  const svg = useRef(null);
-  const path = useRef(null);
-  const dot = useRef(null);
-  const tween = useRef(null);
-  const state = useRef({ p: 0 });
+  const svg = useRef(null)
+  const p1 = useRef(null)
+  const p2 = useRef(null)
+  const dot = useRef(null)
+  const raf = useRef(0)
+  const reduced = useRef(false)
+  const s = useRef({ k: 1, target: 1, ph: 0 })
+  const [solved, setSolved] = useState(false)
 
-  const draw = (p) => {
-    if (path.current) path.current.setAttribute("d", build(p));
-  };
-
-  const play = () => {
-    setupGsap();
-    if (tween.current) tween.current.kill();
-    if (dot.current) {
-      gsap.killTweensOf(dot.current);
-      dot.current.setAttribute("r", 0);
-    }
-
-    if (prefersReduced()) {
-      draw(1);
-      if (svg.current) gsap.fromTo(svg.current, { opacity: 0 }, { opacity: 1, duration: 0.4 });
-      if (dot.current) gsap.to(dot.current, { attr: { r: 9 }, duration: 0.4, delay: 0.2 });
-      return;
-    }
-
-    state.current.p = 0;
-    draw(0);
-    if (svg.current) gsap.set(svg.current, { opacity: 1 });
-    tween.current = gsap.to(state.current, {
-      p: 1,
-      duration: 1.8,
-      delay: 0.3,
-      ease: "skku",
-      onUpdate: () => draw(state.current.p),
-      onComplete: () => {
-        if (dot.current) gsap.to(dot.current, { attr: { r: 9 }, duration: 0.4, ease: "skku" });
-      },
-    });
-  };
+  const render = () => {
+    const { k, ph } = s.current
+    p1.current?.setAttribute('d', pathFor(k, ph))
+    p2.current?.setAttribute('d', pathFor(k, ph + 1.8))
+    p2.current?.setAttribute('opacity', (k * 0.45).toFixed(2))
+    dot.current?.setAttribute('r', (DOT * Math.min(1, Math.max(0, (0.3 - k) / 0.3))).toFixed(1))
+  }
 
   useEffect(() => {
-    play();
+    const st = s.current
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      reduced.current = true
+      st.k = 0
+      st.target = 0
+      render()
+      setSolved(true)
+      return
+    }
+    let last = 0
+    let inView = false
+    const tick = (now) => {
+      const dt = Math.min((now - (last || now)) / 1000, 0.05)
+      last = now
+      st.ph -= dt * 1.6
+      st.k += (st.target - st.k) * Math.min(1, dt * 2.4)
+      render()
+      raf.current = requestAnimationFrame(tick)
+    }
+    const start = () => {
+      cancelAnimationFrame(raf.current)
+      last = 0
+      raf.current = requestAnimationFrame(tick)
+    }
+    const stop = () => cancelAnimationFrame(raf.current)
+    const io = new IntersectionObserver(([e]) => {
+      inView = e.isIntersecting
+      if (inView) start()
+      else stop()
+    })
+    io.observe(svg.current)
+    const vis = () => {
+      if (document.hidden) stop()
+      else if (inView) start()
+    }
+    document.addEventListener('visibilitychange', vis)
     return () => {
-      if (tween.current) tween.current.kill();
-    };
-  }, []);
+      io.disconnect()
+      document.removeEventListener('visibilitychange', vis)
+      stop()
+    }
+  }, [])
+
+  const toggle = () => {
+    const st = s.current
+    const next = !solved
+    st.target = next ? 0 : 1
+    if (reduced.current) {
+      st.k = st.target
+      render()
+    }
+    setSolved(next)
+  }
 
   return (
-    <div className="tangle-wrap">
-      <svg
-        ref={svg}
-        className="tangle"
-        viewBox={`0 0 ${W} ${H}`}
-        style={{ opacity: 0 }}
-        aria-hidden="true"
-        focusable="false"
-      >
-        <path ref={path} d="" />
-        <circle ref={dot} cx="940" cy="100" r="0" />
+    <div className="tgl">
+      <svg ref={svg} className="tgl-svg" viewBox={`0 0 ${W} ${H}`} aria-hidden="true" focusable="false">
+        <defs>
+          <clipPath id="tgl-clip">
+            <rect x="0" y="0" width={W} height={H} />
+          </clipPath>
+        </defs>
+        <g clipPath="url(#tgl-clip)">
+          <path ref={p2} className="tgl-echo" d={pathFor(1, 1.8)} opacity="0.45" />
+          <path ref={p1} className="tgl-line" d={pathFor(1, 0)} />
+        </g>
+        <circle ref={dot} className="tgl-dot" cx={W - DOT} cy={H / 2} r="0" />
       </svg>
-      {replayable ? (
-        <button type="button" className="replay" onClick={play}>
-          Replay line
+      {replayable && (
+        <button type="button" className="tgl-replay" onClick={toggle}>
+          {solved ? 'Tangle again' : 'Untangle'}
         </button>
-      ) : null}
+      )}
     </div>
-  );
+  )
 }

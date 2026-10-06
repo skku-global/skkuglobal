@@ -10,6 +10,16 @@ const ITEMS = [
   ["Contact", "/contact"],
 ];
 
+const LEFT_ITEMS = [
+  ["Services", "/services"],
+  ["Work", "/work"],
+];
+
+const RIGHT_ITEMS = [
+  ["About", "/about"],
+  ["Contact", "/contact"],
+];
+
 export default function Menu() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -26,6 +36,17 @@ export default function Menu() {
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close curtain automatically if window is resized to big screen
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 860) {
+        setOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -105,38 +126,60 @@ export default function Menu() {
   return (
     <>
       <header className={`bar ${scrolled ? "is-scrolled" : ""}`} data-open={open}>
+        {/* Left Wing: Desktop Nav Links */}
         <div className="bar-left">
+          <nav className="desktop-nav" aria-label="Main Navigation Left">
+            {LEFT_ITEMS.map(([label, href]) => {
+              const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+              return (
+                <Link
+                  key={href}
+                  to={href}
+                  className={`nav-link ${isActive ? "active" : ""}`}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+
+        {/* Center: Brand Logo */}
+        <div className="bar-center">
           <Link to="/" className="logo" onClick={() => setOpen(false)} aria-label="SKKU Global Home">
             SKKU
           </Link>
         </div>
 
-        {/* Desktop Navigation Links */}
-        <nav className="desktop-nav" aria-label="Main Navigation">
-          {ITEMS.map(([label, href]) => {
-            const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
-            return (
-              <Link
-                key={href}
-                to={href}
-                className={`nav-link ${isActive ? "active" : ""}`}
-              >
-                {label}
-              </Link>
-            );
-          })}
-        </nav>
-
+        {/* Right Wing: Desktop Nav Right + CTA, or Mobile Menu Button */}
         <div className="bar-right">
+          <nav className="desktop-nav" aria-label="Main Navigation Right">
+            {RIGHT_ITEMS.map(([label, href]) => {
+              const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+              return (
+                <Link
+                  key={href}
+                  to={href}
+                  className={`nav-link ${isActive ? "active" : ""}`}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+          </nav>
+
           <Link to="/contact" className="nav-cta-btn">
             Tell us your problem <span aria-hidden="true">→</span>
           </Link>
+
+          {/* Small Device Dropdown Menu Button */}
           <button
             ref={btn}
             type="button"
             className="menu-btn"
             aria-expanded={open}
             aria-controls="menu"
+            aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((o) => !o)}
           >
             {open ? "Close" : "Menu"}
@@ -144,7 +187,7 @@ export default function Menu() {
         </div>
       </header>
 
-      {/* Fullscreen Curtain Menu */}
+      {/* Small Device Fullscreen Curtain Dropdown */}
       <div id="menu" ref={curtain} className="curtain" role="dialog" aria-label="Menu">
         <nav className="curtain-nav">
           <ul>

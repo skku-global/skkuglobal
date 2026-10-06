@@ -4,4 +4,5 @@ export const site = {
   email: "hello@skkuglobal.com",
   whatsapp: "2348057215622",
   reply: "within 24 hours",
+  socials: [],
 };
