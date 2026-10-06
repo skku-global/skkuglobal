@@ -59,7 +59,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 .bar.is-scrolled {
-  background: rgba(244, 242, 236, 0.88);
+  background: rgba(244, 242, 236, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom-color: rgba(14, 14, 12, 0.08);
@@ -73,6 +73,28 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   box-shadow: none;
 }
 
+.bar[data-open="true"] .desktop-nav,
+.bar[data-open="true"] .nav-cta-btn {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.bar[data-open="true"] .logo {
+  color: var(--paper);
+}
+
+.bar[data-open="true"] .menu-btn {
+  color: var(--paper);
+  border-color: rgba(244, 242, 236, 0.4);
+}
+
+.bar[data-open="true"] .menu-btn:hover {
+  background: var(--lime);
+  color: var(--ink);
+  border-color: var(--lime);
+}
+
 .bar-left {
   display: flex;
   align-items: center;
@@ -84,6 +106,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   letter-spacing: -0.03em;
   color: inherit;
   display: inline-block;
+  transition: color var(--t-s) var(--ease);
 }
 
 /* Desktop Navigation */
@@ -91,6 +114,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: none;
   align-items: center;
   gap: clamp(1rem, 2.5vw, 2.2rem);
+  transition: opacity var(--t-s) var(--ease), visibility var(--t-s) var(--ease);
 }
 
 @media (min-width: 860px) {
@@ -147,7 +171,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 500;
-  transition: background var(--t-s) var(--ease), color var(--t-s) var(--ease);
+  transition: background var(--t-s) var(--ease), color var(--t-s) var(--ease), opacity var(--t-s) var(--ease), visibility var(--t-s) var(--ease);
 }
 
 .nav-cta-btn:hover {
@@ -188,17 +212,21 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   color: var(--paper);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 2rem;
-  padding: max(85px, 14vh) clamp(1.25rem, 4vw, 3rem) 2.5rem;
+  padding: 6rem clamp(1.25rem, 5vw, 4rem) 2.5rem;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.curtain-nav {
+  margin: auto 0;
 }
 
 .curtain-nav ul {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.5rem, 1.2vw, 1rem);
+  gap: clamp(0.6rem, 1.4vw, 1.2rem);
 }
 
 .mask {
@@ -209,10 +237,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .big-link {
   display: flex;
   align-items: baseline;
-  gap: clamp(1rem, 2vw, 2rem);
-  font-size: clamp(2.2rem, 7.5vw, 5.5rem);
-  line-height: 1.08;
-  letter-spacing: -0.04em;
+  gap: clamp(1rem, 2.5vw, 2.2rem);
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: var(--paper);
   transition: color var(--t-s) var(--ease), transform var(--t-s) var(--ease);
   width: fit-content;
 }
@@ -220,7 +249,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .link-num {
   font-family: var(--body);
   font-weight: 400;
-  font-size: clamp(0.9rem, 1.4vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.4vw, 1.2rem);
   color: var(--grey);
   letter-spacing: 0;
   width: 2.5ch;
@@ -233,7 +262,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .big-link:hover {
   color: var(--lime);
-  transform: translateX(8px);
+  transform: translateX(10px);
 }
 
 .big-link:hover .link-num {
