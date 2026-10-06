@@ -232,6 +232,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .mask {
   display: block;
   overflow: hidden;
+  padding: 0.1em 0;
 }
 
 .big-link {
@@ -239,11 +240,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   align-items: baseline;
   gap: clamp(1rem, 2.5vw, 2.2rem);
   font-size: clamp(2.2rem, 6vw, 4.6rem);
-  line-height: 1.12;
+  line-height: 1.15;
   letter-spacing: -0.035em;
   color: var(--paper);
-  transition: color var(--t-s) var(--ease), transform var(--t-s) var(--ease);
+  transition: color var(--t-s) var(--ease);
   width: fit-content;
+  text-decoration: none;
 }
 
 .link-num {
@@ -257,12 +259,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 .link-text {
+  display: inline-block;
   transition: transform var(--t-s) var(--ease);
 }
 
 .big-link:hover {
   color: var(--lime);
-  transform: translateX(10px);
+}
+
+.big-link:hover .link-text {
+  transform: translateX(8px);
 }
 
 .big-link:hover .link-num {

@@ -49,10 +49,15 @@ export default function Menu() {
     } else {
       gsap.set(curtain.current, { yPercent: -100, visibility: "hidden" });
       t.set(curtain.current, { visibility: "visible" })
-        .to(curtain.current, { yPercent: 0, duration: 0.8, ease: "skku" }, 0)
-        .to(page, { y: "6vh", duration: 0.8, ease: "skku" }, 0)
-        .from(items, { yPercent: 110, duration: 0.6, ease: "skku", stagger: 0.05 }, 0.25)
-        .fromTo(seam, { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "skku", transformOrigin: "left center" }, 0.35);
+        .to(curtain.current, { yPercent: 0, duration: 0.75, ease: "skku" }, 0)
+        .to(page, { y: "6vh", duration: 0.75, ease: "skku" }, 0)
+        .fromTo(
+          items,
+          { yPercent: 110, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.55, ease: "skku", stagger: 0.05 },
+          0.2
+        )
+        .fromTo(seam, { scaleX: 0 }, { scaleX: 1, duration: 0.75, ease: "skku", transformOrigin: "left center" }, 0.3);
     }
 
     tl.current = t;
