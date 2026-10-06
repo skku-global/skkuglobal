@@ -12,11 +12,21 @@ const ITEMS = [
 
 export default function Menu() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const curtain = useRef(null);
   const btn = useRef(null);
   const tl = useRef(null);
   const location = useLocation();
   const pathname = location?.pathname || "/";
+
+  // Scroll detection for sticky header frosted glass styling
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     setupGsap();
@@ -35,14 +45,14 @@ export default function Menu() {
 
     if (reduce) {
       gsap.set(curtain.current, { autoAlpha: 0 });
-      t.to(curtain.current, { autoAlpha: 1, duration: 0.4, ease: "none" });
+      t.to(curtain.current, { autoAlpha: 1, duration: 0.35, ease: "none" });
     } else {
       gsap.set(curtain.current, { yPercent: -100, visibility: "hidden" });
       t.set(curtain.current, { visibility: "visible" })
-        .to(curtain.current, { yPercent: 0, duration: 0.9, ease: "skku" }, 0)
-        .to(page, { y: "6vh", duration: 0.9, ease: "skku" }, 0)
-        .from(items, { yPercent: 110, duration: 0.7, ease: "skku", stagger: 0.06 }, 0.35)
-        .fromTo(seam, { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "skku", transformOrigin: "left center" }, 0.4);
+        .to(curtain.current, { yPercent: 0, duration: 0.8, ease: "skku" }, 0)
+        .to(page, { y: "6vh", duration: 0.8, ease: "skku" }, 0)
+        .from(items, { yPercent: 110, duration: 0.6, ease: "skku", stagger: 0.05 }, 0.25)
+        .fromTo(seam, { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "skku", transformOrigin: "left center" }, 0.35);
     }
 
     tl.current = t;
@@ -89,28 +99,60 @@ export default function Menu() {
 
   return (
     <>
-      <header className="bar" data-open={open}>
-        <Link to="/" className="logo">SKKU</Link>
-        <button
-          ref={btn}
-          type="button"
-          className="menu-btn"
-          aria-expanded={open}
-          aria-controls="menu"
-          onClick={() => setOpen((o) => !o)}
-        >
-          {open ? "Close" : "Menu"}
-        </button>
+      <header className={`bar ${scrolled ? "is-scrolled" : ""}`} data-open={open}>
+        <div className="bar-left">
+          <Link to="/" className="logo" onClick={() => setOpen(false)} aria-label="SKKU Global Home">
+            SKKU
+          </Link>
+        </div>
+
+        {/* Desktop Navigation Links */}
+        <nav className="desktop-nav" aria-label="Main Navigation">
+          {ITEMS.map(([label, href]) => {
+            const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+            return (
+              <Link
+                key={href}
+                to={href}
+                className={`nav-link ${isActive ? "active" : ""}`}
+              >
+                {label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="bar-right">
+          <Link to="/contact" className="nav-cta-btn">
+            Tell us your problem <span aria-hidden="true">→</span>
+          </Link>
+          <button
+            ref={btn}
+            type="button"
+            className="menu-btn"
+            aria-expanded={open}
+            aria-controls="menu"
+            onClick={() => setOpen((o) => !o)}
+          >
+            {open ? "Close" : "Menu"}
+          </button>
+        </div>
       </header>
 
+      {/* Fullscreen Curtain Menu */}
       <div id="menu" ref={curtain} className="curtain" role="dialog" aria-label="Menu">
-        <nav>
+        <nav className="curtain-nav">
           <ul>
             {ITEMS.map(([label, href], i) => (
               <li key={href} className="mask">
-                <Link data-item to={href} className="big-link">
-                  <span>0{i + 1}</span>
-                  {label}
+                <Link
+                  data-item
+                  to={href}
+                  className="big-link"
+                  onClick={() => setOpen(false)}
+                >
+                  <span className="link-num">0{i + 1}</span>
+                  <span className="link-text">{label}</span>
                 </Link>
               </li>
             ))}
