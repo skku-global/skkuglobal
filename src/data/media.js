@@ -42,11 +42,6 @@ export const flyers = [
     "note": "Flyer",
     "ratio": "572 / 1024"
   },
-  {
-    "src": "/work/flyers/tems-flyer.webp",
-    "title": "Tems flyer",
-    "note": "Flyer",
-    "ratio": "572 / 1024"
-  },
+ 
  
 ]
