@@ -30,6 +30,7 @@ export const projects = [
   },
   {
     slug: "junicash",
+    note: "Demo project. JuniCash is a portfolio build, not a licensed bank. Never enter real card or bank details.",
     title: "JuniCash",
     result: "Branch queues → banking from your phone",
     problem: "Everyday banking still means queues, paperwork, and apps built for banks instead of people.",

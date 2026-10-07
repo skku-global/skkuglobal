@@ -16,6 +16,7 @@ export default function CaseStudy() {
       <section className="wrap hero">
         <p className="eyebrow">Case study</p>
         <h1 className="display-l">{p.title}</h1>
+        {p.note ? <p className="muted cs-note">{p.note}</p> : null}
       </section>
 
       <section className="wrap section">

@@ -564,3 +564,5 @@ input:focus-visible, textarea:focus-visible { outline: none; border-bottom-width
 /* tangle mobile fix */
 .tgl { width: 100%; min-width: 0; align-self: stretch; }
 .tgl-svg { aspect-ratio: 1000 / 160; min-height: 3rem; }
+
+.cs-note { margin-top: 1rem; max-width: 60ch; }
