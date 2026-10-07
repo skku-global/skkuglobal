@@ -535,3 +535,12 @@ input:focus-visible, textarea:focus-visible { outline: none; border-bottom-width
 .form-nav .back { text-decoration: underline; text-underline-offset: 5px; }
 .form-err { margin-top: 0.75rem; font-weight: 500; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+/* ads layout */
+.ads { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+.ad { grid-column: span 4; }
+.ad:first-child { grid-column: span 8; }
+.ad-frame { background: var(--tile); border-radius: 14px; overflow: hidden; }
+.ad-frame video { width: 100%; height: 100%; object-fit: contain; }
+@media (max-width: 760px) { .ad, .ad:first-child { grid-column: 1 / -1; } }
+/* end ads layout */
