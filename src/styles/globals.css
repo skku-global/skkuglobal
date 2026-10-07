@@ -545,3 +545,13 @@ input:focus-visible, textarea:focus-visible { outline: none; border-bottom-width
 .ad-frame video { width: 100%; height: 100%; object-fit: contain; }
 @media (max-width: 760px) { .ads > .ad.ad, .ads > .ad.ad:first-child { grid-column: 1 / -1; } }
 /* end ads layout */
+
+/* flyers layout */
+.flyers.flyers { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+.flyers > .flyer.flyer { grid-column: span 3; width: auto; max-width: none; }
+.flyers > .flyer.flyer:first-child { grid-column: span 6; }
+.flyer img { display: block; width: 100%; height: auto; border-radius: 14px; }
+.flyers > .flyer:first-child img { aspect-ratio: 16 / 9 !important; object-fit: cover; }
+@media (max-width: 900px) { .flyers > .flyer.flyer { grid-column: span 6; } .flyers > .flyer.flyer:first-child { grid-column: 1 / -1; } }
+@media (max-width: 560px) { .flyers > .flyer.flyer, .flyers > .flyer.flyer:first-child { grid-column: 1 / -1; } }
+/* end flyers layout */
