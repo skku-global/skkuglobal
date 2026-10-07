@@ -12,7 +12,7 @@ export default function CaseStudy() {
 
   return (
     <>
-      <Seo route="/work" />
+      <Seo route={`/work/${p.slug}`} />
       <section className="wrap hero">
         <p className="eyebrow">Case study</p>
         <h1 className="display-l">{p.title}</h1>

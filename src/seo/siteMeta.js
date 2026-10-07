@@ -8,7 +8,7 @@
  * or a phone number here and both follow.
  */
 import { faqs } from '../data/faqs.js'
-import { projects } from '../data/projects.js'
+import { projects } from '../lib/projects.js'
 
 export const ORIGIN = 'https://skkuglobal.com'
 
@@ -80,25 +80,25 @@ const OG_IMAGE = `${ORIGIN}/og-image.png?v=4`
 export const ROUTES = [
   {
     path: '/',
-    title: 'SKKU Global — Web Development & SecuScan Security Audits',
+    title: 'SKKU Global — Websites, SEO, Ads Video & Flyers',
     description:
-      'We build custom web apps, run SecuScan vulnerability audits and ship e-commerce systems. CAC-registered in Nigeria, working worldwide.',
+      'Fast websites, SEO that brings customers from anywhere, plus ads videos and flyers for WhatsApp and Meta ads. CAC-registered in Nigeria, working worldwide.',
     breadcrumb: 'Enterprise Web & Security',
     priority: '1.0',
   },
   {
     path: '/services',
-    title: 'Services — Web, SaaS, E-Commerce & Security | SKKU Global',
+    title: 'Services — Websites, SEO, Ads Video & Flyers | SKKU Global',
     description:
-      'Web and SaaS engineering, SecuScan vulnerability audits, e-commerce systems and digital defense. Mobile, AI, cloud and smart contracts in development.',
+      'Websites, SEO, ads video and flyers, plus web apps and security audits. One team that untangles your business, from first call to launch.',
     breadcrumb: 'Capabilities & Services',
     priority: '0.9',
   },
   {
     path: '/work',
-    title: 'Case Studies & Live Deployments | SKKU Global',
+    title: 'Work — Case Studies, Ads Video & Flyers | SKKU Global',
     description:
-      'Live work: the SecuScan vulnerability scanner, Luxe Hair Co e-commerce, the CarBreezy marketplace and more. All running in production.',
+      'Case studies from SecuScan, Luxe Hair Co, CarBreezy and JuniCash, plus our ads videos and flyers.',
     breadcrumb: 'Production Case Studies',
     priority: '0.9',
   },
@@ -112,18 +112,10 @@ export const ROUTES = [
   },
   {
     path: '/contact',
-    title: 'Contact Studio — What Did You Have In Mind? | SKKU Global',
+    title: 'Contact — Tell Us Your Problem | SKKU Global',
     description:
-      'Start a project inquiry, request a SecuScan vulnerability audit, or discuss your digital architecture directly with founder Abdulkabir Ajiboye.',
+      'Tell us what you need: a website, SEO, an ads video or a flyer. We reply within 24 hours.',
     breadcrumb: 'Contact Studio',
-    priority: '0.8',
-  },
-  {
-    path: '/support',
-    title: 'Support & Project Consultation | SKKU Global',
-    description:
-      'Start a project, request a SecuScan security audit, or get technical support. Reach the founder directly by email, WhatsApp or phone.',
-    breadcrumb: 'Support & Consultation',
     priority: '0.8',
   },
   {
@@ -335,7 +327,7 @@ export const jsonLdFor = (path) => {
         item: {
           '@type': 'CreativeWork',
           name: p.title,
-          description: p.tagline,
+          description: p.result,
           creator: { '@id': `${ORIGIN}/#organization` },
         },
       })),
@@ -373,3 +365,15 @@ export const headTagsFor = (path) => {
     },
   }
 }
+
+/* One prerendered, sitemap-listed page per case study. */
+const clip = (s, n) => (s.length <= n ? s : s.slice(0, n - 1).replace(/\s+\S*$/, '') + '\u2026')
+ROUTES.push(
+  ...projects.map((p) => ({
+    path: `/work/${p.slug}`,
+    title: `${p.title} case study | SKKU Global`,
+    description: clip(`${p.result}. ${p.problem}`, 155),
+    breadcrumb: p.title,
+    priority: '0.6',
+  }))
+)
