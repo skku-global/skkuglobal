@@ -2,6 +2,8 @@ import { Link, useParams } from "react-router-dom";
 import { projects } from "../lib/projects";
 import Seo from "../components/Seo";
 
+const SLIDES = [1, 2, 3, 4, 5];
+
 export default function CaseStudy() {
   const { slug } = useParams();
   const i = projects.findIndex((p) => p.slug === slug);
@@ -30,10 +32,19 @@ export default function CaseStudy() {
       </section>
 
       <section className="wrap section">
-        <div className="visuals">
-          <div className="visual wide" data-reveal />
-          <div className="visual" data-reveal />
-          <div className="visual" data-reveal />
+        <div className="shots">
+          {SLIDES.map((n) => (
+            <figure key={n} className={`shot${n === 1 ? " wide" : ""}`}>
+              <img
+                src={`/screenshots/${p.slug}/slide-${n}.webp`}
+                alt={`${p.title} screen ${n}`}
+                loading={n === 1 ? "eager" : "lazy"}
+                onError={(e) => {
+                  e.currentTarget.parentElement.hidden = true;
+                }}
+              />
+            </figure>
+          ))}
         </div>
       </section>
 

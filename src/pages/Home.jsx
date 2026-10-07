@@ -51,6 +51,7 @@ export default function Home() {
         <div className="tiles">
           {projects.slice(0, 2).map((p) => (
             <Link key={p.slug} to={`/work/${p.slug}`} className="tile" data-reveal>
+              <img className="tile-img" src={"/screenshots/" + p.slug + "/slide-1.webp"} alt={p.title + " website preview"} loading="lazy" />
               <h3>{p.title}</h3>
               <p className="muted">{p.result}</p>
             </Link>

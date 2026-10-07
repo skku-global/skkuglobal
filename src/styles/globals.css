@@ -513,3 +513,25 @@ input:focus-visible, textarea:focus-visible { outline: none; border-bottom-width
 .ad figcaption, .flyer figcaption { display: grid; gap: 0.15rem; margin-top: 0.75rem; font-size: 0.95rem; }
 .flyers { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
 .flyer img { display: block; width: 100%; height: auto; object-fit: contain; border-radius: 8px; background: var(--tile); }
+
+/* case study slides */
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.shot { margin: 0; }
+.shot[hidden] { display: none; }
+.shot.wide { grid-column: 1 / -1; }
+.shot img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: var(--tile); border-radius: 8px; }
+@media (max-width: 640px) { .shots { grid-template-columns: 1fr; } }
+.tile-img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px; margin-bottom: 1rem; background: var(--tile); }
+
+/* contact flow */
+.prog { display: flex; gap: 6px; margin-bottom: 1.5rem; }
+.prog li { height: 3px; flex: 1; background: rgba(14, 14, 12, 0.15); transition: background var(--t-s) var(--ease); }
+.prog li.on { background: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.25rem 0 0.5rem; }
+.chip { border: 1px solid var(--ink); border-radius: 999px; padding: 0.65rem 1.25rem; font-size: 1rem; transition: background var(--t-s) var(--ease), color var(--t-s) var(--ease); }
+.chip:hover { background: var(--lime); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.form-nav { display: flex; align-items: center; gap: 1.25rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.form-nav .back { text-decoration: underline; text-underline-offset: 5px; }
+.form-err { margin-top: 0.75rem; font-weight: 500; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
