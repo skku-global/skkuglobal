@@ -14,6 +14,7 @@ const STOPS = [
 ]
 const HOLD_TANGLED = 3200
 const HOLD_SOLVED = 5200
+const CALM_HOLD = 1200
 
 function pathFor(k, ph) {
   const b = R * k
@@ -50,21 +51,22 @@ export default function Tangle() {
 
   useEffect(() => {
     const st = s.current
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      st.k = 0
-      st.target = 0
-      render()
-      setState('solved')
-      return
-    }
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let last = 0
     let inView = false
     let mode = 'tangled'
+    let settled = false
+
     const tick = (now) => {
       const dt = Math.min((now - (last || now)) / 1000, 0.05)
       last = now
-      st.ph -= dt * 1.6
+      if (!calm) st.ph -= dt * 1.6
       st.k += (st.target - st.k) * Math.min(1, dt * 2.4)
+      if (calm && st.target === 0 && st.k < 0.003) {
+        st.k = 0
+        render()
+        return
+      }
       render()
       raf.current = requestAnimationFrame(tick)
     }
@@ -82,14 +84,25 @@ export default function Tangle() {
       )
     }
     const start = () => {
+      if (settled) return
       stop()
       last = 0
+      if (calm) {
+        timer.current = setTimeout(() => {
+          settled = true
+          st.target = 0
+          setState('solved')
+          raf.current = requestAnimationFrame(tick)
+        }, CALM_HOLD)
+        return
+      }
       raf.current = requestAnimationFrame(tick)
       timer.current = setTimeout(
         () => go(mode === 'tangled' ? 'solved' : 'tangled'),
         mode === 'tangled' ? HOLD_TANGLED : HOLD_SOLVED
       )
     }
+
     const io = new IntersectionObserver(([e]) => {
       inView = e.isIntersecting
       if (inView) start()

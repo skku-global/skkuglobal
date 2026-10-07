@@ -560,3 +560,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-bottom-width
 .tiles { display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: 1fr; }
 @media (min-width: 900px) { .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .see-all { display: inline-block; margin-top: 1.5rem; }
+
+/* tangle mobile fix */
+.tgl { width: 100%; min-width: 0; align-self: stretch; }
+.tgl-svg { aspect-ratio: 1000 / 160; min-height: 3rem; }
