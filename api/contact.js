@@ -40,7 +40,7 @@ export default async function handler(req, res) {
 
   const key = process.env.RESEND_API_KEY;
   if (!key) return res.status(500).json({ ok: false });
-  const to = process.env.CONTACT_TO || "hello@skkuglobal.com";
+  const to = process.env.CONTACT_TO || "admin@skkuglobal.com";
   const from = process.env.CONTACT_FROM || "SKKU Global <onboarding@resend.dev>";
 
   const html =
