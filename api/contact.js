@@ -4,6 +4,8 @@ const esc = (s) =>
 const line = (s, n) => String(s ?? "").replace(/[\r\n]+/g, " ").trim().slice(0, n);
 const block = (s, n) => String(s ?? "").trim().slice(0, n);
 const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+const debug = process.env.VERCEL_ENV === "preview" || process.env.VERCEL_ENV === "development";
+const fail = (res, code, reason) => res.status(code).json({ ok: false, ...(debug && reason ? { reason } : {}) });
 
 function okOrigin(o) {
   if (!o) return true;
@@ -21,12 +23,18 @@ async function mail(key, payload) {
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  return r.ok;
+  if (r.ok) return { ok: true };
+  let message = "";
+  try {
+    message = (await r.json()).message || "";
+  } catch {}
+  console.error("resend", r.status, message);
+  return { ok: false, status: r.status, message };
 }
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") return res.status(405).json({ ok: false });
-  if (!okOrigin(req.headers.origin)) return res.status(403).json({ ok: false });
+  if (req.method !== "POST") return fail(res, 405, "method");
+  if (!okOrigin(req.headers.origin)) return fail(res, 403, "origin " + req.headers.origin);
 
   const b = req.body && typeof req.body === "object" ? req.body : {};
   if (b.company) return res.status(200).json({ ok: true });
@@ -36,10 +44,10 @@ export default async function handler(req, res) {
   const deadline = line(b.deadline, 100);
   const name = line(b.name, 100);
   const contact = line(b.contact, 150);
-  if (!needs.length || details.length < 10 || !name || !contact) return res.status(400).json({ ok: false });
+  if (!needs.length || details.length < 10 || !name || !contact) return fail(res, 400, "validation");
 
   const key = process.env.RESEND_API_KEY;
-  if (!key) return res.status(500).json({ ok: false });
+  if (!key) return fail(res, 500, "RESEND_API_KEY is not set for this deployment");
   const to = process.env.CONTACT_TO || "admin@skkuglobal.com";
   const from = process.env.CONTACT_FROM || "SKKU Global <onboarding@resend.dev>";
 
@@ -50,14 +58,14 @@ export default async function handler(req, res) {
     `<p><b>Deadline:</b> ${esc(deadline || "-")}</p>` +
     `<p><b>Name:</b> ${esc(name)}<br><b>Contact:</b> ${esc(contact)}</p>`;
 
-  const ok = await mail(key, {
+  const sent = await mail(key, {
     from,
     to: [to],
     subject: `New enquiry: ${needs.join(", ")} - ${name}`,
     html,
     ...(isEmail(contact) ? { reply_to: contact } : {}),
   });
-  if (!ok) return res.status(502).json({ ok: false });
+  if (!sent.ok) return fail(res, 502, `resend ${sent.status}: ${sent.message}`);
 
   if (process.env.AUTOREPLY === "1" && isEmail(contact)) {
     await mail(key, {

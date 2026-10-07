@@ -35,7 +35,11 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ needs, ...v }),
       });
-      if (!r.ok) throw new Error(String(r.status));
+      if (!r.ok) {
+        const j = await r.json().catch(() => ({}));
+        setErr(j.reason || "");
+        throw new Error(String(r.status));
+      }
       setStatus("sent");
     } catch {
       setStatus("error");
@@ -65,6 +69,7 @@ export default function ContactForm() {
       <div className="form" role="alert">
         <p className="display-m" ref={head} tabIndex={-1}>That didn't send.</p>
         <p className="muted">Use one of these instead. Your message is already filled in.</p>
+        {err ? <p className="muted">{err}</p> : null}
         <div className="form-nav">
           <a
             className="btn"
