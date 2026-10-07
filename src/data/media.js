@@ -2,21 +2,21 @@ export const adVideos = [
   {
     "src": "/work/ads/brand-ad.mp4",
     "poster": "",
-    "title": "Brand ad",
+    "title": "Brand ad 1",
+    "note": "WhatsApp, Meta ads, promos",
+    "ratio": "16 / 9"
+  },
+  {
+    "src": "/work/ads/brand-ad-2.mp4",
+    "poster": "",
+    "title": "Brand ad 2",
     "note": "WhatsApp, Meta ads, promos",
     "ratio": "9 / 16"
   },
   {
-    "src": "/work/ads/promo-clip.mp4",
+    "src": "/work/ads/brand-ad-3.mp4",
     "poster": "",
-    "title": "Promo clip",
-    "note": "WhatsApp, Meta ads, promos",
-    "ratio": "9 / 16"
-  },
-  {
-    "src": "/work/ads/tems-ad.mp4",
-    "poster": "",
-    "title": "Tems ad",
+    "title": "Brand ad 2",
     "note": "WhatsApp, Meta ads, promos",
     "ratio": "9 / 16"
   }
