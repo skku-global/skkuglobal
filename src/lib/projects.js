@@ -28,4 +28,12 @@ export const projects = [
       "/work/work-carbreezy-ferrari.webp",
     ],
   },
+  {
+    slug: "junicash",
+    title: "JuniCash",
+    result: "Branch queues → banking from your phone",
+    problem: "Everyday banking still means queues, paperwork, and apps built for banks instead of people.",
+    solution: "We built JuniCash, a mobile-first digital banking app with simple onboarding, clear balances, and an easy-to-read transaction history.",
+    outcome: "A working digital bank experience that can be understood in seconds.",
+  },
 ];
