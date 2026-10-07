@@ -536,12 +536,11 @@ input:focus-visible, textarea:focus-visible { outline: none; border-bottom-width
 .form-err { margin-top: 0.75rem; font-weight: 500; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
-
 /* ads layout */
-.ads.ads { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
-.ads > .ad.ad { grid-column: span 4; width: auto; max-width: none; }
-.ads > .ad.ad:first-child { grid-column: span 8; }
-.ad-frame { background: var(--tile, #E4E2DC); border-radius: 14px; overflow: hidden; }
+.ads { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+.ad { grid-column: span 4; }
+.ad:first-child { grid-column: span 8; }
+.ad-frame { background: var(--tile); border-radius: 14px; overflow: hidden; }
 .ad-frame video { width: 100%; height: 100%; object-fit: contain; }
-@media (max-width: 760px) { .ads > .ad.ad, .ads > .ad.ad:first-child { grid-column: 1 / -1; } }
+@media (max-width: 760px) { .ad, .ad:first-child { grid-column: 1 / -1; } }
 /* end ads layout */
