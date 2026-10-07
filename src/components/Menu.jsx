@@ -207,7 +207,7 @@ export default function Menu() {
           </ul>
         </nav>
         <div className="seam" data-seam />
-        <p className="curtain-foot">Websites now. Tech solutions next.</p>
+        <p className="curtain-foot">Websites, SEO, ads video and flyers.</p>
       </div>
     </>
   );

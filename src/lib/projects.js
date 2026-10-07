@@ -22,5 +22,10 @@ export const projects = [
     problem: "Vehicle buyers face opaque dealer pricing, fragmented condition reporting, and slow response times.",
     solution: "We built a high-performance inventory platform with instant spec lookups, 360 photo inspection, and direct dealer inquiry.",
     outcome: "150+ verified vehicle listings and sub-100ms faceted search.",
+    image: "/work/carbreezy.png",
+    gallery: [
+      "/work/work-carbreezy-inventory.webp",
+      "/work/work-carbreezy-ferrari.webp",
+    ],
   },
 ];

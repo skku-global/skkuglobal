@@ -6,6 +6,14 @@ const LOOPS = 9
 const R = 52
 const DOT = 10
 const A = W / (LOOPS * 2 * Math.PI)
+const STOPS = [
+  ['Website', 0.125],
+  ['SEO', 0.375],
+  ['Ads video', 0.625],
+  ['Flyers', 0.875],
+]
+const HOLD_TANGLED = 3200
+const HOLD_SOLVED = 5200
 
 function pathFor(k, ph) {
   const b = R * k
@@ -22,15 +30,15 @@ function pathFor(k, ph) {
   return d
 }
 
-export default function Tangle({ replayable = false }) {
+export default function Tangle() {
   const svg = useRef(null)
   const p1 = useRef(null)
   const p2 = useRef(null)
   const dot = useRef(null)
   const raf = useRef(0)
-  const reduced = useRef(false)
+  const timer = useRef(0)
   const s = useRef({ k: 1, target: 1, ph: 0 })
-  const [solved, setSolved] = useState(false)
+  const [state, setState] = useState('tangled')
 
   const render = () => {
     const { k, ph } = s.current
@@ -43,15 +51,15 @@ export default function Tangle({ replayable = false }) {
   useEffect(() => {
     const st = s.current
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      reduced.current = true
       st.k = 0
       st.target = 0
       render()
-      setSolved(true)
+      setState('solved')
       return
     }
     let last = 0
     let inView = false
+    let mode = 'tangled'
     const tick = (now) => {
       const dt = Math.min((now - (last || now)) / 1000, 0.05)
       last = now
@@ -60,12 +68,28 @@ export default function Tangle({ replayable = false }) {
       render()
       raf.current = requestAnimationFrame(tick)
     }
-    const start = () => {
+    const stop = () => {
       cancelAnimationFrame(raf.current)
+      clearTimeout(timer.current)
+    }
+    const go = (next) => {
+      mode = next
+      st.target = next === 'solved' ? 0 : 1
+      setState(next)
+      timer.current = setTimeout(
+        () => go(next === 'solved' ? 'tangled' : 'solved'),
+        next === 'solved' ? HOLD_SOLVED : HOLD_TANGLED
+      )
+    }
+    const start = () => {
+      stop()
       last = 0
       raf.current = requestAnimationFrame(tick)
+      timer.current = setTimeout(
+        () => go(mode === 'tangled' ? 'solved' : 'tangled'),
+        mode === 'tangled' ? HOLD_TANGLED : HOLD_SOLVED
+      )
     }
-    const stop = () => cancelAnimationFrame(raf.current)
     const io = new IntersectionObserver(([e]) => {
       inView = e.isIntersecting
       if (inView) start()
@@ -84,19 +108,8 @@ export default function Tangle({ replayable = false }) {
     }
   }, [])
 
-  const toggle = () => {
-    const st = s.current
-    const next = !solved
-    st.target = next ? 0 : 1
-    if (reduced.current) {
-      st.k = st.target
-      render()
-    }
-    setSolved(next)
-  }
-
   return (
-    <div className="tgl">
+    <div className="tgl" data-state={state}>
       <svg ref={svg} className="tgl-svg" viewBox={`0 0 ${W} ${H}`} aria-hidden="true" focusable="false">
         <defs>
           <clipPath id="tgl-clip">
@@ -107,13 +120,20 @@ export default function Tangle({ replayable = false }) {
           <path ref={p2} className="tgl-echo" d={pathFor(1, 1.8)} opacity="0.45" />
           <path ref={p1} className="tgl-line" d={pathFor(1, 0)} />
         </g>
+        {STOPS.map(([label, p], i) => (
+          <circle key={label} className="tgl-node" style={{ '--i': i }} cx={W * p} cy={H / 2} r="6" />
+        ))}
         <circle ref={dot} className="tgl-dot" cx={W - DOT} cy={H / 2} r="0" />
       </svg>
-      {replayable && (
-        <button type="button" className="tgl-replay" onClick={toggle}>
-          {solved ? 'Tangle again' : 'Untangle'}
-        </button>
-      )}
+      <ul className="tgl-stops" aria-label="What we untangle">
+        {STOPS.map(([label, p], i) => (
+          <li key={label} style={{ '--p': p, '--i': i }}>{label}</li>
+        ))}
+      </ul>
+      <p className="tgl-cap">
+        <span className="tgl-cap-a">Your business feels tangled.</span>
+        <span className="tgl-cap-b">We untangle it.</span>
+      </p>
     </div>
   )
 }

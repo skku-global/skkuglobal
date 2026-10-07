@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <Seo route="/" />
       <section className="wrap hero">
-        <p className="eyebrow">Websites now. Tech solutions next.</p>
+        <p className="eyebrow">Websites, SEO, ads video and flyers.</p>
         <h1 className="display-xl">Your problem.<br />Solved with ease.</h1>
         <Tangle replayable={true} />
         <Link to="/contact" className="btn">Tell us your problem <span aria-hidden="true">→</span></Link>

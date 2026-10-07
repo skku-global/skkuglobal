@@ -1,3 +1,4 @@
+import WorkMedia from "../components/WorkMedia";
 import { Link } from "react-router-dom";
 import { projects } from "../lib/projects";
 import Seo from "../components/Seo";
@@ -22,6 +23,7 @@ export default function Work() {
           ))}
         </ul>
       </section>
+      <WorkMedia />
     </>
   );
 }
