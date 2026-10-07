@@ -49,7 +49,7 @@ export default function Home() {
       <section className="wrap section">
         <p className="eyebrow">Selected work</p>
         <div className="tiles">
-          {projects.slice(0, 2).map((p) => (
+          {projects.slice(0, 3).map((p) => (
             <Link key={p.slug} to={`/work/${p.slug}`} className="tile" data-reveal>
               <img className="tile-img" src={"/screenshots/" + p.slug + "/slide-1.webp"} alt={p.title + " website preview"} loading="lazy" />
               <h3>{p.title}</h3>
@@ -57,6 +57,7 @@ export default function Home() {
             </Link>
           ))}
         </div>
+        <Link to="/work" className="link see-all">See all work <span aria-hidden="true">→</span></Link>
       </section>
 
       <section className="wrap section closing">

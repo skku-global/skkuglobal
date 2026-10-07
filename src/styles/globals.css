@@ -555,3 +555,8 @@ input:focus-visible, textarea:focus-visible { outline: none; border-bottom-width
 @media (max-width: 900px) { .flyers > .flyer.flyer { grid-column: span 6; } .flyers > .flyer.flyer:first-child { grid-column: 1 / -1; } }
 @media (max-width: 560px) { .flyers > .flyer.flyer, .flyers > .flyer.flyer:first-child { grid-column: 1 / -1; } }
 /* end flyers layout */
+
+/* tiles v2 */
+.tiles { display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: 1fr; }
+@media (min-width: 900px) { .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.see-all { display: inline-block; margin-top: 1.5rem; }
