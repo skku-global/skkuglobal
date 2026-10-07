@@ -32,6 +32,27 @@ async function mail(key, payload) {
   return { ok: false, status: r.status, message };
 }
 
+const firstName = (n) => (/^[\p{L}\p{M}][\p{L}\p{M}' .-]{0,59}$/u.test(n) ? n.split(" ")[0] : "there");
+
+function replyHtml(first, needs) {
+  return (
+    `<!doctype html><html><body style="margin:0;background:#F4F2EC;font-family:Arial,Helvetica,sans-serif;color:#0E0E0C">` +
+    `<div style="display:none;max-height:0;overflow:hidden">Thanks for reaching out. We reply within 24 hours.</div>` +
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:32px 16px">` +
+    `<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%">` +
+    `<tr><td style="font-size:22px;font-weight:bold;padding-bottom:24px">SKKU<span style="color:#8DBF1E">.</span></td></tr>` +
+    `<tr><td style="font-size:30px;line-height:1.1;font-weight:bold;padding-bottom:16px">We've got your message.</td></tr>` +
+    `<tr><td style="font-size:16px;line-height:1.6;padding-bottom:16px">Hi ${esc(first)},<br><br>Thanks for telling us what you need. It has reached our team, and we will get back to you shortly, usually within 24 hours.</td></tr>` +
+    `<tr><td style="font-size:15px;line-height:1.6;padding:16px;background:#E4E2DC">You asked about: <b>${esc(needs.join(", "))}</b></td></tr>` +
+    `<tr><td style="font-size:15px;line-height:1.6;padding-top:16px;color:#5E5E58">Want to add something? Just reply to this email.</td></tr>` +
+    `<tr><td style="font-size:13px;color:#6B6B66;padding-top:32px">SKKU Global Technologies Limited &middot; skkuglobal.com</td></tr>` +
+    `</table></td></tr></table></body></html>`
+  );
+}
+
+const replyText = (first, needs) =>
+  `Hi ${first},\n\nThanks for telling us what you need. It has reached our team, and we will get back to you shortly, usually within 24 hours.\n\nYou asked about: ${needs.join(", ")}\n\nWant to add something? Just reply to this email.\n\nSKKU Global Technologies Limited\nhttps://skkuglobal.com\n`;
+
 export default async function handler(req, res) {
   if (req.method !== "POST") return fail(res, 405, "method");
   if (!okOrigin(req.headers.origin)) return fail(res, 403, "origin " + req.headers.origin);
@@ -67,12 +88,16 @@ export default async function handler(req, res) {
   });
   if (!sent.ok) return fail(res, 502, `resend ${sent.status}: ${sent.message}`);
 
-  if (process.env.AUTOREPLY === "1" && isEmail(contact)) {
+  if (process.env.AUTOREPLY !== "0" && isEmail(contact)) {
+    const first = firstName(name);
     await mail(key, {
       from,
       to: [contact],
-      subject: "We got your enquiry - SKKU Global",
-      html: `<p>Hi ${esc(name)},</p><p>Thanks for telling us what you need. We reply within 24 hours.</p><p>SKKU Global</p>`,
+      reply_to: to,
+      subject: "We got your message - SKKU Global",
+      html: replyHtml(first, needs),
+      text: replyText(first, needs),
+      headers: { "Auto-Submitted": "auto-replied", "X-Auto-Response-Suppress": "All" },
     });
   }
   return res.status(200).json({ ok: true });

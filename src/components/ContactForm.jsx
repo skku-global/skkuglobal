@@ -59,7 +59,10 @@ export default function ContactForm() {
     return (
       <div className="form" role="status">
         <p className="display-m" ref={head} tabIndex={-1}>Got it.</p>
-        <p className="muted">We reply {site.reply}.</p>
+        <p className="muted">
+          We reply {site.reply}.
+          {/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.contact.trim()) ? " A confirmation is on its way to your inbox." : ""}
+        </p>
       </div>
     );
   }
