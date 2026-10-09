@@ -1,5 +1,52 @@
 export const projects = [
   {
+    id: 'scamcheck',
+    title: 'ScamCheck — Scam Risk Checker',
+    clientName: 'SKKU Global (own product)',
+    editorialHeadline: 'Most people learn something was a scam only after they have paid. Now one paste shows the risk, the warning phrases, and the reasons before they act.',
+    architectQuote: 'Node and Express API with rule-based scoring, domain-age checks, and verified community reports in MongoDB, with rate limiting and input validation throughout.',
+    badge: 'Security Product',
+    featured: true,
+    category: 'Security & Fraud Prevention',
+    tagline: 'Paste a link, message, or number and see the scam risk in seconds.',
+    description:
+      'A free scam checker that highlights risky phrases, explains why, and improves from user reports.',
+    detail:
+      'React front end, Node.js and Express API, MongoDB, rate limiting and input validation.',
+    outcome:
+      'Live tool with domain-age checks, community reports, and a Spot the Scam quiz.',
+    stack: ['React', 'Node.js', 'Express', 'MongoDB'],
+    liveUrl: 'https://scamcheck-security.vercel.app',
+    siteLabel: 'scamcheck-security.vercel.app',
+    poster: '/screenshots/scamcheck/slide-1.png',
+    slides: [
+      {
+        id: 1,
+        title: '01. Verdict',
+        caption:
+          'A risk level, a score, and a plain-language summary of what to do next.',
+        image: '/screenshots/scamcheck/slide-1.png',
+        highlight: 'Risk level · Score',
+      },
+      {
+        id: 2,
+        title: '02. Flagged phrases',
+        caption:
+          'The risky parts of the message are highlighted, with the reason for each.',
+        image: '/screenshots/scamcheck/slide-2.png',
+        highlight: 'Highlighted evidence · Reasons',
+      },
+      {
+        id: 3,
+        title: '03. Spot the scam quiz',
+        caption:
+          'A short quiz that teaches people the common scam patterns.',
+        image: '/screenshots/scamcheck/slide-3.png',
+        highlight: 'Quiz · Explanations',
+      },
+    ],
+  },
+  {
     id: 'secuscan',
     title: 'SecuScan — Web Vulnerability Scanner',
     clientName: 'SecuScan',

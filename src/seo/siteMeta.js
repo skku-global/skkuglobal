@@ -98,7 +98,7 @@ export const ROUTES = [
     path: '/work',
     title: 'Work — Case Studies, Ads Video & Flyers | SKKU Global',
     description:
-      'Case studies from SecuScan, Luxe Hair Co, CarBreezy and JuniCash, plus our ads videos and flyers.',
+      'Case studies from SecuScan, Luxe Hair Co, CarBreezy, JuniCash and ScamCheck, plus our ads videos and flyers.',
     breadcrumb: 'Production Case Studies',
     priority: '0.9',
   },

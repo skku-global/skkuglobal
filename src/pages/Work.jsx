@@ -1,9 +1,10 @@
 import WorkMedia from "../components/WorkMedia";
 import { Link } from "react-router-dom";
-import { projects } from "../lib/projects";
+import { useProjects } from "../lib/useProjects";
 import Seo from "../components/Seo";
 
 export default function Work() {
+  const { projects } = useProjects();
   return (
     <>
       <Seo route="/work" />

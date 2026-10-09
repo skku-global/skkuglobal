@@ -19,6 +19,13 @@ export const adVideos = [
     "title": "Brand ad 2",
     "note": "WhatsApp, Meta ads, promos",
     "ratio": "9 / 16"
+  },
+   {
+    "src": "/work/ads/bilal.mp4",
+    "poster": "",
+    "title": "Brand ad 3",
+    "note": "WhatsApp, Meta ads, promos",
+    "ratio": "9 / 16"
   }
 ]
 

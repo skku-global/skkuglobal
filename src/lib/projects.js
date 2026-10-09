@@ -1,5 +1,13 @@
 export const projects = [
   {
+    slug: "scamcheck",
+    title: "ScamCheck",
+    result: "Scam messages → a clear risk verdict in seconds",
+    problem: "Fake investments, OTP phishing, and fake bank alerts reach people every day, and most have no quick way to check what is real.",
+    solution: "We built ScamCheck, a free tool that scores any link, message, or phone number, highlights the risky phrases, explains the verdict, and learns from user reports.",
+    outcome: "Live tool with domain-age checks, verified community reports, and a Spot the Scam quiz.",
+  },
+  {
     slug: "secuscan",
     title: "SecuScan",
     result: "Hidden attack surfaces → 30s automated audit",

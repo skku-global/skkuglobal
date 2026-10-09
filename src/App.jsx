@@ -13,6 +13,7 @@ import Contact from './pages/Contact'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import NotFound from './pages/NotFound'
+import Admin from "./pages/Admin";
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -34,7 +35,8 @@ export function AppShell() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/work" element={<Work />} />
+            <Route path="/admin" element={<Admin />} />
+        <Route path="/work" element={<Work />} />
             <Route path="/work/:slug" element={<CaseStudy />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
