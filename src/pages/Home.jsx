@@ -48,12 +48,14 @@ export default function Home() {
 
       <section className="wrap section">
         <p className="eyebrow">Selected work</p>
+        <p className="muted tiles-hint">Click a project to see the screens and the full story.</p>
         <div className="tiles">
-          {projects.slice(0, 3).map((p) => (
+          {["carbreezy", "luxehair"].map((slug) => projects.find((p) => p.slug === slug)).filter(Boolean).map((p) => (
             <Link key={p.slug} to={`/work/${p.slug}`} className="tile" data-reveal>
               <img className="tile-img" src={"/screenshots/" + p.slug + "/slide-1.webp"} alt={p.title + " website preview"} loading="lazy" />
               <h3>{p.title}</h3>
               <p className="muted">{p.result}</p>
+              <span className="tile-cta">View case study <span aria-hidden="true">→</span></span>
             </Link>
           ))}
         </div>

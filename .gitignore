@@ -41,3 +41,7 @@ g.sh
 h.sh
 m.sh
 w.sh
+
+# local backups
+*.bak*
+*.stray

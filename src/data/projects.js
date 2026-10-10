@@ -18,14 +18,14 @@ export const projects = [
     stack: ['React', 'Node.js', 'Express', 'MongoDB'],
     liveUrl: 'https://scamcheck-security.vercel.app',
     siteLabel: 'scamcheck-security.vercel.app',
-    poster: '/screenshots/scamcheck/slide-1.png',
+    poster: '/screenshots/scamcheck/slide-1.webp',
     slides: [
       {
         id: 1,
         title: '01. Verdict',
         caption:
           'A risk level, a score, and a plain-language summary of what to do next.',
-        image: '/screenshots/scamcheck/slide-1.png',
+        image: '/screenshots/scamcheck/slide-1.webp',
         highlight: 'Risk level · Score',
       },
       {
@@ -33,7 +33,7 @@ export const projects = [
         title: '02. Flagged phrases',
         caption:
           'The risky parts of the message are highlighted, with the reason for each.',
-        image: '/screenshots/scamcheck/slide-2.png',
+        image: '/screenshots/scamcheck/slide-2.webp',
         highlight: 'Highlighted evidence · Reasons',
       },
       {
@@ -41,7 +41,7 @@ export const projects = [
         title: '03. Spot the scam quiz',
         caption:
           'A short quiz that teaches people the common scam patterns.',
-        image: '/screenshots/scamcheck/slide-3.png',
+        image: '/screenshots/scamcheck/slide-3.webp',
         highlight: 'Quiz · Explanations',
       },
     ],

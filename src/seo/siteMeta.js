@@ -164,7 +164,7 @@ const organizationNode = () => ({
   url: `${ORIGIN}/`,
   logo: {
     '@type': 'ImageObject',
-    url: `${ORIGIN}/brand/skku-green.png`,
+    url: `${ORIGIN}/brand/skku-green.webp`,
   },
   image: OG_IMAGE,
   email: CONTACT_EMAIL,

@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { projects } from "../lib/projects";
 import Seo from "../components/Seo";
+import WorkMedia from "../components/WorkMedia";
 
 const SLIDES = [1, 2, 3, 4, 5];
 
@@ -57,6 +58,7 @@ export default function CaseStudy() {
           </span>
         </Link>
       </section>
+      <WorkMedia />
     </>
   );
 }
