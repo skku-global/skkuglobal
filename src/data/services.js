@@ -19,11 +19,13 @@ import {
   LuKey,
   LuLayers,
   LuLock,
+  LuPalette,
   LuServer,
   LuShieldAlert,
   LuShieldCheck,
   LuShoppingBag,
   LuSmartphone,
+  LuVideo,
   LuZap,
 } from 'react-icons/lu'
 
@@ -132,6 +134,33 @@ export const services = [
     ],
     forWhom:
       'Businesses that need everything covered, not just the website.',
+  },
+
+  {
+    id: 'flyers-video',
+    status: 'live',
+    isLocked: false,
+    category: 'dev',
+    categoryLabel: 'Brand & Creative',
+    title: 'Flyers & Ad Videos',
+    badge: 'Creative',
+    badgeType: 'amber',
+    icon: LuPalette,
+    slaMetric: {
+      icon: LuVideo,
+      text: 'Flyers, short ads and social video',
+    },
+    techStack: ['Flyer Design', 'Social Graphics', 'Ad Videos', 'Brand Kits'],
+    summary:
+      'Flyers and short ad videos that make your brand look as good as your website.',
+    includes: [
+      'Flyers and social media graphics for your brand',
+      'Short ad videos for Instagram, TikTok and WhatsApp status',
+      'Consistent colours, fonts and logo across every piece',
+      'Files delivered in the sizes each platform needs',
+    ],
+    forWhom:
+      'Businesses that need ads and promos that look professional.',
   },
 
   /* ════════ UPCOMING SOFTWARE ENGINEERING HORIZONS (LOCKED · COMING SOON) ════════ */
