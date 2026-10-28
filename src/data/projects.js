@@ -340,14 +340,64 @@ export const projects = [
   {
     id: 'edgewise',
     title: 'Edgewise — Trading Journal & Pattern Tracker',
-    badge: 'Fintech Web App',
-    category: 'Trading & Finance',
+    clientName: 'Edgewise (own product)',
+    editorialHeadline: 'Most traders track P/L but never the psychology behind each decision. Now one journal captures mood, conviction, and restlessness alongside every trade — and an AI coach reads the pattern.',
+    architectQuote: 'React dashboard with MetaTrader live sync, evidence-based journaling with screenshot requirements, and a Claude-powered coach that reads every logged trade and mood.',
+    badge: 'Live in Production',
+    featured: true,
+    category: 'Trading & Fintech',
+    tagline: 'Know your edge. Watch your head.',
     description:
-      'A trading journal that logs mood, conviction and restlessness next to the P/L they produced, with automatic MetaTrader sync.',
-    detail: 'React front end, MetaTrader integration for auto-syncing closed positions, auth with sign-in and account creation.',
-    outcome: 'Live app. Traders log a trade in seconds and surface behavioural patterns across their history.',
-    stack: ['React', 'Node.js', 'MetaTrader API', 'Vercel'],
+      'A trading journal that captures the psychology behind every trade — mood, conviction, restlessness — alongside the P/L, with MetaTrader auto-sync and an AI coach.',
+    detail:
+      'React front end, MetaTrader integration for live deal sync and MT5 HTML import, evidence-based journaling with screenshot requirements, and a Claude-powered coaching interface.',
+    outcome:
+      'Live app. Traders log a trade in seconds, review patterns on a calendar heatmap, and get honest AI feedback on their emotional tendencies.',
+    stack: ['React', 'Node.js', 'Claude AI', 'MetaTrader API', 'Vercel'],
     liveUrl: 'https://edgewisee.vercel.app',
     siteLabel: 'edgewisee.vercel.app',
+    poster: '/screenshots/edgewise/slide-1.webp',
+    slides: [
+      {
+        id: 1,
+        title: '01. Dashboard',
+        caption:
+          'Two entry paths: a full manual journal flow with screenshots, or automatic MetaTrader sync for closed positions.',
+        image: '/screenshots/edgewise/slide-1.webp',
+        highlight: 'Manual + Auto · Evidence-based',
+      },
+      {
+        id: 2,
+        title: '02. Trades log',
+        caption:
+          'Every trade listed with date, pair, direction, setup tag, mood, and result — filterable by direction and mood.',
+        image: '/screenshots/edgewise/slide-2.webp',
+        highlight: 'Mood tracking · Setup tags',
+      },
+      {
+        id: 3,
+        title: '03. Calendar',
+        caption:
+          'A monthly heatmap where each bar represents one day\'s net result — green bars show profitable days at a glance.',
+        image: '/screenshots/edgewise/slide-3.webp',
+        highlight: 'Heatmap calendar · Day-by-day P/L',
+      },
+      {
+        id: 4,
+        title: '04. Reports',
+        caption:
+          'Net result, win rate, and profit factor across 7, 30, or 90 days, with an account growth curve.',
+        image: '/screenshots/edgewise/slide-4.webp',
+        highlight: 'Win rate · Profit factor · Growth curve',
+      },
+      {
+        id: 5,
+        title: '05. AI Coach',
+        caption:
+          'Claude reads every logged trade and mood, then gives honest, data-backed feedback — not generic tips.',
+        image: '/screenshots/edgewise/slide-5.webp',
+        highlight: 'Claude AI · Trade-aware coaching',
+      },
+    ],
   },
 ]
