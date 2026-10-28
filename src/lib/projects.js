@@ -45,4 +45,12 @@ export const projects = [
     solution: "We built JuniCash, a mobile-first digital banking app with simple onboarding, clear balances, and an easy-to-read transaction history.",
     outcome: "A working digital bank experience that can be understood in seconds.",
   },
+  {
+    slug: "edgewise",
+    title: "Edgewise",
+    result: "Scattered trade notes → a live journal with pattern insights",
+    problem: "Traders track P/L in spreadsheets but never connect it to the mood, conviction, or restlessness that drove each decision.",
+    solution: "We built Edgewise, a trading journal that logs the psychology behind every trade alongside the numbers, with automatic MetaTrader sync so the journal is never a week behind.",
+    outcome: "Live app. Traders surface their own behavioural patterns in minutes.",
+  },
 ];
