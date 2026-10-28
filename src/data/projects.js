@@ -337,4 +337,17 @@ export const projects = [
     liveUrl: 'https://apartment-ls-ready.vercel.app',
     siteLabel: 'apartment-ls-ready.vercel.app',
   },
+  {
+    id: 'edgewise',
+    title: 'Edgewise — Trading Journal & Pattern Tracker',
+    badge: 'Fintech Web App',
+    category: 'Trading & Finance',
+    description:
+      'A trading journal that logs mood, conviction and restlessness next to the P/L they produced, with automatic MetaTrader sync.',
+    detail: 'React front end, MetaTrader integration for auto-syncing closed positions, auth with sign-in and account creation.',
+    outcome: 'Live app. Traders log a trade in seconds and surface behavioural patterns across their history.',
+    stack: ['React', 'Node.js', 'MetaTrader API', 'Vercel'],
+    liveUrl: 'https://edgewisee.vercel.app',
+    siteLabel: 'edgewisee.vercel.app',
+  },
 ]
