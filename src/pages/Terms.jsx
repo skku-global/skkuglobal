@@ -79,7 +79,7 @@ export default function Terms() {
           <p>
             Direct inquiries regarding these terms:{' '}
             <a href={`mailto:${CONTACT_EMAIL}?subject=Terms%20of%20Use%20Query`}>{CONTACT_EMAIL}</a> or WhatsApp{' '}
-            <a href="https://wa.me/2348057215622" target="_blank" rel="noreferrer">+234 805 721 5622</a>.
+            <a href="https://wa.me/2347016995795" target="_blank" rel="noreferrer">+234 701 699 5795</a>.
           </p>
         </div>
       </section>

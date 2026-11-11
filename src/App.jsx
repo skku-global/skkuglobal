@@ -36,7 +36,7 @@ export function AppShell() {
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/admin" element={<Admin />} />
-        <Route path="/work" element={<Work />} />
+            <Route path="/work" element={<Work />} />
             <Route path="/work/:slug" element={<CaseStudy />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

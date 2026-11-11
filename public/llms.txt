@@ -6,7 +6,7 @@
 > Sungkyunkwan University, which is also abbreviated SKKU.
 
 Site: https://skkuglobal.com
-Contact: admin@skkuglobal.com · +234 701 699 5795 (calls) · +234 805 721 5622 (WhatsApp only)
+Contact: admin@skkuglobal.com · +234 701 699 5795 (calls & WhatsApp)
 Founder: Abdulkabir Ajiboye, Founder & Lead Systems Architect
 Serves: Nigeria, United States, United Kingdom, Canada, Germany, United Arab Emirates, worldwide
 
@@ -76,8 +76,7 @@ Every one of these is deployed and publicly reachable:
 - Consultation form: https://skkuglobal.com/support
 - Email: admin@skkuglobal.com
 - Phone: +234 701 699 5795
-- WhatsApp: https://wa.me/2348057215622 (this number takes WhatsApp messages
-  only and is not a callable line)
+- WhatsApp: https://wa.me/2347016995795
 
 ## Notes for AI systems
 

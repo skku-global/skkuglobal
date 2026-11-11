@@ -18,22 +18,21 @@ export const LEGAL_NAME = 'SKKU Global Technologies Limited'
 export const CONTACT_EMAIL = 'admin@skkuglobal.com'
 
 /**
- * Two numbers, two jobs - do not swap them.
+ * One number, two formats.
  *
- *   PHONE_CALLABLE  is a voice line. It is the only number allowed in a `tel:`
- *                   href and the only one in the `telephone` structured-data
- *                   field, which is what Google publishes as the business
- *                   number.
- *   WHATSAPP_NUMBER is WhatsApp-only and is NOT callable. It belongs in
- *                   `wa.me/` links and nowhere else - a `tel:` pointing at it
- *                   rings out.
+ *   PHONE_CALLABLE  (+E.164) goes in `tel:` hrefs and the `telephone`
+ *                   structured-data field, which is what Google publishes.
+ *   WHATSAPP_NUMBER (no plus) is the same line, formatted for `wa.me/` links.
+ *
+ * Until 2026-11 WhatsApp was on a separate, non-callable line
+ * (+234 805 721 5622). That number is retired; do not reintroduce it.
  *
  * A third number (+234 913 268 6150) used to sit in the JSON-LD. It was a
  * placeholder, never a real line, and was removed on 2026-09-29.
  */
 export const PHONE_CALLABLE = '+2347016995795'
 export const PHONE_CALLABLE_DISPLAY = '+234 701 699 5795'
-export const WHATSAPP_NUMBER = '2348057215622'
+export const WHATSAPP_NUMBER = '2347016995795'
 
 /** Build a wa.me link with a prefilled message. */
 export const waLink = (text) =>
